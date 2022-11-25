@@ -13,6 +13,9 @@ import withDataLayer, { PAGE_TYPES } from '@components/withDataLayer'
 import { EVENTS_MAP } from '@components/services/analytics/constants'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 
+import PCP from '@components/PCP'
+
+
 export async function getStaticProps({
   preview,
   locale,
@@ -67,10 +70,11 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
 
   return (
     <>
-      <Hero banners={slugs?.components[0]?.images} />
+      <PCP/>
+      {/* <Hero banners={slugs?.components[0]?.images} />
       <ProductSlider
         config={slugs?.components?.find((i?: any) => i.componentType === 52)}
-      />
+      /> */}
     </> 
   )
 }
