@@ -1,0 +1,26 @@
+{
+  "title": "BetterCommerce Demo Storefront | Powered by Next.js and BetterCommerce",
+  "titleTemplate": "%s - Demo Storefront",
+  "description": "BetterCommerce - https://bettercommerce.io",
+  "openGraph": {
+    "title": "BetterCommerce Demo Storefront | Powered by Next.js and BetterCommerce",
+    "description": "BetterCommerce - https://bettercommerce.io",
+    "type": "website",
+    "locale": "en_GB",
+    "url": "https://bettercommerce.io",
+    "site_name": "BetterCommerce",
+    "images": [
+      {
+        "url": "/card.png",
+        "width": 800,
+        "height": 600,
+        "alt": "BetterCommerce"
+      }
+    ]
+  },
+  "twitter": {
+    "handle": "@nextjs",
+    "site": "@nextjs",
+    "cardType": "summary_large_image"
+  }
+}

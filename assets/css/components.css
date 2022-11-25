@@ -1,0 +1,158 @@
+.fit {
+  min-height: calc(100vh - 88px);
+}
+
+.nav-border-right {
+  padding: 0px;
+  position: relative;
+}
+
+.nav-border-right:after{
+    content: "";
+    position: absolute;
+    right: -18px;
+    top: 4px;
+    width: 1px;
+    height: 25px;
+    background-color: #eaeaea;
+} 
+.nav-border-right:last-child:after{
+    content: "";
+    position: absolute;
+    right: -18px;
+    top: 4px;
+    width: 0px;
+    height: 25px;
+    background-color: #FFFFFF;
+} 
+.z-99{
+  z-index: 99;
+}
+
+.z-999{
+  z-index: 999;
+}
+
+.z-9999{
+  z-index: 9999;
+}
+
+.add-wishlist{
+  bottom: -25px!important;
+  padding: 6px;
+  text-align: center;
+  right: 0!important;
+}
+
+.full-table table{
+  width: 100%!important;
+}
+
+.full-table table th{
+  background: #f5f5f5!important;
+}
+
+.footer_row_light-grey {
+  background-color: #ededed;
+  color: #000;
+}
+
+.footer_row_dark-grey {
+  background-color: #dcdcdc;
+}
+
+.mobile-hero-banner{
+  max-height: 100%!important;
+  max-width: 100%!important;
+  height: 100%!important;
+}
+
+@media screen and (min-width:1180px) {
+  .brand-grid-3 .lg\:grid-cols-3 {
+    grid-template-columns: repeat(4, minmax(0, 1fr))!important;
+  }
+}
+
+@media screen and (max-width:1480px) and (min-width:1024px) {
+  .md\:w-4\/5 {
+    width: 100%!important;
+    padding: 0px 25px!important;
+  }
+  .sm\:w-3\/5 {
+    width: 100%!important;
+    padding: 0px 25px!important;
+  }
+
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(4, minmax(0, 1fr))!important;
+  }
+
+  .lg\:grid-cols-6 {
+    grid-template-columns: repeat(5, minmax(0, 1fr))!important;
+  }
+}
+.max-w-md{
+  max-width: 29.2rem!important;
+}
+
+@media screen and (max-width:767px) {
+  .mobile-image-cart > span,
+  .mobile-image-cart img{
+    width: 80px!important;
+    height: 80px!important;
+    object-fit: cover!important;
+    object-position: top!important;
+  }
+}
+
+.image-container span{
+  padding: 0!important;
+}
+
+.h-screen{
+  height: 100vh!important;
+}
+
+.lookbook-image{
+  position: relative;
+}
+
+.lookbook-image::after{
+  content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.lookbook-image .lookbook-data{
+  position: absolute!important;
+  top: 20%;
+  left: 10%;
+  z-index: 99;
+}
+
+.top-full{
+  top: 100%!important;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2)!important;
+}
+
+.inset-0{
+  z-index: 9999!important;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+@media screen and (max-width:767px) {
+  .sm\:h-72 {
+    height: 12rem !important;
+  }
+  .banner-Image{
+    height: auto!important;
+  }
+}
