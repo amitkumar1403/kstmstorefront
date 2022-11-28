@@ -15,6 +15,7 @@ import { EVENTS_MAP } from '@components/services/analytics/constants'
 import { useUI } from '@components/ui/context'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 import { GENERAL_CATALOG } from '@components/utils/textVariables'
+import Filter_sort from '@components/PCP/components/Filter_sort'
 export const ACTION_TYPES = {
   SORT_BY: 'SORT_BY',
   PAGE: 'PAGE',
@@ -119,6 +120,7 @@ function Search({ query, setEntities, recordEvent }: any) {
 
   const router = useRouter()
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [showModal, setShowModal] = useState(false);
   const {
     data = {
       products: {
@@ -288,17 +290,26 @@ function Search({ query, setEntities, recordEvent }: any) {
     : data.products
 
   return (
-    <div className="bg-white md:w-4/5 mx-auto">
+    <div className="bg-white w-full mx-auto">
       {/* Mobile menu */}
       <main className="pb-24">
-        <div className="text-left sm:py-5 py-4 px-4 sm:px-0 lg:px-0">
-          <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4>
+        <div className="text-center sm:py-5 py-4 px-4 sm:px-0 lg:px-0">
+          {/* <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4> */}
+          <h4><span className='text-sm font-normal text-gray-500'>Home | Women | Leggings</span></h4>
+
           <h1 className="sm:text-2xl text-xl font-semibold tracking-tight text-black">
-            {GENERAL_CATALOG} 
+            {/* {GENERAL_CATALOG}  */}
+            WOMEN - LEGGINGS
           </h1>
+          <img src='/assets/icons/filter.png' alt='filter' 
+           onClick={() =>
+            {
+             !showModal? setShowModal(true) :setShowModal(false)
+            } }
+          className='absolute  w-10 mt-2  mr-6 right-16 top-24 cursor-pointer'/>
           
         </div>
-        <div className="grid sm:grid-cols-12 grid-cols-1 gap-1 w-full mx-auto overflow-hidden px-4 sm:px-0 lg:px-0">
+        <div className="grid sm: grid-cols-1 w-full mx-auto overflow-hidden px-4 sm:px-0 lg:px-0">
           {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
 
           <div className="sm:col-span-2 sm:hidden flex flex-col">
@@ -314,17 +325,17 @@ function Search({ query, setEntities, recordEvent }: any) {
 
           {/* {FILTER PANEL SHOW ONLY IN DESKTOP VERSION} */}
 
-          <div className="sm:col-span-2 sm:block hidden">
-            <ProductFilterRight
+          {/* <div className="sm:col-span-2 sm:block hidden">
+              <ProductFilterRight
               handleFilters={handleFilters}
               products={data.products}
               routerFilters={state.filters}
-            />
-          </div>
-          <div className="sm:col-span-10">
+              />
+              </div> */}   
+          <div className="sm:col-span-4">
             {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
-            <div className="flex-1 sm:block hidden">
+            {/* <div className="flex-1 sm:block hidden">
               <ProductFiltersTopBar
                 products={data.products}
                 handleSortBy={handleSortBy}
@@ -332,7 +343,40 @@ function Search({ query, setEntities, recordEvent }: any) {
                 clearAll={clearAll}
                 routerSortOption={state.sortBy}
               />
+            </div> */}
+
+            {/* Modal */}
+
+        {showModal ? (
+        <>
+          <div>
+              {/*content*/}
+              <div className='absolute mr-4 right-1 top-40 bg-gray-100 min-h-screen  border-b-2 hover:shadow-2xl z-50' >
+                {/*body*/}
+                 <Filter_sort/>
+                {/*footer*/}
+                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </button>
+                  <button
+                    className="bg-emerald-500 text-black active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </div>
             </div>
+          {/* <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> */}
+        </>
+      ) : null}
+            
             <ProductGrid
               products={productDataToPass}
               currentPage={state.currentPage}

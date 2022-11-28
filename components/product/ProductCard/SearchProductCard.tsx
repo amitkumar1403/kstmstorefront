@@ -165,8 +165,8 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   const saving  = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
   const discount  = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
   return (
-    <div className="border-gray-100">
-    <div key={product.id} className="relative py-3 sm:py-3">
+    <div className="border-gray-300 border hover:border-black">
+    <div key={product.id} className="relative">
         
       <Link
         passHref
@@ -174,10 +174,11 @@ const SearchProductCard: FC<Props> = ({ product }) => {
         key={'data-product' + currentProductData.link}
       >
         <a href={currentProductData.link}>
-          <div className="relative overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 hover:opacity-75">
+          <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 hover:opacity-75 w-32">
               <Image
                 priority
-                src={generateUri(currentProductData.image, "h=400&fm=webp") || IMG_PLACEHOLDER} 
+                // src={generateUri(currentProductData.image, "h=400&fm=webp") || IMG_PLACEHOLDER} 
+                src='/assets/icons/pajama.png' 
                 alt={product.name}
                 onMouseEnter={() => handleHover('enter')}
                 onMouseLeave={() => handleHover('leave')}
@@ -206,10 +207,10 @@ const SearchProductCard: FC<Props> = ({ product }) => {
                   className="absolute right-2 bottom-0 z-99 add-wishlist"
                   onClick={handleWishList}
               >
-                  <HeartIcon
+                  {/* <HeartIcon
                       className="flex-shrink-0 h-8 w-8 z-50 text-gray-800 hover:text-gray-500 rounded-3xl p-1 opacity-80"
                       aria-hidden="true"
-              />
+              /> */}
                   <span className="ml-2 text-sm font-medium text-gray-700 hover:text-red-800"></span>
                   <span className="sr-only">f</span>
               </button>            
@@ -218,7 +219,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
         </a>
       </Link>
 
-      <div className="pt-0 text-left">
+      <div className="pt-0 text-center bg-gray-100">
         {hasColorVariation ? (
           <AttributeSelector
             attributes={product.variantProductsAttributeMinimal}
@@ -229,13 +230,13 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           <div className="sm:h-1 sm:w-1 h-1 w-1 sm:mr-2 mr-1 mt-2 inline-block" />
         )}
         
-        <h3 className="sm:text-sm text-xs font-normal text-gray-700 truncate">
+        <h3 className="sm:text-sm text-xs font-normal text-black truncate">
           <Link href={`/${currentProductData.link}`}>
-            <a href={`/${currentProductData.link}`}>{product.name}</a>
+            <a  href={`/${currentProductData.link}`}>{product.name}</a>
           </Link>
         </h3>
 
-        <p className="sm:mt-1 mt-1 font-bold text-md text-gray-900">
+        <p className="sm:mt-1 mt-1 font-bold text-md text-gray-500 mb-2">
           {product?.price?.formatted?.withTax}
           {product?.listPrice?.raw?.withTax > 0 && product?.listPrice?.raw?.withTax != product?.price?.raw?.withTax &&
               <>
@@ -258,5 +259,4 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   </div>
   )
 }
-
 export default SearchProductCard

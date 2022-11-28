@@ -160,7 +160,7 @@ export async function getStaticProps({
   locales,
   preview,
 }: GetStaticPropsContext) {
-  const slug: any = params!.efdwedwdew;
+  const slug: any = params!.lookbook;
   const response = await getSingleLookbook(slug[0]);
 
   const infraPromise = commerce.getInfra();

@@ -234,7 +234,7 @@ const ProductCard: FC<Props> = ({ product }) => {
             <a href={`/${currentProductData.link}`}>{product.name}</a>
           </Link>
         </h3>
-        <p className="sm:mt-1 mt-1 font-bold text-md text-gray-900">
+        <p className=" sm:mt-1 mt-1 font-bold  text-md text-gray-900">
           {product?.price?.formatted?.withTax}
           {product?.listPrice?.raw?.withTax > 0 && product?.listPrice?.raw?.withTax != product?.price?.raw?.withTax &&
               <>

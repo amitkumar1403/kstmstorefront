@@ -70,11 +70,11 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
 
   return (
     <>
-      <PCP/>
-      {/* <Hero banners={slugs?.components[0]?.images} />
+      {/* <PCP/> */}
+      <Hero banners={slugs?.components[0]?.images} />
       <ProductSlider
         config={slugs?.components?.find((i?: any) => i.componentType === 52)}
-      /> */}
+      />
     </> 
   )
 }

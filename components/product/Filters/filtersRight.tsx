@@ -27,7 +27,7 @@ export default function FiltersRightOpen({
           {products.filters?.map((section: any) => (
             <div
               key={section.name}
-              className="border-t border-gray-200 sm:px-0 sm:pr-4 px-4 sm:px-0 py-6"
+              className="border-t border-gray-200 sm:pr-4 px-4 sm:px-0 py-6"
             >
               <>
                 <h3 className="-mx-2 -my-3">
