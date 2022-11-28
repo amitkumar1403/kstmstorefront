@@ -11,7 +11,7 @@ const SubNav = () => {
    WOMEN - LEGGINGS
  </span>
  <img src='/assets/icons/filter.png' alt='filter' 
- className='absolute  w-16 mr-6 right-2 top-28 cursor-pointer'/>
+ className='absolute  w-10 mt-3  mr-6 right-16 top-24 cursor-pointer'/>
 
 </div>
    </>

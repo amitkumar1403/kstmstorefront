@@ -1,15 +1,14 @@
-
-import React from 'react'
-import SubNav from './SubNav'
-import Main from './Main'
+import SubNav from './components/SubNav'
+import Main from './components/Main'
+import Filter_sort from './components/Filter_sort/'
 
 
 const PCP = () => {
   return (
   <>
- 
    <SubNav/>
    <Main/>
+   <Filter_sort/>
   
   </>
   )
