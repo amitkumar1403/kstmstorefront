@@ -301,7 +301,10 @@ function Search({ query, setEntities, recordEvent }: any) {
             {/* {GENERAL_CATALOG}  */}
             WOMEN - LEGGINGS
           </h1>
-          <img src='/assets/icons/filter.png' alt='filter' 
+          {console.log(data)}
+          <img src='/assets/icons/filter.png'
+          
+          alt='filter' 
            onClick={() =>
             {
              !showModal? setShowModal(true) :setShowModal(false)
@@ -325,17 +328,17 @@ function Search({ query, setEntities, recordEvent }: any) {
 
           {/* {FILTER PANEL SHOW ONLY IN DESKTOP VERSION} */}
 
-          {/* <div className="sm:col-span-2 sm:block hidden">
+        {/* <div className="sm:col-span-2 sm:block hidden">
               <ProductFilterRight
               handleFilters={handleFilters}
               products={data.products}
               routerFilters={state.filters}
               />
-              </div> */}   
+              </div>   */}
           <div className="sm:col-span-4">
             {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
-            {/* <div className="flex-1 sm:block hidden">
+            <div className="flex-1 sm:block hidden">
               <ProductFiltersTopBar
                 products={data.products}
                 handleSortBy={handleSortBy}
@@ -343,17 +346,24 @@ function Search({ query, setEntities, recordEvent }: any) {
                 clearAll={clearAll}
                 routerSortOption={state.sortBy}
               />
-            </div> */}
+            </div>
 
             {/* Modal */}
 
-        {showModal ? (
-        <>
+            {showModal ? (
+            <>
           <div>
               {/*content*/}
-              <div className='absolute mr-4 right-1 top-40 bg-gray-100 min-h-screen  border-b-2 hover:shadow-2xl z-50' >
+              <div className='absolute mr-4 right-1 top-40 bg-gray-100 min-h-screen  border-b-2 hover:shadow-2xl z-50 max-w-md ' >
                 {/*body*/}
-                 <Filter_sort/>
+                 {/* <Filter_sort/> */}
+
+                  <ProductFilterRight
+                handleFilters={handleFilters}
+                products={data.products}
+                routerFilters={state.filters}
+              />
+
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button

@@ -174,11 +174,11 @@ const SearchProductCard: FC<Props> = ({ product }) => {
         key={'data-product' + currentProductData.link}
       >
         <a href={currentProductData.link}>
-          <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 hover:opacity-75 w-32">
+          <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 hover:opacity-75 ">
               <Image
                 priority
-                // src={generateUri(currentProductData.image, "h=400&fm=webp") || IMG_PLACEHOLDER} 
-                src='/assets/icons/pajama.png' 
+                src={generateUri(currentProductData.image, "h=400&fm=webp") || IMG_PLACEHOLDER} 
+                // src='/assets/icons/pajama.png' 
                 alt={product.name}
                 onMouseEnter={() => handleHover('enter')}
                 onMouseLeave={() => handleHover('leave')}
