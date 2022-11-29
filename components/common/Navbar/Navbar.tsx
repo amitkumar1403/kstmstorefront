@@ -281,21 +281,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
           <div className="pb-0 sm:px-0 sm:pb-0">
             <div className="h-16 flex items-center justify-between">
               {/* Logo */}
-              <button
-                type="button"
-                className="-ml-2 bg-white py-4 pl-2 pr-2 rounded-md text-gray-400 sm:hidden"
-                onClick={() => setOpen(true)}
-              >
-                <span className="sr-only">Open menu</span>
-                <MenuIcon className="h-6 w-6 text-black" aria-hidden="true" />
-              </button>
 
-              <Link href="/">
-                <div className="w-32 flex cursor-pointer">
-                  <span className="sr-only">{GENERAL_WORKFLOW_TITLE}</span>
-                  <Logo />
-                </div>
-              </Link>
 
               {/* Flyout menus */}
               <Popover.Group className="absolute bottom-0 inset-x-0 sm:static w-full sm:self-stretch sm:block hidden sm:h-16">
@@ -430,40 +416,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                 <Searchbar onClick={setShowSearchBar} />
                 {/* account */}
                 <Account title={title} config={accountDropdownConfig} />
-                {/* currency */}
-                <div className="sm:flex hidden">
-                  <CurrencySwitcher
-                    config={currencies}
-                    title={SELECT_CURRENCY}
-                    action={configAction}
-                  />
-                  <LanguageSwitcher
-                    title={SELECT_LANGUAGE}
-                    action={configAction}
-                    config={languages}
-                  />
-                </div>
 
-                {/* Wishlist*/}
-
-                <div className="px-1 w-10 sm:w-16 flow-root">
-                  <button
-                    className="relative group grid grid-cols-1 items-center text-center align-center justify-center flex-col mx-auto"
-                    onClick={openWishlist}
-                  >
-                    <HeartIcon
-                      className="flex-shrink-0 h-6 w-6 block text-black group-hover:text-red-600 mx-auto"
-                      aria-hidden="true" aria-label="Wishlist"
-                    />
-                    <span className='font-normal hidden text-sm text-black sm:block'>Wishlist</span>
-                    {wishListItems.length > 0 &&
-                     <span className="ml-2 hidden sm:block absolute top-0 -right-0 w-4 h-4 text-white rounded-full bg-pink text-center text-xs font-medium">                     
-                          {wishListItems.length}
-                      </span>
-                    }
-                      <span className="sr-only">{GENERAL_ITEM_IN_CART}</span>                    
-                  </button>
-                </div>
                 {/* Cart */}
 
                 <div className="px-1 sm:w-16 w-10 flow-root">
@@ -472,10 +425,10 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                     onClick={openCart}
                   >
                     <ShoppingCartIcon
-                      className="flex-shrink-0 h-6 w-6 block text-black group-hover:text-gray-500 mx-auto"
+                      className="block-shrink-0 h-6 w-6 block text-black group-hover:text-gray-500 mx-auto"
                       aria-hidden="true" aria-label="Add to cart"
                     />
-                     <span className='font-normal hidden text-sm text-black sm:block'>Cart</span>
+                     <span className='font-normal hidden text-sm text-black sm:block'></span>
                      {cartItems.lineItems?.length > 0 &&
                         <span className="ml-2 absolute -top-1 -right-2 w-4 h-4 text-white rounded-full bg-gray-500 text-center text-xs font-medium">                     
                       {cartItems.lineItems?.length}

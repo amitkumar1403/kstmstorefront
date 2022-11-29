@@ -11,7 +11,7 @@ export default function Account({ config, title }: any) {
           className="flex-shrink-0 h-6 w-6 block text-black group-hover:text-gray-500 mx-auto"
           aria-hidden="true"  aria-label="My Account"
         />
-        <span className='font-normal sm:block hidden text-sm text-black'>Profile</span>
+        <span className='font-normal sm:block hidden text-sm text-black'></span>
       </Menu.Button>
       <Transition
         as={Fragment}
