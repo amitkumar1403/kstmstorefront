@@ -338,7 +338,7 @@ function Search({ query, setEntities, recordEvent }: any) {
           <div className="sm:col-span-4">
             {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
-            <div className="flex-1 sm:block hidden">
+            {/* <div className="flex-1 sm:block hidden">
               <ProductFiltersTopBar
                 products={data.products}
                 handleSortBy={handleSortBy}
@@ -346,7 +346,7 @@ function Search({ query, setEntities, recordEvent }: any) {
                 clearAll={clearAll}
                 routerSortOption={state.sortBy}
               />
-            </div>
+            </div> */}
 
             {/* Modal */}
 
@@ -358,11 +358,23 @@ function Search({ query, setEntities, recordEvent }: any) {
                 {/*body*/}
                  {/* <Filter_sort/> */}
 
+                 <div className="flex-1 sm:block hidden">
+              <ProductFiltersTopBar
+                products={data.products}
+                handleSortBy={handleSortBy}
+                routerFilters={state.filters}
+                clearAll={clearAll}
+                routerSortOption={state.sortBy}
+              />
+            </div>
+
                   <ProductFilterRight
                 handleFilters={handleFilters}
                 products={data.products}
                 routerFilters={state.filters}
               />
+
+
 
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
