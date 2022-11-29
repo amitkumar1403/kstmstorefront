@@ -29,8 +29,9 @@ export default function InfiniteScrollComponent({
           (  setshow(true),setTimeout(() => {
             setshow(false)
           }, 1000))
-            :setshow(false))}
-          className='border border-black py-2 px-8 text-gray-700 hover:text-white hover:bg-black font'>Load more</button>
+            :null)}                                                                                                 //12<70
+          className={`border border-black py-2 px-8 text-gray-700 hover:text-white hover:bg-black font ${!(currentNumber<total)?`hidden`:`block`}`}>
+            Load more</button>
         </p>
       }
     >
