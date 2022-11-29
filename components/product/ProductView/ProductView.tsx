@@ -678,7 +678,7 @@ export default function ProductView({
           <label className="text-sm">Size guide</label>
         </div>
  
-        <div className="container py-0 lg:grid lg:grid-cols-6 text-center">
+        <div className="container py-0 lg:grid lg:grid-cols-5 text-center">
             <div className="w-full border border-grey-40 hover:border-black mx-auto">
                 <label className=''>XXL</label>
             </div>
