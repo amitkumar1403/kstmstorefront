@@ -828,7 +828,6 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
     </>
   )
 }
-
 Home.Layout = Layout
 
 export default withDataLayer(Home, PAGE_TYPE)

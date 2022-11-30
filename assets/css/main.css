@@ -292,3 +292,4 @@
     height: 12rem !important;
   }
 }
+body {overflow-x: hidden; /* Hide horizontal scrollbar */}
