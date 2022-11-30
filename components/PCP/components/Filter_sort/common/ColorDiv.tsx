@@ -1,4 +1,7 @@
-const ColorDiv = ({data}) => {
+interface abc{
+  data:string
+}
+const ColorDiv = ({data}:abc) => {
   return (
     <>
     <div className='border border-gray p-5 hover:border-black  '>

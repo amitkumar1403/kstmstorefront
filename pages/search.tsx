@@ -290,21 +290,25 @@ function Search({ query, setEntities, recordEvent }: any) {
     : data.products
 
   return (
-    <div className="bg-white w-full mx-auto">
+    <div
+     className="bg-white w-full mx-auto ">
       {/* Mobile menu */}
       <main className="pb-24">
         <div className="text-center sm:py-5 py-4 px-4 sm:px-0 lg:px-0">
+          {/* for sticky subnav*/}
+        {/* <div className="border border-red-600  sticky top-16 bg-white z-50 text-center sm:py-5 py-4 px-4 sm:px-0 lg:px-0">    */}
+
           {/* <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4> */}
           <h4><span className='text-sm font-normal text-gray-500'>Home | Women | Leggings</span></h4>
 
           <h1 className="sm:text-2xl text-xl font-semibold tracking-tight text-black">
             {/* {GENERAL_CATALOG}  */}
             WOMEN - LEGGINGS
-          </h1>
-          {console.log(data)}
-          <img src='/assets/icons/filter.png'
           
-          alt='filter' 
+          </h1>
+         
+          <img src='/assets/icons/filter.png'
+          alt='filter-icon' 
            onClick={() =>
             {
              !showModal? setShowModal(true) :setShowModal(false)
@@ -350,16 +354,27 @@ function Search({ query, setEntities, recordEvent }: any) {
 
             {/* Modal */}
 
+            <ProductGrid
+              products={productDataToPass}
+              currentPage={state.currentPage}
+              handlePageChange={handlePageChange}
+              handleInfiniteScroll={handleInfiniteScroll}
+            />
+
             {showModal ? (
             <>
-          <div>
+       
               {/*content*/}
-              <div className='absolute mr-4 right-1 top-40 bg-gray-100 min-h-screen  border-b-2 hover:shadow-2xl z-50 max-w-md ' >
+              <div 
+                style={{width:'30rem'}}
+              className='absolute mr-4 right-1 top-40 bg-gray-100 min-h-screen  border-b-2 hover:shadow-2xl   ' >
                 {/*body*/}
                  {/* <Filter_sort/> */}
 
-                 <div className="flex-1 sm:block hidden">
-              <ProductFiltersTopBar
+                 <div
+                //  style={{width:'30rem'}}
+                 className=" sm:block hidden">
+                <ProductFiltersTopBar
                 products={data.products}
                 handleSortBy={handleSortBy}
                 routerFilters={state.filters}
@@ -377,34 +392,30 @@ function Search({ query, setEntities, recordEvent }: any) {
 
 
                 {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                <div className="grid grid-cols-2 py-7 px-7 border-b-2">
                   <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="border border-gray-200 py-6 font-bold px-6 text-gray-700 hover:text-black hover:border-black text-lg col-span-1"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {setShowModal(false) ,clearAll()}}
                   >
-                    Close
+                    Clear All
                   </button>
                   <button
-                    className="bg-emerald-500 text-black active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="border border-black py-6 font-bold px-6 bg-black text-white  hover:border-white hover:text-gray-200 text-lg col-span-1"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
-                    Save Changes
+                    Apply
                   </button>
                 </div>
-              </div>
+     
+      
             </div>
           {/* <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> */}
         </>
       ) : null}
             
-            <ProductGrid
-              products={productDataToPass}
-              currentPage={state.currentPage}
-              handlePageChange={handlePageChange}
-              handleInfiniteScroll={handleInfiniteScroll}
-            />
+           
           </div>
           <div></div>
         </div>

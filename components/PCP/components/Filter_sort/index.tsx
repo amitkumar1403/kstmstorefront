@@ -11,7 +11,7 @@ const Filter_sort = () => {
   return (
    <>
    {/* <div  className='absolute mr-6 right-1 top-44  bg-gray-100 border border-gray min-h-screen  border-b-2 hover:shadow-2xl'> */}
-   <div>
+   <div style={{width:'30rem'}}>
      
      <DivTitle heading={"Filter & sort"}/>
      <div className='text-right border-b-2'> 

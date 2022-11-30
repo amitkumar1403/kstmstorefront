@@ -43,7 +43,7 @@ export default function Grid({
                   : 'lg:grid-cols-4'
               }`}
             >
-              {/* onLoad */}
+              {/* before Load */}
               {!products.results.length &&
                 rangeMap(12, (i) => (
                   <div

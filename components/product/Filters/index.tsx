@@ -108,6 +108,7 @@ export default function Filters({
                           <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400">
                             <span className="font-medium text-gray-900">
                               {section.name}
+                         
                             </span>
                             <span className="ml-6 flex items-center">
                               <ChevronDownIcon
@@ -120,7 +121,7 @@ export default function Filters({
                             </span>
                           </Disclosure.Button>
                         </h3>
-                        <Disclosure.Panel className="pt-6">
+                        <Disclosure.Panel className="p-6">
                           <div className="space-y-6">
                             <FilterList
                               handleFilters={handleFilters}
@@ -150,7 +151,9 @@ export default function Filters({
             {PRODUCT_FILTER}
           </h2>
 
-          <div className="flex items-center justify-between pr-4">
+          <div 
+          
+          className="flex items-center justify-between pr-4">
             <h2 id="filter-heading-filter" className="sr-only">
               {GENERAL_FILTER_TITLE}
             </h2>
@@ -189,7 +192,8 @@ export default function Filters({
             />
           </div>
            {appliedFilters?.length >0 && (
-              <div className='flex flex-col px-4 grid grid-cols-1 border-t border-gray-100 py-2'>
+            //  flex and grid ?
+              <div className='flex flex-col px-4 grid grid-cols-1 border-t border-gray-100 py-2'>  
                   <h4 className='text-sm font-bold flex w-full mb-2'>Applied Filters</h4>
                   <div className='grid grid-cols-2'>
                     {appliedFilters.map((appliedFilter: any, idx: number) => {

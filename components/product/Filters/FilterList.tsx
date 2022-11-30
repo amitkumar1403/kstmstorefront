@@ -59,6 +59,7 @@ const FilterItem = ({
           className="h-4 w-4 border-gray-300 rounded filter-input"
         />
 
+
         <label
           htmlFor={`${optionIdx}-input[]`}
           onClick={handleCheckbox}
@@ -82,23 +83,26 @@ const FilterItem = ({
             />
           )}
           {generateOptionName()}
-          {sectionKey === FILTER_KEYS.COLOR &&          
+          {sectionKey === FILTER_KEYS.COLOR &&  
+        
+         <div
+         className='border border-gray p-5 hover:border-black  '
+         >
           <div
             style={{
               content: '',
-              top:'2px',
-              float: 'left',
-              height: '16px',
-              width: '16px',
+              height: '20px',
+              width: '20px',
               borderRadius: '10px',
               background: checkboxBgColor,
               border: '1px solid #cccccc',
               position: 'relative',
-              marginRight: '6px',
             }}
-          />
+            />
+            </div>
         }
-        {sectionKey != FILTER_KEYS.COLOR &&          
+        {sectionKey != FILTER_KEYS.COLOR &&   
+        
           <div
             style={{
               content: '',
@@ -112,7 +116,8 @@ const FilterItem = ({
               position: 'relative',
               marginRight: '6px',
             }}
-          />
+            />
+       
         }
         </label>
       </div>
