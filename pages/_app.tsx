@@ -1,4 +1,5 @@
 import "@assets/css/main.css"
+import '@assets/icon.css'
 import "@assets/css/chrome-bug.css"
 import 'keen-slider/keen-slider.min.css'
 import { FC, useEffect, useState, useLayoutEffect } from 'react'
