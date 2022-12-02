@@ -313,7 +313,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                   className="relative flex"
                                   href={`/${item.hyperlink}`}
                                 >
-                                  <Popover.Button
+                                  <div
                                     className={classNames(
                                       openState == idx
                                         ? 'border-indigo-600 text-indigo-600'
@@ -322,7 +322,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                       )}
                                   >
                                     {item.caption}
-                                  </Popover.Button>
+                                  </div>
                                 </a>
                               </Link>
                             ) : (
@@ -387,6 +387,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                                               href={`/${navItem.itemLink}`}
                                                               passHref
                                                             >
+
                                                               <a className="hover:text-gray-800">
                                                                 <Popover.Button
                                                                   className={classNames(
