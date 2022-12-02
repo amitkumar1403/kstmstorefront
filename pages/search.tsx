@@ -121,6 +121,7 @@ function Search({ query, setEntities, recordEvent }: any) {
   const router = useRouter()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [showModal, setShowModal] = useState(false);
+  const [filterClicked, setfilterClicked] = useState(false)
   const {
     data = {
       products: {
@@ -339,7 +340,7 @@ function Search({ query, setEntities, recordEvent }: any) {
               routerFilters={state.filters}
               />
               </div>   */}
-          <div className="sm:col-span-4">
+          <div className="sm:col-span-4 ">
             {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
             {/* <div className="flex-1 sm:block hidden">
@@ -363,11 +364,10 @@ function Search({ query, setEntities, recordEvent }: any) {
 
             {showModal ? (
             <>
-       
               {/*content*/}
               <div 
                 style={{width:'30rem'}}
-              className='absolute mr-4 right-1 top-40 bg-gray-100 min-h-screen  border-b-2 hover:shadow-2xl   ' >
+              className='absolute mr-4 right-1 top-40 bg-gray-100  border-b-2 hover:shadow-2xl   ' >
                 {/*body*/}
                  {/* <Filter_sort/> */}
 
@@ -388,8 +388,6 @@ function Search({ query, setEntities, recordEvent }: any) {
                 products={data.products}
                 routerFilters={state.filters}
               />
-
-
 
                 {/*footer*/}
                 <div className="grid grid-cols-2 py-7 px-7 border-b-2">

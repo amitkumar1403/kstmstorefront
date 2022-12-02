@@ -20,6 +20,9 @@ module.exports = {
         '8xl': '1920px',
         '40p': '40%',
       },
+      maxHeight: {
+        '40R':'40rem',
+      },
       opacity: ['disabled'],
       minWidth: {
         searchbar: '200px',
