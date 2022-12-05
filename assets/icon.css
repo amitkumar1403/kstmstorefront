@@ -6,7 +6,29 @@
 }
 
 .sprite-fb {
-	background: -39px -43px;
+	background: url('/image/sprite-icons.png') no-repeat -39px -43px;
 	width: 40px;
+	height: 43px;
+}
+.sprite-twitter {
+	background: url('/image/sprite-icons.png') no-repeat -31px -111px;
+	width: 49px;
+	height: 38px;
+}
+.sprite-insta {
+	background: url('/image/sprite-icons.png') no-repeat -33px -174px;
+	width: 52px;
+	height: 41px;
+}
+
+.sprite-tic {
+	background: url('/image/sprite-icons.png') no-repeat -34px -241px;
+	width: 47px;
+	height: 40px;
+}
+
+.sprite-shopify {
+	background: url('/image/sprite-icons.png') no-repeat -35px -302px;
+	width: 47px;
 	height: 43px;
 }
