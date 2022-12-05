@@ -256,7 +256,8 @@ const SearchProductCard: FC<Props> = ({ product }) => {
         <h3 className="sm:text-sm text-xs font-normal text-black truncate pb-3">
           <Link href={`/${currentProductData.link}`}>
             {/* Product Name */}
-            <a  className='font-medium' href={`/${currentProductData.link}`}> {showColorPrice.name}  </a>
+            {/* {showColorPrice.name} */}
+            <a  className='font-medium' href={`/${currentProductData.link}`}> {product.name}  </a>                  
           </Link>
         </h3>
 
@@ -265,7 +266,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
             {isEntered && 
           (
             <div className='group-hover:bg-gray-200 sm:mt-1 mt-1 font-bold text-md text-gray-500 mb-2'>
-            <p className='text-center text-gray-500 text-bold' >{showColorPrice.price}</p>
+            <p className='text-center text-gray-500 text-bold' >  {product?.price?.formatted?.withTax}</p>
             </div>
           )
           }

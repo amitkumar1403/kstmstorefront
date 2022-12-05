@@ -18,6 +18,7 @@ import {
   BTN_PRE_ORDER,
   GENERAL_ADD_TO_BASKET,
   IMG_PLACEHOLDER,
+  
 } from '@components/utils/textVariables'
 import { generateUri } from '@commerce/utils/uri-util'
 

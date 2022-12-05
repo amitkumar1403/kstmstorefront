@@ -86,7 +86,7 @@ const FilterItem = ({
           {sectionKey === FILTER_KEYS.COLOR &&  
         
          <div
-         className='border border-gray p-5 hover:border-black  '
+         className='border  p-5 hover:border-black'
          >
           <div
             style={{
@@ -121,7 +121,7 @@ const FilterItem = ({
         }
         </label>
       </div>
-      <span className="px-1 text-xs font-semibold text-black">({option.count})</span>
+      {/* <span className="px-1 text-xs font-semibold text-black">({option.count})</span> */}
     </div>
   )
 }
