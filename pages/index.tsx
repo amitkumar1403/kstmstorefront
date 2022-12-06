@@ -73,7 +73,7 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
       {/* <PCP/> */}
       <Hero banners={slugs?.components[0]?.images} />
       <ProductSlider
-        config={slugs?.components?.find((i?: any) => i.componentType === 52)}
+      config={slugs?.components?.find((i?: any) => i.componentType === 52)}
       />
     </> 
   )
@@ -82,3 +82,4 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
 Home.Layout = Layout
 
 export default withDataLayer(Home, PAGE_TYPE)
+

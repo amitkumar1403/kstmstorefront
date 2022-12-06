@@ -50,22 +50,23 @@ const FilterItem = ({
 
   const checkboxBgColor = bgColor(option) || 'transparent'
   return (
-    <div key={option.value} className="flex">
-      <div className="flex items-center">
+    <div key={option.value} className="grid">
+      <div className="grid items-center">
         <input
           name={`${optionIdx}-input[]`}
           defaultValue={option.value}
           type="checkbox"
-          className="h-4 w-4 border-gray-300 rounded filter-input"
+          className="h-4 w-4 border-gray-300 rounded filter-input "
         />
 
 
         <label
           htmlFor={`${optionIdx}-input[]`}
           onClick={handleCheckbox}
-          className="cursor-pointer ml-0 text-sm text-gray-500 relative filter-label"
+          className="cursor-pointer ml-0 text-sm text-gray-500 relative filter-label border  p-5 hover:border-black"
         >
-          {isCheckboxChecked && !isCheckboxTickDisabled && (
+          {/* checkbox tick */}
+          {/* {isCheckboxChecked && !isCheckboxTickDisabled && (
             <div
               style={{
                 content: '',
@@ -81,13 +82,11 @@ const FilterItem = ({
                 transform: 'rotate(45deg)',
               }}
             />
-          )}
+          )} */}
           {generateOptionName()}
+
+          {/* color */}
           {sectionKey === FILTER_KEYS.COLOR &&  
-        
-         <div
-         className='border  p-5 hover:border-black'
-         >
           <div
             style={{
               content: '',
@@ -99,9 +98,11 @@ const FilterItem = ({
               position: 'relative',
             }}
             />
-            </div>
+         
         }
-        {sectionKey != FILTER_KEYS.COLOR &&   
+
+        {/* checkbox */}
+        {/* {sectionKey != FILTER_KEYS.COLOR &&   
         
           <div
             style={{
@@ -118,7 +119,7 @@ const FilterItem = ({
             }}
             />
        
-        }
+        } */}
         </label>
       </div>
       {/* <span className="px-1 text-xs font-semibold text-black">({option.count})</span> */}
@@ -203,7 +204,7 @@ export default function FilterList({
   return (
     <>
       {getCustomComponent(sectionKey)({ ...PROPS_LIST[sectionKey] })}
-      <div className="max-panel space-y-2">
+      <div className="max-panel grid grid-cols-3">
         {filterItems.map((option: any, optionIdx: number) => {
           const isChecked = isDefaultChecked(sectionKey, option.name)
           return (
@@ -216,7 +217,8 @@ export default function FilterList({
               isChecked={isChecked}
               closeSidebar={closeSidebar}
               {...PROPS_LIST[sectionKey]}
-            />
+              />
+    
           )
         })}
       </div>

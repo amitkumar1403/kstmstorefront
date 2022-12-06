@@ -128,6 +128,7 @@ const Layout: FC<Props> = ({
   }, [])
 
   useEffect(() => {
+    // loading bar state
     Router.events.on('routeChangeStart', () => setIsLoading(true))
     Router.events.on('routeChangeComplete', () => setIsLoading(false))
 

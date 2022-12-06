@@ -186,8 +186,8 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 group-hover:bg-gray-200  ">
               <Image
                 priority
-                // src={generateUri(currentProductData.image, "h=400&fm=webp") || IMG_PLACEHOLDER} 
-                src='/assets/icons/newPajama.png' 
+                src={generateUri(currentProductData.image, "h=400&fm=webp") || IMG_PLACEHOLDER} 
+                // src='/assets/icons/newPajama.png' 
                 alt={product.name}
                 onMouseEnter={() => {handleHover('enter')}}
                 onMouseLeave={() => {handleHover('leave')}}
