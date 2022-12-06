@@ -83,7 +83,6 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
         config={slugs?.components?.find((i?: any) => i.componentType === 52)}
       /> */}
      
-      <main>
         {/* First Banner */}
         <div className="grid gap-0 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2">
           <div className="relative">
@@ -184,12 +183,12 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             <SwiperSlide>
               <div className="inline-flex flex-col w-64 text-center border cursor-pointer lg:w-auto border-slate-300 hover:border-black">
                 <div className="relative group">
-                  <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
+                  <div className="w-full overflow-hidden rounded-md aspect-w-1 aspect-h-1">
                     <Image
-                      priority
                       src="/image/Caru1.jpg"
                       alt="Picture of the author"
-                      layout="responsive"
+                      width={500}
+                      height={500}
                       className="object-cover object-center w-full h-full"
                     />
                   </div>
@@ -206,12 +205,14 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             <SwiperSlide>
               <div className="inline-flex flex-col w-64 text-center border cursor-pointer lg:w-auto border-slate-300 hover:border-black">
                 <div className="relative group">
-                  <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
-                    <img
+                  <div className="w-full overflow-hidden rounded-md aspect-w-1 aspect-h-1">
+                    <Image
                       src="/image/Caru2.jpg"
                       alt="Picture of the author"
+                      width={500}
+                      height={500}
                       className="object-cover object-center w-full h-full"
-                    ></img>
+                    />
                   </div>
                   <div className="mt-6">
                     <h3 className="mt-1 font-semibold text-gray-900">
@@ -226,12 +227,14 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             <SwiperSlide>
               <div className="inline-flex flex-col w-64 text-center border cursor-pointer lg:w-auto border-slate-300 hover:border-black">
                 <div className="relative group">
-                  <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
-                    <img
+                  <div className="w-full overflow-hidden rounded-md aspect-w-1 aspect-h-1">
+                    <Image
                       src="/image/Caru3.jpg"
                       alt="Picture of the author"
+                      width={500}
+                      height={500}
                       className="object-cover object-center w-full h-full"
-                    ></img>
+                    />
                   </div>
                   <div className="mt-6">
                     <h3 className="mt-1 font-semibold text-gray-900">
@@ -246,12 +249,14 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             <SwiperSlide>
               <div className="inline-flex flex-col w-64 text-center border cursor-pointer lg:w-auto border-slate-300 hover:border-black">
                 <div className="relative group">
-                  <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
-                    <img
+                  <div className="w-full overflow-hidden rounded-md aspect-w-1 aspect-h-1">
+                    <Image
                       src="/image/Caru4.jpg"
                       alt="Picture of the author"
+                      width={500}
+                      height={500}
                       className="object-cover object-center w-full h-full"
-                    ></img>
+                    />
                   </div>
                   <div className="mt-6">
                     <h3 className="mt-1 font-semibold text-gray-900">
@@ -266,12 +271,14 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             <SwiperSlide>
               <div className="inline-flex flex-col w-64 text-center border cursor-pointer lg:w-auto border-slate-300 hover:border-black">
                 <div className="relative group">
-                  <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
-                    <img
+                  <div className="w-full overflow-hidden rounded-md aspect-w-1 aspect-h-1">
+                    <Image
                       src="/image/Caru1.jpg"
                       alt="Picture of the author"
+                      width={500}
+                      height={500}
                       className="object-cover object-center w-full h-full"
-                    ></img>
+                    />
                   </div>
                   <div className="mt-6">
                     <h3 className="mt-1 font-semibold text-gray-900">
@@ -286,12 +293,14 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             <SwiperSlide>
               <div className="inline-flex flex-col w-64 text-center border cursor-pointer lg:w-auto border-slate-300 hover:border-black">
                 <div className="relative group">
-                  <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
-                    <img
+                  <div className="w-full overflow-hidden rounded-md aspect-w-1 aspect-h-1">
+                    <Image
                       src="/image/Caru2.jpg"
                       alt="Picture of the author"
+                      width={500}
+                      height={500}
                       className="object-cover object-center w-full h-full"
-                    ></img>
+                    />
                   </div>
                   <div className="mt-6">
                     <h3 className="mt-1 font-semibold text-gray-900">
@@ -306,12 +315,14 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             <SwiperSlide>
               <div className="inline-flex flex-col w-64 text-center border cursor-pointer lg:w-auto border-slate-300 hover:border-black">
                 <div className="relative group">
-                  <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
-                    <img
+                  <div className="w-full overflow-hidden rounded-md aspect-w-1 aspect-h-1">
+                    <Image
                       src="/image/Caru3.jpg"
                       alt="Picture of the author"
+                      width={500}
+                      height={500}
                       className="object-cover object-center w-full h-full"
-                    ></img>
+                    />
                   </div>
                   <div className="mt-6">
                     <h3 className="mt-1 font-semibold text-gray-900">
@@ -326,12 +337,14 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             <SwiperSlide>
               <div className="inline-flex flex-col w-64 text-center border cursor-pointer lg:w-auto border-slate-300 hover:border-black">
                 <div className="relative group">
-                  <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
-                    <img
+                  <div className="w-full overflow-hidden rounded-md aspect-w-1 aspect-h-1">
+                    <Image
                       src="/image/Caru4.jpg"
                       alt="Picture of the author"
+                      width={500}
+                      height={500}
                       className="object-cover object-center w-full h-full"
-                    ></img>
+                    />
                   </div>
                   <div className="mt-6">
                     <h3 className="mt-1 font-semibold text-gray-900">
@@ -345,7 +358,6 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             </SwiperSlide>
           </Swiper>
         </div>
-      </main>
    </>
   )
 }
