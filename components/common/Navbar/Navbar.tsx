@@ -146,15 +146,15 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
             leaveFrom="translate-x-0"
             leaveTo="-translate-x-full"
           >
-            <div className="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto z-9999">
-              <div className="px-4 pt-5 pb-2 flex">
+            <div className="relative flex flex-col w-full max-w-xs pb-12 overflow-y-auto bg-white shadow-xl z-9999">
+              <div className="flex px-4 pt-5 pb-2">
                 <button
                   type="button"
-                  className="-m-2 absolute right-4 top-5 p-2 rounded-md inline-flex items-center justify-center text-gray-400"
+                  className="absolute inline-flex items-center justify-center p-2 -m-2 text-gray-400 rounded-md right-4 top-5"
                   onClick={() => setOpen(false)}
                 >
                   <span className="sr-only">Close menu</span>
-                  <XIcon className="h-6 w-6 text-black" aria-hidden="true" />
+                  <XIcon className="w-6 h-6 text-black" aria-hidden="true" />
                 </button>
               </div>
 
@@ -171,15 +171,15 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                           >
                             <a
                               onClick={() => setOpen(false)}
-                              className="flex flex-col whitespace-nowrap py-4 px-4 text-black border-b text-sm font-bold"
-                              href={item.hyperlink}
+                              className="flex flex-col px-4 py-4 text-sm font-bold text-black border-b whitespace-nowrap"
+                              href={hyperlinkHandler(item.hyperlink)}
                             >
                               {item.caption}
                             </a>
                           </Link>
                         ) : (
                           <>
-                            <Tab.List className="-mb-px flex flex-col px-0 space-x-0">
+                            <Tab.List className="flex flex-col px-0 -mb-px space-x-0">
                               <Tab
                                 key={item.caption}
                                 className={({ selected }) =>
@@ -198,13 +198,13 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                             <Tab.Panels as={Fragment}>
                               <Tab.Panel
                                 key={item.caption}
-                                className="pt-2 pb-0 px-4 space-y-10"
+                                className="px-4 pt-2 pb-0 space-y-10"
                               >
                                 <div className="space-y-4">
                                   {item.navBlocks.length ? (
                                     <div className="relative bg-white">
-                                      <div className="max-w-7xl mx-auto px-0 sm:px-0 lg:px-0">
-                                        <div className="grid grid-cols-1 items-start md:grid-cols-1 lg:gap-x-8">
+                                      <div className="px-0 mx-auto max-w-7xl sm:px-0 lg:px-0">
+                                        <div className="grid items-start grid-cols-1 md:grid-cols-1 lg:gap-x-8">
                                           {item.navBlocks.map(
                                             (navBlock: any, navIdx: number) => {
                                               return (
@@ -213,10 +213,10 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                                   className="grid grid-cols-1 gap-y-0 gap-x-0 lg:gap-x-0"
                                                 >
                                                   <div>
-                                                    <p className="font-semibold capitalize text-md text-black p-2">
+                                                    <p className="p-2 font-semibold text-black capitalize text-md">
                                                       {navBlock.boxTitle}
                                                     </p>
-                                                    <div className="mt-1 border-t py-2 px-2 border-gray-100 pt-2 sm:grid sm:grid-cols-1 sm:gap-x-6">
+                                                    <div className="px-2 py-2 pt-2 mt-1 border-t border-gray-100 sm:grid sm:grid-cols-1 sm:gap-x-6">
                                                       <ul
                                                         role="list"
                                                         aria-labelledby="clothing-heading"
@@ -228,7 +228,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                                               key={
                                                                 navItem.caption
                                                               }
-                                                              className="flex my-1 border-b pb-2"
+                                                              className="flex pb-2 my-1 border-b"
                                                             >
                                                               <Link
                                                                 href={`/${navItem.itemLink}`}
@@ -240,7 +240,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                                                       false
                                                                     )
                                                                   }
-                                                                  className="hover:text-gray-800 text-sm"
+                                                                  className="text-sm hover:text-gray-800"
                                                                 >
                                                                   {
                                                                     navItem.caption
@@ -276,30 +276,30 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
         </Dialog>
       </Transition.Root>
 
-      <header className="bg-white shadow-md fixed top-0 right-0 z-999 w-full">
-        <nav aria-label="Top" className="w-full md:w-4/5 mx-auto px-4 sm:px-0 lg:px-0">
+      <header className="fixed top-0 right-0 w-full bg-white shadow-md z-999">
+        <nav aria-label="Top" className="w-full px-4 mx-auto md:w-4/5 sm:px-0 lg:px-0">
           <div className="pb-0 sm:px-0 sm:pb-0">
-            <div className="h-16 flex items-center justify-between">
+            <div className="flex items-center justify-between h-16">
               {/* Logo */}
               <button
                 type="button"
-                className="-ml-2 bg-white py-4 pl-2 pr-2 rounded-md text-gray-400 sm:hidden"
+                className="py-4 pl-2 pr-2 -ml-2 text-gray-400 bg-white rounded-md sm:hidden"
                 onClick={() => setOpen(true)}
               >
                 <span className="sr-only">Open menu</span>
-                <MenuIcon className="h-6 w-6 text-black" aria-hidden="true" />
+                <MenuIcon className="w-6 h-6 text-black" aria-hidden="true" />
               </button>
 
               <Link href="/">
-                <div className="w-32 flex cursor-pointer">
+                <div className="flex w-32 cursor-pointer">
                   <span className="sr-only">{GENERAL_WORKFLOW_TITLE}</span>
                   <Logo />
                 </div>
               </Link>
 
               {/* Flyout menus */}
-              <Popover.Group className="absolute bottom-0 inset-x-0 sm:static w-full sm:self-stretch sm:block hidden sm:h-16">
-                <div className="border-t h-16 px-6 flex space-x-8 overflow-x-auto pb-px sm:h-full sm:border-t-0 sm:justify-left sm:overflow-visible sm:pb-0">
+              <Popover.Group className="absolute inset-x-0 bottom-0 hidden w-full sm:static sm:self-stretch sm:block sm:h-16">
+                <div className="flex h-16 px-6 pb-px space-x-8 overflow-x-auto border-t sm:h-full sm:border-t-0 sm:justify-left sm:overflow-visible sm:pb-0">
                   {config?.map((item: any, idx: number) => {
                     return (
                       <Popover key={idx} className="flex" 
@@ -311,9 +311,9 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                               <Link href={`/${item.hyperlink}`} passHref>
                                 <a
                                   className="relative flex"
-                                  href={item.hyperlink}
+                                  href={`/${item.hyperlink}`}
                                 >
-                                  <Popover.Button
+                                  <div
                                     className={classNames(
                                       openState == idx
                                         ? 'border-indigo-600 text-indigo-600'
@@ -322,7 +322,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                       )}
                                   >
                                     {item.caption}
-                                  </Popover.Button>
+                                  </div>
                                 </a>
                               </Link>
                             ) : (
@@ -348,16 +348,16 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                 leaveFrom="opacity-100"
                                 leaveTo="opacity-0"
                               >
-                                <Popover.Panel className="absolute top-full z-999 inset-x-0 text-gray-500 sm:text-sm">
+                                <Popover.Panel className="absolute inset-x-0 text-gray-500 top-full z-999 sm:text-sm">
                                   {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                                   <div
-                                    className="absolute top-1/2 bg-white shadow"
+                                    className="absolute bg-white shadow top-1/2"
                                     aria-hidden="true"
                                   />
 
                                   <div className="relative bg-white">
-                                    <div className="w-4/5 mx-auto px-4 sm:px-0 lg:px-0">
-                                      <div className="grid grid-cols-1 items-start gap-y-10 gap-x-6 pt-10 pb-12 md:grid-cols-1 lg:gap-x-8">
+                                    <div className="w-4/5 px-4 mx-auto sm:px-0 lg:px-0">
+                                      <div className="grid items-start grid-cols-1 pt-10 pb-12 gap-y-10 gap-x-6 md:grid-cols-1 lg:gap-x-8">
                                         {item.navBlocks.map(
                                           (navBlock: any, navIdx: number) => {
                                             return (
@@ -366,10 +366,10 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                                 className="grid grid-cols-1 gap-y-10 gap-x-6 lg:gap-x-8"
                                               >
                                                 <div>
-                                                  <p className="font-semibold capitalize text-xl text-gray-900">
+                                                  <p className="text-xl font-semibold text-gray-900 capitalize">
                                                     {navBlock.boxTitle}
                                                   </p>
-                                                  <div className="mt-4 border-t border-gray-100 pt-6 sm:grid sm:grid-cols-1 sm:gap-x-6">
+                                                  <div className="pt-6 mt-4 border-t border-gray-100 sm:grid sm:grid-cols-1 sm:gap-x-6">
                                                     <ul
                                                       role="list"
                                                       aria-labelledby="clothing-heading"
@@ -387,6 +387,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                                               href={`/${navItem.itemLink}`}
                                                               passHref
                                                             >
+
                                                               <a className="hover:text-gray-800">
                                                                 <Popover.Button
                                                                   className={classNames(
@@ -425,13 +426,13 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                   })}
                 </div>
               </Popover.Group>
-              <div className="flex-1 flex items-center justify-end">
+              <div className="flex items-center justify-end flex-1">
                 {/* Search */}
                 <Searchbar onClick={setShowSearchBar} />
                 {/* account */}
                 <Account title={title} config={accountDropdownConfig} />
                 {/* currency */}
-                <div className="sm:flex hidden">
+                <div className="hidden sm:flex">
                   <CurrencySwitcher
                     config={currencies}
                     title={SELECT_CURRENCY}
@@ -446,18 +447,18 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
 
                 {/* Wishlist*/}
 
-                <div className="px-1 w-10 sm:w-16 flow-root">
+                <div className="flow-root w-10 px-1 sm:w-16">
                   <button
-                    className="relative group grid grid-cols-1 items-center text-center align-center justify-center flex-col mx-auto"
+                    className="relative grid flex-col items-center justify-center grid-cols-1 mx-auto text-center group align-center"
                     onClick={openWishlist}
                   >
                     <HeartIcon
-                      className="flex-shrink-0 h-6 w-6 block text-black group-hover:text-red-600 mx-auto"
+                      className="flex-shrink-0 block w-6 h-6 mx-auto text-black group-hover:text-red-600"
                       aria-hidden="true" aria-label="Wishlist"
                     />
-                    <span className='font-normal hidden text-sm text-black sm:block'>Wishlist</span>
+                    <span className='hidden text-sm font-normal text-black sm:block'>Wishlist</span>
                     {wishListItems.length > 0 &&
-                     <span className="ml-2 hidden sm:block absolute top-0 -right-0 w-4 h-4 text-white rounded-full bg-pink text-center text-xs font-medium">                     
+                     <span className="absolute top-0 hidden w-4 h-4 ml-2 text-xs font-medium text-center text-white rounded-full sm:block -right-0 bg-pink">                     
                           {wishListItems.length}
                       </span>
                     }
@@ -466,18 +467,18 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                 </div>
                 {/* Cart */}
 
-                <div className="px-1 sm:w-16 w-10 flow-root">
+                <div className="flow-root w-10 px-1 sm:w-16">
                   <button
-                    className="group grid relative grid-cols-1 items-center text-center align-center justify-center flex-col mx-auto"
+                    className="relative grid flex-col items-center justify-center grid-cols-1 mx-auto text-center group align-center"
                     onClick={openCart}
                   >
                     <ShoppingCartIcon
-                      className="flex-shrink-0 h-6 w-6 block text-black group-hover:text-gray-500 mx-auto"
+                      className="flex-shrink-0 block w-6 h-6 mx-auto text-black group-hover:text-gray-500"
                       aria-hidden="true" aria-label="Add to cart"
                     />
-                     <span className='font-normal hidden text-sm text-black sm:block'>Cart</span>
+                     <span className='hidden text-sm font-normal text-black sm:block'>Cart</span>
                      {cartItems.lineItems?.length > 0 &&
-                        <span className="ml-2 absolute -top-1 -right-2 w-4 h-4 text-white rounded-full bg-gray-500 text-center text-xs font-medium">                     
+                        <span className="absolute w-4 h-4 ml-2 text-xs font-medium text-center text-white bg-gray-500 rounded-full -top-1 -right-2">                     
                       {cartItems.lineItems?.length}
                     </span>
 }

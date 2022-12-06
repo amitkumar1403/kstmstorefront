@@ -23,6 +23,7 @@ import withDataLayer, { PAGE_TYPES } from '@components/withDataLayer'
 import { EVENTS_MAP } from '@components/services/analytics/constants'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 
+
 export async function getStaticProps({
   preview,
   locale,
