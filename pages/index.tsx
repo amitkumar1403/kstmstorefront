@@ -163,7 +163,6 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
         <div className="flex flex-col px-4 py-4 pr-0 sm:px-4 sm:pr-4 sm:py-8 home-banner-swiper m-hide-navigation">
           <Swiper
             slidesPerView={4}
-            spaceBetween={10}
             navigation={true}
             loop={false}
             breakpoints={{
@@ -188,6 +187,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                     <Image
                       priority
                       src="/image/Caru1.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       layout="responsive"
                       className="object-cover object-center w-full h-full"
@@ -209,6 +210,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru2.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -230,6 +233,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                     <img
                       src="/image/Caru3.jpg"
                       alt="Picture of the author"
+                      width={500}
+                      height={500}
                       className="object-cover object-center w-full h-full"
                     ></img>
                   </div>
@@ -249,6 +254,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru4.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -269,6 +276,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru1.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -289,6 +298,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru2.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -309,6 +320,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru3.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -329,6 +342,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru4.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
