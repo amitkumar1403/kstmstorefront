@@ -1,13 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const Logo = ({ className = '', ...props }) => {
-  return (
-    <img
-      src="/logo-cx-commerce.png"
-      alt=""
-      width={50} height={36}
-    />
-  );
+  return <img src="/image/logo.jpg" alt="" width={100} height={100} />
 }
 
 export default Logo
