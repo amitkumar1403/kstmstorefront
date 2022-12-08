@@ -237,7 +237,17 @@ const SearchProductCard: FC<Props> = ({ product }) => {
         <>
       {/* {  console.log("attribure",product.attributes[0].value)} */}
         <div className=' bg-gray-200  sm:h-8 sm:w-h-8 h-h-8 w-h-8  flex justify-center'>
-               <span  style={{backgroundColor: product.attributes[0].value}} className='max-w-lg sm:h-5 sm:w-5 h-5 w-5 inline-block rounded-full sm:mr-2 mr-1 mt-2 border border-gray-200 shadow-md drop-shadow-md'/>
+    
+              
+         <span  style={{backgroundColor: product.attributes[0].value}} className='max-w-lg sm:h-5 sm:w-5 h-5 w-5 inline-block rounded-full sm:mr-2 mr-1 mt-2 border border-gray-200 shadow-md drop-shadow-md'/>
+      
+         {/*--------------- if  variantProductsAttributeMinimal is not null ------------------------*/}
+          {/* {
+            product?.variantProductsAttributeMinimal?(product?.variantProductsAttributeMinimal[0].fieldValues.map((color)=>{
+             return (<span  style={{backgroundColor: color.fieldValue}} className='max-w-lg sm:h-5 sm:w-5 h-5 w-5 inline-block rounded-full sm:mr-2 mr-1 mt-2 border border-gray-200 shadow-md drop-shadow-md'/>)
+            })):null
+          } */}
+
           </div>
          {/* <div className='group-hover:bg-gray-200 '>
          <img src={showColorPrice.image}
