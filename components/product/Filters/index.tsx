@@ -151,8 +151,8 @@ export default function Filters({
             {PRODUCT_FILTER}
           </h2>
 
+            {/* on small size filter bar */}
           <div 
-          
           className="flex items-center justify-between pr-4">
             <h2 id="filter-heading-filter" className="sr-only">
               {GENERAL_FILTER_TITLE}

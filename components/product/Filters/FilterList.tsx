@@ -66,33 +66,35 @@ const FilterItem = ({
           className="cursor-pointer ml-0 text-sm text-gray-500 relative filter-label border  p-5 hover:border-black"
         >
           {/* checkbox tick */}
-          {/* {isCheckboxChecked && !isCheckboxTickDisabled && (
-            <div
+          {isCheckboxChecked && !isCheckboxTickDisabled && (
+            <div    
               style={{
                 content: '',
-                float: 'left',
-                left: '6px',
-                top: '0px',
-                zIndex: 99999,
+                float: 'right',
+                right: '16px',
+                bottom: '6px',
+                // zIndex: 99999,
                 position: 'absolute',
                 width: '10px',
-                height: '14px',
-                border: 'solid #000',
+                height: '25px',
+                border: 'solid gray',
                 borderWidth: '0 2px 2px 0',
                 transform: 'rotate(45deg)',
               }}
             />
-          )} */}
-          {generateOptionName()}
+          )}
+          {
+          <h1 className='text-gray-500 font-medium hover:text-black'>{generateOptionName()}</h1>
+        }
 
           {/* color */}
           {sectionKey === FILTER_KEYS.COLOR &&  
           <div
             style={{
               content: '',
-              height: '20px',
-              width: '20px',
-              borderRadius: '10px',
+              height: '30px',
+              width: '30px',
+              borderRadius: '15px',
               background: checkboxBgColor,
               border: '1px solid #cccccc',
               position: 'relative',
@@ -202,8 +204,9 @@ export default function FilterList({
   }
 
   return (
-    <>
-      {getCustomComponent(sectionKey)({ ...PROPS_LIST[sectionKey] })}
+    <div className='pb-6 border-b-2'>
+        {/* Search bar in every filter category */}
+      {/* {getCustomComponent(sectionKey)({ ...PROPS_LIST[sectionKey] })} */}
       <div className="max-panel grid grid-cols-3">
         {filterItems.map((option: any, optionIdx: number) => {
           const isChecked = isDefaultChecked(sectionKey, option.name)
@@ -222,6 +225,6 @@ export default function FilterList({
           )
         })}
       </div>
-    </>
+    </div>
   )
 }

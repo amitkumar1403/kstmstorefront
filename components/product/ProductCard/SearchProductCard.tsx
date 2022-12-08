@@ -186,7 +186,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 group-hover:bg-gray-200  ">
               <Image
                 priority
-                src={generateUri(currentProductData.image, "h=400&fm=webp") || IMG_PLACEHOLDER} 
+                src={generateUri(currentProductData.image, "h=400&fm=webp") || '/assets/icons/newPajama.png'} 
                 // src='/assets/icons/newPajama.png' 
                 alt={product.name}
                 onMouseEnter={() => {handleHover('enter')}}
@@ -250,13 +250,14 @@ const SearchProductCard: FC<Props> = ({ product }) => {
             link={currentProductData.link}
           />
         ) : (
+          
           <div className="sm:h-1 sm:w-1 h-1 w-1 sm:mr-2 mr-1 mt-2 inline-block" />
         )}
         
         <h3 className="sm:text-sm text-xs font-normal text-black truncate pb-3">
           <Link href={`/${currentProductData.link}`}>
             {/* Product Name */}
-            {/* {showColorPrice.name} */}
+                                                                      {/* {showColorPrice.name} */}
             <a  className='font-medium' href={`/${currentProductData.link}`}> {product.name}  </a>                  
           </Link>
         </h3>

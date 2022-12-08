@@ -314,8 +314,7 @@ function Search({ query, setEntities, recordEvent }: any) {
             {
              !showModal? setShowModal(true) :setShowModal(false)
             } }
-          className='absolute  w-10 mt-2  mr-6 right-16 top-24 cursor-pointer'/>
-          
+          className='hidden sm:block absolute w-10 mt-2  mr-6 right-16 top-24 cursor-pointer'/>
         </div>
         <div className="grid sm: grid-cols-1 w-full mx-auto overflow-hidden px-4 sm:px-0 lg:px-0">
           {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
@@ -367,7 +366,7 @@ function Search({ query, setEntities, recordEvent }: any) {
               {/*content*/}
               <div 
                 style={{width:'30rem'}}
-              className='absolute mr-4 right-1 top-40 bg-gray-100  border-b-2 hover:shadow-2xl   ' >
+              className='hidden sm:block absolute mr-4 right-1 top-40 bg-gray-100  border-b-2 hover:shadow-2xl   ' >
                 {/*body*/}
                  {/* <Filter_sort/> */}
 
@@ -415,7 +414,7 @@ function Search({ query, setEntities, recordEvent }: any) {
             
            
           </div>
-          <div></div>
+          <div></div>  
         </div>
       </main>
     </div>
@@ -423,6 +422,7 @@ function Search({ query, setEntities, recordEvent }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // {console.log(context.query)}
   return {
     props: { query: context.query }, // will be passed to the page component as props
   }
