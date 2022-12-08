@@ -232,16 +232,21 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           </div>
         </a>
       </Link>
-      {isEntered ? 
+      {(isEntered && product.attributes[0].value  )? 
       (
-        <div className='group-hover:bg-gray-200 '>
-        <img src={showColorPrice.image}
-        className='m-auto w-40 h-8'
-        />
-        </div>
+        <>
+      {/* {  console.log("attribure",product.attributes[0].value)} */}
+        <div className=' bg-gray-200  sm:h-8 sm:w-h-8 h-h-8 w-h-8  flex justify-center'>
+               <span  style={{backgroundColor: product.attributes[0].value}} className='max-w-lg sm:h-5 sm:w-5 h-5 w-5 inline-block rounded-full sm:mr-2 mr-1 mt-2 border border-gray-200 shadow-md drop-shadow-md'/>
+          </div>
+         {/* <div className='group-hover:bg-gray-200 '>
+         <img src={showColorPrice.image}
+         className='m-auto w-40 h-8'
+         />
+         </div> */}
+        </>
       ):<div className='h-16'></div>
       }
-
       <div className="pt-0 text-center bg-gray-100 group-hover:bg-gray-200">
         {hasColorVariation ? (
           <AttributeSelector
