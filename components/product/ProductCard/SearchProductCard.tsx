@@ -257,7 +257,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           {/* Product Price */}
             {isEntered ? 
           (
-            <div className='group-hover:bg-gray-200 sm:mt-1 mt-1 font-bold text-md text-gray-500 mb-2'>
+            <div className='group-hover:bg-gray-200 sm:mt-1 mt-1 font-bold text-md text-gray-500 mb-1'>
             <p className='text-center text-gray-500 text-bold' >  {product?.price?.formatted?.withTax}</p>
             </div>
           ):<div className='h-14'></div>
