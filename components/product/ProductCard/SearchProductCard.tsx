@@ -171,8 +171,8 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   const saving  = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
   const discount  = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
   return (
-    <div className="border-gray-300 border hover:border-black bg-gray-100 ">
-    <div key={product.id} className="relative group"
+    <div className="border-gray-300 border hover:border-black bg-gray-100  ">
+    <div key={product.id} className="relative group "
     onMouseEnter={()=>setisEntered(true)}
     onMouseLeave={()=>{setisEntered(false)}}
     >
@@ -241,7 +241,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           />
         ) : (
           
-          <div className=" sm:h-4 sm:w-1 h-10 w-1 sm:mr-2 mr-1 mt-2 inline-block" />
+          <div className="sm:h-4 sm:w-1 h-10 w-1 sm:mr-2 mr-1 mt-2 inline-block" />
           
         )}
         
