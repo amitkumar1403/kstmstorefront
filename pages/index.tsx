@@ -114,7 +114,7 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             </div>
           </div>
           <div className="relative border border-slate-300 hover:border-black">
-            <Image
+            <img
               src="/image/prod2.jpg"
               alt="Picture of the author"
               width={500}
@@ -125,7 +125,7 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             </div>
           </div>
           <div className="relative border border-slate-300 hover:border-black">
-            <Image
+            <img
               src="/image/prod3.jpg"
               alt="Picture of the author"
               width={500}
@@ -136,7 +136,7 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             </div>
           </div>
           <div className="relative border border-slate-300 hover:border-black">
-            <Image
+            <img
               src="/image/prod4.jpg"
               alt="Picture of the author"
               width={500}
@@ -185,11 +185,10 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
               <div className="inline-flex flex-col w-64 text-center border cursor-pointer lg:w-auto border-slate-300 hover:border-black">
                 <div className="relative group">
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
-                    <Image
-                      priority
+                    <img
+                     
                       src="/image/Caru1.jpg"
                       alt="Picture of the author"
-                      layout="responsive"
                       className="object-cover object-center w-full h-full"
                     />
                   </div>
