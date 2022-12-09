@@ -1,4 +1,5 @@
 import FilterList from './FilterList'
+import rangeMap from '@lib/range-map'
 import { GENERAL_FILTER_TITLE } from '@components/utils/textVariables'
 
 interface Props {
@@ -24,6 +25,27 @@ export default function FiltersRightOpen({
 
         {/* Filters */}
         <form className="mt-2 ">
+
+        {!products.filters.length && rangeMap(5,(section: any) => (
+            <div
+              key={section}
+              className="grid grid-cols-3 w-full h-20  mx-auto mt-8 animate-pulse  mb-5 border-b-2 border-gray-200 "
+            >
+              <div className='border border-gray-200 animate-pulse  h-14 py-4'>
+                <div className='h-6 w-24 animate-pulse shadow-magical bg-gray-300 m-auto' ></div>
+              </div>
+
+              <div className='border border-gray-200 animate-pulse  h-14 py-4'>
+                <div className='h-6 w-24 animate-pulse shadow-magical bg-gray-300 m-auto' ></div>
+              </div>
+
+              <div className='border border-gray-200 animate-pulse  h-14 py-4'>
+                <div className='h-6 w-24 animate-pulse shadow-magical bg-gray-300 m-auto' ></div>
+              </div>
+
+            </div>
+          ))}
+
           {products.filters?.map((section: any) => (
             <div
               key={section.name}
