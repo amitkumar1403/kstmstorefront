@@ -515,17 +515,21 @@ export default function ProductView({
                                   <div className='image-container'>
                                     <Image
                                       priority
-                                      src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}
+                                      src={generateUri(image.image, "h=1000&fm=webp") || '/assets/icons/newPajama.png'}
                                       alt={image.name}
                                       className="w-full h-full object-center object-cover image"
                                       layout='responsive'
                                       sizes='320 600 1000'
                                       width={600} height={1000}
-                                      blurDataURL={`${image.image}?h=600&w=400&fm=webp` || IMG_PLACEHOLDER}
+                                      blurDataURL={`${image.image}?h=600&w=400&fm=webp` || '/assets/icons/newPajama.png'}
                                     />
                                   </div>
                                 ) : (
-                                  <PlayIcon className="h-full w-full object-center object-cover" />
+                                  // <PlayIcon className="h-full w-full object-center object-cover" />
+                                  <ImageZoom className='h-52 w-36 ' src='/assets/icons/newPajama.png'
+                                  sizes='320 600 1000'
+                                  width={320} height={600}
+                                  />
                                 )}
                               </div>
                             </div>
@@ -536,7 +540,7 @@ export default function ProductView({
                   </div>
                   {/*DESKTOP PRODUCT IMAGE SLIDER*/}
                   <div className="hidden w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-                    <Tab.List className="grid sm:grid-cols-2 grid-cols-1 gap-6">
+                    <Tab.List className="grid sm:grid-cols-1 grid-cols-1 gap-6">
                       {content?.map((image: any, idx) => (
                         <Tab
                           key={`${idx}-tab`}
@@ -548,7 +552,7 @@ export default function ProductView({
                                 {image.image ? (
                                   <div className='image-container'>
                                     {/* <ControlledZoom isZoomed={isZoomedT} onZoomChange={handleZoomChangeT}> */}
-                                    <ImageZoom src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}  alt={image.name} 
+                                    <ImageZoom src={generateUri(image.image, "h=1000&fm=webp") || '/assets/icons/newPajama.png'}  alt={image.name} 
                                      priority
                                      className="w-full h-full object-center object-cover image"
                                      layout='responsive'
@@ -569,7 +573,11 @@ export default function ProductView({
                                     {/* </ControlledZoom> */}
                                   </div>
                                 ) : (
-                                  <PlayIcon className="h-full w-full object-center object-cover" />
+                                  // <PlayIcon className="h-full w-full object-center object-cover" />
+                                  <ImageZoom 
+                                  width={600} height={1000}
+                                  sizes='320 600 1000'
+                                  className='h-full w-full ' src='/assets/icons/newPajama.png' alt='demo'/>
                                 )}
                               </span>
                             </>

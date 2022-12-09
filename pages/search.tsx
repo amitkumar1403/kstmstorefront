@@ -15,6 +15,7 @@ import { EVENTS_MAP } from '@components/services/analytics/constants'
 import { useUI } from '@components/ui/context'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 import { GENERAL_CATALOG } from '@components/utils/textVariables'
+import Filter_sort from '@components/PCP/components/Filter_sort'
 export const ACTION_TYPES = {
   SORT_BY: 'SORT_BY',
   PAGE: 'PAGE',
@@ -119,6 +120,8 @@ function Search({ query, setEntities, recordEvent }: any) {
 
   const router = useRouter()
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [showModal, setShowModal] = useState(false);
+  const [filterClicked, setfilterClicked] = useState(false)
   const {
     data = {
       products: {
@@ -288,17 +291,32 @@ function Search({ query, setEntities, recordEvent }: any) {
     : data.products
 
   return (
-    <div className="bg-white md:w-4/5 mx-auto">
+    <div
+     className="bg-white w-full mx-auto ">
       {/* Mobile menu */}
       <main className="pb-24">
-        <div className="text-left sm:py-5 py-4 px-4 sm:px-0 lg:px-0">
-          <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4>
+        <div className="text-center sm:py-5 py-4 px-4 sm:px-0 lg:px-0">
+          {/* for sticky subnav*/}
+        {/* <div className="border border-red-600  sticky top-16 bg-white z-50 text-center sm:py-5 py-4 px-4 sm:px-0 lg:px-0">    */}
+
+          {/* <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4> */}
+          <h4><span className='text-sm font-normal text-gray-500'>Home | Women | Leggings</span></h4>
+
           <h1 className="sm:text-2xl text-xl font-semibold tracking-tight text-black">
-            {GENERAL_CATALOG} 
-          </h1>
+            {/* {GENERAL_CATALOG}  */}
+            WOMEN - LEGGINGS
           
+          </h1>
+         
+          <img src='/assets/icons/filter.png'
+          alt='filter-icon' 
+           onClick={() =>
+            {
+             !showModal? setShowModal(true) :setShowModal(false)
+            } }
+          className='hidden sm:block absolute w-10 mt-2  mr-6 right-16 top-24 cursor-pointer'/>
         </div>
-        <div className="grid sm:grid-cols-12 grid-cols-1 gap-1 w-full mx-auto overflow-hidden px-4 sm:px-0 lg:px-0">
+        <div className="grid sm: grid-cols-1 w-full mx-auto overflow-hidden px-4 sm:px-0 lg:px-0">
           {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
 
           <div className="sm:col-span-2 sm:hidden flex flex-col">
@@ -314,17 +332,17 @@ function Search({ query, setEntities, recordEvent }: any) {
 
           {/* {FILTER PANEL SHOW ONLY IN DESKTOP VERSION} */}
 
-          <div className="sm:col-span-2 sm:block hidden">
-            <ProductFilterRight
+        {/* <div className="sm:col-span-2 sm:block hidden">
+              <ProductFilterRight
               handleFilters={handleFilters}
               products={data.products}
               routerFilters={state.filters}
-            />
-          </div>
-          <div className="sm:col-span-10">
+              />
+              </div>   */}
+          <div className="sm:col-span-4 ">
             {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
-            <div className="flex-1 sm:block hidden">
+            {/* <div className="flex-1 sm:block hidden">
               <ProductFiltersTopBar
                 products={data.products}
                 handleSortBy={handleSortBy}
@@ -332,15 +350,71 @@ function Search({ query, setEntities, recordEvent }: any) {
                 clearAll={clearAll}
                 routerSortOption={state.sortBy}
               />
-            </div>
+            </div> */}
+
+            {/* Modal */}
+
             <ProductGrid
               products={productDataToPass}
               currentPage={state.currentPage}
               handlePageChange={handlePageChange}
               handleInfiniteScroll={handleInfiniteScroll}
             />
+
+            {showModal ? (
+            <>
+              {/*content*/}
+              <div 
+                style={{width:'30rem'}}
+              className='hidden sm:block absolute mr-4 right-1 top-40 bg-gray-100  border-b-2 hover:shadow-2xl   ' >
+                {/*body*/}
+                 {/* <Filter_sort/> */}
+
+                 <div
+                //  style={{width:'30rem'}}
+                 className=" sm:block hidden">
+                <ProductFiltersTopBar
+                products={data.products}
+                handleSortBy={handleSortBy}
+                routerFilters={state.filters}
+                clearAll={clearAll}
+                routerSortOption={state.sortBy}
+              />
+            </div>
+
+                  <ProductFilterRight
+                handleFilters={handleFilters}
+                products={data.products}
+                routerFilters={state.filters}
+              />
+
+                {/*footer*/}
+                <div className="grid grid-cols-2 py-7 px-7 border-b-2">
+                  <button
+                    className="border border-gray-200 py-6 font-bold px-6 text-gray-700 hover:text-black hover:border-black text-lg col-span-1"
+                    type="button"
+                    onClick={() => {setShowModal(false) ,clearAll()}}
+                  >
+                    Clear All
+                  </button>
+                  <button
+                    className="border border-black py-6 font-bold px-6 bg-black text-white  hover:border-white hover:text-gray-200 text-lg col-span-1"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Apply
+                  </button>
+                </div>
+     
+      
+            </div>
+          {/* <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> */}
+        </>
+      ) : null}
+            
+           
           </div>
-          <div></div>
+          <div></div>  
         </div>
       </main>
     </div>
@@ -348,6 +422,7 @@ function Search({ query, setEntities, recordEvent }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // {console.log(context.query)}
   return {
     props: { query: context.query }, // will be passed to the page component as props
   }
