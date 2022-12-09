@@ -243,7 +243,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           />
         ) : (
           
-          <div className=" sm:h-1 sm:w-1 h-1 w-1 sm:mr-2 mr-1 mt-2 inline-block" />
+          <div className=" sm:h-1 sm:w-1 h-1 w-1 sm:mr-2 mr-1 mt-2 inline-block bg-black h-10" />
         )}
         
         <h3 className="sm:text-sm text-xs font-normal text-black truncate pb-3">
@@ -261,7 +261,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
             <div className='group-hover:bg-gray-200 sm:mt-1 mt-1 font-bold text-md text-gray-500 mb-2'>
             <p className='text-center text-gray-500 text-bold' >  {product?.price?.formatted?.withTax}</p>
             </div>
-          ):<div className='h-16'></div>
+          ):<div className='h-14'></div>
           }
 
           {/* {product?.price?.formatted?.withTax} */}
