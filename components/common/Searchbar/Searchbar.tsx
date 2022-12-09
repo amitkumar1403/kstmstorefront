@@ -10,7 +10,7 @@ interface Props {
 
 const Searchbar: FC<Props> = ({ id = 'search', onClick }) => {
   return (
-    <div className="flex flex-row sm:pr-2 rounded-sm">
+    <div className="flex flex-row sm:pr-2 rounded-sm px-3">
       <button
         onClick={onClick}
         className="sm:p-1 sm:pl-3  pr-3 text-gray-400 hover:text-gray-500 relative"
