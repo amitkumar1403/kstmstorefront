@@ -27,9 +27,11 @@ export default function FiltersRightOpen({
         <form className="mt-2 ">
 
         {!products.filters.length && rangeMap(5,(section: any) => (
+          <>
+           <div className='h-6 w-16 animate-pulse shadow-magical bg-gray-300 mt-8' ></div>
             <div
               key={section}
-              className="grid grid-cols-3 w-full h-20  mx-auto mt-8 animate-pulse  mb-5 border-b-2 border-gray-200 "
+              className="grid grid-cols-3 w-full h-20  mx-auto mt-4 animate-pulse  mb-5 border-b-2 border-gray-200 "
             >
               <div className='border border-gray-200 animate-pulse  h-14 py-4'>
                 <div className='h-6 w-24 animate-pulse shadow-magical bg-gray-300 m-auto' ></div>
@@ -44,6 +46,7 @@ export default function FiltersRightOpen({
               </div>
 
             </div>
+              </>
           ))}
 
           {products.filters?.map((section: any) => (
