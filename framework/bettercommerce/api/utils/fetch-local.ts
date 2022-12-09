@@ -9,7 +9,7 @@ const fetchGraphqlApi: (
   (getConfig) =>
   async (query: string, { variables, preview } = {}, fetchOptions) => {
     const config = getConfig()
-    const res = await fetch(config.commerceUrl, {
+    const options: any = {
       ...fetchOptions,
       method: 'POST',
       headers: {
@@ -20,7 +20,8 @@ const fetchGraphqlApi: (
         query,
         variables,
       }),
-    })
+    };
+    const res = await fetch(config.commerceUrl, options)
 
     const json = await res.json()
     if (json.errors) {
