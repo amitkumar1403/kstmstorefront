@@ -15,7 +15,6 @@ import { EVENTS_MAP } from '@components/services/analytics/constants'
 import { useUI } from '@components/ui/context'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 import { GENERAL_CATALOG } from '@components/utils/textVariables'
-import Filter_sort from '@components/PCP/components/Filter_sort'
 export const ACTION_TYPES = {
   SORT_BY: 'SORT_BY',
   PAGE: 'PAGE',
@@ -292,34 +291,33 @@ function Search({ query, setEntities, recordEvent }: any) {
 
   return (
     <div
-     className="bg-white w-full mx-auto ">
+      className="w-full mx-auto bg-white ">
       {/* Mobile menu */}
       <main className="pb-24">
-        <div className="text-center sm:py-5 py-4 px-4 sm:px-0 lg:px-0">
+        <div className="px-4 py-4 text-center sm:py-5 sm:px-0 lg:px-0">
           {/* for sticky subnav*/}
-        {/* <div className="border border-red-600  sticky top-16 bg-white z-50 text-center sm:py-5 py-4 px-4 sm:px-0 lg:px-0">    */}
+          {/* <div className="sticky z-50 px-4 py-4 text-center bg-white border border-red-600 top-16 sm:py-5 sm:px-0 lg:px-0">    */}
 
           {/* <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4> */}
           <h4><span className='text-sm font-normal text-gray-500'>Home | Women | Leggings</span></h4>
 
-          <h1 className="sm:text-2xl text-xl font-semibold tracking-tight text-black">
+          <h1 className="text-xl font-semibold tracking-tight text-black sm:text-2xl">
             {/* {GENERAL_CATALOG}  */}
             WOMEN - LEGGINGS
-          
+
           </h1>
-         
+
           <img src='/assets/icons/filter.png'
-          alt='filter-icon' 
-           onClick={() =>
-            {
-             !showModal? setShowModal(true) :setShowModal(false)
-            } }
-          className='hidden sm:block absolute w-10 mt-2  mr-6 right-16 top-24 cursor-pointer'/>
+            alt='filter-icon'
+            onClick={() => {
+              !showModal ? setShowModal(true) : setShowModal(false)
+            }}
+            className='absolute hidden w-10 mt-2 mr-6 cursor-pointer sm:block right-16 top-24' />
         </div>
-        <div className="grid sm: grid-cols-1 w-full mx-auto overflow-hidden px-4 sm:px-0 lg:px-0">
+        <div className="grid w-full grid-cols-1 px-4 mx-auto overflow-hidden sm: sm:px-0 lg:px-0">
           {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
 
-          <div className="sm:col-span-2 sm:hidden flex flex-col">
+          <div className="flex flex-col sm:col-span-2 sm:hidden">
             <ProductMobileFilters
               handleFilters={handleFilters}
               products={data.products}
@@ -332,7 +330,7 @@ function Search({ query, setEntities, recordEvent }: any) {
 
           {/* {FILTER PANEL SHOW ONLY IN DESKTOP VERSION} */}
 
-        {/* <div className="sm:col-span-2 sm:block hidden">
+          {/* <div className="hidden sm:col-span-2 sm:block">
               <ProductFilterRight
               handleFilters={handleFilters}
               products={data.products}
@@ -342,7 +340,7 @@ function Search({ query, setEntities, recordEvent }: any) {
           <div className="sm:col-span-4 ">
             {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
-            {/* <div className="flex-1 sm:block hidden">
+            {/* <div className="flex-1 hidden sm:block">
               <ProductFiltersTopBar
                 products={data.products}
                 handleSortBy={handleSortBy}
@@ -362,59 +360,57 @@ function Search({ query, setEntities, recordEvent }: any) {
             />
 
             {showModal ? (
-            <>
-              {/*content*/}
-              <div 
-                style={{width:'30rem'}}
-              className='hidden sm:block absolute mr-4 right-1 top-40 bg-gray-100  border-b-2 hover:shadow-2xl   ' >
-                {/*body*/}
-                 {/* <Filter_sort/> */}
+              <>
+                {/*content*/}
+                <div
+                  style={{ width: '30rem' }}
+                  className='absolute hidden mr-4 bg-gray-100 border-b-2 sm:block right-1 top-40 hover:shadow-2xl ' >
 
-                 <div
-                //  style={{width:'30rem'}}
-                 className=" sm:block hidden">
-                <ProductFiltersTopBar
-                products={data.products}
-                handleSortBy={handleSortBy}
-                routerFilters={state.filters}
-                clearAll={clearAll}
-                routerSortOption={state.sortBy}
-              />
-            </div>
+                  <div
+                    //  style={{width:'30rem'}}
+                    className="hidden sm:block">
+                    <ProductFiltersTopBar
+                      products={data.products}
+                      handleSortBy={handleSortBy}
+                      routerFilters={state.filters}
+                      clearAll={clearAll}
+                      routerSortOption={state.sortBy}
+                    />
+                  </div>
 
                   <ProductFilterRight
-                handleFilters={handleFilters}
-                products={data.products}
-                routerFilters={state.filters}
-              />
+                    handleFilters={handleFilters}
+                    products={data.products}
+                    routerFilters={state.filters}
+                  />
 
-                {/*footer*/}
-                <div className="grid grid-cols-2 py-7 px-7 border-b-2">
-                  <button
-                    className="border border-gray-200 py-6 font-bold px-6 text-gray-700 hover:text-black hover:border-black text-lg col-span-1"
-                    type="button"
-                    onClick={() => {setShowModal(false) ,clearAll()}}
-                  >
-                    Clear All
-                  </button>
-                  <button
-                    className="border border-black py-6 font-bold px-6 bg-black text-white  hover:border-white hover:text-gray-200 text-lg col-span-1"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Apply
-                  </button>
+                  {/*footer*/}
+                  <div className="grid grid-cols-2 border-b-2 py-7 px-7">
+                    <button
+                      className="col-span-1 px-6 py-6 text-lg font-bold text-gray-700 border border-gray-200 hover:text-black hover:border-black"
+                      type="button"
+                      onClick={() => { setShowModal(false), clearAll() }}
+                    >
+                      Clear All
+                    </button>
+                    <button
+                      className="col-span-1 px-6 py-6 text-lg font-bold text-white bg-black border border-black hover:border-white hover:text-gray-200"
+                      type="button"
+                      onClick={() => setShowModal(false)}
+                    >
+                      Apply
+                    </button>
+                  </div>
+
+
                 </div>
-     
-      
-            </div>
-          {/* <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> */}
-        </>
-      ) : null}
-            
-           
+                {/* <div className="fixed inset-0 z-40 bg-black opacity-25"></div> */}
+              </>
+            ) : null}
+
+
           </div>
-          <div></div>  
+          <div></div>
         </div>
       </main>
     </div>
