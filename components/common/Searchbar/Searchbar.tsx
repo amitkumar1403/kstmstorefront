@@ -10,21 +10,19 @@ interface Props {
 
 const Searchbar: FC<Props> = ({ id = 'search', onClick }) => {
   return (
-    <div className="flex flex-row sm:pr-2 rounded-sm px-3">
-      <button
+      <SearchIcon className='h-6 pr-5 hover:text-gray-500 cursor-pointer'
+      onClick={onClick}
+      />
+    // <div className="flex flex-row sm:mr-8 sm:pr-2 sm:bg-gray-100 sm:border rounded-sm">
+      /* <button
         onClick={onClick}
-        className="sm:p-1 sm:pl-3  pr-3 text-gray-400 hover:text-gray-500 relative"
-        aria-label="Search"
+        className="sm:p-1 sm:pl-3 sm:pr-16 pr-3 text-gray-400 hover:text-gray-500 relative" aria-label="Search"
       >
-        {/* <span className="sr-only" aria-label="Search">{BTN_SEARCH}</span>       
-        <span className='text-black pr-2 font-normal text-sm sm:inline-block pr-32 hidden'>Search</span> */}
-        <SearchIcon
-          className="sm:w-6 sm:h-6 w-6 h-6 sm:top-2 sm:right-0 text-black hover:text-gray-500"
-          aria-hidden="true"
-          aria-label="Search"
-        />
-      </button>
-    </div>
+        <span className="sr-only" aria-label="Search">{BTN_SEARCH}</span>       
+        <span className='text-black pr-2 font-normal text-sm sm:inline-block pr-32 hidden'>Search</span>
+        <SearchIcon className="sm:w-4 sm:h-4 w-6 h-6 sm:absolute sm:top-2 sm:right-0 sm:text-gray-400 text-black" aria-hidden="true" aria-label="Search" />
+      </button> */
+    // </div>
   )
 }
 

@@ -17,7 +17,7 @@ interface Props {
   routerSortOption: any
 }
 
-export default function FiltersRightOpen({
+export default function FiltersRightOpen({  //passing filter props
   products = { filters: [] },
   handleSortBy,
   routerFilters,

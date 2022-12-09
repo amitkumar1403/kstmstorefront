@@ -15,7 +15,7 @@ interface Attributes {
 
 const ColorSelector = ({ attr, onChange, link }: any) => {
   return (
-    <div className="border-b border-gray-200 mb-1">
+    <div className="mb-1 grid grid-cols-10 lg:max-w-xs m-auto lg:px-10">
       {attr.fieldValues.map((item: any, idx: number) => {
         return (
           <Link key={idx} href={link || '#'} passHref>

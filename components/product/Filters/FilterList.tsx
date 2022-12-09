@@ -50,55 +50,62 @@ const FilterItem = ({
 
   const checkboxBgColor = bgColor(option) || 'transparent'
   return (
-    <div key={option.value} className="flex">
-      <div className="flex items-center">
+    <div key={option.value} className="grid">
+      <div className="grid items-center">
         <input
           name={`${optionIdx}-input[]`}
           defaultValue={option.value}
           type="checkbox"
-          className="h-4 w-4 border-gray-300 rounded filter-input"
+          className="h-4 w-4 border-gray-300 rounded filter-input "
         />
+
 
         <label
           htmlFor={`${optionIdx}-input[]`}
           onClick={handleCheckbox}
-          className="cursor-pointer ml-0 text-sm text-gray-500 relative filter-label"
+          className="cursor-pointer ml-0 text-sm text-gray-500 relative filter-label border  p-5 hover:border-black"
         >
+          {/* checkbox tick */}
           {isCheckboxChecked && !isCheckboxTickDisabled && (
-            <div
+            <div    
               style={{
                 content: '',
-                float: 'left',
-                left: '6px',
-                top: '0px',
-                zIndex: 99999,
+                float: 'right',
+                right: '16px',
+                bottom: '6px',
+                // zIndex: 99999,
                 position: 'absolute',
                 width: '10px',
-                height: '14px',
-                border: 'solid #000',
+                height: '25px',
+                border: 'solid gray',
                 borderWidth: '0 2px 2px 0',
                 transform: 'rotate(45deg)',
               }}
             />
           )}
-          {generateOptionName()}
-          {sectionKey === FILTER_KEYS.COLOR &&          
+          {
+          <h1 className='text-gray-500 font-medium hover:text-black'>{generateOptionName()}</h1>
+        }
+
+          {/* color */}
+          {sectionKey === FILTER_KEYS.COLOR &&  
           <div
             style={{
               content: '',
-              top:'2px',
-              float: 'left',
-              height: '16px',
-              width: '16px',
-              borderRadius: '10px',
+              height: '30px',
+              width: '30px',
+              borderRadius: '15px',
               background: checkboxBgColor,
               border: '1px solid #cccccc',
               position: 'relative',
-              marginRight: '6px',
             }}
-          />
+            />
+         
         }
-        {sectionKey != FILTER_KEYS.COLOR &&          
+
+        {/* checkbox */}
+        {/* {sectionKey != FILTER_KEYS.COLOR &&   
+        
           <div
             style={{
               content: '',
@@ -112,11 +119,12 @@ const FilterItem = ({
               position: 'relative',
               marginRight: '6px',
             }}
-          />
-        }
+            />
+       
+        } */}
         </label>
       </div>
-      <span className="px-1 text-xs font-semibold text-black">({option.count})</span>
+      {/* <span className="px-1 text-xs font-semibold text-black">({option.count})</span> */}
     </div>
   )
 }
@@ -196,9 +204,10 @@ export default function FilterList({
   }
 
   return (
-    <>
-      {getCustomComponent(sectionKey)({ ...PROPS_LIST[sectionKey] })}
-      <div className="max-panel space-y-2">
+    <div className='pb-6 border-b-2'>
+        {/* Search bar in every filter category */}
+      {/* {getCustomComponent(sectionKey)({ ...PROPS_LIST[sectionKey] })} */}
+      <div className="max-panel grid grid-cols-3">
         {filterItems.map((option: any, optionIdx: number) => {
           const isChecked = isDefaultChecked(sectionKey, option.name)
           return (
@@ -211,10 +220,11 @@ export default function FilterList({
               isChecked={isChecked}
               closeSidebar={closeSidebar}
               {...PROPS_LIST[sectionKey]}
-            />
+              />
+    
           )
         })}
       </div>
-    </>
+    </div>
   )
 }

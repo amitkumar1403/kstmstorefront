@@ -216,9 +216,9 @@ export const GENERAL_ENGRAVING_PERSONALIZE_BOTTLE =
   'Personalize your bottle for only'
 export const GENERAL_SEARCH_BRAND = 'Search Brand'
 export const GENERAL_BRAND = 'Brand'
-export const GENERAL_FILTER_TITLE = 'Filters'
+export const GENERAL_FILTER_TITLE = 'Filter & Sort'
 export const PRODUCT_FILTER = 'Product filters'
-export const BTN_CLEAR_ALL = 'Clear all'
+export const BTN_CLEAR_ALL = 'Clear All'
 export const TITLE_PRODUCTS = 'Products'
 export const PRICEMATCH_WEBSITE_NAME =
   'Name of website you have found cheaper to*'
