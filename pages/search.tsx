@@ -312,7 +312,7 @@ function Search({ query, setEntities, recordEvent }: any) {
             onClick={() => {
               !showModal ? setShowModal(true) : setShowModal(false)
             }}
-            className='absolute hidden w-10 mt-10 mr-6 cursor-pointer sm:block right-16 top-24' />
+            className='absolute hidden w-10 mt-10 mr-4 cursor-pointer sm:block right-7 top-24' />
         </div>
         <div className="grid w-full grid-cols-1 px-4 mx-auto overflow-hidden sm: sm:px-0 lg:px-0">
           {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
@@ -364,7 +364,7 @@ function Search({ query, setEntities, recordEvent }: any) {
                 {/*content*/}
                 <div
                   style={{ width: '30rem' }}
-                  className='absolute hidden mr-4 bg-gray-100 border-b-2 sm:block right-1 top-40 hover:shadow-2xl ' >
+                  className='absolute hidden mr-4 bg-gray-100 border-b-2 sm:block right-1 top-48 hover:shadow-2xl mt-2 ' >
 
                   <div
                     //  style={{width:'30rem'}}
