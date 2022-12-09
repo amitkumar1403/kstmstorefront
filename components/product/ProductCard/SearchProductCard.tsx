@@ -243,7 +243,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           />
         ) : (
           
-          <div className=" sm:h-1 sm:w-1 h-1 w-1 sm:mr-2 mr-1 mt-2 inline-block bg-black h-10" />
+          <div className=" sm:h-1 sm:w-1 h-1 w-1 sm:mr-2 mr-1 mt-2 inline-block " />
         )}
         
         <h3 className="sm:text-sm text-xs font-normal text-black truncate pb-3">
