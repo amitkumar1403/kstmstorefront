@@ -10,7 +10,7 @@ interface Props {
 
 const Searchbar: FC<Props> = ({ id = 'search', onClick }) => {
   return (
-      <SearchIcon className='h-6 pr-5 hover:text-gray-500 cursor-pointer'
+      <SearchIcon className='h-6 px-3 hover:text-gray-500 cursor-pointer'
       onClick={onClick}
       />
     // <div className="flex flex-row sm:mr-8 sm:pr-2 sm:bg-gray-100 sm:border rounded-sm">

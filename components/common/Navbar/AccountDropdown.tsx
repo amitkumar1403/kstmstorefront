@@ -5,11 +5,18 @@ import Link from 'next/link'
 
 export default function Account({ config, title }: any) {
   return (
-    <Menu as="div" className="relative inline-block text-left px-1 sm:w-16 w-10 flow-root">
-      <Menu.Button className="group grid grid-cols-1 items-center text-center align-center justify-center flex-col mx-auto"  aria-label="My Account">
+    <Menu
+      as="div"
+      className="relative inline-block text-left px-1 sm:w-16 w-10 flow-root"
+    >
+      <Menu.Button
+        className="group grid grid-cols-1 items-center text-center align-center justify-center flex-col mx-auto"
+        aria-label="My Account"
+      >
         <UserIcon
           className="flex-shrink-0 h-6 w-6 block text-black group-hover:text-gray-500 mx-auto"
-          aria-hidden="true"  aria-label="My Account"
+          aria-hidden="true"
+          aria-label="My Account"
         />
         {/* <span className='font-normal sm:block hidden text-sm text-black'>Profile</span> */}
       </Menu.Button>
