@@ -103,7 +103,7 @@ const Footer: FC<Props> = ({ config }) => {
             </form>
             {/* Sitemap sections */}
           </div>
-          <div className="grid grid-cols-1 gap-0 text-center lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 lg:text-left pt-4 pb-8 gap-x-6">
+          <div className="grid grid-cols-1 gap-0 text-center lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 lg:text-left pt-4 pb-8 xl:gap-x-8 lg:gap-x-8 md:gap-x-4">
             {/* {config?.map((item: any, idx: number) => {
               return (
                 <div key={`${idx}-footer-item`}>
@@ -138,7 +138,7 @@ const Footer: FC<Props> = ({ config }) => {
                 </div>
               )
             })} */}
-            <div className="pt-4">
+            <div className="pt-4 xl:ml-20 lg:ml-10">
               <strong className="lg:px-6 sm:px-6 md:px-6 text-white lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
                 CUSTOMER
               </strong>
@@ -148,43 +148,43 @@ const Footer: FC<Props> = ({ config }) => {
               >
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   My Account
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Our Mission
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Transparency
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Size Guide
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Shipping
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   FAQs
                 </a>
               </nav>
             </div>
-            <div className="pt-4">
+            <div className="pt-4 xl:ml-20 lg:ml-10 md:ml-10">
               <strong className="lg:px-6 sm:px-6 md:px-6 text-white lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
                 {' '}
                 KSTM{' '}
@@ -195,43 +195,43 @@ const Footer: FC<Props> = ({ config }) => {
               >
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   My Account
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Our Mission
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Transparency
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Size Guide
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Shipping
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   FAQs
                 </a>
               </nav>
             </div>
-            <div className="pt-4">
+            <div className="pt-4 xl:ml-20 lg:ml-10 md:ml-10">
               <strong className="lg:px-6 sm:px-6 md:px-6 text-white lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
                 {' '}
                 LEGAL{' '}
@@ -242,19 +242,19 @@ const Footer: FC<Props> = ({ config }) => {
               >
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Terms
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Privacy
                 </a>
                 <a
                   className="text-white transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Consent
                 </a>
