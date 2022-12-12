@@ -84,7 +84,7 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
 
       <main>
         {/* First Banner */}
-        <div className="grid gap-0 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2">
+        <div className="grid gap-0 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 mt-10">
           <div className="relative">
             <img src="/image/Banner1.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
@@ -146,6 +146,12 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
             navigation={true}
             loop={false}
             breakpoints={{
+              320: {
+                slidesPerView: 1,
+              },
+              480: {
+                slidesPerView: 2,
+              },
               640: {
                 slidesPerView: 2,
               },
