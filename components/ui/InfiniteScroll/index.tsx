@@ -16,22 +16,22 @@ export default function InfiniteScrollComponent({
       dataLength={total} //This is important field to render the next data
       next={fetchData}
       hasMore={show}
+      // loader={<h3 className='flex justify-center pt-6 border border-black py-2 px-8 text-gray-700 hover:text-white hover:bg-black' >Loading...</h3>}
+      // loader={<h3 className=''>Loading . . .</h3>}
       loader={null}
+
       endMessage={
         <p
-        //  className="py-5"
-        // className='flex justify-center pt-6'
-        style={{ display: 'flex' , justifyContent:"center" ,paddingTop: "1.5rem" }}>
-          {/* <b>You have seen it all</b> */}
+        className='flex justify-center pt-6'
+       >
           <button
-          // onChange={()=>setshow(false)}
           onClick={()=>(currentNumber<total?
           (  setshow(true),setTimeout(() => {
             setshow(false)
           }, 500))
             :null)}                                                                                                 //12<70
-          className={`border border-black py-2 px-8 text-gray-700 hover:text-white hover:bg-black font ${!(currentNumber<total)?`hidden`:`block`}`}>
-            Load more</button>
+          className={`border border-black py-2 px-8 text-gray-700 hover:text-white hover:bg-black }`}>
+          {!(currentNumber<total)?`Loading ...`:`Load More`}</button>
         </p>
       }
     >
