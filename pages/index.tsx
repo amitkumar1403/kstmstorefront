@@ -23,7 +23,6 @@ import withDataLayer, { PAGE_TYPES } from '@components/withDataLayer'
 import { EVENTS_MAP } from '@components/services/analytics/constants'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 
-
 export async function getStaticProps({
   preview,
   locale,
@@ -82,7 +81,7 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
       <ProductSlider
         config={slugs?.components?.find((i?: any) => i.componentType === 52)}
       /> */}
-     
+
       <main>
         {/* First Banner */}
         <div className="grid gap-0 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2">
@@ -95,7 +94,7 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
           <div className="relative">
             <img src="/image/Banner2.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-2">
-              <h2 className="text-sm font-bold">WOMEN</h2>
+              <h2 className="text-sm font-bold mx-5">WOMEN</h2>
             </div>
           </div>
         </div>
@@ -103,45 +102,25 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
         {/* Sencond Banner */}
         <div className="grid gap-0 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2">
           <div className="relative border border-slate-300 hover:border-black">
-            <Image
-              src="/image/prod1.jpg"
-              alt="Picture of the author"
-              width={500}
-              height={500}
-            />
+            <img src="/image/prod1.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
               <h2 className="text-sm font-bold">JOGGERS</h2>
             </div>
           </div>
           <div className="relative border border-slate-300 hover:border-black">
-            <img
-              src="/image/prod2.jpg"
-              alt="Picture of the author"
-              width={500}
-              height={500}
-            />
+            <img src="/image/prod2.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
               <h2 className="text-sm font-bold">SHORTS</h2>
             </div>
           </div>
           <div className="relative border border-slate-300 hover:border-black">
-            <img
-              src="/image/prod3.jpg"
-              alt="Picture of the author"
-              width={500}
-              height={500}
-            />
+            <img src="/image/prod3.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
               <h2 className="text-sm font-bold">TROUSERS</h2>
             </div>
           </div>
           <div className="relative border border-slate-300 hover:border-black">
-            <img
-              src="/image/prod4.jpg"
-              alt="Picture of the author"
-              width={500}
-              height={500}
-            />
+            <img src="/image/prod4.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
               <h2 className="text-sm font-bold">JUMPERS</h2>
             </div>
@@ -186,7 +165,6 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                 <div className="relative group">
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
-                     
                       src="/image/Caru1.jpg"
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
@@ -345,7 +323,7 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
           </Swiper>
         </div>
       </main>
-   </>
+    </>
   )
 }
 Home.Layout = Layout
