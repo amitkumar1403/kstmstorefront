@@ -207,7 +207,7 @@ export default function FilterList({
     <div className='pb-6 border-b-2'>
         {/* Search bar in every filter category */}
       {/* {getCustomComponent(sectionKey)({ ...PROPS_LIST[sectionKey] })} */}
-      <div className="max-panel grid grid-cols-3">
+      <div className="grid grid-cols-3 md:grid-cols-2">
         {filterItems.map((option: any, optionIdx: number) => {
           const isChecked = isDefaultChecked(sectionKey, option.name)
           return (

@@ -317,7 +317,7 @@ function CategoryPage({ category, products }: any) {
           }
         </div>
         
-        <div className="text-left sm:pt-1 sm:pb-6 pb-4 pt-3 px-3 sm:px-0">
+        <div className="text-left sm:pt-1 sm:pb-6 pb-4 pt-3 sm:py-3 py-2 px-4 px-4 sm:px-0">
           <h4><span className='font-normal text-gray-500 text-sm'>Showing {products.total} {' '} {RESULTS}</span></h4>
           <h1 className="sm:text-xl text-xl font-semibold tracking-tight text-black">
             {category.name} 
@@ -345,12 +345,12 @@ function CategoryPage({ category, products }: any) {
             </div>
         }
         {products.total>0 &&
-            <div className="grid sm:grid-cols-12 grid-cols-1 gap-1 w-full mx-auto overflow-hidden sm:border-t sm:border-gray-200">
+            <div className="grid sm:grid-cols-12 grid-cols-1 gap-1 overflow-hidden">
               {!!products && (
                 <>
                   {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
 
-                  <div className="sm:col-span-2 sm:hidden flex flex-col">
+                  <div className="sm:col-span-2 flex flex-col">
                     <ProductMobileFilters
                       handleFilters={handleFilters}
                       products={products}
@@ -360,17 +360,10 @@ function CategoryPage({ category, products }: any) {
                       routerSortOption={state.sortBy}
                     />
                   </div>
-                  <div className="sm:col-span-2 sm:block hidden">
-                    <ProductFilterRight
-                      handleFilters={handleFilters}
-                      products={productDataToPass}
-                      routerFilters={state.filters}
-                    />
-                  </div>
-                  <div className="sm:col-span-10 sm:px-0 px-4 overflow-hidden">
+                  <div className="col-span-12 sm:px-0 px-4 overflow-hidden">
                     {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
-                    <div className="flex-1 sm:block hidden">
+                    <div className="flex-1">
                       <ProductFiltersTopBar
                         products={products}
                         handleSortBy={handleSortBy}

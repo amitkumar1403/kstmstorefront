@@ -258,13 +258,6 @@ export default function CollectionPage(props: any) {
                 routerSortOption={state.sortBy}
               />
             </div>
-            <div className="sm:col-span-2 sm:block hidden">
-              <ProductFilterRight
-                handleFilters={handleFilters}
-                products={props.products}
-                routerFilters={state.filters}
-              />
-            </div>
             <div className="sm:col-span-10 ">
               {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
