@@ -1,0 +1,1254 @@
+{
+    "Innerwear":
+    [
+        {
+            "Sizes":
+            [
+                {
+                    "CategoryName": "Brief",
+                    "Size": "S",
+                    "WaistInches": "28-30 ",
+                    "WaistCms": "70-75"
+                },
+                {
+                    "CategoryName": "Brief",
+                    "Size": "M",
+                    "WaistInches": "32-34",
+                    "WaistCms": "80-85"
+                },
+                {
+                    "CategoryName": "Brief",
+                    "Size": "L",
+                    "WaistInches": "36-38",
+                    "WaistCms": "90-95"
+                },
+                {
+                    "CategoryName": "Brief",
+                    "Size": "XL",
+                    "WaistInches": "40-42",
+                    "WaistCms": "100-105"
+                },
+                {
+                    "CategoryName": "Brief",
+                    "Size": "XXL",
+                    "WaistInches": "44-46",
+                    "WaistCms": "110-115"
+                },
+                {
+                    "CategoryName": "Deo Soft Brief",
+                    "Size": "S",
+                    "WaistInches": "28-30",
+                    "WaistCms": "70-75"
+                },
+                {
+                    "CategoryName": "Deo Soft Brief",
+                    "Size": "M",
+                    "WaistInches": "32-34",
+                    "WaistCms": "80-85"
+                },
+                {
+                    "CategoryName": "Deo Soft Brief",
+                    "Size": "L",
+                    "WaistInches": "36-38",
+                    "WaistCms": "90-95"
+                },
+                {
+                    "CategoryName": "Deo Soft Brief",
+                    "Size": "XL",
+                    "WaistInches": "40-42",
+                    "WaistCms": "100-105"
+                },
+                {
+                    "CategoryName": "Deo Soft Brief",
+                    "Size": "XXL",
+                    "WaistInches": "44-46",
+                    "WaistCms": "110-115"
+                },
+                {
+                    "CategoryName": "Deo Soft Boxer Brief",
+                    "Size": "S",
+                    "WaistInches": "28-30 ",
+                    "WaistCms": "70-75"
+                },
+                {
+                    "CategoryName": "Deo Soft Boxer Brief",
+                    "Size": "M",
+                    "WaistInches": "32-34",
+                    "WaistCms": "80-85"
+                },
+                {
+                    "CategoryName": "Deo Soft Boxer Brief",
+                    "Size": "L",
+                    "WaistInches": "36-38",
+                    "WaistCms": "90-95"
+                },
+                {
+                    "CategoryName": "Deo Soft Boxer Brief",
+                    "Size": "XL",
+                    "WaistInches": "40-42",
+                    "WaistCms": "100-105"
+                },
+                {
+                    "CategoryName": "Deo Soft Boxer Brief",
+                    "Size": "XXL",
+                    "WaistInches": "44-46",
+                    "WaistCms": "110-115"
+                },
+                {
+                    "CategoryName": "Deo Soft Trunk",
+                    "Size": "S",
+                    "WaistInches": "28-30 ",
+                    "WaistCms": "70-75"
+                },
+                {
+                    "CategoryName": "Deo Soft Trunk",
+                    "Size": "M",
+                    "WaistInches": "32-34",
+                    "WaistCms": "80-85"
+                },
+                {
+                    "CategoryName": "Deo Soft Trunk",
+                    "Size": "L",
+                    "WaistInches": "36-38",
+                    "WaistCms": "90-95"
+                },
+                {
+                    "CategoryName": "Deo Soft Trunk",
+                    "Size": "XL",
+                    "WaistInches": "40-42",
+                    "WaistCms": "100-105"
+                },
+                {
+                    "CategoryName": "Deo Soft Trunk",
+                    "Size": "XXL",
+                    "WaistInches": "44-46",
+                    "WaistCms": "110-115"
+                },
+                {
+                    "CategoryName": "Boxer Brief",
+                    "Size": "S",
+                    "WaistInches": "28-30 ",
+                    "WaistCms": "70-75"
+                },
+                {
+                    "CategoryName": "Boxer Brief",
+                    "Size": "M",
+                    "WaistInches": "32-34",
+                    "WaistCms": "80-85"
+                },
+                {
+                    "CategoryName": "Boxer Brief",
+                    "Size": "L",
+                    "WaistInches": "36-38",
+                    "WaistCms": "90-95"
+                },
+                {
+                    "CategoryName": "Boxer Brief",
+                    "Size": "XL",
+                    "WaistInches": "40-42",
+                    "WaistCms": "100-105"
+                },
+                {
+                    "CategoryName": "Boxer Brief",
+                    "Size": "XXL",
+                    "WaistInches": "44-46",
+                    "WaistCms": "110-115"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-light Inner Boxers",
+                    "Size": "S",
+                    "WaistInches": "28-30 ",
+                    "WaistCms": "70-75",
+                    "LengthInches": "14 1/2",
+                    "LengthCms": "37"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-light Inner Boxers",
+                    "Size": "M",
+                    "WaistInches": "32-34",
+                    "WaistCms": "80-85",
+                    "LengthInches": "14 1/2",
+                    "LengthCms": "37"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-light Inner Boxers",
+                    "Size": "L",
+                    "WaistInches": "36-38",
+                    "WaistCms": "90-95",
+                    "LengthInches": "15 3/4",
+                    "LengthCms": "40"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-light Inner Boxers",
+                    "Size": "XL",
+                    "WaistInches": "40-42",
+                    "WaistCms": "100-105",
+                    "LengthInches": "16 1/8",
+                    "LengthCms": "41"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-light Inner Boxers",
+                    "Size": "XXL",
+                    "WaistInches": "44-46",
+                    "WaistCms": "110-115",
+                    "LengthInches": "16 1/8",
+                    "LengthCms": "41"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-light Boxer Shorts",
+                    "Size": "S",
+                    "WaistInches": "28-30",
+                    "WaistCms": " 70-75",
+                    "LengthInches": "15 3/4",
+                    "LengthCms": "40"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-light Boxer Shorts",
+                    "Size": "M",
+                    "WaistInches": "32-34",
+                    "WaistCms": "80-85",
+                    "LengthInches": "15 3/4",
+                    "LengthCms": "40"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-light Boxer Shorts",
+                    "Size": "L",
+                    "WaistInches": "36-38",
+                    "WaistCms": "90-95",
+                    "LengthInches": "16 3/4",
+                    "LengthCms": "42.5"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-light Boxer Shorts",
+                    "Size": "XL",
+                    "WaistInches": "40-42",
+                    "WaistCms": "100-105",
+                    "LengthInches": "17 3/4",
+                    "LengthCms": "45"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-light Boxer Shorts",
+                    "Size": "XXL",
+                    "WaistInches": "44-46",
+                    "WaistCms": "110-115",
+                    "LengthInches": "17 3/4",
+                    "LengthCms": "45"
+                },
+                {
+                    "CategoryName": "Neo Skin Bamboo Vest",
+                    "Size": "S",
+                    "ChestInches": "32-34",
+                    "ChestCms": "80-85",
+                    "LengthInches": "26 1/4",
+                    "LengthCms": "66.5"
+                },
+                {
+                    "CategoryName": "Neo Skin Bamboo Vest",
+                    "Size": "M",
+                    "ChestInches": "36-38",
+                    "ChestCms": "90-95",
+                    "LengthInches": "27",
+                    "LengthCms": "68.5"
+                },
+                {
+                    "CategoryName": "Neo Skin Bamboo Vest",
+                    "Size": "L",
+                    "ChestInches": "40-42",
+                    "ChestCms": "100-105",
+                    "LengthInches": "28 1/8",
+                    "LengthCms": "71.5"
+                },
+                {
+                    "CategoryName": "Neo Skin Bamboo Vest",
+                    "Size": "XL",
+                    "ChestInches": "44-46",
+                    "ChestCms": "110-115",
+                    "LengthInches": "29 1/2",
+                    "LengthCms": "75"
+                },
+                {
+                    "CategoryName": "Neo Skin Bamboo Vest",
+                    "Size": "XXL",
+                    "ChestInches": "48-50",
+                    "ChestCms": "120-125",
+                    "LengthInches": "30 7/8",
+                    "LengthCms": "78.5"
+                },
+                {
+                    "CategoryName": "Neo-Cotton Ribbed Vest",
+                    "Size": "S",
+                    "ChestInches": "35-37",
+                    "ChestCms": "87-92",
+                    "LengthInches": "26 1/4",
+                    "LengthCms": "66.5"
+                },
+                {
+                    "CategoryName": "Neo-Cotton Ribbed Vest",
+                    "Size": "M",
+                    "ChestInches": "37-39",
+                    "ChestCms": "92-97",
+                    "LengthInches": "27 1/2",
+                    "LengthCms": "70"
+                },
+                {
+                    "CategoryName": "Neo-Cotton Ribbed Vest",
+                    "Size": "L",
+                    "ChestInches": "39-41",
+                    "ChestCms": "97-102",
+                    "LengthInches": "29",
+                    "LengthCms": "73.5"
+                },
+                {
+                    "CategoryName": "Neo-Cotton Ribbed Vest",
+                    "Size": "XL",
+                    "ChestInches": "41-43",
+                    "ChestCms": "102-107",
+                    "LengthInches": "30 1/4",
+                    "LengthCms": "77"
+                },
+                {
+                    "CategoryName": "Neo-Cotton Ribbed Vest",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "LengthInches": "31 5/8",
+                    "LengthCms": "80.5"
+                },
+                {
+                    "CategoryName": "Fluid Casual Tank Tops",
+                    "Size": "S",
+                    "ChestInches": "35-37",
+                    "ChestCms": "87-92",
+                    "LengthInches": "28 1/4",
+                    "AcrossShoulderInches": "16"
+                },
+                {
+                    "CategoryName": "Fluid Casual Tank Tops",
+                    "Size": "M",
+                    "ChestInches": "37-39",
+                    "ChestCms": "92-97",
+                    "LengthInches": "28 3/4",
+                    "AcrossShoulderInches": "17"
+                },
+                {
+                    "CategoryName": "Fluid Casual Tank Tops",
+                    "Size": "L",
+                    "ChestInches": "39-41",
+                    "ChestCms": "97-102",
+                    "LengthInches": "29 1/4",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Fluid Casual Tank Tops",
+                    "Size": "XL",
+                    "ChestInches": "41-43",
+                    "ChestCms": "102-107",
+                    "LengthInches": "29 3/4",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Fluid Casual Tank Tops",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "LengthInches": "30 1/4",
+                    "AcrossShoulderInches": "19"
+                }
+            ],
+            "Images":
+            [
+                {
+                    "name": "Brief",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/briefs.png"
+                },
+                {
+                    "name": "Deo Soft Brief",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/briefs.png"
+                },
+                {
+                    "name": "Deo Soft Boxer Brief",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/briefs.png"
+                },
+                {
+                    "name": "Deo Soft Trunk",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/trunks.png"
+                },
+                {
+                    "name": "Breeeze Ultra-light Inner Boxers",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/inner-boxers.png"
+                },
+                {
+                    "name": "Breeeze Ultra-light Boxer Shorts",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/boxer-shorts.png"
+                },
+                {
+                    "name": "Neo Skin Bamboo Vest",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/vests.png"
+                },
+                {
+                    "name": "Neo-Cotton Ribbed Vest",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/vests.png"
+                },
+                {
+                    "name": "Fluid Casual Tank Tops",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/tank-top.png"
+                }
+            ]
+        }
+    ],
+    "Innerwear Packs":
+    [
+        {
+            "Sizes":
+            [
+                {
+                    "CategoryName": "Value Deal Deo Soft Briefs",
+                    "Size": "S",
+                    "WaistInches": "28-30 ",
+                    "WaistCms": "70-75"
+                },
+                {
+                    "CategoryName": "Value Deal Deo Soft Briefs",
+                    "Size": "M",
+                    "WaistInches": "32-34",
+                    "WaistCms": "80-85"
+                },
+                {
+                    "CategoryName": "Value Deal Deo Soft Briefs",
+                    "Size": "L",
+                    "WaistInches": "36-38",
+                    "WaistCms": "90-95"
+                },
+                {
+                    "CategoryName": "Value Deal Deo Soft Briefs",
+                    "Size": "XL",
+                    "WaistInches": "40-42",
+                    "WaistCms": "100-105"
+                },
+                {
+                    "CategoryName": "Value Deal Deo Soft Briefs",
+                    "Size": "XXL",
+                    "WaistInches": "44-46",
+                    "WaistCms": "110-115"
+                },
+                {
+                    "CategoryName": "Value Deal Deo Soft Trunks",
+                    "Size": "S",
+                    "WaistInches": "28-30 ",
+                    "WaistCms": "70-75"
+                },
+                {
+                    "CategoryName": "Value Deal Deo Soft Trunks",
+                    "Size": "M",
+                    "WaistInches": "32-34",
+                    "WaistCms": "80-85"
+                },
+                {
+                    "CategoryName": "Value Deal Deo Soft Trunks",
+                    "Size": "L",
+                    "WaistInches": "36-38",
+                    "WaistCms": "90-95"
+                },
+                {
+                    "CategoryName": "Value Deal Deo Soft Trunks",
+                    "Size": "XL",
+                    "WaistInches": "40-42",
+                    "WaistCms": "100-105"
+                },
+                {
+                    "CategoryName": "Value Deal Deo Soft Trunks",
+                    "Size": "XXL",
+                    "WaistInches": "44-46",
+                    "WaistCms": "110-115"
+                },
+                {
+                    "CategoryName": "Value Deal Neo Soft Vests",
+                    "Size": "S",
+                    "ChestInches": "32-34",
+                    "ChestCms": "80-85",
+                    "LengthInches": "26 1/4",
+                    "LengthCms": "66.5"
+                },
+                {
+                    "CategoryName": "Value Deal Neo Soft Vests",
+                    "Size": "M",
+                    "ChestInches": "36-38",
+                    "ChestCms": "90-95",
+                    "LengthInches": "27",
+                    "LengthCms": "68.5"
+                },
+                {
+                    "CategoryName": "Value Deal Neo Soft Vests",
+                    "Size": "L",
+                    "ChestInches": "40-42",
+                    "ChestCms": "100-105",
+                    "LengthInches": "28 1/8",
+                    "LengthCms": "71.5"
+                },
+                {
+                    "CategoryName": "Value Deal Neo Soft Vests",
+                    "Size": "XL",
+                    "ChestInches": "44-46",
+                    "ChestCms": "110-115",
+                    "LengthInches": "29 1/2",
+                    "LengthCms": "75"
+                },
+                {
+                    "CategoryName": "Value Deal Neo Soft Vests",
+                    "Size": "XXL",
+                    "ChestInches": "48-50",
+                    "ChestCms": "120-125",
+                    "LengthInches": "30 7/8",
+                    "LengthCms": "78.5"
+                }
+            ],
+            "Images":
+            [
+                {
+                    "name": "Value Deal Deo Soft Briefs",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/briefs.png"
+                },
+                {
+                    "name": "Value Deal Deo Soft Trunks",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/trunks.png"
+                },
+                {
+                    "name": "Value Deal Neo Soft Vests",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/vests.png"
+                }
+            ]
+        }
+    ],
+    "Outerwear":
+    [
+        {
+            "Sizes":
+            [
+                {
+                    "CategoryName": "Statement Popcorn Textured Casual Tees",
+                    "Size": "S",
+                    "ChestInches": "35-37 ",
+                    "ChestCms": "87-92",
+                    "FrontLengthInches": "27 1/2",
+                    "AcrossShoulderInches": "16"
+                },
+                {
+                    "CategoryName": "Statement Popcorn Textured Casual Tees",
+                    "Size": "M",
+                    "ChestInches": "37-39",
+                    "ChestCms": "92-97",
+                    "FrontLengthInches": "28",
+                    "AcrossShoulderInches": "17"
+                },
+                {
+                    "CategoryName": "Statement Popcorn Textured Casual Tees",
+                    "Size": "L",
+                    "ChestInches": "39-41",
+                    "ChestCms": "97-102",
+                    "FrontLengthInches": "28 1/2",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Statement Popcorn Textured Casual Tees",
+                    "Size": "XL",
+                    "ChestInches": "41-43 ",
+                    "ChestCms": "102-107",
+                    "FrontLengthInches": "29",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Statement Popcorn Textured Casual Tees",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "FrontLengthInches": "29 1/2",
+                    "AcrossShoulderInches": "19"
+                },
+                {
+                    "CategoryName": "Fluid Tees",
+                    "Size": "S",
+                    "ChestInches": "35-37",
+                    "ChestCms": "87-92",
+                    "FrontLengthInches": "27 1/4",
+                    "AcrossShoulderInches": "16"
+                },
+                {
+                    "CategoryName": "Fluid Tees",
+                    "Size": "M",
+                    "ChestInches": "37-39 ",
+                    "ChestCms": "92-97",
+                    "FrontLengthInches": "27 3/4",
+                    "AcrossShoulderInches": "17"
+                },
+                {
+                    "CategoryName": "Fluid Tees",
+                    "Size": "L",
+                    "ChestInches": "39-41 ",
+                    "ChestCms": "97-102",
+                    "FrontLengthInches": "28 1/4",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Fluid Tees",
+                    "Size": "XL",
+                    "ChestInches": "41-43 ",
+                    "ChestCms": "102-107",
+                    "FrontLengthInches": "28 3/4",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Fluid Tees",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "FrontLengthInches": "29 1/4",
+                    "AcrossShoulderInches": "19"
+                },
+                {
+                    "CategoryName": "Constant 500 Day All Degree Polo",
+                    "Size": "S",
+                    "ChestInches": "35-37 ",
+                    "ChestCms": "87-92",
+                    "FrontLengthInches": "26 1/4",
+                    "AcrossShoulderInches": "16"
+                },
+                {
+                    "CategoryName": "Constant 500 Day All Degree Polo",
+                    "Size": "M",
+                    "ChestInches": "37-39 ",
+                    "ChestCms": "92-97",
+                    "FrontLengthInches": "27 1/8",
+                    "AcrossShoulderInches": "17"
+                },
+                {
+                    "CategoryName": "Constant 500 Day All Degree Polo",
+                    "Size": "L",
+                    "ChestInches": "39-41 ",
+                    "ChestCms": "97-102",
+                    "FrontLengthInches": "28 1/8",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Constant 500 Day All Degree Polo",
+                    "Size": "XL",
+                    "ChestInches": "41-43 ",
+                    "ChestCms": "102-107",
+                    "FrontLengthInches": "29 1/8",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Constant 500 Day All Degree Polo",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "FrontLengthInches": "30 1/8",
+                    "AcrossShoulderInches": "19"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Tshirts",
+                    "Size": "S",
+                    "ChestInches": "35-37 ",
+                    "ChestCms": "87-92",
+                    "FrontLengthInches": "26 1/4",
+                    "AcrossShoulderInches": "16"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Tshirts",
+                    "Size": "M",
+                    "ChestInches": "37-39 ",
+                    "ChestCms": "92-97",
+                    "FrontLengthInches": "27 1/8",
+                    "AcrossShoulderInches": "17"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Tshirts",
+                    "Size": "L",
+                    "ChestInches": "39-41",
+                    "ChestCms": "97-102",
+                    "FrontLengthInches": "28 1/8",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Tshirts",
+                    "Size": "XL",
+                    "ChestInches": "41-43 ",
+                    "ChestCms": "102-107",
+                    "FrontLengthInches": "29 1/8",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Tshirts",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "FrontLengthInches": "30 1/8",
+                    "AcrossShoulderInches": "19"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Chino Shorts",
+                    "Size": "S (30)",
+                    "WaistInches": "31",
+                    "FrontLengthInches": "19 1/8"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Chino Shorts",
+                    "Size": "M (32)",
+                    "WaistInches": "33",
+                    "FrontLengthInches": "19 1/4"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Chino Shorts",
+                    "Size": "L ( 34)",
+                    "WaistInches": "35",
+                    "FrontLengthInches": "19 7/8"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Chino Shorts",
+                    "Size": "XL ( 36)",
+                    "WaistInches": "37",
+                    "FrontLengthInches": "20 1/4"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Chino Shorts",
+                    "Size": "XXL (38)",
+                    "WaistInches": "39",
+                    "FrontLengthInches": "20 5/8"
+                },
+                {
+                    "CategoryName": "Better Basics French Terry Sweatshorts",
+                    "Size": "S (30)",
+                    "WaistInches": "31",
+                    "FrontLengthInches": "19 1/8"
+                },
+                {
+                    "CategoryName": "Better Basics French Terry Sweatshorts",
+                    "Size": "M (32)",
+                    "WaistInches": "33",
+                    "FrontLengthInches": "19 1/4"
+                },
+                {
+                    "CategoryName": "Better Basics French Terry Sweatshorts",
+                    "Size": "L ( 34)",
+                    "WaistInches": "35",
+                    "FrontLengthInches": "19 7/8"
+                },
+                {
+                    "CategoryName": "Better Basics French Terry Sweatshorts",
+                    "Size": "XL ( 36)",
+                    "WaistInches": "37",
+                    "FrontLengthInches": "20 1/4"
+                },
+                {
+                    "CategoryName": "Better Basics French Terry Sweatshorts",
+                    "Size": "XXL (38)",
+                    "WaistInches": "39",
+                    "FrontLengthInches": "20 5/8"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-Light Casual Lounge Shorts",
+                    "Size": "S (30)",
+                    "WaistInches": "31",
+                    "FrontLengthInches": "19 1/8"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-Light Casual Lounge Shorts",
+                    "Size": "M (32)",
+                    "WaistInches": "33",
+                    "FrontLengthInches": "19 1/4"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-Light Casual Lounge Shorts",
+                    "Size": "L ( 34)",
+                    "WaistInches": "35",
+                    "FrontLengthInches": "19 7/8"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-Light Casual Lounge Shorts",
+                    "Size": "XL ( 36)",
+                    "WaistInches": "37",
+                    "FrontLengthInches": "20 1/4"
+                },
+                {
+                    "CategoryName": "Breeeze Ultra-Light Casual Lounge Shorts",
+                    "Size": "XXL (38)",
+                    "WaistInches": "39",
+                    "FrontLengthInches": "20 5/8"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Casual Shorts",
+                    "Size": "S (30)",
+                    "WaistInches": "31",
+                    "FrontLengthInches": "19 1/8"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Casual Shorts",
+                    "Size": "M (32)",
+                    "WaistInches": "33",
+                    "FrontLengthInches": "19 1/4"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Casual Shorts",
+                    "Size": "L ( 34)",
+                    "WaistInches": "35",
+                    "FrontLengthInches": "19 7/8"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Casual Shorts",
+                    "Size": "XL ( 36)",
+                    "WaistInches": "37",
+                    "FrontLengthInches": "20 1/4"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Casual Shorts",
+                    "Size": "XXL (38)",
+                    "WaistInches": "39",
+                    "FrontLengthInches": "20 5/8"
+                },
+                {
+                    "CategoryName": "Statement All-Day Joggers",
+                    "Size": "S",
+                    "WaistInches": "28-30",
+                    "FrontLengthInches": "39"
+                },
+                {
+                    "CategoryName": "Statement All-Day Joggers",
+                    "Size": "M",
+                    "WaistInches": "32-34",
+                    "FrontLengthInches": "39"
+                },
+                {
+                    "CategoryName": "Statement All-Day Joggers",
+                    "Size": "L",
+                    "WaistInches": "36-38",
+                    "FrontLengthInches": "39"
+                },
+                {
+                    "CategoryName": "Statement All-Day Joggers",
+                    "Size": "XL",
+                    "WaistInches": "40-42",
+                    "FrontLengthInches": "40"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Ottoman Joggers",
+                    "Size": "S",
+                    "WaistInches": "27-29",
+                    "WaistCms": " 67-72",
+                    "FrontLengthInches": "38 3/4( 98)"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Ottoman Joggers",
+                    "Size": "M",
+                    "WaistInches": "30-32",
+                    "WaistCms": "  75-80",
+                    "FrontLengthInches": "39 1/2 (100)"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Ottoman Joggers",
+                    "Size": "L",
+                    "WaistInches": "33-35 ",
+                    "WaistCms": "82-87",
+                    "FrontLengthInches": "40 1/4( 102)"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Ottoman Joggers",
+                    "Size": "XL",
+                    "WaistInches": "36-39 ",
+                    "WaistCms": " 90-97",
+                    "FrontLengthInches": "41( 104)"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Ottoman Joggers",
+                    "Size": "XXL",
+                    "WaistInches": "40-43 ",
+                    "WaistCms": "100-107",
+                    "FrontLengthInches": "41 3/4(106)"
+                },
+                {
+                    "CategoryName": "The Stretch Pyjama Pants",
+                    "Size": "S",
+                    "WaistInches": "28-30",
+                    "WaistCms": " 70-75",
+                    "FrontLengthInches": "39 (98.5)"
+                },
+                {
+                    "CategoryName": "The Stretch Pyjama Pants",
+                    "Size": "M",
+                    "WaistInches": "31-33",
+                    "WaistCms": " 77-82",
+                    "FrontLengthInches": "39 3/4( 101)"
+                },
+                {
+                    "CategoryName": "The Stretch Pyjama Pants",
+                    "Size": "L",
+                    "WaistInches": "34-36 ",
+                    "WaistCms": "85-90",
+                    "FrontLengthInches": "40 3/4 (103.5)"
+                },
+                {
+                    "CategoryName": "The Stretch Pyjama Pants",
+                    "Size": "XL",
+                    "WaistInches": "37-40",
+                    "WaistCms": " 92-100",
+                    "FrontLengthInches": "41 3/4( 106)"
+                },
+                {
+                    "CategoryName": "The Stretch Pyjama Pants",
+                    "Size": "XXL",
+                    "WaistInches": "41-44 ",
+                    "WaistCms": "102-110",
+                    "FrontLengthInches": "42 3/4 (108.5)"
+                },
+                {
+                    "CategoryName": "Shorts",
+                    "Size": "S",
+                    "WaistInches": "28-30 ",
+                    "WaistCms": "70-75",
+                    "FrontLengthInches": "18 1/2 ( 47 )"
+                },
+                {
+                    "CategoryName": "Shorts",
+                    "Size": "M",
+                    "WaistInches": "31-33 ",
+                    "WaistCms": "77-82",
+                    "FrontLengthInches": "19 ( 48)"
+                },
+                {
+                    "CategoryName": "Shorts",
+                    "Size": "L",
+                    "WaistInches": "34-36 ",
+                    "WaistCms": "85-90",
+                    "FrontLengthInches": "19 3/4( 50)"
+                },
+                {
+                    "CategoryName": "Shorts",
+                    "Size": "XL",
+                    "WaistInches": "37-40 ",
+                    "WaistCms": "92-100",
+                    "FrontLengthInches": "20 1/2(52)"
+                },
+                {
+                    "CategoryName": "Shorts",
+                    "Size": "XXL",
+                    "WaistInches": "41-44 ",
+                    "WaistCms": "102-110",
+                    "FrontLengthInches": "21 1/4 (54)"
+                },
+                {
+                    "CategoryName": "Sweatshirts",
+                    "Size": "S",
+                    "ChestInches": "35-37",
+                    "ChestCms": "87-92",
+                    "FrontLengthInches": "26 1/4",
+                    "AcrossShoulderInches": "17.1"
+                },
+                {
+                    "CategoryName": "Sweatshirts",
+                    "Size": "M",
+                    "ChestInches": "37-39 ",
+                    "ChestCms": "92-97",
+                    "FrontLengthInches": "27",
+                    "AcrossShoulderInches": "17.5"
+                },
+                {
+                    "CategoryName": "Sweatshirts",
+                    "Size": "L",
+                    "ChestInches": "39-41 ",
+                    "ChestCms": "97-102",
+                    "FrontLengthInches": "27 3/4",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Sweatshirts",
+                    "Size": "XL",
+                    "ChestInches": "41-43 ",
+                    "ChestCms": "102-107",
+                    "FrontLengthInches": "28 1/2",
+                    "AcrossShoulderInches": "18.8"
+                },
+                {
+                    "CategoryName": "Sweatshirts",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "FrontLengthInches": "29 1/4",
+                    "AcrossShoulderInches": "19.6"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Pullover Hoodies",
+                    "Size": "S",
+                    "ChestInches": "35-37 ",
+                    "ChestCms": "87-92",
+                    "FrontLengthInches": "27",
+                    "AcrossShoulderInches": "17.1"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Pullover Hoodies",
+                    "Size": "M",
+                    "ChestInches": "37-39 ",
+                    "ChestCms": "92-97",
+                    "FrontLengthInches": "28",
+                    "AcrossShoulderInches": "17.5"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Pullover Hoodies",
+                    "Size": "L",
+                    "ChestInches": "39-41",
+                    "ChestCms": "97-102",
+                    "FrontLengthInches": "28",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Pullover Hoodies",
+                    "Size": "XL",
+                    "ChestInches": "41-43 ",
+                    "ChestCms": "102-107",
+                    "FrontLengthInches": "29",
+                    "AcrossShoulderInches": "18.8"
+                },
+                {
+                    "CategoryName": "Constant 500 Day Pullover Hoodies",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "FrontLengthInches": "30",
+                    "AcrossShoulderInches": "19.6"
+                },
+                {
+                    "CategoryName": "Better Basics Regular Fit Sweatshirt",
+                    "Size": "S",
+                    "ChestInches": "35-37 ",
+                    "ChestCms": "87-92",
+                    "FrontLengthInches": "26 1/4",
+                    "AcrossShoulderInches": "17.1"
+                },
+                {
+                    "CategoryName": "Better Basics Regular Fit Sweatshirt",
+                    "Size": "M",
+                    "ChestInches": "37-39 ",
+                    "ChestCms": "92-97",
+                    "FrontLengthInches": "27",
+                    "AcrossShoulderInches": "17.5"
+                },
+                {
+                    "CategoryName": "Better Basics Regular Fit Sweatshirt",
+                    "Size": "L",
+                    "ChestInches": "39-41 ",
+                    "ChestCms": "97-102",
+                    "FrontLengthInches": "27 3/4",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Better Basics Regular Fit Sweatshirt",
+                    "Size": "XL",
+                    "ChestInches": "41-43 ",
+                    "ChestCms": "102-107",
+                    "FrontLengthInches": "28 1/2",
+                    "AcrossShoulderInches": "18.8"
+                },
+                {
+                    "CategoryName": "Better Basics Regular Fit Sweatshirt",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "FrontLengthInches": "29 1/4",
+                    "AcrossShoulderInches": "19.6"
+                },
+                {
+                    "CategoryName": "Statement All-Day Midweight Sweatshirts",
+                    "Size": "S",
+                    "ChestInches": "35-37 ",
+                    "ChestCms": "87-92",
+                    "FrontLengthInches": "27",
+                    "AcrossShoulderInches": "17.1"
+                },
+                {
+                    "CategoryName": "Statement All-Day Midweight Sweatshirts",
+                    "Size": "M",
+                    "ChestInches": "37-39 ",
+                    "ChestCms": "92-97",
+                    "FrontLengthInches": "28",
+                    "AcrossShoulderInches": "17.5"
+                },
+                {
+                    "CategoryName": "Statement All-Day Midweight Sweatshirts",
+                    "Size": "L",
+                    "ChestInches": "39-41",
+                    "ChestCms": "97-102",
+                    "FrontLengthInches": "28",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Statement All-Day Midweight Sweatshirts",
+                    "Size": "XL",
+                    "ChestInches": "41-43 ",
+                    "ChestCms": "102-107",
+                    "FrontLengthInches": "29",
+                    "AcrossShoulderInches": "18.8"
+                },
+                {
+                    "CategoryName": "Statement All-Day Midweight Sweatshirts",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "FrontLengthInches": "30",
+                    "AcrossShoulderInches": "19.6"
+                },
+                {
+                    "CategoryName": "Statement Printed Crew Tees",
+                    "Size": "S",
+                    "ChestInches": "35-37 ",
+                    "ChestCms": "87-92",
+                    "FrontLengthInches": "26 1/4",
+                    "AcrossShoulderInches": "16"
+                },
+                {
+                    "CategoryName": "Statement Printed Crew Tees",
+                    "Size": "M",
+                    "ChestInches": "37-39 ",
+                    "ChestCms": "92-97",
+                    "FrontLengthInches": "27 1/8",
+                    "AcrossShoulderInches": "17"
+                },
+                {
+                    "CategoryName": "Statement Printed Crew Tees",
+                    "Size": "L",
+                    "ChestInches": "39-41 ",
+                    "ChestCms": "97-102",
+                    "FrontLengthInches": "28 1/8",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Statement Printed Crew Tees",
+                    "Size": "XL",
+                    "ChestInches": "41-43 ",
+                    "ChestCms": "102-107",
+                    "FrontLengthInches": "29 1/8",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Statement Printed Crew Tees",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "FrontLengthInches": "30 1/8",
+                    "AcrossShoulderInches": "19"
+                },
+                {
+                    "CategoryName": "Better Basics Crew T Shirt",
+                    "Size": "S",
+                    "ChestInches": "35-37 ",
+                    "ChestCms": "87-92",
+                    "FrontLengthInches": "26 1/4",
+                    "AcrossShoulderInches": "16"
+                },
+                {
+                    "CategoryName": "Better Basics Crew T Shirt",
+                    "Size": "M",
+                    "ChestInches": "37-39 ",
+                    "ChestCms": "92-97",
+                    "FrontLengthInches": "27 1/8",
+                    "AcrossShoulderInches": "17"
+                },
+                {
+                    "CategoryName": "Better Basics Crew T Shirt",
+                    "Size": "L",
+                    "ChestInches": "39-41 ",
+                    "ChestCms": "97-102",
+                    "FrontLengthInches": "28 1/8",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Better Basics Crew T Shirt",
+                    "Size": "XL",
+                    "ChestInches": "41-43 ",
+                    "ChestCms": "102-107",
+                    "FrontLengthInches": "29 1/8",
+                    "AcrossShoulderInches": "18"
+                },
+                {
+                    "CategoryName": "Better Basics Crew T Shirt",
+                    "Size": "XXL",
+                    "ChestInches": "43-45",
+                    "ChestCms": "107-112",
+                    "FrontLengthInches": "30 1/8",
+                    "AcrossShoulderInches": "19"
+                }
+            ],
+            "Images":
+            [
+                {
+                    "name": "Statement Popcorn Textured Casual Tees",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/tshirts.png"
+                },
+                {
+                    "name": "Fluid Tees",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/tshirts.png"
+                },
+                {
+                    "name": "Constant 500 Day All Degree Polo",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/tshirts.png"
+                },
+                {
+                    "name": "Constant 500 Day Tshirts",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/tshirts.png"
+                },
+                {
+                    "name": "Constant 500 Day Chino Shorts",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/shorts.png"
+                },
+                {
+                    "name": "Better Basics French Terry Sweatshorts",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/shorts.png"
+                },
+                {
+                    "name": "Breeeze Ultra-Light Casual Lounge Shorts",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/shorts.png"
+                },
+                {
+                    "name": "Constant 500 Day Casual Shorts",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/shorts.png"
+                },
+                {
+                    "name": "Statement All-Day Joggers",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/jogger.png"
+                },
+                {
+                    "name": "Constant 500 Day Ottoman Joggers",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/jogger.png"
+                },
+                {
+                    "name": "The Stretch Pyjama Pants",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/pyjama-pants.png"
+                },
+                {
+                    "name": "Shorts",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/shorts.png"
+                },
+                {
+                    "name": "Sweatshirts",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/sweatshirt.png"
+                },
+                {
+                    "name": "Constant 500 Day Pullover Hoodies",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/sweatshirt.png"
+                },
+                {
+                    "name": "Better Basics Regular Fit Sweatshirt",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/sweatshirt.png"
+                },
+                {
+                    "name": "Statement All-Day Midweight Sweatshirts",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/sweatshirt.png"
+                },
+                {
+                    "name": "Statement Printed Crew Tees",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/tshirts.png"
+                },
+                {
+                    "name": "Better Basics Crew T Shirt",
+                    "imageURL": "https://devdamenschstorage.blob.core.windows.net/damensch/sizechart/tshirts.png"
+                }
+            ]
+        }
+    ]
+}

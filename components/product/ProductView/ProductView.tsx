@@ -116,10 +116,10 @@ export default function ProductView({
     stockCode: product?.stockCode,
     ...product,
   })
+  //for storing products in local storage for recently viewed
+  const [localState, setLocalState] = useState([]);
 
   const { ProductViewed } = EVENTS_MAP.EVENT_TYPES
-  const [Products, setProducts] = useState({});
-
   const { Product } = EVENTS_MAP.ENTITY_TYPES
   const fetchProduct = async () => {
     const url = !isPreview ? NEXT_GET_PRODUCT : NEXT_GET_PRODUCT_PREVIEW;;
@@ -134,16 +134,19 @@ export default function ProductView({
         name : response.data.product.name,
         link : response.data.product.link,
       }
-      const getSaved = localStorage.getItem("Recent Products")
-      console.log("hihihihi "+getSaved);
-      
-      // if(getSaved[0]!==null){
-      //   getSaved.push(recentlyViewedProduct);
-      // }
 
-      localStorage.setItem("Recent Products", JSON.stringify(recentlyViewedProduct));
-      console.log(recentlyViewedProduct)
-     // setProducts(recentlyViewedProduct);
+        let oldData = JSON.parse(localStorage.getItem("Recent-Products"))
+        if(oldData && !oldData.includes(recentlyViewedProduct)){
+          window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
+        }
+        else{
+          window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
+        }
+        //setting only unique elem in State
+        const key = 'name';
+        const arrayUniqueByKey = [...new Map(oldData?.map(item =>
+          [item[key], item])).values()];
+        setLocalState(arrayUniqueByKey)
     }
 
     if (response?.data?.product) {
@@ -168,12 +171,8 @@ export default function ProductView({
         ...response.data.product,
       })
     }
-  }
+  } 
 
-  useEffect(() => {
-    
-  },)
-  
   useEffect(() => {
     fetchProduct()
   }, [slug])
@@ -195,23 +194,6 @@ export default function ProductView({
         }
       })
     }
-
-    ////////////////////////////////////////////////////// MY CODE ///////////////////////////////////////
-
-    // // to store the products for recently viewed section
-    // useEffect(() => {
-    //   localStorage.setItem('recentProducts', JSON.stringify(items));
-    // }, [items]);
-
-    // // to get recently viewed products
-    // useEffect(() => {
-    //   const items = JSON.parse(localStorage.getItem('items'));
-    //   if (items) {
-    //    setItems(items);
-    //   }
-    // }, []);
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //this function is triggered when the component is unmounted. here we clean the injected scripts
     return function cleanup() {
@@ -235,7 +217,7 @@ export default function ProductView({
     (value: any, index: number, self: any) =>
       index === self.findIndex((t: any) => t.image === value.image)
   )
-
+    {console.log(product)}
   if (product.videos && product.videos.length > 0) {
     content = [...product.images, ...product.videos].filter(
       (value: any, index: number, self: any) =>
@@ -515,9 +497,9 @@ export default function ProductView({
           {/* Product */}
           <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:items-start">
             {/* Image gallery */}
-            <Tab.Group as="div" className="flex flex-col-reverse lg:col-span-7  min-mobile-pdp">
+            <Tab.Group as="div" className="flex flex-col-reverse lg:col-span-7 md:col-span-7 sm:col-span-7 xs:col-span-7 min-mobile-pdp">
               {/* Image selector */}
-              <div className="grid sm:grid-cols-12 grid-cols-1-row-3 sm:gap-x-8">
+              <div className="grid sm:grid-cols-12 grid-cols-1-row-3 sm:gap-x-8 w-50">
                 <div className='col-span-12 px-4 sm:px-0'>
                   {/*MOBILE PRODUCT IMAGE SLIDER*/}
                   <div className='block sm:hidden w-full mx-auto pt-6 sm:pt-0'>
@@ -574,14 +556,16 @@ export default function ProductView({
                     </Swiper>
                   </div>
                   {/*DESKTOP PRODUCT IMAGE SLIDER*/}
-                  <div className="hidden w-full max-w-2xl mx-auto sm:block lg:max-w-none">
+                  <div className="hidden w-full max-w mx-auto sm:block lg:max-w-none">
                     <Tab.List className="grid sm:grid-cols-1 grid-cols-1-row-3 gap-2">
                       {content?.map((image: any, idx) => (
+                      
                         <Tab
                           key={`${idx}-tab`}
                         >
                           {() => (
                             <>
+                              
                               <span className="sr-only">{image.name}</span>
                               <span className="relative">
                                 {image.image ? (
@@ -656,55 +640,19 @@ export default function ProductView({
                   
               <label className="py-100 text-sm">{selectedAttrData.description}</label>
 
-        <div className="block pt-4">
+      <div className=" block pt-4">
+  
+        <div className="w-full ">
+            <AttributesHandler
+              product={product}
+              variant={selectedAttrData}
+              setSelectedAttrData={setSelectedAttrData}
+            />
+        </div>
+          
         
-        <label className="font-sm-bold">Colour: ButterCup</label>
 
-        <div className="container py-3 space-y-2 lg:space-y-0 lg:grid lg:grid-cols-9 sm:grid-cols-9 border-style: solid">
-          
-          <div className='border border-grey-40 hover:border-black'>
-            <img src='/Untitled-1-colour.jpg'></img>
-          </div>
-          
-          <div className='border border-grey-40 hover:border-black'>
-            <img src='/Untitled-2-colour.jpg'></img>
-          </div>
-
-          <div className='border border-grey-40 hover:border-black'>
-            <img src='/Untitled-3-colour.jpg'></img>
-          </div>
-
-          <div className='border border-grey-40 hover:border-black'>
-            <img src='/Untitled-4-colour.jpg'></img>
-          </div>
-
-          <div className='border border-grey-40 hover:border-black' >
-            <img src='/Untitled-5-colour.jpg'></img>
-          </div>
-
-          <div className='border border-grey-40 hover:border-black'>
-            <img src='/Untitled-6-colour.jpg'></img>
-          </div>
-
-          <div className='border border-grey-40 hover:border-black'>
-            <img src='/Untitled-7-colour.jpg'></img>
-          </div>
-
-          <div className='border border-grey-40 hover:border-black'>
-            <img src='/Untitled-8-colour.jpg'></img>
-          </div>
-
-          <div className='border border-grey-40 hover:border-black'>
-            <img src='/Untitled-9-colour.jpg' ></img>
-          </div>
-        </div>
-          
-        <div className='flex justify-between py-2'>
-          <label className="text-lg">Size</label>
-          <label className="text-sm py-1">Size guide</label>
-        </div>
- 
-        <div className="container py-0 lg:grid lg:grid-cols-5  text-center">
+        {/* <div className="container py-0 lg:grid lg:grid-cols-5  text-center">
             <div className="w-full border border-grey-40 hover:border-black mx-auto">
                 <label className=''>XXL</label>
             </div>
@@ -720,14 +668,14 @@ export default function ProductView({
             <div className="w-full border border-grey-40 hover:border-black">
              <label>S</label>
             </div>
-        </div>
+        </div> */}
 
         <div className='flex py-3'>
           <label className="text-lg">Fabric : </label>
           <label className="text-sm py-1 px-3"> 100% GOTS Organic Cotton in 350gm </label>
         </div>
  
-        <div className="container py-0 lg:grid lg:grid-cols-3">
+        <div className="container py-0 grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xsm:grid-cols-3 ">
             <div className="w-full border border-grey-40 hover:border-black">
                 <img src='/Untitled-1-fabric.jpg'  className=''  ></img>
             </div>
@@ -772,13 +720,13 @@ export default function ProductView({
                 </div>
               </div>
       
-              <div className="w-full sm:w-6/12">
+              {/* <div className="w-full sm:w-6/12">
                 <AttributesHandler
                   product={product}
                   variant={selectedAttrData}
                   setSelectedAttrData={setSelectedAttrData}
                 />
-              </div>
+              </div> */}
        
               {updatedProduct ? (
                 <>
@@ -904,8 +852,30 @@ export default function ProductView({
           <div className='text-center py-2'>
             <label className='text-lg font-dark'>Recently viewed</label>
        
-       {/* for recently viewed items */}
-          <Swiper
+         {/* for recently viewed items */}     
+       
+        <Swiper
+            // install Swiper modules
+            modules={[Navigation]}
+            slidesPerView={3}
+            spaceBetween={0}
+            className="external-buttons py-7"
+            navigation
+            height={6}
+          >
+        { localState?.map((val) => {
+        console.log("yeyeye "+JSON.stringify(val));
+        return(
+            <SwiperSlide className=' border border-grey-40 hover:border-black'>
+              <div >
+                <img src={val.image} className='h-10 w-10'></img>
+                <p>{val.name}</p>
+              </div>
+            </SwiperSlide>
+              
+        ) 
+       }) }
+          {/* <Swiper
             // install Swiper modules
               modules={[Navigation]}
               slidesPerView={3}
@@ -913,15 +883,14 @@ export default function ProductView({
               className="external-buttons border border-grey-40 py-7"
               navigation
               height={6}
-            >
-
-          <SwiperSlide className='  border border-grey-40 hover:border-black'><img src='/swiper1.jpg'  className='h-10'></img></SwiperSlide>
+          >
+            <SwiperSlide className='  border border-grey-40 hover:border-black'><img src='/swiper1.jpg'  className='h-10'></img></SwiperSlide>
             <SwiperSlide className='w-full border border-grey-40 hover:border-black'><img src='/swiper2.jpg' className='sizes:320 600 100' ></img></SwiperSlide>
             <SwiperSlide className='w-full border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
             <SwiperSlide className='border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide>
+          </Swiper> */}
           </Swiper>
           </div>
-
 
           {/* Placeholder for pdp snippet */}
           <div className={`${ELEM_ATTR}${PDP_ELEM_SELECTORS[0]}`}></div>

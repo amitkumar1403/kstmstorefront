@@ -301,3 +301,9 @@
 }
 
 body {overflow-x: hidden; /* Hide horizontal scrollbar */}
+
+
+.sr-only{
+  width: 50% !important;
+  height: 10% !important;
+}

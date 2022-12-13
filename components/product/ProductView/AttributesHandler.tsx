@@ -7,7 +7,7 @@ import attributesGenerator, {
   productLookup,
 } from '@components/utils/attributesGenerator'
 import { cloneDeep } from 'lodash'
-
+  
 const ATTR_COMPONENTS: any = {
   HorizontalList: (props: any) => <InlineList {...props} />,
   Dropdown: (props: any) => <Dropdown {...props} />,
@@ -189,6 +189,7 @@ export default function AttributesHandler({
   return (
     <>
       {newVariantAttrs?.sort((first: any, second: any) => {
+
         return (first.displayOrder - second.displayOrder);
       })?.map((option: any, idx: number) => {
         const optionsToPass = generateOptions(option)
@@ -200,7 +201,7 @@ export default function AttributesHandler({
           TEMP_MAP[option.fieldCode] ||
           DefaultComponent
         return (
-          <div key={idx} className="py-2">
+          <div key={idx} className="py-5 ">
             <Component
               currentAttribute={originalAttribute}
               getStockPerAttribute={getStockPerAttribute}
