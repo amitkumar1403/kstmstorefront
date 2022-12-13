@@ -10,7 +10,6 @@ export default function InfiniteScrollComponent({
 }: any)
 
 {
-  console.log(currentNumber>total)
   const [show, setshow] = useState(false)
   const [altertShow, setAlertShow] = useState(false);
   useEffect(() => {
@@ -40,8 +39,6 @@ export default function InfiniteScrollComponent({
   return (
     <>
     <div className='flex justify-end m-2'>
-     { console.log("currentNumber",currentNumber) }
-     { console.log("total",total) }
     <div className={`fixed z-50 bg-transparent border-blue-500 text-blue-700 px-3 py-2  ${altertShow && `bg-gray-200`}`} role="alert">
     {/* <Alert>A simple alert for showing message.</Alert> */}
       <Alert
