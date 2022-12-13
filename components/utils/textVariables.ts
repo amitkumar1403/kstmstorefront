@@ -53,6 +53,7 @@ export const GENERAL_CITY = 'Town / city'
 export const GENERAL_POSTCODE = 'Postcode'
 export const GENERAL_COUNTRY = 'Country'
 export const GENERAL_PHONE = 'Phone'
+export const TOUCH="GET IN TOUCH"
 export const GENERAL_IS_DEFAULT_DELIVERY_ADDRESS = 'Is Default Delivery Address'
 export const GENERAL_IS_DEFAULT_BILLING_ADDRESS = 'Is Default Billing Address'
 export const GENERAL_SMS = 'SMS'
@@ -185,12 +186,14 @@ export const GENERAL_SECURE_PAYMENT = 'Secure Payments'
 export const GENERAL_FAQ = 'FAQ'
 export const GENERAL_FIND_A_STORE = 'Find a store'
 export const SIGN_UP_FOR_NEWSLETTER = 'Sign up for our newsletter'
+export const NEW_PRODUCT ="New products & perspectives straight to your inbox"
+export const CUSTOM="KSTMise your inbox"
+export const QUERY ="HAVE A QUESTION?"
 export const SIGN_UP_TEXT =
   'The latest deals and savings, sent to your inbox weekly.'
 export const GENERAL_EMAIL_ADDRESS = 'Email address'
-export const BTN_SIGN_UP = 'Sign up'
-export const COPYRIGHT_FOOTER_INFO =
-  '2022 BetterCommerce, Inc. All rights reserved.'
+export const BTN_SUBSCRIBE = 'SUBSCRIBE'
+export const COPYRIGHT_FOOTER_INFO ='2022'
 export const GENERAL_COOKIE_TEXT =
   'This site uses cookies to improve your experience. By clicking, you agree to our Privacy Policy.'
 export const BTN_ACCEPT_COOKIE = 'Accept cookies'
@@ -219,9 +222,9 @@ export const GENERAL_ENGRAVING_PERSONALIZE_BOTTLE =
   'Personalize your bottle for only'
 export const GENERAL_SEARCH_BRAND = 'Search Brand'
 export const GENERAL_BRAND = 'Brand'
-export const GENERAL_FILTER_TITLE = 'Filters'
+export const GENERAL_FILTER_TITLE = 'Filter & Sort'
 export const PRODUCT_FILTER = 'Product filters'
-export const BTN_CLEAR_ALL = 'Clear all'
+export const BTN_CLEAR_ALL = 'Clear All'
 export const TITLE_PRODUCTS = 'Products'
 export const PRICEMATCH_WEBSITE_NAME =
   'Name of website you have found cheaper to*'
@@ -321,3 +324,4 @@ export const PRODUCT_OUT_OF_STOCK='Out Of Stock'
 export const PRODUCT_AVAILABILITY='Availability'
 export const SLUG_TYPE_MANUFACTURER = 'Manufacturer'
 export const GENERAL_FOOOTER = "Footer"
+export const NEWSLETTER = "SIGN UP TO OUR NEWSLETTER TO HEAR ABOUT NEW STUFF"

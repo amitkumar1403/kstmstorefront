@@ -23,7 +23,6 @@ import withDataLayer, { PAGE_TYPES } from '@components/withDataLayer'
 import { EVENTS_MAP } from '@components/services/analytics/constants'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 
-
 export async function getStaticProps({
   preview,
   locale,
@@ -82,10 +81,10 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
       <ProductSlider
         config={slugs?.components?.find((i?: any) => i.componentType === 52)}
       /> */}
-     
+
       <main>
         {/* First Banner */}
-        <div className="grid gap-0 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2">
+        <div className="grid gap-0 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 mt-10">
           <div className="relative">
             <img src="/image/Banner1.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
@@ -95,7 +94,7 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
           <div className="relative">
             <img src="/image/Banner2.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-2">
-              <h2 className="text-sm font-bold">WOMEN</h2>
+              <h2 className="text-sm font-bold mx-5">WOMEN</h2>
             </div>
           </div>
         </div>
@@ -103,45 +102,25 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
         {/* Sencond Banner */}
         <div className="grid gap-0 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2">
           <div className="relative border border-slate-300 hover:border-black">
-            <img
-              src="/image/prod1.jpg"
-              alt="Picture of the author"
-              width={500}
-              height={500}
-            />
+            <img src="/image/prod1.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
               <h2 className="text-sm font-bold">JOGGERS</h2>
             </div>
           </div>
           <div className="relative border border-slate-300 hover:border-black">
-            <img
-              src="/image/prod2.jpg"
-              alt="Picture of the author"
-              width={500}
-              height={500}
-            />
+            <img src="/image/prod2.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
               <h2 className="text-sm font-bold">SHORTS</h2>
             </div>
           </div>
           <div className="relative border border-slate-300 hover:border-black">
-            <img
-              src="/image/prod3.jpg"
-              alt="Picture of the author"
-              width={500}
-              height={500}
-            />
+            <img src="/image/prod3.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
               <h2 className="text-sm font-bold">TROUSERS</h2>
             </div>
           </div>
           <div className="relative border border-slate-300 hover:border-black">
-            <img
-              src="/image/prod4.jpg"
-              alt="Picture of the author"
-              width={500}
-              height={500}
-            />
+            <img src="/image/prod4.jpg" alt="Picture of the author" />
             <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
               <h2 className="text-sm font-bold">JUMPERS</h2>
             </div>
@@ -163,10 +142,15 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
         <div className="flex flex-col px-4 py-4 pr-0 sm:px-4 sm:pr-4 sm:py-8 home-banner-swiper m-hide-navigation">
           <Swiper
             slidesPerView={4}
-            spaceBetween={10}
             navigation={true}
             loop={false}
             breakpoints={{
+              320: {
+                slidesPerView: 1,
+              },
+              480: {
+                slidesPerView: 2,
+              },
               640: {
                 slidesPerView: 2,
               },
@@ -187,6 +171,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru1.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     />
@@ -207,6 +193,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru2.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -228,6 +216,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                     <img
                       src="/image/Caru3.jpg"
                       alt="Picture of the author"
+                      width={500}
+                      height={500}
                       className="object-cover object-center w-full h-full"
                     ></img>
                   </div>
@@ -247,6 +237,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru4.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -267,6 +259,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru1.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -287,6 +281,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru2.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -307,6 +303,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru3.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -327,6 +325,8 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
                   <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
                     <img
                       src="/image/Caru4.jpg"
+                      width={500}
+                      height={500}
                       alt="Picture of the author"
                       className="object-cover object-center w-full h-full"
                     ></img>
@@ -344,7 +344,7 @@ function Home({ slugs, setEntities, recordEvent, ipAddress }: any) {
           </Swiper>
         </div>
       </main>
-   </>
+    </>
   )
 }
 Home.Layout = Layout

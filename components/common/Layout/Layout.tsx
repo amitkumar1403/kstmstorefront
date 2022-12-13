@@ -27,6 +27,7 @@ import {
   BTN_ACCEPT_COOKIE,
   GENERAL_COOKIE_TEXT,
 } from '@components/utils/textVariables'
+import Sale from '@components/Sale'
 const Loading = () => (
   <div className="w-80 h-80 flex items-center text-center fixed z-50 justify-center p-3">
     <LoadingDots />
@@ -127,6 +128,7 @@ const Layout: FC<Props> = ({
   }, [])
 
   useEffect(() => {
+    // loading bar state
     Router.events.on('routeChangeStart', () => setIsLoading(true))
     Router.events.on('routeChangeComplete', () => setIsLoading(false))
 
