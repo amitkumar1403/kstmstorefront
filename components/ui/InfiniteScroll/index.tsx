@@ -21,28 +21,19 @@ export default function InfiniteScrollComponent({
     }
   }, [])
 
-  // const handleClick=()=>{
-  //   currentNumber<total?
-  //        (  setshow(true),setTimeout(() => {
-  //           setshow(false)
-  //         }, 1000))
-  //           :null  
-  //         }
   const handleClick=()=>{
     if(currentNumber<total)
     {
-      console.log(":inside If")
+      // console.log(":inside If")
         setshow(true)
         setTimeout(() => {
-          console.log("timeout called")
-        
+          // console.log("timeout called")
          setshow(false)
         }, 1000)
         return
     }
-    console.log("else simple return ")
+    // console.log("else simple return ")
     setAlertShow(true)
-  
     return
    }
   
@@ -81,8 +72,10 @@ export default function InfiniteScrollComponent({
           className={`border border-black py-2 px-8 text-gray-700 hover:text-white hover:bg-black ` }   >
             {/* 12<70 */}
             {/* !true */}
+                    {/* when data is fetching or no more page to load then LOADING... */}
           {!(currentNumber<total)?`Loading ...`:`Load More`}</button>
-        </p>
+                            {/*  if we have more pages to load then LOAD MORE  */}
+        </p>                                    
       }
       >
       {component}
