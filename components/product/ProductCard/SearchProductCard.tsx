@@ -42,11 +42,7 @@ interface Attribute {
 const SearchProductCard: FC<Props> = ({ product }) => {
   const [isInWishList, setItemsInWishList] = useState(false)
   const [isEntered, setisEntered] = useState(false)
-  const [showColorPrice,setColorPrice]=useState({
-    image:"/assets/icons/colors.png",
-    price:"£80.00",
-    name:"Leggings Core"
-  })
+  
   const [currentProductData, setCurrentProductData] = useState({
     image: product.image,
     link: product.slug,
@@ -187,7 +183,6 @@ const SearchProductCard: FC<Props> = ({ product }) => {
               <Image
                 priority
                 src={generateUri(currentProductData.image, "h=400&fm=webp") || '/assets/icons/newPajama.png'} 
-                // src='/assets/icons/newPajama.png' 
                 alt={product.name}
                 onMouseEnter={() => {handleHover('enter')}}
                 onMouseLeave={() => {handleHover('leave')}}
@@ -282,16 +277,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           />            
         </div>
       </div>
-      {/* {isEntered && 
-      (
-        <div className='group-hover:bg-gray-200'>
-        <img src={showColorPrice.image}
-        className='m-auto w-50 h-10'
-        />
-        <p className='text-center text-gray-400 text-bold' >{showColorPrice.price}</p>
-        </div>
-      )
-      } */}
+    
 
     </div>
   </div>

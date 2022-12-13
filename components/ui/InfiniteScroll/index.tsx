@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { Alert, Button } from "@material-tailwind/react";
+import { Alert } from "@material-tailwind/react";
+import LoadingDots from '../LoadingDots';
 
 export default function InfiniteScrollComponent({
   component,
@@ -10,25 +11,19 @@ export default function InfiniteScrollComponent({
 }: any)
 
 {
-  const [show, setshow] = useState(false)
+  const [loadMore, setLoadMore] = useState(false)
   const [altertShow, setAlertShow] = useState(false);
-  useEffect(() => {
-    // handleClick()
-  
-    return () => {
-      setshow(false)
-    }
-  }, [])
+
 
   const handleClick=()=>{
     if(currentNumber<total)
     {
       // console.log(":inside If")
-        setshow(true)
+        setLoadMore(true)
         setTimeout(() => {
           // console.log("timeout called")
-         setshow(false)
-        }, 1000)
+         setLoadMore(false)
+        }, 500)
         return
     }
     // console.log("else simple return ")
@@ -38,10 +33,11 @@ export default function InfiniteScrollComponent({
   
   return (
     <>
-    <div className='flex justify-end m-2'>
-    <div className={`fixed z-50 bg-transparent border-blue-500 text-blue-700 px-3 py-2  ${altertShow && `bg-gray-200`}`} role="alert">
+    <div className='flex justify-end mr-2 mt-2'>
+    <div className={`sm:h-16 sm:w-30 fixed -mt-24 z-50 bg-transparent font-medium   px-2 py-1  ${altertShow && `bg-gray-200 `}`} role="alert">
     {/* <Alert>A simple alert for showing message.</Alert> */}
       <Alert
+      
         show={altertShow}
         dismissible={{
           onClose: () => setAlertShow(false),
@@ -53,13 +49,15 @@ export default function InfiniteScrollComponent({
     <p className="text-sm">Some additional text to explain said message.</p> */}
     </div>
     </div>
+   
     <InfiniteScroll
       dataLength={total} //This is important field to render the next data
       next={fetchData}
-      hasMore={show}
+      hasMore={loadMore}
+    
       // loader={<h3 className=''>Loading . . .</h3>}
+      // loader={<p className='mt-10'>.</p>}
       loader={null}
-
       endMessage={
         <p
         className='flex justify-center pt-6'
@@ -70,13 +68,14 @@ export default function InfiniteScrollComponent({
             {/* 12<70 */}
             {/* !true */}
                     {/* !(by default false)  when data is fetching or no more page to load then LOADING... */}
-          {!(currentNumber<=total)?`Loading ...`:`Load More`}</button>
+          {!(currentNumber<=total)? <LoadingDots />:`Load More`}</button>
                             {/*  if we have more pages to load then LOAD MORE  */}
         </p>                                    
       }
       >
       {component}
     </InfiniteScroll>
+     {loadMore && <div className='mt-10'>.</div> }
       </>
   )
 }
