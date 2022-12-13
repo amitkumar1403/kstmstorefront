@@ -6,6 +6,12 @@
 
 @tailwind utilities;
 
+.newsletter-form{
+  max-width: 600px;
+  width: 100%;
+}
+
+
 .inset-0 {
   z-index: 9999 !important;
   top: 0px;
@@ -299,5 +305,7 @@
     height: 12rem !important;
   }
 }
+
+
 
 body {overflow-x: hidden; /* Hide horizontal scrollbar */}
