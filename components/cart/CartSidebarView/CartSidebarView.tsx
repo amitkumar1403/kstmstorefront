@@ -168,7 +168,7 @@ const CartSidebarView: FC = () => {
                                     width={100}
                                     height={100}
                                     layout='fixed'
-                                    src={`${product.image}`|| IMG_PLACEHOLDER}
+                                    src={`${product.image}`|| '/assets/icons/newPajama.png'}
                                     alt={product.name}
                                     className="w-full h-full object-center object-cover"
                                   ></Image>
