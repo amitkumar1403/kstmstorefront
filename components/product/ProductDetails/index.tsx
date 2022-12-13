@@ -2,7 +2,7 @@ import { Tab, Disclosure } from '@headlessui/react'
 import { HeartIcon, MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
 import { StarIcon, PlayIcon } from '@heroicons/react/solid'
 import classNames from '@components/utils/classNames'
-import {PRODUCT_DESCRIPTION,PRODUCT_SPECIFICATION,GENERAL_SHIPPING,GENERAL_RETURNS} from '@components/utils/textVariables'
+import {SUSTAINAIBILITY, FABRIC_DETAILS,PRODUCT_DESCRIPTION,PRODUCT_SPECIFICATION,GENERAL_SHIPPING,GENERAL_RETURNS} from '@components/utils/textVariables'
 
 const colorRegex = /^#(?:[0-9a-f]{3}){1,2}$/i
 
@@ -39,7 +39,7 @@ export default function ProductDetails({ product, description }: any) {
       InnerComponent: (props: any) => <Attributes {...props} />,
     },
     {
-      title: GENERAL_SHIPPING,
+      title: SUSTAINAIBILITY,
       InnerComponent: (props: any) => (
         <p className="text-gray-900">
           {props.shippingMessage || <p>We currently ship in the UK and worldwide.<br/><br/>We accept payment via PayPal, Clearpay, and major card payment providers (including Visa, Mastercard, Maestro, and Switch) and more.</p>}
@@ -47,7 +47,7 @@ export default function ProductDetails({ product, description }: any) {
       ),
     },
     {
-      title: GENERAL_RETURNS,
+      title: FABRIC_DETAILS,
       InnerComponent: (props: any) => (
         <p className="text-gray-900">
           {props.returnsMessage || <p>Items may be returned for a full refund within 14 days from the date an order was received.</p>}

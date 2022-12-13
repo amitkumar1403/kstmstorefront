@@ -537,6 +537,7 @@ export default function ProductView({
                                     <Image
                                       priority
                                       src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}
+                                      //src="/slider-1 - Copy.jpg"
                                       alt={image.name}
                                       className="w-full h-full object-center object-cover image"
                                       layout='responsive'
@@ -556,7 +557,7 @@ export default function ProductView({
                     </Swiper>
                   </div>
                   {/*DESKTOP PRODUCT IMAGE SLIDER*/}
-                  <div className="hidden w-full max-w mx-auto sm:block lg:max-w-none">
+                  <div className="w-full max-w mx-auto sm:block lg:max-w-none">
                     <Tab.List className="grid sm:grid-cols-1 grid-cols-1-row-3 gap-2">
                       {content?.map((image: any, idx) => (
                       
@@ -571,7 +572,9 @@ export default function ProductView({
                                 {image.image ? (
                                   <div className='image-container'>
                                     {/* <ControlledZoom isZoomed={isZoomedT} onZoomChange={handleZoomChangeT}> */}
-                                    <ImageZoom src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}  alt={image.name} 
+                                    <ImageZoom 
+                                     src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}   
+                                     alt={image.name} 
                                      priority
                                      className="w-full h-full object-center object-cover image"
                                      layout='responsive'
@@ -592,7 +595,11 @@ export default function ProductView({
                                     {/* </ControlledZoom> */}
                                   </div>
                                 ) : (
-                                  <PlayIcon className="h-full w-full object-center object-cover" />
+                                  <>
+                                  {/* <PlayIcon className="h-full w-full object-center object-cover" /> */}
+                                  <img src="/pdp1.png" className=''/>
+                                  <img src="/pdp2.png" className=''/>
+                                  </>
                                 )}
                               </span>
                             </>
@@ -614,7 +621,7 @@ export default function ProductView({
                 {selectedAttrData.brand}
               </h3> */}
               <div className="flex justify-between">
-                <h1 className="sm:text-2xl text-sm tracking-tight text-black">
+                <h1 className="sm:text-2xl text-sm tracking-tight font-semibold text-black">
                   {selectedAttrData.name || selectedAttrData.productName}
                 </h1>
 
@@ -671,8 +678,8 @@ export default function ProductView({
         </div> */}
 
         <div className='flex py-3'>
-          <label className="text-lg">Fabric : </label>
-          <label className="text-sm py-1 px-3"> 100% GOTS Organic Cotton in 350gm </label>
+          <h3 className=" text-sm font-bold">Fabric : </h3>
+          <h3 className="text-sm py-0 px-3"> 100% GOTS Organic Cotton in 350gm </h3>
         </div>
  
         <div className="container py-0 grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xsm:grid-cols-3 ">
@@ -850,26 +857,27 @@ export default function ProductView({
           </div>
 
           <div className='text-center py-2'>
-            <label className='text-lg font-dark'>Recently viewed</label>
+            <label className='text-lg font-semibold'>Recently viewed</label>
        
          {/* for recently viewed items */}     
-       
+       <div className='py-4'>
         <Swiper
             // install Swiper modules
             modules={[Navigation]}
             slidesPerView={3}
             spaceBetween={0}
-            className="external-buttons py-7"
+            className="external-buttons py-7 pt-2"
             navigation
             height={6}
           >
         { localState?.map((val) => {
-        console.log("yeyeye "+JSON.stringify(val));
         return(
-            <SwiperSlide className=' border border-grey-40 hover:border-black'>
+            <SwiperSlide className=' mx-0 py-2 border border-grey-40 hover:border-black'>
               <div >
-                <img src={val.image} className='h-10 w-10'></img>
+                <a href={val.link}>
+                <img src="/slider-1 - Copy.jpg" className=''></img>
                 <p>{val.name}</p>
+                </a>
               </div>
             </SwiperSlide>
               
@@ -890,6 +898,7 @@ export default function ProductView({
             <SwiperSlide className='border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide>
           </Swiper> */}
           </Swiper>
+          </div>
           </div>
 
           {/* Placeholder for pdp snippet */}

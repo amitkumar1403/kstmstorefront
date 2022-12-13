@@ -2,6 +2,7 @@ import { RadioGroup } from '@headlessui/react'
 import classNames from '@components/utils/classNames'
 import Link from 'next/link'
 import { CHOOSE_A_COLOR } from '@components/utils/textVariables'
+import { useState } from 'react'
 export default function InlineList({
   items = [],
   onChange = () => {},
@@ -10,14 +11,20 @@ export default function InlineList({
   currentAttribute = 'black',
   generateLink = () => {},
 }: any) {
+  const [color, setColor] = useState(null) // to display color in the Page
   const handleChange = (value: any) => {
+    {setColor(value)}
     return onChange(fieldCode, value)
   }
 
   return (
     <>
-      <h3 className="text-md text-black font-bold text-left uppercase">{label}</h3>
-      <RadioGroup value={'ring-gray-700'} onChange={handleChange} className="mt-2">
+    <div className='flex'>
+      <h3 className="text-sm text-black font-bold text-left">{label}</h3>
+      {/* <h3 className='px-2' >{color}</h3>
+      <div style={{ color: `${color}` }}></div> */}
+    </div>
+      <RadioGroup value={'ring-gray-700 mt-0'} onChange={handleChange} className="mt-2">
         <RadioGroup.Label className="sr-only">{label}</RadioGroup.Label>
         <div className="flex items-center">
 
@@ -36,6 +43,7 @@ export default function InlineList({
                     'relative w-full h-10 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black '
                   )
                 }
+                
               >
                 <RadioGroup.Label as="p" className="sr-only">
                   {item.fieldName}
@@ -44,7 +52,9 @@ export default function InlineList({
                 <Link href={`/${path}`} passHref>
                   <a
                     aria-hidden="true"
-                    onClick={() => handleChange(item.fieldvalue)}
+                    onClick={() => { 
+                      handleChange(item.fieldvalue)
+                    }}
                     className={classNames(
                       item.fieldvalue,
                       ' border shadow-md drop-shadow-md border-black border-opacity-10 '

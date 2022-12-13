@@ -186,7 +186,7 @@ import { Dialog, RadioGroup, Switch } from '@headlessui/react'
 //                                 'absolute inset-y-0 right-0 flex items-center pr-4'
 //                               )}
 //                             >
-//                               <CheckIcon className="h-5 w-5" aria-hidden="true" />
+//                               <CheckIcon className="h-5 w-5"aria-hidden="true"/>
 //                             </span>
 //                           ) : null}
 //                         </>
@@ -296,11 +296,13 @@ export default function Dropdown({
     }
   }
   return (
-    <div className=" px-0 py-0 ">
-
-          <h3>Size</h3>
-        <RadioGroup value={selected} onChange={setSelected} className=" flex flex-row space-y-2 w-full">
-          <div className=" px-0 flex flex-row space-y-2 m-auto ">
+    <div className="px-0 py-0">
+          <div className='flex justify-between'>
+          <h3 className='text-sm font-bold'>Size</h3>
+          <h3 className='text-sm'>Size guide</h3>
+          </div>
+        <RadioGroup value={selected} onChange={handleOnChange} disabled={isDisabled} className="flex flex-row space-y-2 h-14">
+          <div className="flex flex-row space-y-2 w-full">
           <RadioGroup.Label className="sr-only">Size</RadioGroup.Label>
           {items.map((item: any) => {
                   const stockAmount = getStockPerAttribute(
@@ -318,14 +320,15 @@ export default function Dropdown({
                 className={({ active }) =>
                 classNames(
                   active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                  'cursor-default select-none relative py-2 pr-2 pl-2 md:py-2 md:pr-2 md:pl-2 sm:py-2 sm:pr-2 sm:pl-2 border border-grey-60 hover:border-black' 
+                'mx-auto py-2 px-1 w-full cursor-default select-none relative border border-grey-60 hover:border-black' 
                 )
+                // py-2 pr-2 pl-2 md:py-2 md:pr-2 md:pl-2 sm:py-2 sm:pr-2 sm:pl-2 
                 }
               >
 
                 {({ active, checked }) => (
                   <>
-                      <div className=" flex items-center">
+                      <div className="flex items-center">
                         <span
                           className={classNames(
                             selected ? 'font-semibold' : 'font-normal',

@@ -74,6 +74,9 @@ export const MY_ORDERS_TEXT =
 export const GENERAL_MY_ORDERS = 'My Orders'
 export const GENERAL_MY_RETURNS = 'My Returns'
 export const GENERAL_MY_DETAILS = 'My Details'
+export const SUSTAINAIBILITY = 'Sustainability Impact'
+export const FABRIC_DETAILS = 'Fabric and Care'
+
 export const GENERAL_CONTACT_PREFERENCES = 'Contact Preferences'
 export const ORDER_HISTORY_TITLE = 'Order history'
 export const GENERAL_RECENT_ORDERS = 'Recent orders'
