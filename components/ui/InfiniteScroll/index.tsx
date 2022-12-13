@@ -40,7 +40,8 @@ export default function InfiniteScrollComponent({
   return (
     <>
     <div className='flex justify-end m-2'>
-
+     { console.log("currentNumber",currentNumber) }
+     { console.log("total",total) }
     <div className={`fixed z-50 bg-transparent border-blue-500 text-blue-700 px-3 py-2  ${altertShow && `bg-gray-200`}`} role="alert">
     {/* <Alert>A simple alert for showing message.</Alert> */}
       <Alert
@@ -49,7 +50,7 @@ export default function InfiniteScrollComponent({
           onClose: () => setAlertShow(false),
         }}
       >
-      Please wait || You have seen all the products
+      You have seen all the products ✌ ||  Please wait 🥱
       </Alert>
     {/* <p className="font-bold">Informational message</p>
     <p className="text-sm">Some additional text to explain said message.</p> */}
@@ -59,7 +60,6 @@ export default function InfiniteScrollComponent({
       dataLength={total} //This is important field to render the next data
       next={fetchData}
       hasMore={show}
-      // loader={<h3 className='flex justify-center pt-6 border border-black py-2 px-8 text-gray-700 hover:text-white hover:bg-black' >Loading...</h3>}
       // loader={<h3 className=''>Loading . . .</h3>}
       loader={null}
 
@@ -72,8 +72,8 @@ export default function InfiniteScrollComponent({
           className={`border border-black py-2 px-8 text-gray-700 hover:text-white hover:bg-black ` }   >
             {/* 12<70 */}
             {/* !true */}
-                    {/* when data is fetching or no more page to load then LOADING... */}
-          {!(currentNumber<total)?`Loading ...`:`Load More`}</button>
+                    {/* !(by default false)  when data is fetching or no more page to load then LOADING... */}
+          {!(currentNumber<=total)?`Loading ...`:`Load More`}</button>
                             {/*  if we have more pages to load then LOAD MORE  */}
         </p>                                    
       }
