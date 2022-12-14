@@ -302,7 +302,7 @@ export default function Dropdown({
           <h3 className='text-sm'>Size guide</h3>
           </div>
         <RadioGroup value={selected} onChange={handleOnChange} disabled={isDisabled} className="flex flex-row space-y-2 h-14">
-          <div className="flex flex-row space-y-2 w-full">
+          <div className="flex flex-row space-y-2 w-full m-auto">
           <RadioGroup.Label className="sr-only">Size</RadioGroup.Label>
           {items.map((item: any) => {
                   const stockAmount = getStockPerAttribute(
@@ -320,7 +320,7 @@ export default function Dropdown({
                 className={({ active }) =>
                 classNames(
                   active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                'mx-auto py-2 px-1 w-full cursor-default select-none relative border border-grey-60 hover:border-black' 
+                'mx-auto py-2 w-full cursor-default select-none relative border border-grey-60 hover:border-black' 
                 )
                 // py-2 pr-2 pl-2 md:py-2 md:pr-2 md:pl-2 sm:py-2 sm:pr-2 sm:pl-2 
                 }
@@ -332,7 +332,7 @@ export default function Dropdown({
                         <span
                           className={classNames(
                             selected ? 'font-semibold' : 'font-normal',
-                            'ml-3 block truncate '
+                            ' m-auto block truncate '
                           )}
                         >
                           {item.fieldValue

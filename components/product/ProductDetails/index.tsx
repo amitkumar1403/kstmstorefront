@@ -42,7 +42,7 @@ export default function ProductDetails({ product, description }: any) {
       title: SUSTAINAIBILITY,
       InnerComponent: (props: any) => (
         <p className="text-gray-900">
-          {props.shippingMessage || <p>We currently ship in the UK and worldwide.<br/><br/>We accept payment via PayPal, Clearpay, and major card payment providers (including Visa, Mastercard, Maestro, and Switch) and more.</p>}
+          {props.shippingMessage || <p>Our Product is highly Sustainable for all the kinds of Weather.<br/><br/>We accept payment via PayPal, Clearpay, and major card payment providers (including Visa, Mastercard, Maestro, and Switch) and more.</p>}
         </p>
       ),
     },
@@ -50,7 +50,7 @@ export default function ProductDetails({ product, description }: any) {
       title: FABRIC_DETAILS,
       InnerComponent: (props: any) => (
         <p className="text-gray-900">
-          {props.returnsMessage || <p>Items may be returned for a full refund within 14 days from the date an order was received.</p>}
+          {props.returnsMessage || <p>We assure you a very high Quality of Fabric. If any Defect Items may be returned for a full refund within 14 days from the date an order was received.</p>}
         </p>
       ),
     },
