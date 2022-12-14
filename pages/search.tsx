@@ -15,6 +15,7 @@ import { EVENTS_MAP } from '@components/services/analytics/constants'
 import { useUI } from '@components/ui/context'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 import { GENERAL_CATALOG } from '@components/utils/textVariables'
+import Link from 'next/link'
 export const ACTION_TYPES = {
   SORT_BY: 'SORT_BY',
   PAGE: 'PAGE',
@@ -299,12 +300,14 @@ function Search({ query, setEntities, recordEvent }: any) {
           {/* <div className="sticky z-50 px-4 py-4 text-center bg-white border border-red-600 top-16 sm:py-5 sm:px-0 lg:px-0">    */}
 
           {/* <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4> */}
-          <h4><span className='text-sm font-normal text-gray-500'>Home | Women | Leggings</span></h4>
+          <h4><span className='text-sm font-normal text-gray-500 '>
+            <Link  href="#"><span className='hover:text-black cursor-pointer ' >Home</span></Link> | 
+            <Link  href="#"><span className='hover:text-black cursor-pointer ' > Women</span></Link> |
+            <Link  href="#"><span className='hover:text-black cursor-pointer ' > Leggings</span></Link> </span></h4>
 
           <h1 className="text-xl font-semibold tracking-tight text-black sm:text-2xl">
-            {/* {GENERAL_CATALOG}  */}
-            WOMEN - LEGGINGS
-
+            {GENERAL_CATALOG} 
+         
           </h1>
 
           <img src='/assets/icons/filter.png'
@@ -366,9 +369,11 @@ function Search({ query, setEntities, recordEvent }: any) {
                   style={{ width: '30rem' }}
                   className='absolute hidden mr-4 bg-gray-100 border-b-2 sm:block right-1 top-48 hover:shadow-2xl mt-2 ' >
 
-                  <div
+                  {/* <div
                     //  style={{width:'30rem'}}
-                    className="hidden sm:block">
+                    className="hidden sm:block"> */}
+                    <div className='relative  w-full border-r flex flex-col px-6 overflow-y-scroll max-h-40R'>
+
                     <ProductFiltersTopBar
                       products={data.products}
                       handleSortBy={handleSortBy}
@@ -376,13 +381,16 @@ function Search({ query, setEntities, recordEvent }: any) {
                       clearAll={clearAll}
                       routerSortOption={state.sortBy}
                     />
-                  </div>
+                  {/* </div> */}
 
                   <ProductFilterRight
                     handleFilters={handleFilters}
                     products={data.products}
                     routerFilters={state.filters}
-                  />
+                    
+                    />
+                 
+                    </div>
 
                   {/*footer*/}
                   <div className="grid grid-cols-2 border-b-2 py-7 px-7">

@@ -42,11 +42,7 @@ interface Attribute {
 const SearchProductCard: FC<Props> = ({ product }) => {
   const [isInWishList, setItemsInWishList] = useState(false)
   const [isEntered, setisEntered] = useState(false)
-  const [showColorPrice,setColorPrice]=useState({
-    image:"/assets/icons/colors.png",
-    price:"£80.00",
-    name:"Leggings Core"
-  })
+  
   const [currentProductData, setCurrentProductData] = useState({
     image: product.image,
     link: product.slug,
@@ -93,7 +89,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   }, [product.slug])
 
   const productWithColors =
-    product.variantProductsAttributeMinimal  &&
+    product.variantProductsAttributeMinimal &&
     product.variantProductsAttributeMinimal.find(
       (item: Attribute) => item.fieldCode === colorKey
     )
@@ -171,7 +167,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   const saving  = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
   const discount  = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
   return (
-    <div className="bg-gray-100 border border-gray-300 hover:border-black ">
+    <div className="border-gray-300 border hover:border-black bg-gray-100  ">
     <div key={product.id} className="relative group "
     onMouseEnter={()=>setisEntered(true)}
     onMouseLeave={()=>{setisEntered(false)}}
@@ -187,25 +183,24 @@ const SearchProductCard: FC<Props> = ({ product }) => {
               <Image
                 priority
                 src={generateUri(currentProductData.image, "h=400&fm=webp") || '/assets/icons/newPajama.png'} 
-                // src='/assets/icons/newPajama.png' 
                 alt={product.name}
                 onMouseEnter={() => {handleHover('enter')}}
                 onMouseLeave={() => {handleHover('leave')}}
-                className="object-cover object-center w-full h-full sm:h-full"
+                className="w-full sm:h-full h-full object-center object-cover"
                 layout='responsive'
-                width={200}
-                height={200}
+                width={95}
+                height={90}
               >
                 
                 </Image>  
 
             {buttonConfig.isPreOrderEnabled && (
-              <div className="absolute px-1 py-1 bg-yellow-400 rounded-sm top-2">
+              <div className="bg-yellow-400 absolute py-1 px-1 rounded-sm top-2">
                 {BTN_PRE_ORDER}
               </div>
             )}
             {buttonConfig.isNotifyMeEnabled && (
-              <div className="absolute px-1 py-1 text-white bg-red-400 rounded-sm top-2">
+              <div className="bg-red-400 text-white absolute py-1 px-1 rounded-sm top-2">
                 {BTN_NOTIFY_ME}
               </div>
             )}
@@ -216,11 +211,11 @@ const SearchProductCard: FC<Props> = ({ product }) => {
             ) : (
                   null
               // <button
-              //     className="absolute bottom-0 right-2 z-99 add-wishlist"
+              //     className="absolute right-2 bottom-0 z-99 add-wishlist"
               //     onClick={handleWishList}
               // >
               //     {/* <HeartIcon
-              //         className="z-50 flex-shrink-0 w-8 h-8 p-1 text-gray-800 hover:text-gray-500 rounded-3xl opacity-80"
+              //         className="flex-shrink-0 h-8 w-8 z-50 text-gray-800 hover:text-gray-500 rounded-3xl p-1 opacity-80"
               //         aria-hidden="true"
               // /> */}
               //     <span className="ml-2 text-sm font-medium text-gray-700 hover:text-red-800"></span>
@@ -241,11 +236,11 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           />
         ) : (
           
-          <div className="inline-block w-1 h-10 mt-2 mr-1 sm:h-4 sm:w-1 sm:mr-2" />
+          <div className="sm:h-4 sm:w-1 h-10 w-1 sm:mr-2 mr-1 mt-2 inline-block" />
           
         )}
         
-        <h3 className="pb-3 text-xs font-normal text-black truncate sm:text-sm ">
+        <h3 className="sm:text-sm text-xs font-normal text-black truncate pb-3 ">
           <Link href={`/${currentProductData.link}`}>
             {/* Product Name */}
                                                                       {/* {showColorPrice.name} */}
@@ -253,27 +248,28 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           </Link>
         </h3>
 
-        <p className="mt-1 mb-2 font-bold text-gray-500 sm:mt-1 text-md">
+        <p className="sm:mt-1 mt-1 font-bold text-md text-gray-500 mb-2">
           {/* Product Price */}
             {isEntered ? 
           (
-            <div className='mt-1 mb-1 font-bold text-gray-500 group-hover:bg-gray-200 sm:mt-1 text-md'>
+            <div className='group-hover:bg-gray-200 sm:mt-1 mt-1 font-bold text-md text-gray-500 '>
             <p className='text-center text-gray-500 text-bold' >  {product?.price?.formatted?.withTax}</p>
             </div>
-          ):<div className='h-14'></div>
+          ):<div className='h-14 '></div>
           }
+          {/* {(product?.listPrice?.raw?.withTax > 0 && product?.listPrice?.raw?.withTax != product?.price?.raw?.withTax ) &&
+             ( <>
+                <span className='px-2 text-sm line-through font-normal text-gray-400  '>{product?.listPrice?.formatted?.withTax}</span>
+                <span className='text-red-600 text-sm font-semibold '>{discount}% Off</span>
+              </>)
+        
+            } */}
 
           {/* {product?.price?.formatted?.withTax} */}
-          {product?.listPrice?.raw?.withTax > 0 && product?.listPrice?.raw?.withTax != product?.price?.raw?.withTax &&
-              <>
-                <span className='px-2 text-sm font-normal text-gray-400 line-through'>{product?.listPrice?.formatted?.withTax}</span>
-                <span className='text-sm font-semibold text-red-600'>{discount}% Off</span>
-              </>
-            }
         </p>            
         <div className="flex flex-col">
           <Button
-            className="hidden mt-2"
+            className="mt-2 hidden"
             title={buttonConfig.title}
             action={buttonConfig.action}
             type="button"
@@ -281,16 +277,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           />            
         </div>
       </div>
-      {/* {isEntered && 
-      (
-        <div className='group-hover:bg-gray-200'>
-        <img src={showColorPrice.image}
-        className='h-10 m-auto w-50'
-        />
-        <p className='text-center text-gray-400 text-bold' >{showColorPrice.price}</p>
-        </div>
-      )
-      } */}
+    
 
     </div>
   </div>
