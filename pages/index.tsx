@@ -27,7 +27,7 @@ const Layout = dynamic(() => import('@components/common/Layout'))
 const Loader = dynamic(() => import('@components/ui/LoadingDots'))
 import { useState } from 'react'
 import SearchProductCard from '@components/product/ProductCard/SearchProductCard'
-import ProductCard from '@components/product/ProductCard/ProductCard'
+import ProductCard from '@components/product/ProductCard/HomeProductCart'
 export async function getStaticProps({
   preview,
   locale,
@@ -111,7 +111,7 @@ function Home({
     <>
       {/* <p>{JSON.stringify(pageContents)}</p> */}
       {/* topbanner */}
-      <div className="grid gap-0 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 mt-10">
+      <div className="grid gap-0 mt-10 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
         {pageContents?.topbanner.map((topbanners: any, hid: number) => (
           <Link href={topbanners.topbanner_link}>
             <div className="relative" key={hid}>
@@ -172,7 +172,7 @@ function Home({
         ))}
       </div> */}
 
-      <div className="flex flex-col px-4 py-4 pr-0 sm:px-4 sm:pr-4 sm:py-8 home-banner-swiper m-hide-navigation w-full swiper-slide-home">
+      <div className="flex flex-col w-full px-4 py-4 pr-0 sm:px-4 sm:pr-4 sm:py-8 home-banner-swiper m-hide-navigation swiper-slide-home">
         <Swiper
           slidesPerView={4}
           navigation={true}

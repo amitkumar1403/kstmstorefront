@@ -39,7 +39,7 @@ interface Attribute {
   fieldValues?: []
 }
 
-const SearchProductCard: FC<Props> = ({ product }) => {
+const HomeProductCard: FC<Props> = ({ product }) => {
   const [isInWishList, setItemsInWishList] = useState(false)
   const [isEntered, setisEntered] = useState(false)
   const [showColorPrice,setColorPrice]=useState({
@@ -93,8 +93,8 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   }, [product.slug])
 
   const productWithColors =
-    product.variantProductsAttributeMinimal  &&
-    product.variantProductsAttributeMinimal.find(
+    product.variantProductsAttribute  &&
+    product.variantProductsAttribute.find(
       (item: Attribute) => item.fieldCode === colorKey
     )
 
@@ -103,8 +103,8 @@ const SearchProductCard: FC<Props> = ({ product }) => {
 
   const handleVariableProduct = (attr: any, type: string = 'enter') => {
     if (type === 'enter') {
-      const variatedProduct = product.variantProductsMinimal.find((item: any) =>
-        item.variantAttributes.find(
+      const variatedProduct = product.variantProducts.find((item: any) =>
+        item.attributes.find(
           (variant: any) => variant.fieldValue === attr.fieldValue
         )
       )
@@ -235,7 +235,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
         
         {hasColorVariation && isEntered ? (
           <AttributeSelector
-            attributes={product.variantProductsAttributeMinimal}
+            attributes={product.variantProductsAttribute}
             onChange={handleVariableProduct}
             link={currentProductData.link}
           />
@@ -296,4 +296,4 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   </div>
   )
 }
-export default SearchProductCard
+export default HomeProductCard
