@@ -193,7 +193,7 @@ function Home({
         >
           {pageContents?.productcollection.map((item: any, gid: number) => (
             <>
-              <SwiperSlide>
+              <SwiperSlide key={gid}>
                 <div className="grid grid-cols-1 text-left">
                   <ProductCard key={gid} product={item} />
                 </div>
