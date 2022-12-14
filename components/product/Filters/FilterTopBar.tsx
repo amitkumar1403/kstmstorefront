@@ -89,6 +89,7 @@ export default function FiltersRightOpen({  //passing filter props
               products={products}
               action={handleSortBy}
             />
+            
           </div>
         </section>
       </div>   

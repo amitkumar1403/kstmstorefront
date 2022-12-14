@@ -369,9 +369,9 @@ function Search({ query, setEntities, recordEvent }: any) {
                   style={{ width: '30rem' }}
                   className='absolute hidden mr-4 bg-gray-100 border-b-2 sm:block right-1 top-48 hover:shadow-2xl mt-2 ' >
 
-                  <div
+                  {/* <div
                     //  style={{width:'30rem'}}
-                    className="hidden sm:block">
+                    className="hidden sm:block"> */}
                     <ProductFiltersTopBar
                       products={data.products}
                       handleSortBy={handleSortBy}
@@ -379,13 +379,14 @@ function Search({ query, setEntities, recordEvent }: any) {
                       clearAll={clearAll}
                       routerSortOption={state.sortBy}
                     />
-                  </div>
+                  {/* </div> */}
 
                   <ProductFilterRight
                     handleFilters={handleFilters}
                     products={data.products}
                     routerFilters={state.filters}
                   />
+                 
 
                   {/*footer*/}
                   <div className="grid grid-cols-2 border-b-2 py-7 px-7">

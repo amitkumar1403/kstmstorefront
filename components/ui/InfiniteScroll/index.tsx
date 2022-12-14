@@ -14,15 +14,9 @@ import React, { memo } from 'react';
 {
   const [loadMore, setLoadMore] = useState(false)
   const [altertShow, setAlertShow] = useState(false);
-  // useEffect(() => {
-    
+
   
-  //   return () => {
-  //     setLoadMore(false)
-  //   }
-  // }, [fetchData])
-  
-  const handleClick=()=>{
+  const handleClick=async ()=>{
     if(currentNumber<total)
     {
       // console.log(":inside If")
@@ -30,8 +24,8 @@ import React, { memo } from 'react';
         console.log("setLoadMore to true ",loadMore)
         setTimeout(() => {
         //  console.log("timeout called")
-         setLoadMore(false)
         console.log("setLoadMore to false",loadMore)
+         setLoadMore(false)
 
         }, 1000)
         return
