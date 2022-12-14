@@ -75,7 +75,7 @@ export default function FiltersRightOpen({  //passing filter props
                       >
                         {appliedFilter.name ? (
                           <>
-                           <span className="bg-gray-50 text-gray-600 font-medium text-sm rounded-2xl px-3 border border-gray-200">{appliedFilter.Value}</span>
+                           {/* <span className="bg-gray-50 text-gray-600 font-medium text-sm rounded-2xl px-3 border border-gray-200">{appliedFilter.Value}</span> */}
                           </>
                         ) : null}
                       </div>
