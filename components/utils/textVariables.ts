@@ -53,6 +53,8 @@ export const GENERAL_CITY = 'Town / city'
 export const GENERAL_POSTCODE = 'Postcode'
 export const GENERAL_COUNTRY = 'Country'
 export const GENERAL_PHONE = 'Phone'
+export const IMG_PLACEHOLDER =
+  'https://liveocxstorage.blob.core.windows.net/kstm/cms-media/Home/prod1.jpg'
 export const GENERAL_IS_DEFAULT_DELIVERY_ADDRESS = 'Is Default Delivery Address'
 export const GENERAL_IS_DEFAULT_BILLING_ADDRESS = 'Is Default Billing Address'
 export const GENERAL_SMS = 'SMS'
@@ -301,7 +303,7 @@ export const ENTER_ADDRESS_MANUALY = 'Enter address manually'
 export const BTN_FIND = 'Find'
 export const BTN_SAVE = 'Save'
 export const BTN_BACK_TO_HOME = 'Back to Home'
-export const IMG_PLACEHOLDER =
+export const IMG_PLACE =
   'https://liveocxcdn.azureedge.net/betterstore/images/noimagefound.png'
 export const SHOP_THE_LOOK = 'Shop the look'
 export const BAD_URL_TEXT = 'This is a bad url. please go back to'

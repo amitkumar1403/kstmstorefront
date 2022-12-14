@@ -23,6 +23,7 @@ export const OPERATIONS = [
   'getAllProductPaths',
   'getAllProducts',
   'getProduct',
+  'getPagePreviewContent',
   'getProductPreview',
   'getInfra',
   'getSlugs',
@@ -74,6 +75,7 @@ export type Operations<P extends APIProvider> = {
   updateDetails: {}
   validateEmail: {}
   createAddress: {}
+  getPagePreviewContent: {}
   deleteAddress: {}
   editAddress: {}
   getAddress: {}

@@ -4,3 +4,4 @@ export const BASE_URL = process.env.BETTERCOMMERCE_BASE_URL
 export const AUTH_URL = process.env.BETTERCOMMERCE_AUTH_URL
 export const OMS_BASE_URL = process.env.OMS_BASE_URL
 export const ORG_ID = process.env.NEXT_PUBLIC_ORG_ID
+export const BETTERCMS_BASE_URL = process.env.BETTERCMS_BASE_URL;
