@@ -300,10 +300,7 @@ function Search({ query, setEntities, recordEvent }: any) {
           {/* <div className="sticky z-50 px-4 py-4 text-center bg-white border border-red-600 top-16 sm:py-5 sm:px-0 lg:px-0">    */}
 
           {/* <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4> */}
-          <h4><span className='text-sm font-normal text-gray-500 '>
-            <Link  href="#"><span className='hover:text-black cursor-pointer ' >Home</span></Link> | 
-            <Link  href="#"><span className='hover:text-black cursor-pointer ' > Women</span></Link> |
-            <Link  href="#"><span className='hover:text-black cursor-pointer ' > Leggings</span></Link> </span></h4>
+   
 
           <h1 className="text-xl font-semibold tracking-tight text-black sm:text-2xl">
             {GENERAL_CATALOG} 

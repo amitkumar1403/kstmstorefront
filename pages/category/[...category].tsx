@@ -198,6 +198,8 @@ function CategoryPage({ category, products }: any) {
     },
   })
 
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     if (category.id !== state.categoryId)
       dispatch({ type: SET_CATEGORY_ID, payload: category.id })
@@ -282,15 +284,15 @@ function CategoryPage({ category, products }: any) {
       : products
   
   return (
-    <div className="bg-white md:w-4/5 mx-auto">
+    <div className="bg-white mx-auto mt-10">
       {/* Mobile menu */}
-      <main className="pb-0">   
-        <div className="pt-2 sm:pt-4 sm:px-0 px-3">
+      <main className="pb-0 ">   
+        <div className="pt-2 sm:pt-4 sm:px-0 px-3 m-auto">
           {category.breadCrumbs && (
             <BreadCrumbs items={category.breadCrumbs} currentProduct={category} />
           )}
         </div>     
-        <div className="sm:px-0 flex justify-center items-center w-full">
+        {/* <div className="sm:px-0 flex justify-center items-center w-full">
           {
             category && category.images && category.images.length ? (
               <Swiper navigation={true} loop={true} className="mySwiper sm:mt-4 mt-0">
@@ -315,11 +317,17 @@ function CategoryPage({ category, products }: any) {
               <></>
             )
           }
-        </div>
+        </div> */}
         
         <div className="text-left sm:pt-1 sm:pb-6 pb-4 pt-3 px-3 sm:px-0">
-          <h4><span className='font-normal text-gray-500 text-sm'>Showing {products.total} {' '} {RESULTS}</span></h4>
-          <h1 className="sm:text-xl text-xl font-semibold tracking-tight text-black">
+        <img src='/assets/icons/filter.png'
+            alt='filter-icon'
+            onClick={() => {
+              !showModal ? setShowModal(true) : setShowModal(false)
+            }}
+            className='absolute hidden w-10 mt-10 mr-4 cursor-pointer sm:block right-7 top-24' />
+          {/* <h4><span className='font-normal text-gray-500 text-sm'>Showing {products.total} {' '} {RESULTS}</span></h4> */}
+          <h1 className="sm:text-xl text-xl font-semibold tracking-tight text-black text-center">
             {category.name} 
           </h1>
           <h2 className='sm:text-md text-gray-500'>{category.description}</h2>          
@@ -344,33 +352,35 @@ function CategoryPage({ category, products }: any) {
               </div>
             </div>
         }
+
+
         {products.total>0 &&
-            <div className="grid sm:grid-cols-12 grid-cols-1 gap-1 w-full mx-auto overflow-hidden sm:border-t sm:border-gray-200">
+            <div className="">
               {!!products && (
                 <>
                   {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
 
-                  <div className="sm:col-span-2 sm:hidden flex flex-col">
-                    <ProductMobileFilters
+                  {/* <div className="sm:col-span-2 sm:hidden flex flex-col">
+                     <ProductMobileFilters
                       handleFilters={handleFilters}
                       products={products}
                       routerFilters={state.filters}
                       handleSortBy={handleSortBy}
                       clearAll={clearAll}
                       routerSortOption={state.sortBy}
-                    />
-                  </div>
-                  <div className="sm:col-span-2 sm:block hidden">
+                    /> 
+                  </div> */}
+                  {/* <div className="sm:col-span-2 sm:block hidden">
                     <ProductFilterRight
                       handleFilters={handleFilters}
                       products={productDataToPass}
                       routerFilters={state.filters}
                     />
-                  </div>
+                  </div> */}
                   <div className="sm:col-span-10 sm:px-0 px-4 overflow-hidden">
                     {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
-                    <div className="flex-1 sm:block hidden">
+                    {/* <div className="flex-1 sm:block hidden">
                       <ProductFiltersTopBar
                         products={products}
                         handleSortBy={handleSortBy}
@@ -378,7 +388,7 @@ function CategoryPage({ category, products }: any) {
                         clearAll={clearAll}
                         routerSortOption={state.sortBy}
                       />
-                    </div>
+                    </div> */}
                     <ProductGridWithFacet
                       products={productDataToPass}
                       currentPage={products.currentPage}
@@ -395,6 +405,61 @@ function CategoryPage({ category, products }: any) {
                 <h4 className='text-3xl font-bold text-gray-300'>No Products availabe in {category.name}</h4>
             </div>
         }
+
+{showModal ? (
+              <>
+                {/*content*/}
+                <div
+                  style={{ width: '30rem' }}
+                  className='absolute hidden mr-4 bg-gray-100 border-b-2 sm:block right-1 top-48 hover:shadow-2xl mt-2 ' >
+
+                  {/* <div
+                    //  style={{width:'30rem'}}
+                    className="hidden sm:block"> */}
+                    <div className='relative  w-full border-r flex flex-col px-6 overflow-y-scroll max-h-40R'>
+
+                    <ProductFiltersTopBar
+                      products={data.products}
+                      handleSortBy={handleSortBy}
+                      routerFilters={state.filters}
+                      clearAll={clearAll}
+                      routerSortOption={state.sortBy}
+                    />
+                  {/* </div> */}
+
+                  <ProductFilterRight
+                    handleFilters={handleFilters}
+                    products={data.products}
+                    routerFilters={state.filters}
+                    
+                    />
+                 
+                    </div>
+
+                  {/*footer*/}
+                  <div className="grid grid-cols-2 border-b-2 py-7 px-7">
+                    <button
+                      className="col-span-1 px-6 py-6 text-lg font-bold text-gray-700 border border-gray-200 hover:text-black hover:border-black"
+                      type="button"
+                      onClick={() => { setShowModal(false), clearAll() }}
+                    >
+                      Clear All
+                    </button>
+                    <button
+                      className="col-span-1 px-6 py-6 text-lg font-bold text-white bg-black border border-black hover:border-white hover:text-gray-200"
+                      type="button"
+                      onClick={() => setShowModal(false)}
+                    >
+                      Apply
+                    </button>
+                  </div>
+
+
+                </div>
+                {/* <div className="fixed inset-0 z-40 bg-black opacity-25"></div> */}
+              </>
+            ) : null}
+
       </main>
       <NextSeo
         title={category.name}
