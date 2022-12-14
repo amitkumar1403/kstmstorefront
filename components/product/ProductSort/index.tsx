@@ -23,7 +23,7 @@ export default function ProductSort({
   )[0]
   return (
     <>
-    <div className=''>
+    <div>
 
     <div className=" px-0 pt-2 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900">
@@ -34,8 +34,9 @@ export default function ProductSort({
       <div className='pb-6 mt-3'>
         {/* Search bar in every filter category */}
       {/* {getCustomComponent(sectionKey)({ ...PROPS_LIST[sectionKey] })} */}
-      <div className="  grid grid-cols-3">
-      {products.sortList.length &&
+      <div className="grid grid-cols-3">
+       {products.sortList.length ?
+             ( 
               products.sortList.map((option: any) =>{ 
                return (
                  <div className='border-gray-200 border py-3 hover:border-black' key={option.value}>
@@ -70,7 +71,10 @@ export default function ProductSort({
                  </div>
                  )}
                
-               ) }
+               )
+             ):null
+               
+               }
       </div>
     </div>
 

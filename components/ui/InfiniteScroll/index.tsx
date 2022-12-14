@@ -15,8 +15,20 @@ import React, { memo } from 'react';
   const [loadMore, setLoadMore] = useState(false)
   const [altertShow, setAlertShow] = useState(false);
 
+  // useEffect(() => {
+     
+  //   return () => {
+  //     setLoadMore(false)
+  //   }
+  // }, [component])
+
+  // const forcefullyLoad=()=>{
+  //   console.log("forcefullyLoad called")
+  //   // setLoadMore(false)
+  // }
   
-  const handleClick=async ()=>{
+
+  const handleClick= ()=>{
     if(currentNumber<total)
     {
       // console.log(":inside If")
@@ -26,10 +38,11 @@ import React, { memo } from 'react';
         //  console.log("timeout called")
         console.log("setLoadMore to false",loadMore)
          setLoadMore(false)
-
         }, 1000)
+       
         return
-    }
+    } 
+
     //  console.log("else simple return ")
     setAlertShow(true)
     return
@@ -38,7 +51,7 @@ import React, { memo } from 'react';
   return (
     <>
   
-    {console.count('counter')}
+    {console.count('Rrender counter')}
     <div className='flex justify-end mr-2 mt-2'>
     <div className={`sm:h-16 sm:w-30 fixed -mt-24 z-50 bg-transparent font-medium   px-2 py-1  ${altertShow && `bg-gray-200 `}`} role="alert">
     {/* <Alert>A simple alert for showing message.</Alert> */}
@@ -64,8 +77,9 @@ import React, { memo } from 'react';
         <p
         className='flex justify-center pt-6'
        >
+        {console.log("next",component)}
           <button  
-          onClick={handleClick}                                                                                         
+          onClick={()=>handleClick()}                                                                                         
           className={`border border-black py-2 px-8 text-gray-700 hover:text-white hover:bg-black ` }   >
             {/* 12<70 */}
             {/* !true */}
