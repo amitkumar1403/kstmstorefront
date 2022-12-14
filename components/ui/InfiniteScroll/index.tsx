@@ -1,9 +1,10 @@
-import {  useState } from 'react'
+import {  useState ,useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { Alert } from "@material-tailwind/react";
 import LoadingDots from '../LoadingDots';
+import React, { memo } from 'react';
 
-export default function InfiniteScrollComponent({
+ function InfiniteScrollComponent({
   component,
   total,
   fetchData,
@@ -13,31 +14,41 @@ export default function InfiniteScrollComponent({
 {
   const [loadMore, setLoadMore] = useState(false)
   const [altertShow, setAlertShow] = useState(false);
-
-
+  // useEffect(() => {
+    
+  
+  //   return () => {
+  //     setLoadMore(false)
+  //   }
+  // }, [fetchData])
+  
   const handleClick=()=>{
     if(currentNumber<total)
     {
       // console.log(":inside If")
         setLoadMore(true)
+        console.log("setLoadMore to true ",loadMore)
         setTimeout(() => {
-          // console.log("timeout called")
+        //  console.log("timeout called")
          setLoadMore(false)
-        }, 500)
+        console.log("setLoadMore to false",loadMore)
+
+        }, 1000)
         return
     }
-    // console.log("else simple return ")
+    //  console.log("else simple return ")
     setAlertShow(true)
     return
    }
   
   return (
     <>
+  
+    {console.count('counter')}
     <div className='flex justify-end mr-2 mt-2'>
     <div className={`sm:h-16 sm:w-30 fixed -mt-24 z-50 bg-transparent font-medium   px-2 py-1  ${altertShow && `bg-gray-200 `}`} role="alert">
     {/* <Alert>A simple alert for showing message.</Alert> */}
       <Alert
-      
         show={altertShow}
         dismissible={{
           onClose: () => setAlertShow(false),
@@ -45,8 +56,6 @@ export default function InfiniteScrollComponent({
       >
       You have seen all the products ✌ ||  Please wait 🥱
       </Alert>
-    {/* <p className="font-bold">Informational message</p>
-    <p className="text-sm">Some additional text to explain said message.</p> */}
     </div>
     </div>
    
@@ -54,10 +63,9 @@ export default function InfiniteScrollComponent({
       dataLength={total} //This is important field to render the next data
       next={fetchData}
       hasMore={loadMore}
-    
       // loader={<h3 className=''>Loading . . .</h3>}
-      // loader={<p className='mt-10'>.</p>}
-      loader={null}
+      loader={<p className='mt-10'>.</p>}
+      // loader={null}
       endMessage={
         <p
         className='flex justify-center pt-6'
@@ -75,7 +83,10 @@ export default function InfiniteScrollComponent({
       >
       {component}
     </InfiniteScroll>
-     {loadMore && <div className='mt-10'>.</div> }
+     {/* {loadMore && <div className='sm:mt-10'>.</div> } */}
       </>
   )
 }
+// export default memo(InfiniteScrollComponent);
+export default InfiniteScrollComponent;
+

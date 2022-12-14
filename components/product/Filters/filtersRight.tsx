@@ -55,15 +55,15 @@ export default function FiltersRightOpen({
               className=" border-gray-200 sm:pr-4 px-4 sm:px-0 py-6"
             >
               <>
-                <h3 className="-mx-2 -my-3">
+                <h3 className="-mx-2 -my-3 ">
                   <div className="px-2 py-2  w-full flex items-center justify-between text-md ">
-                    <span className="font-medium text-gray-900">
+                    <span className="font-medium  text-gray-900">
                       {section.name}
                     </span>
                   </div>
                 </h3>
                 <div className="pt-3">
-                  <div >
+                  <div>
                     <FilterList
                       handleFilters={handleFilters}
                       sectionKey={section.key}

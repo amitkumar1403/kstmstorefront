@@ -188,8 +188,8 @@ const SearchProductCard: FC<Props> = ({ product }) => {
                 onMouseLeave={() => {handleHover('leave')}}
                 className="w-full sm:h-full h-full object-center object-cover"
                 layout='responsive'
-                width={200}
-                height={200}
+                width={95}
+                height={90}
               >
                 
                 </Image>  
