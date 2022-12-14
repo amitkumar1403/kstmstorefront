@@ -447,7 +447,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                     />
                   </button>
                   <Link href="/">
-                    <div className="flex w-32 cursor-pointer">
+                    <div className="flex cursor-pointer">
                       <span className="sr-only">{GENERAL_WORKFLOW_TITLE}</span>
                       <Logo />
                     </div>
