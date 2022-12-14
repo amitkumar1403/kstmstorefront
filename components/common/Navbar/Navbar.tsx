@@ -291,15 +291,15 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
         </Transition.Root>
         {/* Black Bar */}
         <header className="fixed top-0 right-0 w-full bg-white shadow-md z-999">
-          <div className="bg-black p-3">
-            <p className="text-white text-center text-xs">{NEWSLETTER}</p>
+          <div className="p-3 bg-black">
+            <p className="text-xs text-center text-white">{NEWSLETTER}</p>
           </div>
           <nav
             aria-label="Top"
             className="w-full px-4 mx-auto md:w-4/5 sm:px-0 lg:px-0"
           >
             <div className="pb-0 sm:px-0 sm:pb-0">
-              <div className="flex items-center justify-between h-16">
+              <div className="flex items-center justify-between h-16 sm:grid sm:grid-cols-3">
                 {/* Flyout menus */}
                 <Popover.Group className="absolute inset-x-0 bottom-0 hidden sm:static sm:self-stretch sm:block sm:h-16">
                   <div className="flex h-16 px-6 pb-px space-x-8 overflow-x-auto border-t sm:h-full sm:border-t-0 sm:justify-left sm:overflow-visible sm:pb-0">
