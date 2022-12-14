@@ -372,6 +372,8 @@ function Search({ query, setEntities, recordEvent }: any) {
                   {/* <div
                     //  style={{width:'30rem'}}
                     className="hidden sm:block"> */}
+                    <div className='relative  w-full border-r flex flex-col px-6 overflow-y-scroll max-h-40R'>
+
                     <ProductFiltersTopBar
                       products={data.products}
                       handleSortBy={handleSortBy}
@@ -385,8 +387,10 @@ function Search({ query, setEntities, recordEvent }: any) {
                     handleFilters={handleFilters}
                     products={data.products}
                     routerFilters={state.filters}
-                  />
+                    
+                    />
                  
+                    </div>
 
                   {/*footer*/}
                   <div className="grid grid-cols-2 border-b-2 py-7 px-7">

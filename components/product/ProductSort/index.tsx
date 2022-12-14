@@ -4,7 +4,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { GENERAL_SORT } from '@components/utils/textVariables'
+import { GENERAL_FILTER_TITLE, GENERAL_SORT } from '@components/utils/textVariables'
 interface Props {
   products: any
   action: any
@@ -22,34 +22,26 @@ export default function ProductSort({
     (item: any) => item.key === routerSortOption
   )[0]
   return (
-    <Menu as="div" className="relative inline-block">
-      <div className="flex">
-        <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-          {GENERAL_SORT}
-          <ChevronDownIcon
-            className="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-            aria-hidden="true"
-          />
-        </Menu.Button>
-      </div>
+    <>
+    <div className=''>
 
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="z-10 origin-top-right text-left absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
-            {products.sortList.length &&
-              products.sortList.map((option: any) => (
-                <Menu.Item key={option.value}>
-                  {({ active }) => (
-                    <div>
-                      <Link
+    <div className=" px-0 pt-2 flex items-center justify-between">
+          <h2 className="text-lg font-medium text-gray-900">
+            {GENERAL_FILTER_TITLE}
+          </h2>
+        </div>
+
+      <div className='pb-6 mt-3'>
+        {/* Search bar in every filter category */}
+      {/* {getCustomComponent(sectionKey)({ ...PROPS_LIST[sectionKey] })} */}
+      <div className="  grid grid-cols-3">
+      {products.sortList.length &&
+              products.sortList.map((option: any) =>{ 
+               return (
+                 <div className='border-gray-200 border py-3 hover:border-black' key={option.value}>
+                  <span className='font-bold text-gray-500 justify-center flex  '>
+                    {/* {option.value} */}
+                    <Link
                         href={{
                           pathname: router.pathname,
                           query: {
@@ -70,16 +62,31 @@ export default function ProductSort({
                             'block px-4 py-2 text-sm'
                           )}
                         >
-                          {option.value}
+                          {option.value.length>15? (option.value.substring(0,15) +`...`):option.value }
+                         
                         </a>
                       </Link>
-                    </div>
-                  )}
-                </Menu.Item>
-              ))}
-          </div>
-        </Menu.Items>
-      </Transition>
-    </Menu>
+                    </span>
+                 </div>
+                 )}
+               
+               ) }
+      </div>
+    </div>
+
+    {/* --------------------------------------------------------------- */}
+    </div>
+    </>
   )
 }
+
+{/* <FilterItem
+sectionKey={sectionKey}
+option={option}
+onSelect={handleFilters}
+optionIdx={optionIdx}
+key={optionIdx}
+isChecked={isChecked}
+closeSidebar={closeSidebar}
+{...PROPS_LIST[sectionKey]}
+/> */}

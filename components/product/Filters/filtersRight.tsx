@@ -16,12 +16,14 @@ export default function FiltersRightOpen({
   return (
     <div className="bg-transparent ">
       {/* Mobile filter dialog */}
-      <div className="relative  w-full border-r flex flex-col px-6 overflow-y-scroll max-h-40R bg-gray-100 text-black ">
-        <div className="px-0 pt-2 flex items-center justify-between">
+      <div className=" bg-gray-100 text-black ">
+      {/* <div className="relative  w-full border-r flex flex-col px-6 overflow-y-scroll max-h-40R bg-gray-100 text-black "> */}
+
+        {/* <div className="px-0 pt-2 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900">
             {GENERAL_FILTER_TITLE}
           </h2>
-        </div>
+        </div> */}
 
         {/* Filters */}
         <form className="mt-2 ">
@@ -48,6 +50,8 @@ export default function FiltersRightOpen({
             </div>
               </>
           ))}
+
+                
 
           {products.filters?.map((section: any) => (
             <div
