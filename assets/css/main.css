@@ -6,6 +6,12 @@
 
 @tailwind utilities;
 
+.newsletter-form{
+  max-width: 600px;
+  width: 100%;
+}
+
+
 .inset-0 {
   z-index: 9999 !important;
   top: 0px;
@@ -255,8 +261,8 @@
   max-width: 100%;
 }
 
-.image-container > div,
-.image-container > span {
+.image-container>div,
+.image-container>span {
   position: unset !important;
 }
 
@@ -275,10 +281,11 @@
   height: 18rem !important;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width:768px) {
   .sm\:min-h-screen {
     min-height: 100vh !important;
   }
+
 }
 
 .h-full {
@@ -293,21 +300,18 @@
   --gradient-color: transparent !important;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width:767px) {
   .sm\:h-72 {
     height: 12rem !important;
   }
 }
 
-body {
-  overflow-x: hidden; /* Hide horizontal scrollbar */
-}
 
-.swiper-slide-home .swiper-slide {
-  text-align: center !important;
-  font-size: 18px !important;
-  background: #fff !important;
-  display: unset !important;
-  justify-content: center !important;
-  align-items: center !important;
+
+body {overflow-x: hidden; /* Hide horizontal scrollbar */}
+
+
+.sr-only{
+  width: 50% !important;
+  height: 10% !important;
 }

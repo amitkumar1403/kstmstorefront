@@ -71,8 +71,8 @@ const FilterItem = ({
               style={{
                 content: '',
                 float: 'right',
-                right: '16px',
-                bottom: '6px',
+                right: '8px',
+                top:'14px',
                 // zIndex: 99999,
                 position: 'absolute',
                 width: '10px',

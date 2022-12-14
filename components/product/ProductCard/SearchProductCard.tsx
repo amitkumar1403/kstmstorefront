@@ -171,8 +171,8 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   const saving  = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
   const discount  = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
   return (
-    <div className="border-gray-300 border hover:border-black bg-gray-100 ">
-    <div key={product.id} className="relative group"
+    <div className="border-gray-300 border hover:border-black bg-gray-100  ">
+    <div key={product.id} className="relative group "
     onMouseEnter={()=>setisEntered(true)}
     onMouseLeave={()=>{setisEntered(false)}}
     >
@@ -183,7 +183,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
         key={'data-product' + currentProductData.link}
       >
         <a href={currentProductData.link}>
-          <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 group-hover:bg-gray-200  ">
+          <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 group-hover:bg-gray-200 ">
               <Image
                 priority
                 src={generateUri(currentProductData.image, "h=400&fm=webp") || '/assets/icons/newPajama.png'} 
@@ -198,8 +198,6 @@ const SearchProductCard: FC<Props> = ({ product }) => {
               >
                 
                 </Image>  
-    
-
 
             {buttonConfig.isPreOrderEnabled && (
               <div className="bg-yellow-400 absolute py-1 px-1 rounded-sm top-2">
@@ -243,10 +241,11 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           />
         ) : (
           
-          <div className=" sm:h-1 sm:w-1 h-1 w-1 sm:mr-2 mr-1 mt-2 inline-block bg-black h-10" />
+          <div className="sm:h-4 sm:w-1 h-10 w-1 sm:mr-2 mr-1 mt-2 inline-block" />
+          
         )}
         
-        <h3 className="sm:text-sm text-xs font-normal text-black truncate pb-3">
+        <h3 className="sm:text-sm text-xs font-normal text-black truncate pb-3 ">
           <Link href={`/${currentProductData.link}`}>
             {/* Product Name */}
                                                                       {/* {showColorPrice.name} */}
@@ -258,7 +257,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           {/* Product Price */}
             {isEntered ? 
           (
-            <div className='group-hover:bg-gray-200 sm:mt-1 mt-1 font-bold text-md text-gray-500 mb-2'>
+            <div className='group-hover:bg-gray-200 sm:mt-1 mt-1 font-bold text-md text-gray-500 mb-1'>
             <p className='text-center text-gray-500 text-bold' >  {product?.price?.formatted?.withTax}</p>
             </div>
           ):<div className='h-14'></div>

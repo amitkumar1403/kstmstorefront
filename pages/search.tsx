@@ -294,7 +294,7 @@ function Search({ query, setEntities, recordEvent }: any) {
       className="w-full mx-auto bg-white ">
       {/* Mobile menu */}
       <main className="pb-24">
-        <div className="px-4 py-4 text-center sm:py-5 sm:px-0 lg:px-0">
+        <div className="mt-10 px-4 py-4 text-center sm:py-5 sm:px-0 lg:px-0">
           {/* for sticky subnav*/}
           {/* <div className="sticky z-50 px-4 py-4 text-center bg-white border border-red-600 top-16 sm:py-5 sm:px-0 lg:px-0">    */}
 
@@ -312,7 +312,7 @@ function Search({ query, setEntities, recordEvent }: any) {
             onClick={() => {
               !showModal ? setShowModal(true) : setShowModal(false)
             }}
-            className='absolute hidden w-10 mt-2 mr-6 cursor-pointer sm:block right-16 top-24' />
+            className='absolute hidden w-10 mt-10 mr-4 cursor-pointer sm:block right-7 top-24' />
         </div>
         <div className="grid w-full grid-cols-1 px-4 mx-auto overflow-hidden sm: sm:px-0 lg:px-0">
           {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
@@ -364,7 +364,7 @@ function Search({ query, setEntities, recordEvent }: any) {
                 {/*content*/}
                 <div
                   style={{ width: '30rem' }}
-                  className='absolute hidden mr-4 bg-gray-100 border-b-2 sm:block right-1 top-40 hover:shadow-2xl ' >
+                  className='absolute hidden mr-4 bg-gray-100 border-b-2 sm:block right-1 top-48 hover:shadow-2xl mt-2 ' >
 
                   <div
                     //  style={{width:'30rem'}}

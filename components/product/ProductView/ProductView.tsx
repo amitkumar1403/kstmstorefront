@@ -79,6 +79,10 @@ const PLACEMENTS_MAP: any = {
     position: 'beforebegin',
   },
 }
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 export default function ProductView({
   data = { images: [] },
@@ -112,15 +116,39 @@ export default function ProductView({
     stockCode: product?.stockCode,
     ...product,
   })
-
+  //for storing products in local storage for recently viewed
+  const [localState, setLocalState] = useState([]);
 
   const { ProductViewed } = EVENTS_MAP.EVENT_TYPES
-
   const { Product } = EVENTS_MAP.ENTITY_TYPES
   const fetchProduct = async () => {
     const url = !isPreview ? NEXT_GET_PRODUCT : NEXT_GET_PRODUCT_PREVIEW;;
     const response: any = await axios.post(url, { slug: slug })
-    //console.log(JSON.stringify(response?.data))
+    console.log(JSON.stringify(response?.data))
+
+    // // condition to store products in local storage for recently viewed functionality
+    // if(response?.data?.product){
+    //   const recentlyViewedProduct = {
+    //     image : response.data.product.image,
+    //     price : response.data.product.listPrice.formatted.withTax,
+    //     name : response.data.product.name,
+    //     link : response.data.product.link,
+    //   }
+
+    //     let oldData = JSON.parse(localStorage.getItem("Recent-Products")  || "")
+    //     if(oldData){
+    //       window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
+    //     }
+    //     else{
+    //       window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
+    //     }
+    //     //setting only unique elem in State
+    //     const key = 'name';
+    //     const arrayUniqueByKey:any = [...new Map(oldData?.map((item:any) =>
+    //       [item[key], item])).values()];
+    //         setLocalState(arrayUniqueByKey)
+    // }
+
     if (response?.data?.product) {
       eventDispatcher(ProductViewed, {
         entity: JSON.stringify({
@@ -136,6 +164,7 @@ export default function ProductView({
         eventType: ProductViewed,
         omniImg: response.data.product.image,
       })
+      
       setUpdatedProduct(response.data.product)
       setSelectedAttrData({
         productId: response.data.product.recordId,
@@ -143,7 +172,7 @@ export default function ProductView({
         ...response.data.product,
       })
     }
-  }
+  } 
 
   useEffect(() => {
     fetchProduct()
@@ -166,6 +195,7 @@ export default function ProductView({
         }
       })
     }
+
     //this function is triggered when the component is unmounted. here we clean the injected scripts
     return function cleanup() {
       snippets.forEach((snippet: any) => {
@@ -188,7 +218,7 @@ export default function ProductView({
     (value: any, index: number, self: any) =>
       index === self.findIndex((t: any) => t.image === value.image)
   )
-
+    {console.log(product)}
   if (product.videos && product.videos.length > 0) {
     content = [...product.images, ...product.videos].filter(
       (value: any, index: number, self: any) =>
@@ -199,7 +229,6 @@ export default function ProductView({
   const handleImgLoadT = (image: any) => {
     setPreviewImg(image);
   }
-
 
   const handlePreviewClose = () => {
     setPreviewImg(undefined);
@@ -421,9 +450,7 @@ export default function ProductView({
     }
   }*/
 
-  const breadcrumbs = product.breadCrumbs?.filter(
-    (item: any) => item.slugType !== SLUG_TYPE_MANUFACTURER
-  )
+
   SwiperCore.use([Navigation])
   var settings = {
     fade: false,
@@ -464,21 +491,16 @@ export default function ProductView({
   const saving = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
   const discount = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
   return (
-    <div className="bg-white page-container md:w-4/5 mx-auto">
+    <div className="bg-white page-container md:w-5/5 mx-auto lg:p-0 md:p-0 sm:p-2">
       {/* Mobile menu */}
-      <div className="pt-2 sm:pt-6 sm:px-0 px-4">
-        {breadcrumbs && (
-          <BreadCrumbs items={breadcrumbs} currentProduct={product} />
-        )}
-      </div>
       <main className="sm:pt-8">
-        <div className="lg:max-w-none">
+        <div className="lg:w-full ">
           {/* Product */}
-          <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:items-start">
+          <div className="lg:grid pr-10 lg:grid-cols-12 lg:gap-x-16 lg:items-start">
             {/* Image gallery */}
-            <Tab.Group as="div" className="flex flex-col-reverse lg:col-span-7 min-mobile-pdp">
+            <Tab.Group as="div" className="flex flex-col-reverse lg:col-span-6 md:col-span-6 sm:col-span-6 xs:col-span-6 min-mobile-pdp">
               {/* Image selector */}
-              <div className="grid sm:grid-cols-12 grid-cols-1 sm:gap-x-8">
+              <div className="grid sm:grid-cols-12 grid-cols-1-row-3 sm:gap-x-8 w-50">
                 <div className='col-span-12 px-4 sm:px-0'>
                   {/*MOBILE PRODUCT IMAGE SLIDER*/}
                   <div className='block sm:hidden w-full mx-auto pt-6 sm:pt-0'>
@@ -515,21 +537,18 @@ export default function ProductView({
                                   <div className='image-container'>
                                     <Image
                                       priority
-                                      src={generateUri(image.image, "h=1000&fm=webp") || '/assets/icons/newPajama.png'}
+                                      src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}
+                                      //src="/slider-1 - Copy.jpg"
                                       alt={image.name}
                                       className="w-full h-full object-center object-cover image"
                                       layout='responsive'
-                                      sizes='320 600 1000'
+                                      sizes='320 600 100'
                                       width={600} height={1000}
-                                      blurDataURL={`${image.image}?h=600&w=400&fm=webp` || '/assets/icons/newPajama.png'}
+                                      blurDataURL={`${image.image}?h=600&w=400&fm=webp` || IMG_PLACEHOLDER}
                                     />
                                   </div>
                                 ) : (
-                                  // <PlayIcon className="h-full w-full object-center object-cover" />
-                                  <ImageZoom className='h-52 w-36 ' src='/assets/icons/newPajama.png'
-                                  sizes='320 600 1000'
-                                  width={320} height={600}
-                                  />
+                                  <PlayIcon className="h-full w-full object-center object-cover" />
                                 )}
                               </div>
                             </div>
@@ -539,20 +558,24 @@ export default function ProductView({
                     </Swiper>
                   </div>
                   {/*DESKTOP PRODUCT IMAGE SLIDER*/}
-                  <div className="hidden w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-                    <Tab.List className="grid sm:grid-cols-1 grid-cols-1 gap-6">
+                  <div className="w-full max-w mx-auto sm:block lg:max-w-none">
+                    <Tab.List className="grid sm:grid-cols-1 grid-cols-1-row-3 gap-2 ">
                       {content?.map((image: any, idx) => (
+                      
                         <Tab
                           key={`${idx}-tab`}
                         >
                           {() => (
                             <>
+                              
                               <span className="sr-only">{image.name}</span>
                               <span className="relative">
                                 {image.image ? (
                                   <div className='image-container'>
                                     {/* <ControlledZoom isZoomed={isZoomedT} onZoomChange={handleZoomChangeT}> */}
-                                    <ImageZoom src={generateUri(image.image, "h=1000&fm=webp") || '/assets/icons/newPajama.png'}  alt={image.name} 
+                                    <ImageZoom 
+                                     src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}   
+                                     alt={image.name} 
                                      priority
                                      className="w-full h-full object-center object-cover image"
                                      layout='responsive'
@@ -573,11 +596,11 @@ export default function ProductView({
                                     {/* </ControlledZoom> */}
                                   </div>
                                 ) : (
-                                  // <PlayIcon className="h-full w-full object-center object-cover" />
-                                  <ImageZoom 
-                                  width={600} height={1000}
-                                  sizes='320 600 1000'
-                                  className='h-full w-full ' src='/assets/icons/newPajama.png' alt='demo'/>
+                                  <>
+                                  {/* <PlayIcon className="h-full w-full object-center object-cover" /> */}
+                                  <img src="/pdp1.png" className=''/>
+                                  <img src="/pdp2.png" className=''/>
+                                  </>
                                 )}
                               </span>
                             </>
@@ -589,37 +612,98 @@ export default function ProductView({
                 </div>
               </div>
             </Tab.Group>
+            
+            
 
             {/* Product info */}
-            <div className="sm:mt-10 mt-2 px-4 sm:px-0 sm:mt-16 lg:mt-0 lg:col-span-5">
-              <h3 className="sm:text-md text-sm uppercase font-semibold sm:font-bold tracking-tight text-gray-700 mb-2">
+            <div className="sm:mt-10 py-10 px-4 sm:px-0 lg:mt-0 lg:col-span-6">
+              
+              {/* <h3 className="sm:text-md text-sm uppercase font-semibold sm:font-bold tracking-tight text-gray-700 mb-2">
                 {selectedAttrData.brand}
-              </h3>
-              <h1 className="sm:text-2xl text-lg font-normal tracking-tight text-black">
-                {selectedAttrData.name || selectedAttrData.productName}
-              </h1>
-              <p className="text-gray-500 sm:text-md text-sm mt-3 sm:mt-2 uppercase">
-                <strong>{GENERAL_REFERENCE}:</strong> {selectedAttrData.stockCode}
-              </p>
-              <div className="mt-2">
-                <h2 className="sr-only">{PRODUCT_INFORMATION}</h2>
-                {updatedProduct ? (
-                  <p className="sm:text-xl text-2xl font-bold text-black">
-                    {selectedAttrData.price?.formatted?.withTax}
-                    {selectedAttrData.listPrice?.raw.tax > 0 ? (
-                      <>
-                        <span className="px-2 font-xl line-through font-normal text-gray-400">
-                          {product.listPrice.formatted.withTax}
-                        </span>
-                        <span className='text-md text-red-500 font-semibold'>{discount}% off</span>
-                      </>
-                    ) : null}
-                  </p>
-                ) : (
-                  <p className="text-3xl text-gray-900">------</p>
-                )}
-              </div>
+              </h3> */}
+              <div className="flex justify-between">
+                <h1 className="sm:text-2xl text-sm tracking-tight font-semibold text-black">
+                  {selectedAttrData.name || selectedAttrData.productName}
+                </h1>
 
+                <h2 className="sr-only">{PRODUCT_INFORMATION}</h2>
+                
+                {updatedProduct ? (
+                    <p className="sm:text-xl text-2xl font-bold text-black">
+                      {selectedAttrData.price?.formatted?.withTax}
+                      {selectedAttrData.listPrice?.raw.tax > 0 ? (
+                        <>
+                          <span className="px-2 font-xl line-through font-normal text-gray-400">
+                            {product.listPrice.formatted.withTax}
+                          </span>
+                          <span className='text-md text-red-500 font-semibold'>{discount}% off</span>
+                        </>
+                      ) : null}
+                    </p>
+                  ) : (
+                    <p className="text-3xl text-gray-900">------</p>
+                  )}
+                  
+                </div>
+                  
+              <label className="py-100 text-sm">{selectedAttrData.description}</label>
+
+      <div className=" block pt-4">
+  
+        <div className="w-full ">
+            <AttributesHandler
+              product={product}
+              variant={selectedAttrData}
+              setSelectedAttrData={setSelectedAttrData}
+            />
+        </div>
+          
+        
+
+        {/* <div className="container py-0 lg:grid lg:grid-cols-5  text-center">
+            <div className="w-full border border-grey-40 hover:border-black mx-auto">
+                <label className=''>XXL</label>
+            </div>
+            <div className="w-full border border-grey-40 hover:border-black">
+                <label>XL</label>
+            </div>
+            <div className="w- border border-grey-40 hover:border-black">
+                <label>L</label>
+            </div>
+            <div className="w-full border border-grey-40 hover:border-black">
+             <label>M</label>
+            </div>
+            <div className="w-full border border-grey-40 hover:border-black">
+             <label>S</label>
+            </div>
+        </div> */}
+
+        <div className='flex py-3'>
+          <h3 className=" text-sm font-bold">Fabric : </h3>
+          <h3 className="text-sm py-0 px-3"> 100% GOTS Organic Cotton in 350gm </h3>
+        </div>
+ 
+        <div className="container py-0 grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xsm:grid-cols-3 ">
+            <div className="w-full h-17 border border-grey-40 hover:border-black">
+                <img src='/Untitled-1-fabric.jpg'  className='h-16 w-full'  ></img>
+            </div>
+            <div className="w-full h-17 border border-grey-40 hover:border-black ">
+                <img src='/Untitled-2-fabric.jpg' className='h-16 w-full' ></img>
+            </div>
+            <div className="w-full h-17 border border-grey-40 hover:border-black ">
+            <img src='/Untitled-3-fabric.jpg' className='h-16 w-full' ></img>
+            </div>
+        </div>
+
+         <div className='flex py-8 justify-between' >
+          <div>
+            <img src='/KSTMize.jpg' width={100}></img>
+            <label className="text-sm">Personalise with custom embroidery</label>
+          </div>
+          <label className='text-lg font-bold'>+ £20</label>
+          </div>
+       
+       </div>
               {/* Reviews */}
               <div className="mt-3">
                 <h3 className="sr-only">{GENERAL_REVIEWS}</h3>
@@ -643,33 +727,25 @@ export default function ProductView({
                   </p>
                 </div>
               </div>
-              <div className="w-full sm:w-6/12">
+      
+              {/* <div className="w-full sm:w-6/12">
                 <AttributesHandler
                   product={product}
                   variant={selectedAttrData}
                   setSelectedAttrData={setSelectedAttrData}
                 />
-              </div>
-              <h4 className="text-sm uppercase font-bold sm:font-semibold tracking-tight text-black my-4">
-                {PRODUCT_AVAILABILITY}:{' '}
-                {product.currentStock > 0 ? (
-                  <span>
-                    {PRODUCT_IN_STOCK}
-                  </span>
-                ) : (
-                  <span className="text-red-500">{PRODUCT_OUT_OF_STOCK}</span>
-                )}
-              </h4>
+              </div> */}
+       
               {updatedProduct ? (
                 <>
                   {!isEngravingAvailable && (
-                    <div className="sm:mt-8 mt-6 flex sm:flex-col1">
+                    <div className=" flex sm:flex-col1">
                       <Button
                         title={buttonConfig.title}
                         action={buttonConfig.action}
                         buttonType={buttonConfig.type || 'cart'}
                       />
-                      <button
+                      {/* <button
                         type="button"
                         onClick={() => {
                           if (!isInWishList) {
@@ -684,7 +760,7 @@ export default function ProductView({
                           <HeartIcon className="h-6 w-6 flex-shrink-0" />
                         )}
                         <span className="sr-only">{BTN_ADD_TO_FAVORITES}</span>
-                      </button>
+                      </button> */}
                     </div>
                   )}
 
@@ -698,6 +774,7 @@ export default function ProductView({
                           buttonType={buttonConfig.type || 'cart'}
                         />
                       </div>
+                      
                       <div className="sm:mt-8 mt-6 flex sm:flex-col1">
                         <Button
                           className='hidden sm:block '
@@ -737,6 +814,7 @@ export default function ProductView({
                 aria-labelledby="details-heading"
                 className="sm:mt-6 mt-4"
               >
+                 
                 <h2 id="details-heading" className="sr-only">
                   {PRICEMATCH_ADDITIONAL_DETAILS}
                 </h2>
@@ -771,18 +849,69 @@ export default function ProductView({
             />
           ) : null}
 
+            
+            <div className='grid grid-col-1 mr-0'>
+              <img src="/Banner-pic.jpg" className='h-30' ></img>
+            </div>
+
+
+
+          <div className='text-center py-2'>
+            <label className='text-lg font-semibold'>Recently viewed</label>
+       
+         {/* for recently viewed items */}     
+       <div className='py-4 h-100 w-full '>
+        {/* <Swiper
+            // install Swiper modules
+            modules={[Navigation]}
+            slidesPerView={3}
+            spaceBetween={0}
+            className="external-buttons py-7 pt-2"
+            navigation
+            height={6}
+          >
+        { localState?.map((val:any) => {
+        return(
+            <SwiperSlide className=' mx-0 py-2 border border-grey-40 hover:border-black'>
+              <div >
+                <a href={val.link}>
+                <img src="/slider-1 - Copy.jpg" className=''></img>
+                <p>{val.name}</p>
+                </a>
+              </div>
+            </SwiperSlide>
+              
+        ) 
+       }) } */}
+          <Swiper
+            // install Swiper modules
+              modules={[Navigation]}
+              slidesPerView={3}
+              spaceBetween={0}
+              className="external-buttons py-7 "
+              navigation
+          >
+            <SwiperSlide className='p-10 h-10 w-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='h-10 w-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='h-10 w-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='border h-10 w-10  p-10 border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide>
+          </Swiper>
+
+          </div>
+          </div>
+
           {/* Placeholder for pdp snippet */}
           <div className={`${ELEM_ATTR}${PDP_ELEM_SELECTORS[0]}`}></div>
 
 
-          <Reviews data={product.reviews} productId={product.recordId} />
+          {/* <Reviews data={product.reviews} productId={product.recordId} />
           {isEngravingAvailable && (
             <Engraving
               show={isEngravingOpen}
               submitForm={handleEngravingSubmit}
               onClose={() => showEngravingModal(false)}
             />
-          )}
+          )} */}
 
           <PriceMatch
             show={isPriceMatchModalShown}
@@ -820,7 +949,7 @@ export default function ProductView({
           }}
         />
       </main>
-
+    
       {
         previewImg ? (
           <Transition.Root show={previewImg != undefined} as={Fragment} >

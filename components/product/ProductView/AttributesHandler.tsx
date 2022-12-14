@@ -7,7 +7,7 @@ import attributesGenerator, {
   productLookup,
 } from '@components/utils/attributesGenerator'
 import { cloneDeep } from 'lodash'
-
+  
 const ATTR_COMPONENTS: any = {
   HorizontalList: (props: any) => <InlineList {...props} />,
   Dropdown: (props: any) => <Dropdown {...props} />,
@@ -161,9 +161,9 @@ export default function AttributesHandler({
 
   let a = [];
 
-  const KEY_SIZE = "clothing.size";
   const KEY_COLOR = "global.colour";
-  const KEY_ATTRIBUTES = [KEY_SIZE, KEY_COLOR];
+  const KEY_SIZE = "clothing.size";
+  const KEY_ATTRIBUTES = [KEY_COLOR, KEY_SIZE];
 
   const matchAttributes = variantAttributes && variantAttributes.length ? variantAttributes.filter((x: any) => KEY_ATTRIBUTES.includes(x.fieldCode)) : false;
   const sortAttributes = (matchAttributes && matchAttributes.length === KEY_ATTRIBUTES.length);
@@ -175,9 +175,9 @@ export default function AttributesHandler({
   const newVariantAttrs = sortAttributes
     ? cloneDeep(tempVariantAttrs)?.map((x: any, index: number) => {
       if (x.fieldCode === KEY_SIZE || x.fieldCode === KEY_COLOR) {
-        if (x.fieldCode === KEY_SIZE) {
+        if (x.fieldCode === KEY_COLOR ) {
           x.displayOrder = tempVariantAttrs?.find((x: any) => x.fieldCode === KEY_COLOR)?.displayOrder;
-        } else if (x.fieldCode === KEY_COLOR) {
+        } else if (x.fieldCode === KEY_SIZE ) {
           x.displayOrder = tempVariantAttrs?.find((x: any) => x.fieldCode === KEY_SIZE)?.displayOrder;
         }
         return x;
@@ -189,6 +189,7 @@ export default function AttributesHandler({
   return (
     <>
       {newVariantAttrs?.sort((first: any, second: any) => {
+
         return (first.displayOrder - second.displayOrder);
       })?.map((option: any, idx: number) => {
         const optionsToPass = generateOptions(option)
@@ -200,7 +201,7 @@ export default function AttributesHandler({
           TEMP_MAP[option.fieldCode] ||
           DefaultComponent
         return (
-          <div key={idx} className="py-2">
+          <div key={idx} className="py-5 ">
             <Component
               currentAttribute={originalAttribute}
               getStockPerAttribute={getStockPerAttribute}
