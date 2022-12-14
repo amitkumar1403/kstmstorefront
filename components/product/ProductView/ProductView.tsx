@@ -490,7 +490,7 @@ export default function ProductView({
   const saving = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
   const discount = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
   return (
-    <div className="bg-white page-container md:w-4/5 mx-auto">
+    <div className="bg-white page-container md:w-4/5 mx-auto sm:p-2">
       {/* Mobile menu */}
       <main className="sm:pt-8">
         <div className="lg:max-w-none">
