@@ -40,7 +40,7 @@ export default function InlineList({
                   classNames(
                     active && checked ? 'ring ring-offset-1' : '',
                     !active && checked ? 'ring-2' : '',
-                    'relative w-full h-10 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black '
+                    'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black '
                   )
                 }
                 
