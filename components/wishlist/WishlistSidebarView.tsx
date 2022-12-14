@@ -161,7 +161,7 @@ const WishlistSidebar: FC = () => {
                                   layout='responsive'
                                   width={80}
                                   height={80}
-                                  src={product.image || IMG_PLACEHOLDER}
+                                  src={product.image || '/assets/icons/newPajama.png'}
                                   alt={product.name}
                                   className="w-full h-full object-center object-cover"></Image>
                                 {/* <img
