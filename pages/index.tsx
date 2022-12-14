@@ -25,7 +25,9 @@ import { EVENTS_MAP } from '@components/services/analytics/constants'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 const Layout = dynamic(() => import('@components/common/Layout'))
 const Loader = dynamic(() => import('@components/ui/LoadingDots'))
-
+import { useState } from 'react'
+import SearchProductCard from '@components/product/ProductCard/SearchProductCard'
+import ProductCard from '@components/product/ProductCard/ProductCard'
 export async function getStaticProps({
   preview,
   locale,
@@ -42,13 +44,14 @@ export async function getStaticProps({
   const { pages } = await pagesPromise
   const { categories, brands } = await siteInfoPromise
 
-  // // ---- Display data from content entries ----
+  // ---- Display data from content entries ----
   // const id = "05905b59-84a7-41a3-b992-5137c11f86f7";
   // const PageContentsPromise = commerce.getPageContent({ id: id, slug: slugs?.slug });
   // const pageContents = await PageContentsPromise;
 
   // ---- Display data from pages ----
   //const pageId = "7c79d1b2-53e1-4435-a64f-8298446f3546";
+
   const PageContentsPromise = commerce.getPagePreviewContent({
     id: '08a007a7-ffeb-4502-ad1d-c1dcb6f1ca2a', //pageId,
     slug: HOME_PAGE_DEFAULT_SLUG, //slugs?.slug,
@@ -163,19 +166,18 @@ function Home({
       ))}
 
       {/* Carusal */}
-      <div className="flex flex-col px-4 py-4 pr-0 sm:px-4 sm:pr-4 sm:py-8 home-banner-swiper m-hide-navigation">
+      {/* <div className="grid grid-cols-4 gap-4">
+        {pageContents?.productcollection.map((item: any, gid: number) => (
+          <SearchProductCard key={gid} product={item} />
+        ))}
+      </div> */}
+
+      <div className="flex flex-col px-4 py-4 pr-0 sm:px-4 sm:pr-4 sm:py-8 home-banner-swiper m-hide-navigation w-full swiper-slide-home">
         <Swiper
           slidesPerView={4}
-          spaceBetween={10}
           navigation={true}
           loop={false}
           breakpoints={{
-            320: {
-              slidesPerView: 1,
-            },
-            480: {
-              slidesPerView: 2,
-            },
             640: {
               slidesPerView: 2,
             },
@@ -185,38 +187,17 @@ function Home({
             1024: {
               slidesPerView: 4,
             },
-            1520: {
-              slidesPerView: 4,
-            },
           }}
+          className="mySwier"
         >
           {pageContents?.productcollection.map((item: any, gid: number) => (
-            <SwiperSlide>
-              <div
-                className="inline-flex flex-col w-64 text-center border cursor-pointer lg:w-auto border-slate-300 hover:border-black"
-                key={gid}
-              >
-                <div className="relative group">
-                  <Link href={item.slug}>
-                    <div className="w-full overflow-hidden bg-gray-200 rounded-md aspect-w-1 aspect-h-1">
-                      <img
-                        src="/image/Caru1.jpg"
-                        // src={item.image || IMG_PLACE}
-                        alt={item.name}
-                        className="object-cover object-center w-full h-full"
-                      />
-                    </div>
-                  </Link>
-                  <div className="mt-6">
-                    <h3 className="mt-1 font-semibold text-gray-900">
-                      <span className="absolute inset-0" />
-                      {item.name}
-                    </h3>
-                    {item?.price?.formatted?.withTax}
-                  </div>
+            <>
+              <SwiperSlide>
+                <div className="grid grid-cols-1 text-left">
+                  <ProductCard key={gid} product={item} />
                 </div>
-              </div>
-            </SwiperSlide>
+              </SwiperSlide>
+            </>
           ))}
         </Swiper>
       </div>
