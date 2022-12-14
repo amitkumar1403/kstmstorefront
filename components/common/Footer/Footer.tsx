@@ -267,7 +267,7 @@ const Footer: FC<Props> = ({ config }) => {
         <div className="grid grid-cols-3 gap-0 mr-14">
           <div className="mx-14">
             {' '}
-            <p className="mx-auto mt-0 text-white sm:text-md md:text-xl lg:text-2xl xl:text-2xl font-heading mx-14">
+            <p className="mt-0 text-white sm:mx-auto sm:text-md md:text-xl lg:text-2xl xl:text-2xl font-heading mx-14">
               &copy; {COPYRIGHT_FOOTER_INFO}
             </p>
           </div>
