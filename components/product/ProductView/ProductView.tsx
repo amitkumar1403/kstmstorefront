@@ -8,6 +8,7 @@ import { NextSeo } from 'next-seo'
 import classNames from '@components/utils/classNames'
 import { useUI } from '@components/ui/context'
 import { KEYS_MAP, EVENTS } from '@components/utils/dataLayer'
+import { setItem, getItem } from '../../utils/localStorage'
 import cartHandler from '@components/services/cart'
 import axios from 'axios'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -117,37 +118,47 @@ export default function ProductView({
     ...product,
   })
   //for storing products in local storage for recently viewed
-  const [localState, setLocalState] = useState([]);
+  const dataFromLocalStorage = getItem('Recent-Products') || "";
+  const [localState, setLocalState] = useState(dataFromLocalStorage);
+
+  // const [userStorage, setUserStorage] = useState ( () => {
+  //   const savedItem:any = localStorage.getItem("Recent-Products");
+  //   const parsedItem:any = JSON.parse(savedItem);
+  //   return parsedItem || "";
+  // });
 
   const { ProductViewed } = EVENTS_MAP.EVENT_TYPES
   const { Product } = EVENTS_MAP.ENTITY_TYPES
   const fetchProduct = async () => {
     const url = !isPreview ? NEXT_GET_PRODUCT : NEXT_GET_PRODUCT_PREVIEW;;
     const response: any = await axios.post(url, { slug: slug })
-    console.log(JSON.stringify(response?.data))
+    console.log("hello "+JSON.stringify(response?.data))
 
-    // // condition to store products in local storage for recently viewed functionality
-    // if(response?.data?.product){
-    //   const recentlyViewedProduct = {
-    //     image : response.data.product.image,
-    //     price : response.data.product.listPrice.formatted.withTax,
-    //     name : response.data.product.name,
-    //     link : response.data.product.link,
-    //   }
+    // condition to store products in local storage for recently viewed functionality
+    if(response?.data?.product){
+      const recentlyViewedProduct = {
+        image : response.data.product.image,
+        price : response.data.product.listPrice.formatted.withTax,
+        name : response.data.product.name,
+        link : response.data.product.link,
+      }
 
-    //     let oldData = JSON.parse(localStorage.getItem("Recent-Products")  || "")
-    //     if(oldData){
-    //       window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
-    //     }
-    //     else{
-    //       window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
-    //     }
-    //     //setting only unique elem in State
-    //     const key = 'name';
-    //     const arrayUniqueByKey:any = [...new Map(oldData?.map((item:any) =>
-    //       [item[key], item])).values()];
-    //         setLocalState(arrayUniqueByKey)
+      setLocalState(recentlyViewedProduct);
+      setItem('Recent-Products',recentlyViewedProduct);
+
+    // let oldData = JSON.parse(localStorage.getItem("Recent-Products")  || "")
+    // if(oldData){
+    //   window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
     // }
+    // else{
+    //   window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
+    // }
+    // //setting only unique elem in State
+    // const key = 'name';
+    // const arrayUniqueByKey:any = [...new Map(oldData?.map((item:any) =>
+    //   [item[key], item])).values()];
+    //     setLocalState(arrayUniqueByKey)
+    }
 
     if (response?.data?.product) {
       eventDispatcher(ProductViewed, {
@@ -496,7 +507,7 @@ export default function ProductView({
       <main className="sm:pt-8">
         <div className="lg:w-full ">
           {/* Product */}
-          <div className="lg:grid pr-10 lg:grid-cols-12 lg:gap-x-16 lg:items-start">
+          <div className="lg:grid lg:pr-10 lg:grid-cols-12 lg:gap-x-16  lg:items-start">
             {/* Image gallery */}
             <Tab.Group as="div" className="flex flex-col-reverse lg:col-span-6 md:col-span-6 sm:col-span-6 xs:col-span-6 min-mobile-pdp">
               {/* Image selector */}
@@ -559,7 +570,7 @@ export default function ProductView({
                   </div>
                   {/*DESKTOP PRODUCT IMAGE SLIDER*/}
                   <div className="w-full max-w mx-auto sm:block lg:max-w-none">
-                    <Tab.List className="grid sm:grid-cols-1 grid-cols-1-row-3 gap-2 ">
+                    <Tab.List className="grid sm:grid-cols-1 grid-cols-1-row-3 ">
                       {content?.map((image: any, idx) => (
                       
                         <Tab
@@ -616,7 +627,7 @@ export default function ProductView({
             
 
             {/* Product info */}
-            <div className="sm:mt-10 py-10 px-4 sm:px-0 lg:mt-0 lg:col-span-6">
+            <div className="sm:mt-10 py-10 px-4 sm:px-0 sm:pr-2 sm:pl-2 lg:mt-0 lg:col-span-6">
               
               {/* <h3 className="sm:text-md text-sm uppercase font-semibold sm:font-bold tracking-tight text-gray-700 mb-2">
                 {selectedAttrData.brand}
