@@ -318,7 +318,7 @@ function CategoryPage({ category, products }: any) {
           }
         </div>
 
-        <div className="relative px-4 py-4 text-center sm:py-5 sm:px-0 lg:px-0">
+        <div className="relative px-4 py-4 mt-4 text-center sm:py-5 sm:px-0 lg:px-0">
           <div className="px-3 pt-2 text-center sm:pt-4 sm:px-0">
             {category.breadCrumbs && (
               <BreadCrumbs items={category.breadCrumbs} currentProduct={category} />
