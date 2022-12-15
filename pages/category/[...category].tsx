@@ -408,7 +408,7 @@ function CategoryPage({ category, products }: any) {
                   {/*content*/}
                   <div
                     style={{ width: '30rem' }}
-                    className='absolute top-0 hidden mt-0 mr-4 bg-gray-100 border-b-2 sm:block right-1 hover:shadow-2xl ' >
+                    className='absolute top-0 hidden mt-0  bg-gray-100 border-b-2 sm:block right-0 hover:shadow-2xl ' >
 
                     {/* <div
                     //  style={{width:'30rem'}}
