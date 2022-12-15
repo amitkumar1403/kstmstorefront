@@ -128,6 +128,7 @@ export default function CollectionPage(props: any) {
     error,
   } = useSwr(['/api/catalog/products', state], postData)
 
+  const [showModal, setShowModal] = useState(false);
   const [productListMemory, setProductListMemory] = useState({
     products: {
       results: [],
@@ -207,7 +208,7 @@ export default function CollectionPage(props: any) {
   const clearAll = () => dispatch({ type: CLEAR })
   
   return (
-    <main className="pb-0 md:w-4/5 mx-auto">
+    <main className="pb-0  mx-auto">
     <div className="pt-2 sm:pt-4">
        {props.breadCrumbs && (
          <BreadCrumbs items={props.breadCrumbs} currentProduct={props} />
@@ -236,14 +237,14 @@ export default function CollectionPage(props: any) {
        </div>
    }
    <div className="sm:py-3 py-2 px-4 sm:px-0">
-    <h4><span className='font-normal text-gray-500 text-sm'>Showing {props.products.total} {' '} {RESULTS}</span></h4>
-     <h1 className="sm:text-xl text-xl font-semibold tracking-tight text-black">
+    <h4 className='text-center'><span className='font-normal text-gray-500 text-sm '>Showing {props.products.total} {' '} {RESULTS}</span></h4>
+     <h1 className="sm:text-xl text-xl font-semibold tracking-tight text-black text-center">
        {props.name}
      </h1>
-     <h2>{props.description}</h2>
+     <h2 className='text-center'>{props.description}</h2>
    </div>
     {props.products.total > 0 &&
-      <div className="grid sm:grid-cols-12 grid-cols-1 gap-1 overflow-hidden">
+      <div className="">
         {props.allowFacets && (
           <>
             {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
@@ -258,17 +259,17 @@ export default function CollectionPage(props: any) {
                 routerSortOption={state.sortBy}
               />
             </div>
-            <div className="sm:col-span-2 sm:block hidden">
+            {/* <div className="sm:col-span-2 sm:block hidden">
               <ProductFilterRight
                 handleFilters={handleFilters}
                 products={props.products}
                 routerFilters={state.filters}
               />
-            </div>
-            <div className="sm:col-span-10 ">
+            </div> */}
+            <div className="sm:col-span-4 ">
               {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
-              <div className="flex-1 sm:block hidden">
+              {/* <div className="flex-1 sm:block hidden">
                 <ProductFiltersTopBar
                   products={data.products}
                   handleSortBy={handleSortBy}
@@ -276,7 +277,7 @@ export default function CollectionPage(props: any) {
                   clearAll={clearAll}
                   routerSortOption={state.sortBy}
                 />
-              </div>
+              </div> */}
               <ProductGridWithFacet
                 products={productDataToPass}
                 currentPage={props.currentPage}
