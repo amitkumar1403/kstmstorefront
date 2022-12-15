@@ -280,7 +280,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="https://www.facebook.com/Damenschofficial/"
+                  href="https://www.facebook.com"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-fb"></i>
@@ -290,7 +290,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="https://twitter.com/damensch_in?lang=en"
+                  href="https://twitter.com"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-twitter"></i>
@@ -300,7 +300,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="https://www.instagram.com/damenschofficial/"
+                  href="https://www.instagram.com"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-insta"></i>
@@ -310,7 +310,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="https://www.youtube.com/channel/UCmHTYSGgtCijnH82npTrCJw"
+                  href="#"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-tic"></i>
@@ -320,7 +320,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="https://www.linkedin.com/company/damensch"
+                  href="https://www.shopify.com"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-shopify"></i>
