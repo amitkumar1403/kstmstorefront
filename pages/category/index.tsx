@@ -31,7 +31,7 @@ export default function CategoryList(props: any) {
                           className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-gray-100 opacity-90"
                         />
 
-                        <span aria-hidden="true" className="absolute inset-0">
+                        <span aria-hidden="true" className="absolute inset-1">
                           {category?.image ? (
                             <div className='image-container'>
                               <Image
