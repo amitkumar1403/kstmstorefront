@@ -7,9 +7,10 @@ import Form from './form'
 import { GENERAL_CLOSE, GENERAL_ENGRAVING, GENERAL_ENGRAVING_PERSONALIZE_BOTTLE } from '@components/utils/textVariables'
 export default function Engraving({
   onClose = () => {},
-  engravingPrice = '5.99$',
+  engravingPrice = '£20',
   show = false,
   submitForm,
+  product
 }: any) {
   return (
     <Transition.Root show={show} as={Fragment}>
@@ -31,7 +32,7 @@ export default function Engraving({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="hidden fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity md:block" />
+            <Dialog.Overlay className=" inset-0 bg-opacity-75 transition-opacity md:block" />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
@@ -55,6 +56,7 @@ export default function Engraving({
                 <button
                   type="button"
                   className="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8"
+                 // className="btn-close absolute top-4 w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                   onClick={() => onClose(false)}
                 >
                   <span className="sr-only">{GENERAL_CLOSE}</span>
@@ -63,12 +65,22 @@ export default function Engraving({
                 {/* <div className="text-gray-900">hello</div>  */}
                 <section className="flex p-0 w-full flex-col">
                   <div className="py-0 flex flex-col">
-                    <h1 className="text-black text-xl font-bold">{GENERAL_ENGRAVING}</h1>
+                    {/* {JSON.stringify(product)} */}
+
+                    <img src='/KSTMize.jpg' className='h-4 w-24'></img>
                     <span className="py-2 text-gray-500 text-md">
-                      {GENERAL_ENGRAVING_PERSONALIZE_BOTTLE} {engravingPrice}{' '}
+                      {'Personalise with custom embroidery only for '} {engravingPrice}{' '}
                     </span>
                   </div>
-                  <Form submitForm={submitForm} />
+                  <div className='flex'>
+                    <div className='w-1/2'>
+                      <label className='text-sm font-bold'>{product.name}</label>
+                       <img src={product.image || '/pdp1.png'} className=' w-full'></img>
+                    </div>
+                    <div className='w-1/2 p-4'>
+                      <Form submitForm={submitForm} />
+                    </div>
+                  </div>
                 </section>
               </div>
             </div>

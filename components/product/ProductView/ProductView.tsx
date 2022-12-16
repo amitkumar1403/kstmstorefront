@@ -56,6 +56,7 @@ import { generateUri } from '@commerce/utils/uri-util'
 import { round } from 'lodash'
 import ImageZoom from "react-image-zooom";
 
+
 //DYNAMIC COMPONENT LOAD IN PRODUCT DETAIL
 const AttributesHandler = dynamic(() => import('./AttributesHandler'));
 const BreadCrumbs = dynamic(() => import('@components/ui/BreadCrumbs'));
@@ -708,13 +709,13 @@ export default function ProductView({
             </div>
         </div>
 
-         <div className='flex py-8 justify-between' >
+         {/* <div className='flex py-8 justify-between' >
           <div>
             <img src='/KSTMize.jpg' width={100}></img>
             <label className="text-sm">Personalise with custom embroidery</label>
           </div>
           <label className='text-lg font-bold'>+ £20</label>
-          </div>
+          </div> */}
        
        </div>
               {/* Reviews */}
@@ -751,7 +752,10 @@ export default function ProductView({
        
               {updatedProduct ? (
                 <>
-                  {!isEngravingAvailable && (
+                {/* {JSON.stringify(updatedProduct.customAttributes[2].value)} */}
+                  {/* {!isEngravingAvailable && ( */}
+                  {/* { !isEngravingAvailable && ( */}
+                    { !updatedProduct?.customAttributes[2]?.value && (
                     <div className=" flex sm:flex-col1">
                       <Button
                         title={buttonConfig.title}
@@ -777,9 +781,24 @@ export default function ProductView({
                     </div>
                   )}
 
-                  {isEngravingAvailable && (
+                  {updatedProduct?.customAttributes[2]?.value && (
                     <>
-                      <div className="sm:mt-8 mt-6 flex sm:flex-col1">
+                      <div className="sm:mt-8 mt-6 sm:col-1">
+                        <div className='flex justify-between'>
+                        <div>
+                          <img
+                            src='/KSTMize.jpg' 
+                            className="h-4 w-24 cursor-pointer"
+                            onClick={() => {
+                              showEngravingModal(true)
+                            }}
+                          >
+                            {/* <span className="font">KSTMize it</span> */}
+                          </img>
+                          <label className="text-sm">Personalise with custom embroidery</label>
+                        </div>
+                        <label className='font-bold'>{updatedProduct.listPrice.formatted.withTax}</label>
+                        </div>
                         <Button
                           className='block sm:hidden py-3'
                           title={buttonConfig.title}
@@ -795,13 +814,7 @@ export default function ProductView({
                           action={buttonConfig.action}
                           buttonType={buttonConfig.type || 'cart'}
                         />
-                        <button
-                          className="sm:ml-4 max-w-xs flex-1 bg-gray-400 border border-transparent rounded-sm uppercase py-3 px-8 flex items-center justify-center font-medium text-white hover:bg-pink focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-500 sm:w-full"
-                          onClick={() => showEngravingModal(true)}
-                        >
-                          <span className="font-bold">{GENERAL_ENGRAVING}</span>
-                        </button>
-                        <button
+                        {/* <button
                           type="button"
                           onClick={() => {
                             if (!isInWishList) {
@@ -816,7 +829,7 @@ export default function ProductView({
                             <HeartIcon className="h-6 w-6 flex-shrink-0" />
                           )}
                           <span className="sr-only">{BTN_ADD_TO_FAVORITES}</span>
-                        </button>
+                        </button> */}
                       </div>
                     </>
                   )}
@@ -917,14 +930,16 @@ export default function ProductView({
           <div className={`${ELEM_ATTR}${PDP_ELEM_SELECTORS[0]}`}></div>
 
 
-          {/* <Reviews data={product.reviews} productId={product.recordId} />
-          {isEngravingAvailable && (
+          {/* <Reviews data={product.reviews} productId={product.recordId} /> */}
+          {/* {isEngravingAvailable && ( */}
+          { updatedProduct?.customAttributes[2]?.value && (
             <Engraving
               show={isEngravingOpen}
               submitForm={handleEngravingSubmit}
               onClose={() => showEngravingModal(false)}
+              product={product}
             />
-          )} */}
+          )}
 
           <PriceMatch
             show={isPriceMatchModalShown}

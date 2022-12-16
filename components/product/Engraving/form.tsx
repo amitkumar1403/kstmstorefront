@@ -5,14 +5,12 @@ import { config } from './config'
 
 const schema = Yup.object().shape({
   line1: Yup.string().required(VALIDATION_PLEASE_COMPLETE_THIS_FIELD),
-  line2: Yup.string(),
-  line3: Yup.string(),
 })
 
 export default function EngravingForm({ submitForm }: any) {
   return (
     <Formik
-      initialValues={{ line1: '', line2: '', line3: '' }}
+      initialValues={{ line1: ''}} // initial values
       onSubmit={(values) => submitForm(values)}
       validationSchema={schema}
     >
