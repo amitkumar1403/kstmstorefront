@@ -113,14 +113,14 @@ function Home({
       {/* <p>{JSON.stringify(pageContents)}</p> */}
       {/* topbanner */}
       <div className="grid gap-0 mt-10 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
-        {pageContents?.topbanner.map((topbanners: any, hid: number) => (
-          <Link href={topbanners.topbanner_link} passHref key={hid}>
+        {pageContents?.topbanner?.map((topbanners: any, hid: number) => (
+          <Link href={topbanners?.topbanner_link} passHref key={hid}>
             <a>
               <div className="relative">
-                <img src={topbanners.topbanner_image} alt="" />
+                <img src={topbanners?.topbanner_image} alt="" />
                 <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
                   <h2 className="text-sm font-bold">
-                    {topbanners.topbanner_title}
+                    {topbanners?.topbanner_title}
                   </h2>
                 </div>
               </div></a>
@@ -130,16 +130,16 @@ function Home({
 
       {/* categorylist */}
       <div className="grid gap-0 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2">
-        {pageContents?.categorylist.map((category: any, id: number) => (
+        {pageContents?.categorylist?.map((category: any, id: number) => (
           <Link href={category?.categorylist_link} passHref key={id}><a>
             <div
               className="relative border border-slate-300 hover:border-black"
 
             >
-              <img src={category.categorylist_image} alt="" />
+              <img src={category?.categorylist_image} alt="" />
               <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
                 <h2 className="text-sm font-bold">
-                  {category.categorylist_title}
+                  {category?.categorylist_title}
                 </h2>
               </div>
             </div></a>
@@ -148,21 +148,21 @@ function Home({
       </div>
 
       {/* Banner */}
-      {pageContents?.banner.map((banner: any, sid: number) => (
-        <Link href={banner.link} key={sid} passHref><a>
+      {pageContents?.banner?.map((banner: any, sid: number) => (
+        <Link href={banner?.link} key={sid} passHref><a>
           <div className="flex columns-auto">
-            <img src={banner.url} alt="" />
+            <img src={banner?.url} alt="" />
           </div></a>
         </Link>
       ))}
 
       {/* Headings */}
-      {pageContents?.heading.map((headings: any, pid: number) => (
+      {pageContents?.heading?.map((headings: any, pid: number) => (
         <div className="mt-2 text-center" key={pid}>
-          <h2 className="text-lg font-bold">{headings.heading_title}</h2>
+          <h2 className="text-lg font-bold">{headings?.heading_title}</h2>
           <div
             className=""
-            dangerouslySetInnerHTML={{ __html: headings.heading_subtitle }}
+            dangerouslySetInnerHTML={{ __html: headings?.heading_subtitle }}
           ></div>
         </div>
       ))}
@@ -192,7 +192,7 @@ function Home({
           }}
           className="mySwier"
         >
-          {pageContents?.productcollection.map((item: any, gid: number) => (
+          {pageContents?.productcollection?.map((item: any, gid: number) => (
             <>
               <SwiperSlide key={gid}>
                 <div className="grid grid-cols-1 text-left">
