@@ -98,10 +98,10 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
 
   let accountDropdownConfig = accountDropDownConfigUnauthorized
   let title = !isGuestUser
-    ? user.userId
-      ? `Hi, ${user.firstName}`
-      : 'My account'
-    : ''
+  ? user.userId  
+    ? (!(typeof(user.firstName)==='undefined')?(`Hi, `+user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)):`Hi`)
+    : 'My account'
+  : ''
 
   if (!isGuestUser && user.userId) {
     accountDropdownConfig = accountDropDownConfigAuthorized
