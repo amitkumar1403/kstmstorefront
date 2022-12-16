@@ -84,6 +84,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import ProductColors from './ProductColors'
 
 export default function ProductView({
   data = { images: [] },
@@ -551,7 +552,7 @@ export default function ProductView({
                                       src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}
                                       //src="/slider-1 - Copy.jpg"
                                       alt={image.name}
-                                      className="w-full h-full object-center object-cover image"
+                                      className="w-full h-full object-center object-fill image"
                                       layout='responsive'
                                       sizes='320 600 100'
                                       width={600} height={1000}
@@ -570,7 +571,7 @@ export default function ProductView({
                   </div>
                   {/*DESKTOP PRODUCT IMAGE SLIDER*/}
                   <div className="w-full max-w mx-auto sm:block lg:max-w-none">
-                    <Tab.List className="grid sm:grid-cols-1 grid-cols-1-row-3 ">
+                    <Tab.List className="grid sm:grid-cols-1 md:grid-cols-1 grid-cols-1-row-3 ">
                       {content?.map((image: any, idx) => (
                       
                         <Tab
@@ -580,19 +581,20 @@ export default function ProductView({
                             <>
                               
                               <span className="sr-only">{image.name}</span>
-                              <span className="relative">
+                              <span className="relative md:w-full sm:w-full">
                                 {image.image ? (
-                                  <div className='image-container'>
+                                  <div className='image-container sm:w-full md:w-full'>
                                     {/* <ControlledZoom isZoomed={isZoomedT} onZoomChange={handleZoomChangeT}> */}
                                     <ImageZoom 
-                                     src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}   
-                                     alt={image.name} 
-                                     priority
-                                     className="w-full h-full object-center object-cover image"
-                                     layout='responsive'
-                                     sizes='320 600 1000'
-                                     width={600} height={1000}
+                                    src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}   
+                                    alt={image.name} 
+                                    priority
+                                    className="w-full h-full  object-center object-cover image"
+                                    layout='responsive'
+                                    sizes='320 600 1000'
+                                    width={600} height={1000}
                                     />
+
                                     {/* <Image
                                       priority
                                       src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}
@@ -627,7 +629,7 @@ export default function ProductView({
             
 
             {/* Product info */}
-            <div className="sm:mt-10 py-10 px-4 sm:px-0 sm:pr-2 sm:pl-2 lg:mt-0 lg:col-span-6">
+            <div className="sm:mt-10 md:py-10 sm:py-4 px-4 sm:px-0 sm:pr-2 sm:pl-2 lg:mt-0 lg:col-span-6">
               
               {/* <h3 className="sm:text-md text-sm uppercase font-semibold sm:font-bold tracking-tight text-gray-700 mb-2">
                 {selectedAttrData.brand}
