@@ -32,19 +32,31 @@ export default function InlineList({
             const path = generateLink(fieldCode, item.fieldValue)
             return (
               <RadioGroup.Option
-                key={idx}
-                value={item.fieldValue}
-                style={{ backgroundColor: item.fieldValue }}
+                              key={idx}
+                              value={item.fieldValue}
+                              style={{ backgroundColor: item.fieldValue }}
+                              className={({ active, checked }) =>
+                                classNames(
+                                  currentAttribute == item.fieldValue ? 'border-black' : 'border-gray-400',
+                                  'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '  
+                                )
+                              }
+                            >
+               {/* <RadioGroup.Option */}
+              {/* //   key={idx}
+              //   value={item.fieldValue}
+              //   style={{ backgroundColor: item.fieldValue }}
                 
-                className={({ active, checked }) =>
-                  classNames(
-                    active && checked ? 'ring ring-offset-1' : '',
-                    !active && checked ? 'ring-2' : '',
-                    'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black '
-                  )
-                }
-                
-              >
+              //   className={({ active, checked }) =>
+              //     classNames(
+              //       active && checked ? 'ring ring-offset-1' : '',
+              //       !active && checked ? 'ring-2 ' : '',
+              //       'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '
+              //       'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '
+              //       )
+              //   }
+              //   'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '
+              // > */}
                 <RadioGroup.Label as="p" className="sr-only">
                   {item.fieldName}
                 </RadioGroup.Label>

@@ -696,14 +696,14 @@ export default function ProductView({
           <h3 className="text-sm py-0 px-3"> 100% GOTS Organic Cotton in 350gm </h3>
         </div>
  
-        <div className="container py-0 grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xsm:grid-cols-3 ">
+        <div className="container py-0 grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xsm:grid-cols-3  ">
             <div className="w-full h-17 border border-grey-40 hover:border-black">
                 <img src='/Untitled-1-fabric.jpg'  className='h-16 w-full'  ></img>
             </div>
-            <div className="w-full h-17 border border-grey-40 hover:border-black ">
+            <div className="w-full h-17 border border-grey-40 hover:border-black">
                 <img src='/Untitled-2-fabric.jpg' className='h-16 w-full' ></img>
             </div>
-            <div className="w-full h-17 border border-grey-40 hover:border-black ">
+            <div className="w-full h-17 border border-grey-40 hover:border-black">
             <img src='/Untitled-3-fabric.jpg' className='h-16 w-full' ></img>
             </div>
         </div>

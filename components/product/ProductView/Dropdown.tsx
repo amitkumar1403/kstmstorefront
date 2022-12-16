@@ -319,8 +319,8 @@ export default function Dropdown({
                 }}
                 className={({ active }) =>
                 classNames(
-                  active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                'mx-auto py-2 w-full cursor-default select-none relative border border-grey-60 hover:border-black' 
+                  active ? 'text-white bg-black border border-black' : 'text-gray-900',
+                'mx-auto py-2 w-full cursor-default select-none relative border border-grey-60 hover:border-black focus:outline-none' 
                 )
                 // py-2 pr-2 pl-2 md:py-2 md:pr-2 md:pl-2 sm:py-2 sm:pr-2 sm:pl-2 
                 }
