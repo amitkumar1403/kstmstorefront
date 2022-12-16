@@ -18,6 +18,7 @@ export const NEXT_SEARCH_ADVANCED_ENDPOINT =
   '/api/catalog/get-category-products'
 export const PRODUCT_API_ENDPOINT = `/api/${process.env.NEXT_PUBLIC_API_VERSION}/catalog/product/`
 export const PRODUCT_PREVIEW_API_ENDPOINT = `/api/${process.env.NEXT_PUBLIC_API_VERSION}/catalog/product/preview`
+export const PAGE_PREVIEW_CONTENT_ENDPOINT = `api/${process.env.BETTERCMS_API_VERSION}/page`;
 export const BASKET_ENDPOINT = `/api/${process.env.NEXT_PUBLIC_API_VERSION}/commerce/basket`
 export const REGISTER_CUSTOMER = `/api/${process.env.NEXT_PUBLIC_API_VERSION}/commerce/customer/create`
 export const AUTHENTICATE_CUSTOMER = `/api/${process.env.NEXT_PUBLIC_API_VERSION}/commerce/customer/authenticate`
@@ -92,6 +93,7 @@ export const NEXT_CREATE_RETURN_DATA = '/api/return/create'
 export const NEXT_GET_RETURNS = '/api/return/get-user-returns'
 //CONSTANTS
 
+export const HOME_PAGE_DEFAULT_SLUG = "home";
 export const DefaultSessionCookieKey: string = `defaultSession`
 export const SessionIdCookieKey: string = `sessionId`
 export const DeviceIdKey: string = `deviceId`

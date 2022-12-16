@@ -11,9 +11,9 @@ import {
 export default function CollectionList(props: any) {
   
   return (
-    <main className="w-full mx-auto md:w-4/5 px-6 sm:px-0">
-      <section aria-labelledby="products-heading" className="mt-8">
-        <h2 className="text-2xl font-bold uppercase tracking-tight text-gray-900">
+    <main className="w-full mx-auto md:w-4/5 px-6 sm:px-0 mt-10">
+      <section aria-labelledby="products-heading" className="mt-16">
+        <h2 className="text-2xl font-bold uppercase tracking-tight text-gray-900 text-center">
           {SHOP_BY_COLLECTION}
         </h2>
         {props?.data.length > 0 &&
