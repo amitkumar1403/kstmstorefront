@@ -17,8 +17,8 @@ export default function CategoryList(props: any) {
         {props?.data.length > 0 &&
           <div className="flow-root mt-1 sm:mt-0">
             <div className="my-0">
-              <div className="box-content relative z-10">
-                <div className="grid grid-cols-2 py-1 sm:py-6 sm:gap-y-8 gap-y-6 sm:grid-cols-6 gap-x-6 lg:grid-cols-6 xl:gap-x-8 ipad-grid-cols-6">
+              <div className="box-content relative">
+                <div className="grid grid-cols-2 py-1 sm:py-6 sm:gap-y-8 gap-y-6 sm:grid-cols-6 gap-x-6 lg:grid-cols-6 xl:gap-x-8">
                   {props?.data?.map((category: any, key: number) => (
                     <Link key={key} href={`/${category.link}`}>
                       <a
@@ -31,16 +31,14 @@ export default function CategoryList(props: any) {
                           className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-gray-100 opacity-90"
                         />
 
-                        <span aria-hidden="true" className="absolute insert-0">
+                        <span aria-hidden="true" className="absolute inset-1">
                           {category?.image ? (
                             <div className='image-container'>
                               <Image
                                 src={`${category?.image}?fm=webp&h=800&w=400` || IMG_PLACEHOLDER}
                                 alt={category.name}
                                 className="object-cover object-center w-full h-full group-hover:opacity-75 image"
-                                layout="responsive"
-                                width={500}
-                                height={500}
+                                layout="fill"
                               ></Image>
                             </div>
                           ) : (
@@ -48,9 +46,7 @@ export default function CategoryList(props: any) {
                               src={IMG_PLACEHOLDER}
                               alt={category.name}
                               className="object-cover object-center w-full h-full group-hover:opacity-75 image"
-                              layout="responsive"
-                              width={500}
-                              height={500}
+                              layout="fill"
                             ></Image>
                           )}
                         </span>

@@ -52,9 +52,9 @@ import React, { memo } from 'react';
     <>
   
     {console.count('Rrender counter')}
-    <div className='flex justify-end mr-2 mt-2'>
+    {/* <div className='flex justify-end mr-2 mt-2'>
     <div className={`sm:h-16 sm:w-30 fixed -mt-24 z-50 bg-transparent font-medium   px-2 py-1  ${altertShow && `bg-gray-200 `}`} role="alert">
-    {/* <Alert>A simple alert for showing message.</Alert> */}
+   
       <Alert
         show={altertShow}
         dismissible={{
@@ -64,7 +64,7 @@ import React, { memo } from 'react';
       You have seen all the products ✌ ||  Please wait 🥱
       </Alert>
     </div>
-    </div>
+    </div> */}
    
     <InfiniteScroll
       dataLength={total} //This is important field to render the next data
