@@ -280,7 +280,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="#"
+                  href="https://www.facebook.com"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-fb"></i>
@@ -290,7 +290,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="#"
+                  href="https://twitter.com"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-twitter"></i>
@@ -300,8 +300,8 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="#"
-                  className="inline-block"
+                 href="https://www.instagram.com"
+                 className="inline-block"
                 >
                   <i className="sprite-icon sprite-insta"></i>
                 </a>
@@ -320,7 +320,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="#"
+                  href="https://www.shopify.com"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-shopify"></i>
