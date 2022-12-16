@@ -164,8 +164,8 @@ function Cart({ cart }: any) {
                     <div className="flex-shrink-0">
                       <Image
                         layout="fixed"
-                        width={140}
-                        height={180}
+                        width={160}
+                        height={250}
                         src={generateUri(product.image, "h=200&fm=webp") || IMG_PLACEHOLDER} 
                         alt={product.name}
                         className="w-16 h-20 rounded-sm object-center object-cover sm:w-48 sm:h-48 image"
