@@ -128,6 +128,7 @@ export default function CollectionPage(props: any) {
     error,
   } = useSwr(['/api/catalog/products', state], postData)
 
+  const [showModal, setShowModal] = useState(false);
   const [productListMemory, setProductListMemory] = useState({
     products: {
       results: [],
@@ -207,7 +208,13 @@ export default function CollectionPage(props: any) {
   const clearAll = () => dispatch({ type: CLEAR })
   
   return (
-    <main className="pb-0 md:w-4/5 mx-auto">
+    <main className="pb-0  mx-auto mt-10">
+       <img src='/assets/icons/filter.png'
+            alt='filter-icon'
+            onClick={() => {
+              !showModal ? setShowModal(true) : setShowModal(false)
+            }}
+            className='absolute top-0 hidden w-10 mt-8 mr-4 cursor-pointer sm:block right-7 z-50' />
     <div className="pt-2 sm:pt-4">
        {props.breadCrumbs && (
          <BreadCrumbs items={props.breadCrumbs} currentProduct={props} />
@@ -235,15 +242,32 @@ export default function CollectionPage(props: any) {
          </Swiper>
        </div>
    }
-   <div className="sm:py-3 py-2 px-4 sm:px-0">
-    <h4><span className='font-normal text-gray-500 text-sm'>Showing {props.products.total} {' '} {RESULTS}</span></h4>
-     <h1 className="sm:text-xl text-xl font-semibold tracking-tight text-black">
+   <div className="sm:py-3 py-2 px-4 sm:px-0 ">
+  
+
+
+    <h4 className='text-center'><span className='font-normal text-gray-500 text-sm '>Showing {props.products.total} {' '} {RESULTS}</span></h4>
+     <h1 className="sm:text-xl text-xl font-semibold tracking-tight text-black text-center">
        {props.name}
      </h1>
-     <h2>{props.description}</h2>
+     <h2 className='text-center'>{props.description}</h2>
+
+     <span className='absolute z-50 right-10 -mt-12 '>  
+
+<img src='/assets/icons/filter.png'
+         alt='filter-icon'
+         onClick={() => {
+           !showModal ? setShowModal(true) : setShowModal(false)
+         }}
+         className='w-10 h-10 cursor-pointer sm:block right-7' />
+         </span>
+  
+   {/* @nd div */}
+   
    </div>
+  
     {props.products.total > 0 &&
-      <div className="grid sm:grid-cols-12 grid-cols-1 gap-1 overflow-hidden">
+      <div className="">
         {props.allowFacets && (
           <>
             {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
@@ -258,17 +282,17 @@ export default function CollectionPage(props: any) {
                 routerSortOption={state.sortBy}
               />
             </div>
-            <div className="sm:col-span-2 sm:block hidden">
+            {/* <div className="sm:col-span-2 sm:block hidden">
               <ProductFilterRight
                 handleFilters={handleFilters}
                 products={props.products}
                 routerFilters={state.filters}
               />
-            </div>
-            <div className="sm:col-span-10 ">
+            </div> */}
+            <div className="sm:col-span-4 ">
               {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
-              <div className="flex-1 sm:block hidden">
+              {/* <div className="flex-1 sm:block hidden">
                 <ProductFiltersTopBar
                   products={data.products}
                   handleSortBy={handleSortBy}
@@ -276,13 +300,71 @@ export default function CollectionPage(props: any) {
                   clearAll={clearAll}
                   routerSortOption={state.sortBy}
                 />
-              </div>
+              </div> */}
+
+              {showModal ? (
+                <>
+                  {/*content*/}
+                  <div
+                    style={{ width: '30rem' }}
+                    className='z-50 absolute  hidden mt-0  bg-gray-100 border-b-2 sm:block right-0 hover:shadow-2xl ' >
+
+                    {/* <div
+                    //  style={{width:'30rem'}}
+                    className="hidden sm:block"> */}
+                    <div className='relative flex flex-col w-full px-6 overflow-y-scroll border-r max-h-40R'>
+
+                      <ProductFiltersTopBar
+                        products={data.products}
+                        handleSortBy={handleSortBy}
+                        routerFilters={state.filters}
+                        clearAll={clearAll}
+                        routerSortOption={state.sortBy}
+                      />
+                      {/* </div> */}
+
+                      <ProductFilterRight
+                        handleFilters={handleFilters}
+                        products={data.products}
+                        routerFilters={state.filters}
+
+                      />
+
+                    </div>
+
+                    {/*footer*/}
+                    <div className="grid grid-cols-2 border-b-2 py-7 px-7">
+                      <button
+                        className="col-span-1 px-6 py-6 text-lg font-bold text-gray-700 border border-gray-200 hover:text-black hover:border-black"
+                        type="button"
+                        onClick={() => { setShowModal(false), clearAll() }}
+                      >
+                        Clear All
+                      </button>
+                      <button
+                        className="col-span-1 px-6 py-6 text-lg font-bold text-white bg-black border border-black hover:border-white hover:text-gray-200"
+                        type="button"
+                        onClick={() => setShowModal(false)}
+                      >
+                        Apply
+                      </button>
+                    </div>
+
+
+                  </div>
+                  {/* <div className="fixed inset-0 z-40 bg-black opacity-25"></div> */}
+                </>
+              ) : null}
+
               <ProductGridWithFacet
                 products={productDataToPass}
                 currentPage={props.currentPage}
                 handlePageChange={handlePageChange}
                 handleInfiniteScroll={handleInfiniteScroll}
               />
+
+              
+
             </div>
           </>
         )}

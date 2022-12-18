@@ -16,12 +16,14 @@ export default function FiltersRightOpen({
   return (
     <div className="bg-transparent ">
       {/* Mobile filter dialog */}
-      <div className="relative  w-full border-r flex flex-col px-6 overflow-y-scroll max-h-40R bg-gray-100 text-black ">
-        <div className="px-0 pt-2 flex items-center justify-between">
+      <div className=" bg-gray-100 text-black ">
+      {/* <div className="relative  w-full border-r flex flex-col px-6 overflow-y-scroll max-h-40R bg-gray-100 text-black "> */}
+
+        {/* <div className="px-0 pt-2 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900">
             {GENERAL_FILTER_TITLE}
           </h2>
-        </div>
+        </div> */}
 
         {/* Filters */}
         <form className="mt-2 ">
@@ -49,21 +51,23 @@ export default function FiltersRightOpen({
               </>
           ))}
 
+                
+
           {products.filters?.map((section: any) => (
             <div
               key={section.name}
               className=" border-gray-200 sm:pr-4 px-4 sm:px-0 py-6"
             >
               <>
-                <h3 className="-mx-2 -my-3">
+                <h3 className="-mx-2 -my-3 ">
                   <div className="px-2 py-2  w-full flex items-center justify-between text-md ">
-                    <span className="font-medium text-gray-900">
+                    <span className="font-medium  text-gray-900">
                       {section.name}
                     </span>
                   </div>
                 </h3>
                 <div className="pt-3">
-                  <div >
+                  <div>
                     <FilterList
                       handleFilters={handleFilters}
                       sectionKey={section.key}

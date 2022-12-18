@@ -6,7 +6,7 @@
 
 @tailwind utilities;
 
-.newsletter-form{
+.newsletter-form {
   max-width: 600px;
   width: 100%;
 }
@@ -307,11 +307,31 @@
 }
 
 
-
-body {overflow-x: hidden; /* Hide horizontal scrollbar */}
-
-
-.sr-only{
+.sr-only {
   width: 50% !important;
   height: 10% !important;
+}
+
+body {
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
+}
+
+.swiper-slide-home .swiper-slide {
+  text-align: center !important;
+  font-size: 18px !important;
+  background: #fff !important;
+  display: unset !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .ipad-grid-cols-6 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+ }
+}
+@media only screen and (min-width: 640px) and (max-width: 768px) {
+  .ipad-grid-cols-6 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+ }
 }

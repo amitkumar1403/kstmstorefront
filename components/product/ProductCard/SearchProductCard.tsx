@@ -42,11 +42,7 @@ interface Attribute {
 const SearchProductCard: FC<Props> = ({ product }) => {
   const [isInWishList, setItemsInWishList] = useState(false)
   const [isEntered, setisEntered] = useState(false)
-  const [showColorPrice,setColorPrice]=useState({
-    image:"/assets/icons/colors.png",
-    price:"£80.00",
-    name:"Leggings Core"
-  })
+  
   const [currentProductData, setCurrentProductData] = useState({
     image: product.image,
     link: product.slug,
@@ -187,14 +183,13 @@ const SearchProductCard: FC<Props> = ({ product }) => {
               <Image
                 priority
                 src={generateUri(currentProductData.image, "h=400&fm=webp") || '/assets/icons/newPajama.png'} 
-                // src='/assets/icons/newPajama.png' 
                 alt={product.name}
                 onMouseEnter={() => {handleHover('enter')}}
                 onMouseLeave={() => {handleHover('leave')}}
                 className="w-full sm:h-full h-full object-center object-cover"
                 layout='responsive'
-                width={200}
-                height={200}
+                width={95}
+                height={90}
               >
                 
                 </Image>  
@@ -257,19 +252,20 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           {/* Product Price */}
             {isEntered ? 
           (
-            <div className='group-hover:bg-gray-200 sm:mt-1 mt-1 font-bold text-md text-gray-500 mb-1'>
+            <div className='group-hover:bg-gray-200 sm:mt-1 mt-1 font-bold text-md text-gray-500 '>
             <p className='text-center text-gray-500 text-bold' >  {product?.price?.formatted?.withTax}</p>
             </div>
-          ):<div className='h-14'></div>
+          ):<div className='h-14 '></div>
           }
+          {/* {(product?.listPrice?.raw?.withTax > 0 && product?.listPrice?.raw?.withTax != product?.price?.raw?.withTax ) &&
+             ( <>
+                <span className='px-2 text-sm line-through font-normal text-gray-400  '>{product?.listPrice?.formatted?.withTax}</span>
+                <span className='text-red-600 text-sm font-semibold '>{discount}% Off</span>
+              </>)
+        
+            } */}
 
           {/* {product?.price?.formatted?.withTax} */}
-          {product?.listPrice?.raw?.withTax > 0 && product?.listPrice?.raw?.withTax != product?.price?.raw?.withTax &&
-              <>
-                <span className='px-2 text-sm line-through font-normal text-gray-400'>{product?.listPrice?.formatted?.withTax}</span>
-                <span className='text-red-600 text-sm font-semibold'>{discount}% Off</span>
-              </>
-            }
         </p>            
         <div className="flex flex-col">
           <Button
@@ -281,16 +277,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           />            
         </div>
       </div>
-      {/* {isEntered && 
-      (
-        <div className='group-hover:bg-gray-200'>
-        <img src={showColorPrice.image}
-        className='m-auto w-50 h-10'
-        />
-        <p className='text-center text-gray-400 text-bold' >{showColorPrice.price}</p>
-        </div>
-      )
-      } */}
+    
 
     </div>
   </div>
