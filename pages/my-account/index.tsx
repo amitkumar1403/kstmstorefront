@@ -49,7 +49,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
 
   return (
     <section className="relative py-10 text-gray-900">
-      <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-12">
         <div className="flex flex-col justify-between md:flex-row">
           <Tab.Group vertical defaultIndex={defaultView}>
             <Tab.List className="sticky top-0 flex flex-col w-full h-full rounded-lg md:w-1/4 bg-gray-50">
