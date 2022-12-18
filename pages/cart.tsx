@@ -144,8 +144,8 @@ function Cart({ cart }: any) {
 
   return (
     <div className="bg-white w-full sm:w-3/5 mx-auto">
-      <main className="sm:pt-6 pt-6 sm:pb-16 pb-12 sm:pb-0 px-4 sm:px-0 lg:px-0">
-        <h1 className="text-2xl font-semibold tracking-tight text-black sm:text-2xl uppercase relative">
+      <main className="sm:pt-6 pt-6 sm:pb-16 pb-12 sm:pb-0 px-4 sm:px-0 lg:px-0 mt-14">
+        <h1 className="text-2xl font-semibold tracking-tight text-black sm:text-2xl uppercase relative text-center">
           {GENERAL_SHOPPING_CART} <span className='font-semibold text-sm text-gray-400 absolute top-2 pl-2'>{'- '}{userCart.lineItems.length} Items added</span>
         </h1>
         {!isEmpty && (
@@ -164,8 +164,8 @@ function Cart({ cart }: any) {
                     <div className="flex-shrink-0">
                       <Image
                         layout="fixed"
-                        width={140}
-                        height={180}
+                        width={160}
+                        height={250}
                         src={generateUri(product.image, "h=200&fm=webp") || IMG_PLACEHOLDER} 
                         alt={product.name}
                         className="w-16 h-20 rounded-sm object-center object-cover sm:w-48 sm:h-48 image"
