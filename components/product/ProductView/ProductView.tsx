@@ -8,6 +8,7 @@ import { NextSeo } from 'next-seo'
 import classNames from '@components/utils/classNames'
 import { useUI } from '@components/ui/context'
 import { KEYS_MAP, EVENTS } from '@components/utils/dataLayer'
+import { setItem, getItem } from '../../utils/localStorage'
 import cartHandler from '@components/services/cart'
 import axios from 'axios'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -55,6 +56,7 @@ import { generateUri } from '@commerce/utils/uri-util'
 import { round } from 'lodash'
 import ImageZoom from "react-image-zooom";
 
+
 //DYNAMIC COMPONENT LOAD IN PRODUCT DETAIL
 const AttributesHandler = dynamic(() => import('./AttributesHandler'));
 const BreadCrumbs = dynamic(() => import('@components/ui/BreadCrumbs'));
@@ -83,6 +85,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import ProductColors from './ProductColors'
 
 export default function ProductView({
   data = { images: [] },
@@ -117,37 +120,47 @@ export default function ProductView({
     ...product,
   })
   //for storing products in local storage for recently viewed
-  const [localState, setLocalState] = useState([]);
+  const dataFromLocalStorage = getItem('Recent-Products') || "";
+  const [localState, setLocalState] = useState(dataFromLocalStorage);
+
+  // const [userStorage, setUserStorage] = useState ( () => {
+  //   const savedItem:any = localStorage.getItem("Recent-Products");
+  //   const parsedItem:any = JSON.parse(savedItem);
+  //   return parsedItem || "";
+  // });
 
   const { ProductViewed } = EVENTS_MAP.EVENT_TYPES
   const { Product } = EVENTS_MAP.ENTITY_TYPES
   const fetchProduct = async () => {
     const url = !isPreview ? NEXT_GET_PRODUCT : NEXT_GET_PRODUCT_PREVIEW;;
     const response: any = await axios.post(url, { slug: slug })
-    console.log(JSON.stringify(response?.data))
+    console.log("hello "+JSON.stringify(response?.data))
 
-    // // condition to store products in local storage for recently viewed functionality
-    // if(response?.data?.product){
-    //   const recentlyViewedProduct = {
-    //     image : response.data.product.image,
-    //     price : response.data.product.listPrice.formatted.withTax,
-    //     name : response.data.product.name,
-    //     link : response.data.product.link,
-    //   }
+    // condition to store products in local storage for recently viewed functionality
+    if(response?.data?.product){
+      const recentlyViewedProduct = {
+        image : response.data.product.image,
+        price : response.data.product.listPrice.formatted.withTax,
+        name : response.data.product.name,
+        link : response.data.product.link,
+      }
 
-    //     let oldData = JSON.parse(localStorage.getItem("Recent-Products")  || "")
-    //     if(oldData){
-    //       window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
-    //     }
-    //     else{
-    //       window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
-    //     }
-    //     //setting only unique elem in State
-    //     const key = 'name';
-    //     const arrayUniqueByKey:any = [...new Map(oldData?.map((item:any) =>
-    //       [item[key], item])).values()];
-    //         setLocalState(arrayUniqueByKey)
+      setLocalState(recentlyViewedProduct);
+      setItem('Recent-Products',recentlyViewedProduct);
+
+    // let oldData = JSON.parse(localStorage.getItem("Recent-Products")  || "")
+    // if(oldData){
+    //   window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
     // }
+    // else{
+    //   window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
+    // }
+    // //setting only unique elem in State
+    // const key = 'name';
+    // const arrayUniqueByKey:any = [...new Map(oldData?.map((item:any) =>
+    //   [item[key], item])).values()];
+    //     setLocalState(arrayUniqueByKey)
+    }
 
     if (response?.data?.product) {
       eventDispatcher(ProductViewed, {
@@ -496,7 +509,7 @@ export default function ProductView({
       <main className="sm:pt-8">
         <div className="lg:w-full ">
           {/* Product */}
-          <div className="pr-10 lg:grid lg:grid-cols-12 lg:gap-x-16 lg:items-start">
+          <div className="lg:grid lg:pr-10 lg:grid-cols-12 lg:gap-x-16 lg:items-start">
             {/* Image gallery */}
             <Tab.Group as="div" className="flex flex-col-reverse lg:col-span-6 md:col-span-6 sm:col-span-6 xs:col-span-6 min-mobile-pdp">
               {/* Image selector */}
@@ -537,13 +550,13 @@ export default function ProductView({
                                   <div className='image-container'>
                                     <Image
                                       priority
-                                      src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}
+                                      src={generateUri(image.image, "h=1800&fm=webp") || IMG_PLACEHOLDER}
                                       //src="/slider-1 - Copy.jpg"
                                       alt={image.name}
-                                      className="object-cover object-center w-full h-full image"
+                                      className="object-fill object-center w-full h-full image"
                                       layout='responsive'
                                       sizes='320 600 100'
-                                      width={600} height={1000}
+                                      width={1800} height={1400}
                                       blurDataURL={`${image.image}?h=600&w=400&fm=webp` || IMG_PLACEHOLDER}
                                     />
                                   </div>
@@ -559,7 +572,7 @@ export default function ProductView({
                   </div>
                   {/*DESKTOP PRODUCT IMAGE SLIDER*/}
                   <div className="w-full mx-auto max-w sm:block lg:max-w-none">
-                    <Tab.List className="grid gap-2 sm:grid-cols-1 grid-cols-1-row-3 ">
+                    <Tab.List className="grid sm:grid-cols-1 md:grid-cols-1 grid-cols-1-row-3 ">
                       {content?.map((image: any, idx) => (
                       
                         <Tab
@@ -569,19 +582,20 @@ export default function ProductView({
                             <>
                               
                               <span className="sr-only">{image.name}</span>
-                              <span className="relative">
+                              <span className="relative md:w-full sm:w-full">
                                 {image.image ? (
-                                  <div className='image-container'>
+                                  <div className='image-container sm:w-full md:w-full'>
                                     {/* <ControlledZoom isZoomed={isZoomedT} onZoomChange={handleZoomChangeT}> */}
                                     <Image
-                                     src={generateUri(image.image, "h=2000&fm=webp") || IMG_PLACEHOLDER}   
-                                     alt={image.name} 
-                                     priority
-                                     className="object-cover object-center w-full h-full image"
-                                     layout='responsive'
-                                     sizes='320 600 1000'
-                                     width={1000} height={1000}
+                                    src={generateUri(image.image, "h=1800&fm=webp") || IMG_PLACEHOLDER}   
+                                    alt={image.name} 
+                                    priority
+                                    className="object-cover object-center w-full h-full image"
+                                    layout='responsive'
+                                    sizes='320 600 1000'
+                                    width={1800} height={1400}
                                     />
+
                                     {/* <Image
                                       priority
                                       src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}
@@ -616,7 +630,7 @@ export default function ProductView({
             
 
             {/* Product info */}
-            <div className="px-4 py-10 sm:mt-10 sm:px-0 lg:mt-0 lg:col-span-6">
+            <div className="px-4 sm:mt-10 md:py-10 sm:py-4 sm:px-0 sm:pr-2 sm:pl-2 lg:mt-0 lg:col-span-6">
               
               {/* <h3 className="mb-2 text-sm font-semibold tracking-tight text-gray-700 uppercase sm:text-md sm:font-bold">
                 {selectedAttrData.brand}
@@ -687,21 +701,21 @@ export default function ProductView({
             <div className="w-full border h-17 border-grey-40 hover:border-black">
                 <img src='/Untitled-1-fabric.jpg'  className='w-full h-16'  ></img>
             </div>
-            <div className="w-full border h-17 border-grey-40 hover:border-black ">
+            <div className="w-full border h-17 border-grey-40 hover:border-black">
                 <img src='/Untitled-2-fabric.jpg' className='w-full h-16' ></img>
             </div>
-            <div className="w-full border h-17 border-grey-40 hover:border-black ">
+            <div className="w-full border h-17 border-grey-40 hover:border-black">
             <img src='/Untitled-3-fabric.jpg' className='w-full h-16' ></img>
             </div>
         </div>
 
-         <div className='flex justify-between py-8' >
+         {/* <div className='flex justify-between py-8' >
           <div>
             <img src='/KSTMize.jpg' width={100}></img>
             <label className="text-sm">Personalise with custom embroidery</label>
           </div>
           <label className='text-lg font-bold'>+ £20</label>
-          </div>
+          </div> */}
        
        </div>
               {/* Reviews */}
@@ -738,7 +752,10 @@ export default function ProductView({
        
               {updatedProduct ? (
                 <>
-                  {!isEngravingAvailable && (
+                {/* {JSON.stringify(updatedProduct.customAttributes[2].value)} */}
+                  {/* {!isEngravingAvailable && ( */}
+                  {/* { !isEngravingAvailable && ( */}
+                    { !updatedProduct?.customAttributes[2]?.value && (
                     <div className="flex sm:flex-col1">
                       <Button
                         title={buttonConfig.title}
@@ -764,9 +781,24 @@ export default function ProductView({
                     </div>
                   )}
 
-                  {isEngravingAvailable && (
+                  {updatedProduct?.customAttributes[2]?.value && (
                     <>
-                      <div className="flex mt-6 sm:mt-8 sm:flex-col1">
+                      <div className="mt-6 sm:mt-8 sm:col-1">
+                        <div className='flex justify-between'>
+                        <div>
+                          <img
+                            src='/KSTMize.jpg' 
+                            className="w-24 h-4 cursor-pointer"
+                            onClick={() => {
+                              showEngravingModal(true)
+                            }}
+                          >
+                            {/* <span className="font">KSTMize it</span> */}
+                          </img>
+                          <label className="text-sm">Personalise with custom embroidery</label>
+                        </div>
+                        <label className='font-bold'>{updatedProduct.listPrice.formatted.withTax}</label>
+                        </div>
                         <Button
                           className='block py-3 sm:hidden'
                           title={buttonConfig.title}
@@ -782,13 +814,7 @@ export default function ProductView({
                           action={buttonConfig.action}
                           buttonType={buttonConfig.type || 'cart'}
                         />
-                        <button
-                          className="flex items-center justify-center flex-1 max-w-xs px-8 py-3 font-medium text-white uppercase bg-gray-400 border border-transparent rounded-sm sm:ml-4 hover:bg-pink focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-500 sm:w-full"
-                          onClick={() => showEngravingModal(true)}
-                        >
-                          <span className="font-bold">{GENERAL_ENGRAVING}</span>
-                        </button>
-                        <button
+                        {/* <button
                           type="button"
                           onClick={() => {
                             if (!isInWishList) {
@@ -803,7 +829,7 @@ export default function ProductView({
                             <HeartIcon className="flex-shrink-0 w-6 h-6" />
                           )}
                           <span className="sr-only">{BTN_ADD_TO_FAVORITES}</span>
-                        </button>
+                        </button> */}
                       </div>
                     </>
                   )}
@@ -904,14 +930,16 @@ export default function ProductView({
           <div className={`${ELEM_ATTR}${PDP_ELEM_SELECTORS[0]}`}></div>
 
 
-          {/* <Reviews data={product.reviews} productId={product.recordId} />
-          {isEngravingAvailable && (
+          {/* <Reviews data={product.reviews} productId={product.recordId} /> */}
+          {/* {isEngravingAvailable && ( */}
+          { updatedProduct?.customAttributes[2]?.value && (
             <Engraving
               show={isEngravingOpen}
               submitForm={handleEngravingSubmit}
               onClose={() => showEngravingModal(false)}
+              product={product}
             />
-          )} */}
+          )}
 
           <PriceMatch
             show={isPriceMatchModalShown}
