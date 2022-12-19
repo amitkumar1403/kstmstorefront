@@ -505,6 +505,7 @@ export default function ProductView({
   };
   const saving = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
   const discount = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
+  const addonPrice = relatedProducts.relatedProducts?.find((x:any)=> x?.itemType == 10)?.price?.formatted?.withTax;
   return (
     <div className="mx-auto bg-white page-container md:w-5/5 lg:p-0 md:p-0 sm:p-2">
       {/* Mobile menu */}
@@ -798,7 +799,7 @@ export default function ProductView({
                             </img>
                             <label className="text-sm">Personalise with custom embroidery</label>
                           </div>
-                          <label className='font-bold'>{updatedProduct.listPrice.formatted.withTax}</label>
+                          <label className='font-bold'>{addonPrice}</label>
                         </div>
                         <Button
                           className='block py-3 sm:hidden'
