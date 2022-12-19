@@ -11,7 +11,6 @@
   width: 100%;
 }
 
-
 .inset-0 {
   z-index: 9999 !important;
   top: 0px;
@@ -31,7 +30,9 @@
   text-align: center;
   transition: background 0.45s cubic-bezier(0.22, 0.61, 0.35, 1);
 }
-
+body {
+  height: 100%;
+}
 .mySwiper {
   z-index: 0 !important;
 }
@@ -261,8 +262,8 @@
   max-width: 100%;
 }
 
-.image-container>div,
-.image-container>span {
+.image-container > div,
+.image-container > span {
   position: unset !important;
 }
 
@@ -281,11 +282,10 @@
   height: 18rem !important;
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
   .sm\:min-h-screen {
     min-height: 100vh !important;
   }
-
 }
 
 .h-full {
@@ -300,12 +300,11 @@
   --gradient-color: transparent !important;
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width: 767px) {
   .sm\:h-72 {
     height: 12rem !important;
   }
 }
-
 
 .sr-only {
   width: 50% !important;
@@ -325,13 +324,39 @@ body {
   justify-content: center !important;
   align-items: center !important;
 }
+
+.cokkie-msg-sec {
+  max-width: 350px !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: #fff !important;
+  position: fixed !important;
+  bottom: 0px !important;
+  left: 20px;
+  z-index: 99999;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .cokkie-msg-sec {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .ipad-grid-cols-6 {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
- }
+  }
 }
 @media only screen and (min-width: 640px) and (max-width: 768px) {
   .ipad-grid-cols-6 {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
- }
+  }
 }

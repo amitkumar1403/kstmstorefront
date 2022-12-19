@@ -20,15 +20,15 @@ const FeatureBar: React.FC<FeatureBarProps> = ({
     s.root,
     {
       transform: true,
-      'translate-y-0 opacity-100': !hide,
-      'translate-y-full opacity-0': hide,
+      'translate-y-0 opacity-100 cokkie-msg-sec shadow-md': !hide,
+      'translate-y-full opacity-0 hidden': hide,
     },
     className
   )
   return (
     <div className={rootClassName}>
-      <span className="block md:inline">{title}</span>
-      <span className="block mb-6 md:inline md:mb-0 md:ml-2">
+      <span className="block md:inline text-black text-xs py-4 text-center">{title}</span>
+      <span className="block mb-6 md:block w-full md:mb-0 md:ml-2">
         {description}
       </span>
       {action && action}
