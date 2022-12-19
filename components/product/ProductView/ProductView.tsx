@@ -41,6 +41,7 @@ import {
   GENERAL_REVIEW_OUT_OF_FIVE,
   IMG_PLACEHOLDER,
   ITEM_TYPE_ADDON,
+  ITEM_TYPE_ADDON_10,
   PRICEMATCH_ADDITIONAL_DETAILS,
   PRICEMATCH_BEST_PRICE,
   PRICEMATCH_SEEN_IT_CHEAPER,
@@ -91,6 +92,7 @@ export default function ProductView({
   data = { images: [] },
   snippets,
   setEntities,
+  relatedProducts,
   recordEvent,
   slug,
   isPreview = false
@@ -332,8 +334,9 @@ export default function ProductView({
         stockCode: selectedAttrData.stockCode,
       },
     }
-    const addonProducts = product.relatedProducts?.filter(
-      (item: any) => item.stockCode === ITEM_TYPE_ADDON
+    // console.log("related "+JSON.stringify(relatedProducts.relatedProducts))
+    const addonProducts = relatedProducts.relatedProducts?.filter(
+      (item: any) => item.itemType === ITEM_TYPE_ADDON_10
     )
     const addonProductsWithParentProduct = addonProducts.map((item: any) => {
       item.parentProductId = product.recordId
@@ -410,8 +413,8 @@ export default function ProductView({
     asyncHandler()
   }
 
-  const isEngravingAvailable = !!product.relatedProducts?.filter(
-    (item: any) => item.stockCode === ITEM_TYPE_ADDON
+  const isEngravingAvailable = !!relatedProducts.relatedProducts?.filter(
+    (item: any) => item.itemType === ITEM_TYPE_ADDON_10
   ).length
 
   //TODO no additionalProperties key found on product object
@@ -507,6 +510,7 @@ export default function ProductView({
     <div className="mx-auto bg-white page-container md:w-5/5 lg:p-0 md:p-0 sm:p-2">
       {/* Mobile menu */}
       <main className="sm:pt-8">
+      {/* {JSON.stringify(isEngravingAvailable)} */}
         <div className="lg:w-full ">
           {/* Product */}
           <div className="lg:grid lg:pr-10 lg:grid-cols-12 lg:gap-x-16 lg:items-start">
@@ -752,10 +756,8 @@ export default function ProductView({
        
               {updatedProduct ? (
                 <>
-                {/* {JSON.stringify(updatedProduct.customAttributes[2].value)} */}
-                  {/* {!isEngravingAvailable && ( */}
-                  {/* { !isEngravingAvailable && ( */}
-                    { !updatedProduct?.customAttributes[2]?.value && (
+                   {/* { !updatedProduct?.customAttributes[2]?.value && ( */}
+                  { !isEngravingAvailable && (
                     <div className="flex sm:flex-col1">
                       <Button
                         title={buttonConfig.title}
@@ -781,7 +783,7 @@ export default function ProductView({
                     </div>
                   )}
 
-                  {updatedProduct?.customAttributes[2]?.value && (
+                  { isEngravingAvailable && (
                     <>
                       <div className="mt-6 sm:mt-8 sm:col-1">
                         <div className='flex justify-between'>
@@ -874,13 +876,10 @@ export default function ProductView({
               relatedProductList={filteredRelatedProductList}
             />
           ) : null}
-
             
             <div className='grid mr-0 grid-col-1'>
               <img src="/Banner-pic.jpg" className='h-30' ></img>
             </div>
-
-
 
           <div className='py-2 text-center'>
             <label className='text-lg font-semibold'>Recently viewed</label>
@@ -931,8 +930,8 @@ export default function ProductView({
 
 
           {/* <Reviews data={product.reviews} productId={product.recordId} /> */}
-          {/* {isEngravingAvailable && ( */}
-          { updatedProduct?.customAttributes[2]?.value && (
+          {isEngravingAvailable && (
+          // { updatedProduct?.customAttributes[2]?.value && (
             <Engraving
               show={isEngravingOpen}
               submitForm={handleEngravingSubmit}

@@ -20,6 +20,7 @@ import {
   subscribe,
   getOrders,
   getAddress,
+  getRelatedProducts, //change
   createAddress,
   deleteAddress,
   editAddress,
@@ -50,6 +51,7 @@ const operations = {
   getAllProducts,
   getProduct,
   getProductPreview,
+  getRelatedProducts,
   getInfra,
   getSlugs,
   notifyMe,
