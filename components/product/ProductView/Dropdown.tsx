@@ -317,7 +317,7 @@ export default function Dropdown({
                   currentAttribute: item.fieldValue,
                   stock: stockAmount,
                 }}
-                className={({ active }) =>
+                className={({ active, checked }) =>
                 classNames(
                   active ? 'text-white bg-black border border-black' : 'text-gray-900',
                 'mx-auto py-2 w-full cursor-default select-none relative border border-grey-60 hover:border-black focus:outline-none' 

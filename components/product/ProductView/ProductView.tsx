@@ -505,6 +505,7 @@ export default function ProductView({
   const discount = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
   return (
     <div className="bg-white page-container md:w-5/5 mx-auto lg:p-0 md:p-0 sm:p-2">
+      {/* {JSON.stringify(product)} */}
       {/* Mobile menu */}
       <main className="sm:pt-8">
         <div className="lg:w-full ">
