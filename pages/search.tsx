@@ -364,7 +364,7 @@ function Search({ query, setEntities, recordEvent }: any) {
                 {/*content*/}
                 <div
                   style={{ width: '30rem' }}
-                  className='z-50 absolute hidden  bg-gray-100 border-b-2 sm:block right-0  top-40 hover:shadow-2xl mt-3 ' >
+                  className='z-50 absolute hidden  bg-gray-100 border-b-2 sm:block right-0  top-14 hover:shadow-2xl mt-3' >
 
                   {/* <div
                     //  style={{width:'30rem'}}
