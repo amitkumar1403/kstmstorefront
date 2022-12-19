@@ -5,6 +5,7 @@ export { default as getProduct } from './get-product'
 export { default as getAllProducts } from './get-all-products'
 export { default as getProductPreview } from "./get-product-preview"
 export { default as getAllProductPaths } from './get-all-product-paths'
+export { default as getRelatedProducts } from './get-related-products'
 export { default as getInfra } from './get-infra'
 export { default as getSlugs } from './get-slugs'
 export { default as getCustomerWishlist } from './get-customer-wishlist'

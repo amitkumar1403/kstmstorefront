@@ -24,6 +24,7 @@ export const OPERATIONS = [
   'getAllProducts',
   'getProduct',
   'getPagePreviewContent',
+  'getRelatedProducts',      //changes here
   'getProductPreview',
   'getInfra',
   'getSlugs',
@@ -69,6 +70,7 @@ export type Operations<P extends APIProvider> = {
   }
   getInfra: {}
   getSlugs: {}
+  getRelatedProducts: {}   //changes here
   notifyMe: {}
   applyPromo: {}
   createReview: {}

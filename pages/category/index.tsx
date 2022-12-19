@@ -10,7 +10,7 @@ import {
 export default function CategoryList(props: any) {
   return (
     <main className="w-full px-4 mx-auto sm:px-0 md:w-4/5 lg:px-0">
-      <section aria-labelledby="products-heading" className="mt-16">
+      <section aria-labelledby="products-heading" className="mt-28">
         <h2 className="text-2xl font-bold tracking-tight text-center text-gray-900 uppercase">
           {SHOP_BY_CATEGORY}
         </h2>
