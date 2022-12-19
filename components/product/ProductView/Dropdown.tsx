@@ -103,7 +103,7 @@ import { Dialog, RadioGroup, Switch } from '@headlessui/react'
 
 //   return (
 //     <>
-//       <div className="border-t border-b py-1 my-2 grid grid-cols-6 ">
+//       <div className="grid grid-cols-6 py-1 my-2 border-t border-b ">
 
 //         <Listbox value={selected} onChange={handleOnChange} disabled={isDisabled}>
 //           <Listbox.Label
@@ -113,7 +113,7 @@ import { Dialog, RadioGroup, Switch } from '@headlessui/react'
 //           >
 //             {label}
 //           </Listbox.Label>
-//           <div className="mt-1 relative inline-block w-9/12">
+//           <div className="relative inline-block w-9/12 mt-1">
 //             <Listbox.Button
 //               disabled
 //               className={`${
@@ -123,16 +123,16 @@ import { Dialog, RadioGroup, Switch } from '@headlessui/react'
 //               <span className="flex items-center">
 //                 <span
 //                   style={{ minHeight: '20px' }}
-//                   className="text-black font-medium ml-3 block truncate"
+//                   className="block ml-3 font-medium text-black truncate"
 //                 >
 //                   {selected.currentAttribute
 //                     ? generateItemOption(selected.currentAttribute, selected.stock)
 //                     : ' '}
 //                 </span>
 //               </span>
-//               <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+//               <span className="absolute inset-y-0 right-0 flex items-center pr-2 ml-3 pointer-events-none">
 //                 <ChevronDownIcon
-//                   className="h-6 w-6 text-black"
+//                   className="w-6 h-6 text-black"
 //                   aria-hidden="true"
 //                 />
 //               </span>
@@ -144,7 +144,7 @@ import { Dialog, RadioGroup, Switch } from '@headlessui/react'
 //               leaveFrom="opacity-100"
 //               leaveTo="opacity-0"
 //             >
-//               <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+//               <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-56 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
 //                 {items.map((item: any) => {
 //                   const stockAmount = getStockPerAttribute(
 //                     fieldCode,
@@ -186,7 +186,7 @@ import { Dialog, RadioGroup, Switch } from '@headlessui/react'
 //                                 'absolute inset-y-0 right-0 flex items-center pr-4'
 //                               )}
 //                             >
-//                               <CheckIcon className="h-5 w-5"aria-hidden="true"/>
+//                               <CheckIcon className="w-5 h-5"aria-hidden="true"/>
 //                             </span>
 //                           ) : null}
 //                         </>
@@ -205,7 +205,7 @@ import { Dialog, RadioGroup, Switch } from '@headlessui/react'
 
 export default function Dropdown({
   items = [],
-  onChange = () => {},
+  onChange = () => { },
   label = '',
   fieldCode = '',
   currentAttribute = '',
@@ -297,19 +297,19 @@ export default function Dropdown({
   }
   return (
     <div className="px-0 py-0">
-          <div className='flex justify-between'>
-          <h3 className='text-sm font-bold'>Size</h3>
-          <h3 className='text-sm'>Size guide</h3>
-          </div>
-        <RadioGroup value={selected} onChange={handleOnChange} disabled={isDisabled} className="flex flex-row space-y-2 h-14">
-          <div className="flex flex-row space-y-2 w-full m-auto">
+      <div className='flex justify-between'>
+        <h3 className='text-sm font-bold'>Size</h3>
+        <h3 className='text-sm'>Size guide</h3>
+      </div>
+      <RadioGroup value={selected} onChange={handleOnChange} disabled={isDisabled} className="flex flex-row space-y-2 h-14">
+        <div className="flex flex-row w-full m-auto space-y-2">
           <RadioGroup.Label className="sr-only">Size</RadioGroup.Label>
           {items.map((item: any) => {
-                  const stockAmount = getStockPerAttribute(
-                    fieldCode,
-                    item.fieldValue
-                  ).stock
-                  return (
+            const stockAmount = getStockPerAttribute(
+              fieldCode,
+              item.fieldValue
+            ).stock
+            return (
 
               <RadioGroup.Option
                 key={item.fieldValue}
@@ -318,36 +318,47 @@ export default function Dropdown({
                   stock: stockAmount,
                 }}
                 className={({ active, checked }) =>
-                classNames(
-                  active ? 'text-white bg-black border border-black' : 'text-gray-900',
-                'mx-auto py-2 w-full cursor-default select-none relative border border-grey-60 hover:border-black focus:outline-none' 
-                )
-                // py-2 pr-2 pl-2 md:py-2 md:pr-2 md:pl-2 sm:py-2 sm:pr-2 sm:pl-2 
+                  classNames(
+                    generateItemOption(selected.currentAttribute, selected.stock)==generateItemOption(item.fieldValue, stockAmount) ? 'text-white bg-black border border-black' : 'text-gray-900',
+                    'mx-auto py-2 w-full cursor-default select-none relative border border-grey-60 hover:border-black focus:outline-none'
+                  )
+                  // py-2 pr-2 pl-2 md:py-2 md:pr-2 md:pl-2 sm:py-2 sm:pr-2 sm:pl-2 
                 }
               >
 
                 {({ active, checked }) => (
                   <>
-                      <div className="flex items-center">
+                    <div className="flex items-center">
+                      <span
+                        className={classNames(
+                          selected ? 'font-semibold' : 'font-normal',
+                          ' m-auto block truncate '
+                        )}
+                      >
+                        {item.fieldValue
+                          ? generateItemOption(item.fieldValue, stockAmount)
+                          : null}
+                      </span>
+                      {/* <span className="flex items-center">
                         <span
-                          className={classNames(
-                            selected ? 'font-semibold' : 'font-normal',
-                            ' m-auto block truncate '
-                          )}
+                          style={{ minHeight: '20px' }}
+                          className="block ml-3 font-medium text-black truncate"
                         >
-                          {item.fieldValue
-                            ? generateItemOption(item.fieldValue, stockAmount)
-                            : null}
+                          {selected.currentAttribute
+                            ? generateItemOption(selected.currentAttribute, selected.stock)
+                            : ' '}
                         </span>
-                      </div>
+                      </span> */}
+                    </div>
                   </>
                 )}
               </RadioGroup.Option>
-            )})}
-          </div>
-        </RadioGroup>
+            )
+          })}
+        </div>
+      </RadioGroup>
 
     </div>
-    )
-  }
+  )
+}
 
