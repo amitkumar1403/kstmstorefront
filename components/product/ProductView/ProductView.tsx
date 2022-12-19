@@ -935,7 +935,7 @@ export default function ProductView({
             <Engraving
               show={isEngravingOpen}
               submitForm={handleEngravingSubmit}
-              onClose={() => showEngravingModal(false)}
+              showEngravingModal={showEngravingModal}
               product={product}
             />
           )}
