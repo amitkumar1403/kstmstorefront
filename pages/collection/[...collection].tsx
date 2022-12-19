@@ -206,93 +206,90 @@ export default function CollectionPage(props: any) {
     })
   }
   const clearAll = () => dispatch({ type: CLEAR })
-  
+
   return (
-    <main className="pb-0  mx-auto mt-10">
-       <img src='/assets/icons/filter.png'
+    <main className="pb-0 mx-auto">
+      <img src='/assets/icons/filter.png'
+        alt='filter-icon'
+        onClick={() => {
+          !showModal ? setShowModal(true) : setShowModal(false)
+        }}
+        className='absolute top-0 z-50 hidden w-10 mt-8 mr-4 cursor-pointer sm:block right-7' />
+      <div className="pt-2 sm:pt-4">
+        {props.breadCrumbs && (
+          <BreadCrumbs items={props.breadCrumbs} currentProduct={props} />
+        )}
+      </div>
+      {props.images.length > 0 &&
+        <div className="flex items-center justify-center w-full mx-auto mt-0 sm:px-0 sm:mt-4">
+          <Swiper navigation={true} loop={true} className="mySwiper">
+            {props.images.map((img: any, idx: number) => {
+              return (
+                <SwiperSlide key={idx}>
+                  <Link href={img.link || '#'}>
+                    <Image
+                      layout='fixed'
+                      width={1920}
+                      height={460}
+                      src={img.url || IMG_PLACEHOLDER}
+                      alt={props.name}
+                      className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"
+                    ></Image>
+                  </Link>
+                </SwiperSlide>
+              )
+            })}
+          </Swiper>
+        </div>
+      }
+      <div className="px-4 py-2 sm:py-3 sm:px-0 ">
+        <h4 className='text-center'><span className='text-sm font-normal text-gray-500 '>Showing {props.products.total} {' '} {RESULTS}</span></h4>
+        <h1 className="text-xl font-semibold tracking-tight text-center text-black sm:text-xl">
+          {props.name}
+        </h1>
+        <h2 className='text-center'>{props.description}</h2>
+
+        <span className='absolute z-50 -mt-12 right-10 '>
+
+          <img src='/assets/icons/filter.png'
             alt='filter-icon'
             onClick={() => {
               !showModal ? setShowModal(true) : setShowModal(false)
             }}
-            className='absolute top-0 hidden w-10 mt-8 mr-4 cursor-pointer sm:block right-7 z-50' />
-    <div className="pt-2 sm:pt-4">
-       {props.breadCrumbs && (
-         <BreadCrumbs items={props.breadCrumbs} currentProduct={props} />
-       )}
-     </div>   
-   {props.images.length > 0 &&
-       <div className="sm:px-0 mx-auto sm:mt-4 mt-0 flex justify-center items-center w-full">
-         <Swiper navigation={true} loop={true} className="mySwiper">
-           {props.images.map((img: any, idx: number) => {
-             return (
-               <SwiperSlide key={idx}>
-                 <Link href={img.link || '#'}>
-                   <Image
-                       layout='fixed'
-                       width={1920} 
-                       height={460}
-                       src={img.url || IMG_PLACEHOLDER}
-                       alt={props.name}
-                       className="cursor-pointer w-full h-48 sm:h-96 sm:max-h-96 object-center object-cover"
-                     ></Image>
-                 </Link>
-               </SwiperSlide>
-             )
-           })}
-         </Swiper>
-       </div>
-   }
-   <div className="sm:py-3 py-2 px-4 sm:px-0 ">
-  
+            className='w-10 h-10 cursor-pointer sm:block right-7' />
+        </span>
 
+        {/* @nd div */}
 
-    <h4 className='text-center'><span className='font-normal text-gray-500 text-sm '>Showing {props.products.total} {' '} {RESULTS}</span></h4>
-     <h1 className="sm:text-xl text-xl font-semibold tracking-tight text-black text-center">
-       {props.name}
-     </h1>
-     <h2 className='text-center'>{props.description}</h2>
+      </div>
 
-     <span className='absolute z-50 right-10 -mt-12 '>  
+      {props.products.total > 0 &&
+        <div className="">
+          {props.allowFacets && (
+            <>
+              {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
 
-<img src='/assets/icons/filter.png'
-         alt='filter-icon'
-         onClick={() => {
-           !showModal ? setShowModal(true) : setShowModal(false)
-         }}
-         className='w-10 h-10 cursor-pointer sm:block right-7' />
-         </span>
-  
-   {/* @nd div */}
-   
-   </div>
-  
-    {props.products.total > 0 &&
-      <div className="">
-        {props.allowFacets && (
-          <>
-            {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
-
-            <div className="sm:col-span-2 sm:hidden flex flex-col">
-              <ProductMobileFilters
-                handleFilters={handleFilters}
-                products={props.products}
-                routerFilters={state.filters}
-                handleSortBy={handleSortBy}
-                clearAll={clearAll}
-                routerSortOption={state.sortBy}
-              />
-            </div>
-            {/* <div className="sm:col-span-2 sm:block hidden">
+              <div className="flex flex-col sm:col-span-2 sm:hidden">
+                <ProductMobileFilters
+                  handleFilters={handleFilters}
+                  products={props.products}
+                  routerFilters={state.filters}
+                  handleSortBy={handleSortBy}
+                  clearAll={clearAll}
+                  routerSortOption={state.sortBy}
+                />
+              </div>
+              {/* <div className="hidden sm:col-span-2 sm:block">
               <ProductFilterRight
                 handleFilters={handleFilters}
                 products={props.products}
                 routerFilters={state.filters}
               />
             </div> */}
-            <div className="sm:col-span-4 ">
-              {/* {HIDE FILTER TOP BAR IN MOBILE} */}
+              <div className="sm:col-span-4 ">
+                {/* {HIDE FILTER TOP BAR IN MOBILE} */}
 
-              {/* <div className="flex-1 sm:block hidden">
+                {/* <div className="flex-1 hidden sm:block">
                 <ProductFiltersTopBar
                   products={data.products}
                   handleSortBy={handleSortBy}
@@ -302,119 +299,119 @@ export default function CollectionPage(props: any) {
                 />
               </div> */}
 
-              {showModal ? (
-                <>
-                  {/*content*/}
-                  <div
-                    style={{ width: '30rem' }}
-                    className='z-50 absolute  hidden mt-0  bg-gray-100 border-b-2 sm:block right-0 hover:shadow-2xl ' >
+                {showModal ? (
+                  <>
+                    {/*content*/}
+                    <div
+                      style={{ width: '30rem' }}
+                      className='absolute right-0 z-50 hidden mt-0 bg-gray-100 border-b-2 sm:block hover:shadow-2xl ' >
 
-                    {/* <div
+                      {/* <div
                     //  style={{width:'30rem'}}
                     className="hidden sm:block"> */}
-                    <div className='relative flex flex-col w-full px-6 overflow-y-scroll border-r max-h-40R'>
+                      <div className='relative flex flex-col w-full px-6 overflow-y-scroll border-r max-h-40R'>
 
-                      <ProductFiltersTopBar
-                        products={data.products}
-                        handleSortBy={handleSortBy}
-                        routerFilters={state.filters}
-                        clearAll={clearAll}
-                        routerSortOption={state.sortBy}
-                      />
-                      {/* </div> */}
+                        <ProductFiltersTopBar
+                          products={data.products}
+                          handleSortBy={handleSortBy}
+                          routerFilters={state.filters}
+                          clearAll={clearAll}
+                          routerSortOption={state.sortBy}
+                        />
+                        {/* </div> */}
 
-                      <ProductFilterRight
-                        handleFilters={handleFilters}
-                        products={data.products}
-                        routerFilters={state.filters}
+                        <ProductFilterRight
+                          handleFilters={handleFilters}
+                          products={data.products}
+                          routerFilters={state.filters}
 
-                      />
+                        />
+
+                      </div>
+
+                      {/*footer*/}
+                      <div className="grid grid-cols-2 border-b-2 py-7 px-7">
+                        <button
+                          className="col-span-1 px-6 py-6 text-lg font-bold text-gray-700 border border-gray-200 hover:text-black hover:border-black"
+                          type="button"
+                          onClick={() => { setShowModal(false), clearAll() }}
+                        >
+                          Clear All
+                        </button>
+                        <button
+                          className="col-span-1 px-6 py-6 text-lg font-bold text-white bg-black border border-black hover:border-white hover:text-gray-200"
+                          type="button"
+                          onClick={() => setShowModal(false)}
+                        >
+                          Apply
+                        </button>
+                      </div>
+
 
                     </div>
+                    {/* <div className="fixed inset-0 z-40 bg-black opacity-25"></div> */}
+                  </>
+                ) : null}
 
-                    {/*footer*/}
-                    <div className="grid grid-cols-2 border-b-2 py-7 px-7">
-                      <button
-                        className="col-span-1 px-6 py-6 text-lg font-bold text-gray-700 border border-gray-200 hover:text-black hover:border-black"
-                        type="button"
-                        onClick={() => { setShowModal(false), clearAll() }}
-                      >
-                        Clear All
-                      </button>
-                      <button
-                        className="col-span-1 px-6 py-6 text-lg font-bold text-white bg-black border border-black hover:border-white hover:text-gray-200"
-                        type="button"
-                        onClick={() => setShowModal(false)}
-                      >
-                        Apply
-                      </button>
-                    </div>
+                <ProductGridWithFacet
+                  products={productDataToPass}
+                  currentPage={props.currentPage}
+                  handlePageChange={handlePageChange}
+                  handleInfiniteScroll={handleInfiniteScroll}
+                />
 
 
-                  </div>
-                  {/* <div className="fixed inset-0 z-40 bg-black opacity-25"></div> */}
-                </>
-              ) : null}
 
-              <ProductGridWithFacet
-                products={productDataToPass}
-                currentPage={props.currentPage}
-                handlePageChange={handlePageChange}
-                handleInfiniteScroll={handleInfiniteScroll}
-              />
-
-              
-
-            </div>
-          </>
-        )}
-        {!props.allowFacets && (
-          <>
-            <div className="col-span-12">
-              <ProductGrid
-                products={productDataToPass}
-                currentPage={props.currentPage}
-                handlePageChange={handlePageChange}
-                handleInfiniteScroll={handleInfiniteScroll}
-              />
-            </div>
-          </>
-        )}
-        <div></div>
-      </div>
-    }
-     {props.products.total == 0 &&
-        <div className='w-full mx-auto text-center py-32'>
-          <h3 className='text-3xl font-semibold text-gray-200 py-3'>No Item Availabe in {props.name} Collection!</h3>
+              </div>
+            </>
+          )}
+          {!props.allowFacets && (
+            <>
+              <div className="col-span-12">
+                <ProductGrid
+                  products={productDataToPass}
+                  currentPage={props.currentPage}
+                  handlePageChange={handlePageChange}
+                  handleInfiniteScroll={handleInfiniteScroll}
+                />
+              </div>
+            </>
+          )}
+          <div></div>
+        </div>
+      }
+      {props.products.total == 0 &&
+        <div className='w-full py-32 mx-auto text-center'>
+          <h3 className='py-3 text-3xl font-semibold text-gray-200'>No Item Availabe in {props.name} Collection!</h3>
           <Link href="/collection">
-            <a href='/collection' className='text-lg font-semibold text-indigo-500'><ChevronLeftIcon className='h-4 w-4 inline-block relative top-0'></ChevronLeftIcon> Back to collections</a>
+            <a href='/collection' className='text-lg font-semibold text-indigo-500'><ChevronLeftIcon className='relative top-0 inline-block w-4 h-4'></ChevronLeftIcon> Back to collections</a>
           </Link>
         </div>
-     }
-   <NextSeo
-     title={props.name}
-     description={props.description}
-     additionalMetaTags={[
-       {
-         name: 'keywords',
-         content: props.metaKeywords,
-       },
-     ]}
-     openGraph={{
-       type: 'website',
-       title: props.metaTitle,
-       description: props.metaDescription,
-       images: [
-         {
-           url: props.image,
-           width: 800,
-           height: 600,
-           alt: props.name,
-         },
-       ],
-     }}
-   />
- </main>
+      }
+      <NextSeo
+        title={props.name}
+        description={props.description}
+        additionalMetaTags={[
+          {
+            name: 'keywords',
+            content: props.metaKeywords,
+          },
+        ]}
+        openGraph={{
+          type: 'website',
+          title: props.metaTitle,
+          description: props.metaDescription,
+          images: [
+            {
+              url: props.image,
+              width: 800,
+              height: 600,
+              alt: props.name,
+            },
+          ],
+        }}
+      />
+    </main>
   )
 }
 
