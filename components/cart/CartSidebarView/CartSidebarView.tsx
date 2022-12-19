@@ -231,14 +231,14 @@ const CartSidebarView: FC = () => {
                                 (child: any, idx: number) => {
                                   return (
                                     <div className="flex" key={idx}>
-                                      <div className="ml-10 flex-shrink-0 w-12 h-12 border border-gray-200 rounded-md overflow-hidden">
+                                      <div className="ml-1 flex-shrink-0 w-24 h-16 overflow-hidden py-1">
                                         <div className='image-container'>
-                                          <Image
-                                            layout='fill'
-                                            src={`${child.image}?w=100&h=100&fm=webp`}
-                                            alt={child.name}
+                                          <img
+                                            // layout='fill'
+                                            src='/KSTMize.jpg'
+                                           // alt={child.name}
                                             className="w-full h-full object-center object-cover image"
-                                          ></Image>
+                                          ></img>
                                         </div>
                                       </div>
                                       <div className="ml-4 flex-1 flex flex-col">

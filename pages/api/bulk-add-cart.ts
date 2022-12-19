@@ -1,6 +1,6 @@
 import { useBulkAdd } from '@framework/cart'
 export default async (req: any, res: any) => {
-  const { basketId, products }: any = req.body?.data
+  const { basketId, products }: any = req.body
   try {
     const response = await useBulkAdd()({
       basketId,

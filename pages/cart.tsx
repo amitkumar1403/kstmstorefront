@@ -144,7 +144,7 @@ function Cart({ cart }: any) {
 
   return (
     <div className="bg-white w-full sm:w-3/5 mx-auto">
-      <main className="sm:pt-6 pt-6 sm:pb-16 pb-12 sm:pb-0 px-4 sm:px-0 lg:px-0 mt-14">
+      <main className="sm:pt-6 pt-6 sm:pb-16 pb-12 px-4 sm:px-0 lg:px-0 mt-14">
         <h1 className="text-2xl font-semibold tracking-tight text-black sm:text-2xl uppercase relative text-center">
           {GENERAL_SHOPPING_CART} <span className='font-semibold text-sm text-gray-400 absolute top-2 pl-2'>{'- '}{userCart.lineItems.length} Items added</span>
         </h1>
@@ -172,9 +172,10 @@ function Cart({ cart }: any) {
                       />                     
                     </div>
                     <div className="ml-4 flex-1 flex flex-col justify-between sm:ml-6">
-                      <div className="relative sm:pr-9 pr-6 flex justify-between sm:pr-0 h-full">
+                      <div className="relative sm:pr-9 pr-6 flex justify-between h-full">
                         <div className="flex flex-col justify-between h-full">
                           <div>
+                          <div className='flex'>
                             <div className="flex justify-between flex-col">
                               <h3 className="sm:py-0 py-0 sm:text-md text-md font-semibold text-black">
                                 {product.brand}
@@ -190,21 +191,45 @@ function Cart({ cart }: any) {
                                 </Link>
                               </h3>
                             </div>
-                            <div className="mt-2 sm:mt-2 sm:pr-0 pl-0 pr-0">
-                              <div className="border sm:px-4 px-2 text-gray-900 flex flex-row sm:w-2/6 w-4/6">
-                                <MinusSmIcon
-                                  onClick={() => handleItem(product, 'decrease')}
-                                  className="w-4 cursor-pointer"
-                                />
-                                <span className="text-md px-4 sm:py-1  py-1">
-                                  {product.qty}
-                                </span>
-                                <PlusSmIcon
-                                  className="w-4 cursor-pointer"
-                                  onClick={() => handleItem(product, 'increase')}
-                                />
-                              </div>
+                            <div className="flex mt-2 sm:mt-2 sm:pr-0 lg:pl-28 sm:pl-10 xsm:pl-0 pr-0 m-auto">
+                                <div className="border px-4 text-gray-900 flex flex-row">
+                                        <MinusSmIcon
+                                          onClick={() =>
+                                            handleItem(product, 'decrease')
+                                          }
+                                          className="w-4 cursor-pointer"
+                                        />
+                                        <span className="text-md px-2 py-2">
+                                          {product.qty}
+                                        </span>
+                                        <PlusSmIcon
+                                          className="w-4 cursor-pointer"
+                                          onClick={() =>
+                                            handleItem(product, 'increase')
+                                          }
+                                        />
+                                </div>
                             </div>
+                            </div>
+                            {/* <div className="flex mt-2 sm:mt-2 sm:pr-0 pl-0 pr-0">
+                                <div className="border px-4 text-gray-900 flex flex-row">
+                                        <MinusSmIcon
+                                          onClick={() =>
+                                            handleItem(product, 'decrease')
+                                          }
+                                          className="w-4 cursor-pointer"
+                                        />
+                                        <span className="text-md px-2 py-2">
+                                          {product.qty}
+                                        </span>
+                                        <PlusSmIcon
+                                          className="w-4 cursor-pointer"
+                                          onClick={() =>
+                                            handleItem(product, 'increase')
+                                          }
+                                        />
+                                </div>
+                            </div> */}
                             <p className="mt-1 text-md sm:font-medium font-bold text-black">
                               {product.price?.formatted?.withTax}
                               {product.listPrice?.raw.withTax > 0 && product.listPrice?.raw.withTax != product.price?.raw?.withTax ? (
@@ -218,25 +243,49 @@ function Cart({ cart }: any) {
                               (child: any, idx: number) => {
                                 return (
                                   <div
-                                    className="flex mt-10"
+                                    className="mt-7"
                                     key={'child' + idx}
                                   >
-                                    <div className="flex-shrink-0 w-12 h-12 border border-gray-200 rounded-md overflow-hidden">
+                                    {/* <div className="flex-shrink-0 w-12 h-12 border border-gray-200 rounded-md overflow-hidden">
                                       <img
                                         src={child.image}
                                         alt={child.name}
                                         className="w-full h-full object-center object-cover"
                                       />
-                                    </div>
-                                    <div className="flex ml-5 justify-between font-medium text-gray-900">
-                                      <Link href={`/${child.slug}`}>
+                                    </div> */}
+                                    <div className=" flex-shrink-0 w-20 h-8 overflow-hidden py-1">
+                                        <div className='image-container'>
+                                          <img
+                                            // layout='fill'
+                                            src='/KSTMize.jpg'
+                                           // alt={child.name}
+                                            className="w-full h-full object-center object-cover image"
+                                          ></img>
+                                        </div>
+                                      </div>
+                                    
+                                    {/* <div className='flex'> */}
+                                    <div className=" flex justify-between font-small py-2 text-gray-900">
+                                      {/* <Link href={`/${child.slug}`}> */}
+                                      <div className='font-bold'>
+                                        {/* {JSON.stringify(child)} */}
                                         {child.name}
-                                      </Link>
-                                      <p className="ml-4">
+                                      </div>
+                                      <div className='pr-6'>
+                                        {child.price.formatted.withTax}
+                                      </div>
+                                    </div>
+                                    <div className='py-0'>
+                                      <label>
+                                        {child.customInfo1}
+                                      </label>
+
+                                      {/* <p className="ml-4">
                                         {child.price?.formatted?.withTax > 0 ? child.price?.formatted?.withTax : ""}
-                                      </p>
+                                      </p> */}
                                       {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                     </div>
+                                    
                                     {
                                       !child.parentProductId ? (
                                         <div className="flex-1 flex items-center justify-end text-sm">
@@ -259,12 +308,12 @@ function Cart({ cart }: any) {
                                           </button>
                                         </div>
                                       ) : (
-                                        <div className="mt-0 sm:mt-0 sm:pr-9 pl-2 pr-0">
-                                          <div className="border sm:px-4 px-2 text-gray-900 flex flex-row">
+                                        <div className="mt-0 sm:mt-0 sm:pr-9 pl-10 pr-0">
+                                          {/* <div className="border sm:px-4 px-2 text-gray-900 flex flex-row">
                                             <span className="text-md px-2 sm:py-2 py-1">
                                               {child.qty}
                                             </span>
-                                          </div>
+                                          </div> */}
                                         </div>
                                       )
                                     }
@@ -272,6 +321,7 @@ function Cart({ cart }: any) {
                                 )
                               }
                             )}
+
                           </div>
                           <p className="py-5 text-sm font-medium text-gray-900 sm:block hidden">
                             {product.shippingPlan?.shippingSpeed}
