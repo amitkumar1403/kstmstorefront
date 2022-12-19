@@ -178,14 +178,14 @@ const SearchProductCard: FC<Props> = ({ product }) => {
         href={`/${currentProductData.link}`}
         key={'data-product' + currentProductData.link}
       >
-        <a href={currentProductData.link}>
+        <span >
           <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 group-hover:bg-gray-200 ">
               <Image
                 priority
                 src={generateUri(currentProductData.image, "h=800&fm=webp") || '/assets/icons/newPajama.png'} 
                 alt={product.name}
-                onMouseEnter={() => {handleHover('enter')}}
-                onMouseLeave={() => {handleHover('leave')}}
+                // onMouseEnter={() => {handleHover('enter')}}
+                // onMouseLeave={() => {handleHover('leave')}}
                 className="object-cover object-center w-full h-full sm:h-full"
                 layout='responsive'
                 width={800}
@@ -223,7 +223,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
               // </button>            
             )}   
           </div>
-        </a>
+        </span>
       </Link>
     
       <div className="pt-0 text-center bg-gray-100 group-hover:bg-gray-200">
@@ -244,7 +244,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           <Link href={`/${currentProductData.link}`}>
             {/* Product Name */}
                                                                       {/* {showColorPrice.name} */}
-            <a  className='font-medium' href={`/${currentProductData.link}`}> {product.name}  </a>                  
+            <span  className='font-medium'> {product.name}  </span>                  
           </Link>
         </h3>
 
@@ -253,7 +253,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
             {isEntered ? 
           (
             <div className='mt-1 font-bold text-gray-500 group-hover:bg-gray-200 sm:mt-1 text-md '>
-            <p className='text-center text-gray-500 text-bold' >  {product?.price?.formatted?.withTax}</p>
+            <p className='text-center text-gray-500 text-bold' > {product?.price?.formatted?.withTax}</p>
             </div>
           ):<div className='h-14 '></div>
           }

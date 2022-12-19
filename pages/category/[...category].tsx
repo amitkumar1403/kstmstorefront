@@ -334,7 +334,7 @@ function CategoryPage({ category, products }: any) {
             onClick={() => {
               !showModal ? setShowModal(true) : setShowModal(false)
             }}
-            className='absolute top-0 hidden w-10 mt-8 mr-4 cursor-pointer sm:block right-7' />
+            className='absolute top-0 hidden w-10 mt-10 mr-4 cursor-pointer sm:block right-7' />
         </div>
 
         {category?.subCategories?.length > 0 &&

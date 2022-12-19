@@ -21,10 +21,10 @@ export default function CategoryList(props: any) {
                 <div className=" grid grid-cols-1 sm:p-3 sm:gap-y-2 gap-y-2 md:grid-cols-3 md:gap-x-28 sm:grid-cols-2 gap-x-0 lg:grid-cols-4 xl:gap-x-6 ">
                   {props?.data?.map((category: any, key: number) => (
                     <Link key={key} href={`/${category.link}`}>
-                      <a
+                      <span
                         key={category.id}
-                        href={`/${category.link}`}
-                        className=" relative flex flex-col w-screen  overflow-hidden sm:w-56 sm:h-80 h-60 hover:opacity-75 xl:w-auto"
+                        // href={`/${category.link}`}
+                        className=" relative flex flex-col w-screen  overflow-hidden sm:w-56 sm:h-80 h-60 hover:opacity-75 xl:w-auto cursor-pointer"
                       >
                         <span
                           aria-hidden="true"
@@ -57,7 +57,7 @@ export default function CategoryList(props: any) {
                         <span className="relative mt-auto text-sm font-bold text-center text-white uppercase sm:text-lg">
                           {category.name}
                         </span>
-                      </a>
+                      </span>
                     </Link>
                   ))}
                 </div>
