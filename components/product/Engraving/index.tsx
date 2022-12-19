@@ -5,6 +5,7 @@ import { XIcon } from '@heroicons/react/outline'
 import axios from 'axios'
 import Form from './form'
 import { GENERAL_CLOSE, GENERAL_ENGRAVING, GENERAL_ENGRAVING_PERSONALIZE_BOTTLE } from '@components/utils/textVariables'
+import { Product } from '@commerce/types'
 export default function Engraving({
   onClose = () => {},
   engravingPrice = '£20',
@@ -74,10 +75,12 @@ export default function Engraving({
                   </div>
                   <div className='flex'>
                     <div className='w-1/2'>
+                      {/* {JSON.stringify(product.image)} */}
                       <label className='text-sm font-bold'>{product.name}</label>
-                       <img src={product.image || '/pdp1.png'} className=' w-full'></img>
+                       {/* <img src={product.image || '/pdp1.png'} className=' w-full'></img> */}
                     </div>
                     <div className='w-1/2 p-4'>
+                    
                       <Form submitForm={submitForm} />
                     </div>
                   </div>

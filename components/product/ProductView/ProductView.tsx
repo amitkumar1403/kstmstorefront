@@ -450,7 +450,6 @@ export default function ProductView({
     (item: any) => item.stockCode !== ITEM_TYPE_ADDON
   )
 
-
   const handleProductBundleUpdate = (bundledProduct: any) => {
     //debugger;
     if (bundledProduct && bundledProduct.id) {
