@@ -259,6 +259,7 @@ export const BTN_SEE_EVERYTHING = 'See everything'
 export const GENERAL_SORT = 'Sort'
 export const CHOOSE_A_COLOR = 'Choose a color'
 export const ITEM_TYPE_ADDON = 'ADDON'
+export const ITEM_TYPE_ADDON_10 = 10
 export const YOUTUBE_VIDEO_PLAYER = 'YouTube video player'
 export const GENERAL_REFERENCE = 'Ref'
 export const GENERAL_PRICE_LABEL_RRP = 'RRP'
