@@ -43,17 +43,19 @@ export default function Grid({
                   : 'lg:grid-cols-4'
               }`}
             >
-              {/* before Load */}
+              {/* before load */}
               {!products.results.length &&
                 rangeMap(12, (i) => (
                   <div
                     key={i}
-                    className="shadow-md w-60 h-72 rounded-md mx-auto mt-20"
+                    className="shadow-md  grid grid-cols-2 sm:mx-0 md:grid-cols-4  mx-auto mt-16"
                   >
-                    <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
-                      <div className="flex flex-col space-y-3">
-                        <div className="w-full bg-gray-100 h-48 rounded-md "></div>
-                        <div className="w-36 bg-gray-100 h-6 mt-40 rounded-md "></div>
+                    <div className="flex animate-pulse flex-row  justify-center  ">
+                      <div className="flex flex-col space-y-6 ml-80">
+                        <div className=" bg-gray-100 h-96 rounded-md w-64 "></div>
+                        <div className="w-40 bg-gray-100  h-6 mt-36 rounded-md  m-auto "></div>
+                        <div></div>
+                        <div></div>
                       </div>
                     </div>
                   </div>

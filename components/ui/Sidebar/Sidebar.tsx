@@ -25,14 +25,14 @@ const Sidebar: FC<SidebarProps> = ({ children, onClose }) => {
   useEffect(() => {
     const contentElement = contentRef.current
 
-    if (contentElement) {
-      disableBodyScroll(contentElement, { reserveScrollBarGap: true })
-    }
+    // if (contentElement) {
+    //   disableBodyScroll(contentElement, { reserveScrollBarGap: true })
+    // }
 
-    return () => {
-      if (contentElement) enableBodyScroll(contentElement)
-      clearAllBodyScrollLocks()
-    }
+    // return () => {
+    //   if (contentElement) enableBodyScroll(contentElement)
+    //   clearAllBodyScrollLocks()
+    // }
   }, [])
 
   return (
@@ -44,8 +44,8 @@ const Sidebar: FC<SidebarProps> = ({ children, onClose }) => {
     >
       <div className="absolute inset-0 overflow-hidden">
         <div className={s.backdrop} onClick={onClose} />
-        <section className="absolute inset-y-0 right-0 max-w-full flex outline-none pl-10">
-          <div className="h-full w-full md:w-screen md:max-w-md">
+        <section className="absolute inset-y-0 right-0 flex max-w-full pl-10 outline-none">
+          <div className="w-full h-full md:w-screen md:max-w-md">
             <div className={s.sidebar} ref={contentRef}>
               {children}
             </div>

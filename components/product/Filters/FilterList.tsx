@@ -51,7 +51,7 @@ const FilterItem = ({
   const checkboxBgColor = bgColor(option) || 'transparent'
   return (
     <div key={option.value} className="grid">
-      <div className="grid items-center">
+      <div className="grid group ">
         <input
           name={`${optionIdx}-input[]`}
           defaultValue={option.value}
@@ -63,7 +63,7 @@ const FilterItem = ({
         <label
           htmlFor={`${optionIdx}-input[]`}
           onClick={handleCheckbox}
-          className="cursor-pointer ml-0 text-sm text-gray-500 relative filter-label border  p-5 hover:border-black"
+          className="cursor-pointer ml-0 text-sm text-gray-500 relative filter-label border    py-5 group-hover:border-black"
         >
           {/* checkbox tick */}
           {isCheckboxChecked && !isCheckboxTickDisabled && (
@@ -71,20 +71,23 @@ const FilterItem = ({
               style={{
                 content: '',
                 float: 'right',
-                right: '8px',
-                top:'14px',
+                right: '-1px',
+                top:'-1px',
                 // zIndex: 99999,
                 position: 'absolute',
-                width: '10px',
-                height: '25px',
-                border: 'solid gray',
-                borderWidth: '0 2px 2px 0',
-                transform: 'rotate(45deg)',
+                width: '131px',   // 
+                height: '62px',
+                border: 'solid black',
+                borderWidth: '1px 1px 1px 1px',
+                // transform: 'rotate(45deg)',
               }}
             />
           )}
           {
-          <h1 className='text-gray-500 font-medium hover:text-black'>{generateOptionName()}</h1>
+            <div className='justify-center flex  '>
+                    {/* {console.log(generateOptionName().length>15? (generateOptionName().substring(0,12) ,` ...`):generateOptionName() )} */}
+              <h1 className='text-gray-500 font-bold group-hover:text-gray-700 '>{generateOptionName().length>12? (generateOptionName().substring(0,12) +`...`):generateOptionName() }</h1>
+            </div>
         }
 
           {/* color */}

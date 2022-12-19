@@ -2,10 +2,14 @@ import { useReducer, useState, useEffect } from 'react'
 import withDataLayer, { PAGE_TYPES } from '@components/withDataLayer'
 import { getAllCategories, getCategoryBySlug } from '@framework/category'
 import { getCategoryProducts } from '@framework/api/operations'
-import ProductFilterRight from '@components/product/Filters/filtersRight'
-import ProductMobileFilters from '@components/product/Filters'
-import ProductFiltersTopBar from '@components/product/Filters/FilterTopBar'
+// import ProductFilterRight from '@components/product/Filters/filtersRight'
+// import ProductMobileFilters from '@components/product/Filters'
+// import ProductFiltersTopBar from '@components/product/Filters/FilterTopBar'
 import ProductGridWithFacet from '@components/product/Grid'
+const ProductGrid = dynamic(() => import('@components/product/Grid'))
+const ProductMobileFilters = dynamic(() => import('@components/product/Filters'))
+const ProductFilterRight = dynamic(() => import('@components/product/Filters/filtersRight'))
+const ProductFiltersTopBar = dynamic(() => import('@components/product/Filters/FilterTopBar'))
 import Link from 'next/link'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
@@ -21,6 +25,7 @@ import 'swiper/css/navigation'
 
 import SwiperCore, { Navigation } from 'swiper'
 import commerce from '@lib/api/commerce'
+import dynamic from 'next/dynamic'
 //import { BiUnlink } from "react-icons/bi";
 
 const PAGE_TYPE = PAGE_TYPES.Category
@@ -153,6 +158,7 @@ function reducer(state: stateInterface, { type, payload }: actionInterface) {
 }
 
 function CategoryPage({ category, products }: any) {
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter()
   const adaptedQuery: any = { ...router.query }
 
@@ -265,11 +271,11 @@ function CategoryPage({ category, products }: any) {
   // IMPLEMENT HANDLING FOR NULL OBJECT
   if (category === null) {
     return (
-      <div className="container mx-auto py-10 text-center relative top-20">
-        <h4 className="text-3xl font-medium text-gray-400 pb-6">
+      <div className="container relative py-10 mx-auto text-center top-20">
+        <h4 className="pb-6 text-3xl font-medium text-gray-400">
           {BAD_URL_TEXT}
           <Link href="/category">
-            <a className="text-indigo-500 px-3">{ALL_CATEGORY}</a>
+            <a className="px-3 text-indigo-500">{ALL_CATEGORY}</a>
           </Link>
         </h4>
       </div>
@@ -280,20 +286,15 @@ function CategoryPage({ category, products }: any) {
     IS_INFINITE_SCROLL && productListMemory.products?.results?.length
       ? productListMemory.products
       : products
-  
+
   return (
-    <div className="bg-white md:w-4/5 mx-auto">
+    <div className="mx-auto bg-white md:w-full">
       {/* Mobile menu */}
-      <main className="pb-0">   
-        <div className="pt-2 sm:pt-4 sm:px-0 px-3">
-          {category.breadCrumbs && (
-            <BreadCrumbs items={category.breadCrumbs} currentProduct={category} />
-          )}
-        </div>     
-        <div className="sm:px-0 flex justify-center items-center w-full">
+      <main className="pb-0">
+        <div className="flex items-center justify-center w-full sm:px-0">
           {
             category && category.images && category.images.length ? (
-              <Swiper navigation={true} loop={true} className="mySwiper sm:mt-4 mt-0">
+              <Swiper navigation={true} loop={true} className="mt-0 mySwiper sm:mt-4">
                 {category.images.map((image: any, idx: number) => {
                   return (
                     <SwiperSlide key={idx}>
@@ -304,7 +305,7 @@ function CategoryPage({ category, products }: any) {
                           height={460}
                           src={image.url || IMG_PLACEHOLDER}
                           alt={category.name}
-                          className="cursor-pointer w-full h-48 sm:h-96 sm:max-h-96 object-center object-cover"
+                          className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"
                         ></Image>
                       </Link>
                     </SwiperSlide>
@@ -316,84 +317,157 @@ function CategoryPage({ category, products }: any) {
             )
           }
         </div>
-        
-        <div className="text-left sm:pt-1 sm:pb-6 pb-4 pt-3 px-3 sm:px-0">
-          <h4><span className='font-normal text-gray-500 text-sm'>Showing {products.total} {' '} {RESULTS}</span></h4>
-          <h1 className="sm:text-xl text-xl font-semibold tracking-tight text-black">
-            {category.name} 
+
+        <div className="relative px-4 py-4 mt-4 text-center sm:py-5 sm:px-0 lg:px-0">
+          <div className="px-3 pt-2 text-center sm:pt-4 sm:px-0">
+            {category.breadCrumbs && (
+              <BreadCrumbs items={category.breadCrumbs} currentProduct={category} />
+            )}
+          </div>
+          <h1 className="text-xl font-semibold tracking-tight text-black sm:text-2xl">
+            {category.name}
+
           </h1>
-          <h2 className='sm:text-md text-gray-500'>{category.description}</h2>          
+
+          <img src='/assets/icons/filter.png'
+            alt='filter-icon'
+            onClick={() => {
+              !showModal ? setShowModal(true) : setShowModal(false)
+            }}
+            className='absolute top-0 hidden w-10 mt-8 mr-4 cursor-pointer sm:block right-7' />
         </div>
-        
+
         {category?.subCategories?.length > 0 &&
-            <div className='grid grid-cols-1 sm:grid-cols-12'>
-              <div className='sm:col-span-12'>
-                <div className="grid grid-cols-2 sm:grid-cols-5 text-left border-t border-l border-r mt-2 py-2 bg-gray-50">
-                  {category?.subCategories?.map((subcateg: any, idx: number) => {
-                    return (
-                      <Link href={'/' + subcateg.link} key={idx}>
-                        <div className="flex flex-col text-center cursor-pointer">
-                          <h4 className="text-gray-800 font-medium sm:text-sm text-xs underline hover:text-pink">
-                            {subcateg.name}
-                          </h4>
-                        </div>
-                      </Link>
-                    )
-                  })}
-                </div>
+          <div className='grid grid-cols-1 sm:grid-cols-12'>
+            <div className='sm:col-span-12'>
+              <div className="grid grid-cols-2 py-2 mt-2 text-left border-t border-l border-r sm:grid-cols-5 bg-gray-50">
+                {category?.subCategories?.map((subcateg: any, idx: number) => {
+                  return (
+                    <Link href={'/' + subcateg.link} key={idx}>
+                      <div className="flex flex-col text-center cursor-pointer">
+                        <h4 className="text-xs font-medium text-gray-800 underline sm:text-sm hover:text-pink">
+                          {subcateg.name}
+                        </h4>
+                      </div>
+                    </Link>
+                  )
+                })}
               </div>
             </div>
+          </div>
         }
-        {products.total>0 &&
-            <div className="grid sm:grid-cols-12 grid-cols-1 gap-1 w-full mx-auto overflow-hidden sm:border-t sm:border-gray-200">
-              {!!products && (
+        {products.total > 0 &&
+
+          <div className="grid w-full grid-cols-1 px-4 mx-auto overflow-hidden sm: sm:px-0 lg:px-0">
+            {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
+
+            <div className="flex flex-col sm:col-span-2 sm:hidden">
+              <ProductMobileFilters
+                handleFilters={handleFilters}
+                products={data.products}
+                routerFilters={state.filters}
+                handleSortBy={handleSortBy}
+                clearAll={clearAll}
+                routerSortOption={state.sortBy}
+              />
+            </div>
+
+            {/* {FILTER PANEL SHOW ONLY IN DESKTOP VERSION} */}
+
+            {/* <div className="hidden sm:col-span-2 sm:block">
+              <ProductFilterRight
+              handleFilters={handleFilters}
+              products={data.products}
+              routerFilters={state.filters}
+              />
+              </div>   */}
+            <div className="relative sm:col-span-4">
+              {/* {HIDE FILTER TOP BAR IN MOBILE} */}
+
+              {/* <div className="flex-1 hidden sm:block">
+              <ProductFiltersTopBar
+                products={data.products}
+                handleSortBy={handleSortBy}
+                routerFilters={state.filters}
+                clearAll={clearAll}
+                routerSortOption={state.sortBy}
+              />
+            </div> */}
+
+              {/* Modal */}
+
+              <ProductGrid
+                products={productDataToPass}
+                currentPage={state.currentPage}
+                handlePageChange={handlePageChange}
+                handleInfiniteScroll={handleInfiniteScroll}
+              />
+
+              {showModal ? (
                 <>
-                  {/* {MOBILE FILTER PANEL SHOW ONLY IN MOBILE} */}
+                  {/*content*/}
+                  <div
+                    style={{ width: '30rem' }}
+                    className='absolute top-0 hidden mt-0  bg-gray-100 border-b-2 sm:block right-0 hover:shadow-2xl ' >
 
-                  <div className="sm:col-span-2 sm:hidden flex flex-col">
-                    <ProductMobileFilters
-                      handleFilters={handleFilters}
-                      products={products}
-                      routerFilters={state.filters}
-                      handleSortBy={handleSortBy}
-                      clearAll={clearAll}
-                      routerSortOption={state.sortBy}
-                    />
-                  </div>
-                  <div className="sm:col-span-2 sm:block hidden">
-                    <ProductFilterRight
-                      handleFilters={handleFilters}
-                      products={productDataToPass}
-                      routerFilters={state.filters}
-                    />
-                  </div>
-                  <div className="sm:col-span-10 sm:px-0 px-4 overflow-hidden">
-                    {/* {HIDE FILTER TOP BAR IN MOBILE} */}
+                    {/* <div
+                    //  style={{width:'30rem'}}
+                    className="hidden sm:block"> */}
+                    <div className='relative flex flex-col w-full px-6 overflow-y-scroll border-r max-h-40R'>
 
-                    <div className="flex-1 sm:block hidden">
                       <ProductFiltersTopBar
-                        products={products}
+                        products={data.products}
                         handleSortBy={handleSortBy}
                         routerFilters={state.filters}
                         clearAll={clearAll}
                         routerSortOption={state.sortBy}
                       />
+                      {/* </div> */}
+
+                      <ProductFilterRight
+                        handleFilters={handleFilters}
+                        products={data.products}
+                        routerFilters={state.filters}
+
+                      />
+
                     </div>
-                    <ProductGridWithFacet
-                      products={productDataToPass}
-                      currentPage={products.currentPage}
-                      handlePageChange={handlePageChange}
-                      handleInfiniteScroll={handleInfiniteScroll}
-                    />
+
+                    {/*footer*/}
+                    <div className="grid grid-cols-2 border-b-2 py-7 px-7">
+                      <button
+                        className="col-span-1 px-6 py-6 text-lg font-bold text-gray-700 border border-gray-200 hover:text-black hover:border-black"
+                        type="button"
+                        onClick={() => { setShowModal(false), clearAll() }}
+                      >
+                        Clear All
+                      </button>
+                      <button
+                        className="col-span-1 px-6 py-6 text-lg font-bold text-white bg-black border border-black hover:border-white hover:text-gray-200"
+                        type="button"
+                        onClick={() => setShowModal(false)}
+                      >
+                        Apply
+                      </button>
+                    </div>
+
+
                   </div>
+                  {/* <div className="fixed inset-0 z-40 bg-black opacity-25"></div> */}
                 </>
-              )}
+              ) : null}
+
+
             </div>
+            <div></div>
+          </div>
+
+
         }
         {products.total == 0 &&
-            <div className='max-w-7xl mx-auto p-32 text-center'>
-                <h4 className='text-3xl font-bold text-gray-300'>No Products availabe in {category.name}</h4>
-            </div>
+          <div className='p-32 mx-auto text-center max-w-7xl'>
+            <h4 className='text-3xl font-bold text-gray-300'>No Products availabe in {category.name}</h4>
+          </div>
         }
       </main>
       <NextSeo

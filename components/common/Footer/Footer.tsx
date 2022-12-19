@@ -27,23 +27,23 @@ const Footer: FC<Props> = ({ config }) => {
   const handleRedirect = (path: string) => (path ? router.push(path) : {})
 
   return (
-    <footer aria-labelledby="footer-heading" className="bg-black p-2 mt-5">
+    <footer aria-labelledby="footer-heading" className="p-2 mt-5 bg-black">
       <h2 id="footer-heading" className="sr-only">
         {GENERAL_FOOOTER}
       </h2>
       {/* <div className="mt-12 md:mt-0 md:row-start-2 md:col-start-3 md:col-span-8 lg:row-start-1 lg:col-start-7 lg:col-span-6"> */}
       <div className="grid grid-cols-2 gap-0 py-3 mt-4">
-        <h1 className="text-white lg:text-xl md:text-lg sm:text-md font-bold xl:text-2xl pt-5 ml-20 uppercase">
+        <h1 className="pt-5 ml-20 font-bold text-white uppercase lg:text-xl md:text-lg sm:text-md xl:text-2xl">
           {QUERY}
           {/* {SIGN_UP_TEXT} */}
         </h1>
         <div className="flex justify-center mb-8">
-          <div className="my-auto pt-2">
-            <form className="mt-2 flex sm:max-w-md">
-              <div className="ml-4 flex-shrink-0 border w-48 sm:w-64 md:w-64 lg:w-96 xl:w-96">
+          <div className="pt-2 my-auto">
+            <form className="flex mt-2 sm:max-w-md">
+              <div className="flex-shrink-0 w-48 ml-4 border sm:w-64 md:w-64 lg:w-96 xl:w-96">
                 <button
                   type="submit"
-                  className="w-full bg-black border border-transparent rounded-sm shadow-sm py-4 uppercase px-6 flex items-center justify-center font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                  className="flex items-center justify-center w-full px-6 py-4 font-medium text-white uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                 >
                   {TOUCH}
                 </button>
@@ -52,15 +52,15 @@ const Footer: FC<Props> = ({ config }) => {
           </div>
         </div>
       </div>
-      <hr className="text-white pb-6 pt-2" />
-      <div className="sm:mx-auto md:mx-auto lg:ml-20 xl:ml-20 w-full sm:w-4/5 px-4 sm:px-0 lg:px-0">
+      <hr className="pt-2 pb-6 text-white" />
+      <div className="w-full px-4 sm:mx-auto md:mx-auto lg:ml-20 xl:ml-20 sm:w-4/5 sm:px-0 lg:px-0">
         <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-x-12">
           {/* Image section */}
-          <div className="mt-2 pb-2">
+          <div className="pb-2 mt-2">
             <p className="text-left text-white lg:text-xl md:text-lg dm:text-lg">
               {CUSTOM}
             </p>
-            <span className="text-sm text-white text-left">{NEW_PRODUCT}</span>
+            <span className="text-sm text-left text-white">{NEW_PRODUCT}</span>
             <form>
               <div className="w-full newsletter-form">
                 <div className="w-full py-4">
@@ -94,7 +94,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <div className="w-full">
                   <button
                     type="submit"
-                    className="w-full h-16 sm:h-10 md:h-12 bg-black border border-white rounded-sm py-3 uppercase px-6 flex items-center justify-center font-bold text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                    className="flex items-center justify-center w-full h-16 px-6 py-3 font-bold text-white uppercase bg-black border border-white rounded-sm sm:h-10 md:h-12 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                   >
                     {BTN_SUBSCRIBE}
                   </button>
@@ -103,11 +103,11 @@ const Footer: FC<Props> = ({ config }) => {
             </form>
             {/* Sitemap sections */}
           </div>
-          <div className="grid grid-cols-1 gap-0 text-center lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 lg:text-left pt-4 pb-8 xl:gap-x-8 lg:gap-x-8 md:gap-x-4">
+          <div className="grid grid-cols-1 gap-0 pt-4 pb-8 text-center lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 lg:text-left xl:gap-x-8 lg:gap-x-8 md:gap-x-4">
             {/* {config?.map((item: any, idx: number) => {
               return (
                 <div key={`${idx}-footer-item`}>
-                  <h3 className="text-md font-medium text-gray-900">
+                  <h3 className="font-medium text-gray-900 text-md">
                     {item.caption}
                   </h3>
                   <ul role="list" className="mt-6 space-y-6">
@@ -139,12 +139,12 @@ const Footer: FC<Props> = ({ config }) => {
               )
             })} */}
             <div className="pt-4 xl:ml-20 lg:ml-10">
-              <strong className="lg:px-6 sm:px-6 md:px-6 text-white lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
+              <strong className="text-white lg:px-6 sm:px-6 md:px-6 lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
                 CUSTOMER
               </strong>
               <nav
                 aria-label="Footer Services Nav"
-                className="mt-6 flex flex-col space-y-3 lg-text-md md:text-sm sm:text-xs mx-6 sm:px-2 md:px-2"
+                className="flex flex-col mx-6 mt-6 space-y-3 lg-text-md md:text-sm sm:text-xs sm:px-2 md:px-2"
               >
                 <a
                   className="text-white transition hover:text-gray-700/75"
@@ -185,13 +185,13 @@ const Footer: FC<Props> = ({ config }) => {
               </nav>
             </div>
             <div className="pt-4 xl:ml-20 lg:ml-10 md:ml-10">
-              <strong className="lg:px-6 sm:px-6 md:px-6 text-white lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
+              <strong className="text-white lg:px-6 sm:px-6 md:px-6 lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
                 {' '}
                 KSTM{' '}
               </strong>
               <nav
                 aria-label="Footer About Nav"
-                className="mt-6 flex flex-col space-y-3 lg-text-md md:text-sm sm:text-xs mx-6 sm:px-2 md:px-2"
+                className="flex flex-col mx-6 mt-6 space-y-3 lg-text-md md:text-sm sm:text-xs sm:px-2 md:px-2"
               >
                 <a
                   className="text-white transition hover:text-gray-700/75"
@@ -232,13 +232,13 @@ const Footer: FC<Props> = ({ config }) => {
               </nav>
             </div>
             <div className="pt-4 xl:ml-20 lg:ml-10 md:ml-10">
-              <strong className="lg:px-6 sm:px-6 md:px-6 text-white lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
+              <strong className="text-white lg:px-6 sm:px-6 md:px-6 lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
                 {' '}
                 LEGAL{' '}
               </strong>
               <nav
                 aria-label="Footer Support Nav"
-                className="mt-6 flex flex-col space-y-3 lg-text-md md:text-sm sm:text-xs mx-6"
+                className="flex flex-col mx-6 mt-6 space-y-3 lg-text-md md:text-sm sm:text-xs"
               >
                 <a
                   className="text-white transition hover:text-gray-700/75"
@@ -263,11 +263,11 @@ const Footer: FC<Props> = ({ config }) => {
           </div>
         </div>
       </div>
-      <div className="border-t border-gray-100 pt-2 pb-2">
+      <div className="pt-2 pb-2 border-t border-gray-100">
         <div className="grid grid-cols-3 gap-0 mr-14">
           <div className="mx-14">
             {' '}
-            <p className="sm:text-md md:text-xl lg:text-2xl xl:text-2xl mt-0 font-heading mx-14 mx-auto text-white">
+            <p className="mt-0 text-white sm:mx-auto sm:text-md md:text-xl lg:text-2xl xl:text-2xl font-heading mx-14">
               &copy; {COPYRIGHT_FOOTER_INFO}
             </p>
           </div>
@@ -280,7 +280,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="https://www.facebook.com/Damenschofficial/"
+                  href="https://www.facebook.com"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-fb"></i>
@@ -290,7 +290,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="https://twitter.com/damensch_in?lang=en"
+                  href="https://twitter.com"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-twitter"></i>
@@ -300,8 +300,8 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="https://www.instagram.com/damenschofficial/"
-                  className="inline-block"
+                 href="https://www.instagram.com"
+                 className="inline-block"
                 >
                   <i className="sprite-icon sprite-insta"></i>
                 </a>
@@ -310,7 +310,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="https://www.youtube.com/channel/UCmHTYSGgtCijnH82npTrCJw"
+                  href="#"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-tic"></i>
@@ -320,7 +320,7 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  href="https://www.linkedin.com/company/damensch"
+                  href="https://www.shopify.com"
                   className="inline-block"
                 >
                   <i className="sprite-icon sprite-shopify"></i>

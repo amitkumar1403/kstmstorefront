@@ -39,7 +39,7 @@ interface Attribute {
   fieldValues?: []
 }
 
-const SearchProductCard: FC<Props> = ({ product }) => {
+const HomeProductCard: FC<Props> = ({ product }) => {
   const [isInWishList, setItemsInWishList] = useState(false)
   const [isEntered, setisEntered] = useState(false)
   const [showColorPrice,setColorPrice]=useState({
@@ -93,7 +93,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   }, [product.slug])
 
   const productWithColors =
-    product.variantProductsAttribute &&
+    product.variantProductsAttribute  &&
     product.variantProductsAttribute.find(
       (item: Attribute) => item.fieldCode === colorKey
     )
@@ -172,7 +172,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   const discount  = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
   return (
     <div className="bg-gray-100 border border-gray-300 hover:border-black ">
-    <div key={product.id} className="relative group"
+    <div key={product.id} className="relative group "
     onMouseEnter={()=>setisEntered(true)}
     onMouseLeave={()=>{setisEntered(false)}}
     >
@@ -193,13 +193,11 @@ const SearchProductCard: FC<Props> = ({ product }) => {
                 onMouseLeave={() => {handleHover('leave')}}
                 className="object-cover object-center w-full h-full sm:h-full"
                 layout='responsive'
-                width={600}
-                height={600}
+                width={800}
+                height={800}
               >
                 
                 </Image>  
-    
-
 
             {buttonConfig.isPreOrderEnabled && (
               <div className="absolute px-1 py-1 bg-yellow-400 rounded-sm top-2">
@@ -242,10 +240,12 @@ const SearchProductCard: FC<Props> = ({ product }) => {
             link={currentProductData.link}
           />
         ) : (
-          <></>
+          
+          <div className="inline-block w-1 h-10 mt-2 mr-1 sm:h-4 sm:w-1 sm:mr-2" />
+          
         )}
         
-        <h3 className="pb-3 text-xs font-normal text-black truncate sm:text-sm">
+        <h3 className="pb-3 text-xs font-normal text-black truncate sm:text-sm ">
           <Link href={`/${currentProductData.link}`}>
             {/* Product Name */}
                                                                       {/* {showColorPrice.name} */}
@@ -257,7 +257,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
           {/* Product Price */}
             {isEntered ? 
           (
-            <div className='mt-1 mb-2 font-bold text-gray-500 group-hover:bg-gray-200 sm:mt-1 text-md'>
+            <div className='mt-1 mb-1 font-bold text-gray-500 group-hover:bg-gray-200 sm:mt-1 text-md'>
             <p className='text-center text-gray-500 text-bold' >  {product?.price?.formatted?.withTax}</p>
             </div>
           ):<div className='h-14'></div>
@@ -296,4 +296,4 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   </div>
   )
 }
-export default SearchProductCard
+export default HomeProductCard
