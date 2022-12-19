@@ -6,6 +6,10 @@
 
 @tailwind utilities;
 
+html {
+  overflow-y: auto !important;
+}
+
 .newsletter-form {
   max-width: 600px;
   width: 100%;
