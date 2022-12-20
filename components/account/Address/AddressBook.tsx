@@ -103,8 +103,7 @@ export default function AddressBook() {
         .catch(() => failCb())
   }
   return (
-    <main className="sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <main className="sm:px-6 lg:pl-2">
         <div className="px-4 sm:px-0">
           <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
             {title}
@@ -112,7 +111,7 @@ export default function AddressBook() {
           <p className="mt-2 text-sm text-gray-500">{DETAILS_SUBTITLE}</p>
         </div>
       </div>
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-12">
         {!data.length && !isLoading && (
           <div className="py-10">{EMPTY_ADDRESS}</div>
         )}
@@ -126,7 +125,7 @@ export default function AddressBook() {
         />
       )}
       {!isNewFormMode && (
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-12">
           {data.map((item: any, idx: number) => {
             return (
               <AddressItem

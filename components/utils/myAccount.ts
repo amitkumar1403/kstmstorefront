@@ -20,7 +20,7 @@ export const config: any = [
     text: GENERAL_MY_RETURNS,
     mtext: GENERAL_MY_RETURNS,
     props: 'returns',
-   href:"/my-account/returns"
+   href:"/my-account/MyReturns"
   },
   {
     type: 'tab',
@@ -44,12 +44,13 @@ export const config: any = [
     href:"/my-account/address-book"
   },
 
-  // {
-  //   type: 'tab',
-  //   text: GENERAL_CONTACT_PREFERENCES,
-  //   props: 'contact',
-  //  // href:"/my-account/contact"
-  // },
+  {
+    type: 'tab',
+    text: GENERAL_CONTACT_PREFERENCES,
+    mtext:GENERAL_CONTACT_PREFERENCES,
+    props: 'contact',
+   href:"/my-account/contact"
+  },
 ]
 
 

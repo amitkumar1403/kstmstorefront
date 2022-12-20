@@ -14,6 +14,7 @@ import { useUI } from '@components/ui/context'
 
 import React from 'react'
 import MyDetails from '@components/account/MyDetails'
+import MyOrders from '@components/account/MyOrders'
 import MyReturns from '@components/account/MyReturns'
 function MyAccount({ defaultView, isLoggedIn }: any) {
   const [isShow, setShow] = useState(true)
@@ -60,9 +61,9 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
     <section className="relative pb-10 text-gray-900">
     <div className="w-full px-0 mx-auto accunt-main-container sm:px-0 lg:px-0">
       <div className="grid w-full grid-cols-12 px-4 sm:px-2 sm:pr-0 main-account-grid pt-16">
-        <div className="col-span-12 lg:col-span-4 md:col-span-4 pl-16 border-r border-gray-200 sm:pl-6 tab-list-sm sm:pt-10 mob-hidden">
+        <div className="col-span-3 sm:pl-4 md:pl-12 border-r border-gray-600 sm:pl-6 tab-list-sm sm:pt-10 mob-hidden">
            
-                <div className="sticky left-0 z-10 flex flex-col top-36">
+                <div className="sticky left-0 z-10 flex flex-col top-36 lg:px-36 md:px:24 sm:px-2">
                   {config.map((item: any, idx: number) => (
                     <>
                       <div
@@ -98,7 +99,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                                 }}
                                    className="inline-block w-full h-full py-4 text-sm sm:pl-8 text-primary">
                                    <span className='inline-block sm:hidden'>{item.mtext}</span>
-                                   <span className='hidden sm:inline-block'>{item.text}</span>
+                                   <span className='hidden sm:inline-block text-xs'>{item.text}</span>
                                 </a>
                              </Link>
                           </div>
@@ -129,11 +130,11 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
               </div>
 
               <div
-                className={`relative col-span-12 lg:col-span-8 md:col-span-8 lg:col-span-8 md:col-span-8 border-l tabpanel-sm mob-tab-full ${
+                className={`relative col-span-9 lg:col-span-8 md:col-span-8 border-l tabpanel-sm mob-tab-full ${
                   isShow ? `mob-hidden` : ''
                 }`}
               >
-                <div className={'orders bg-white my-2 sm:my-6 pl-12'}>
+                <div className={'orders bg-white my-2 sm:my-6 pl-2'}>
                   <MyReturns />
                 </div>
               </div>

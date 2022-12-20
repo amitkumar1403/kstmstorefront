@@ -41,7 +41,7 @@ export default function MyDetails() {
 
   return (
     <main className="sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-12">
         <div className="px-4 sm:px-0">
           <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
             {title}
@@ -66,7 +66,7 @@ export default function MyDetails() {
             isSubmitting,
           }: any) => {
             return (
-              <div className="flex-col w-full py-5 flex items-flex-start mx-auto max-w-4xl justify-center">
+              <div className="flex-col w-full py-5 flex items-flex-start mx-12 max-w-4xl justify-center">
                 <Form className="font-semibold w-full sm:w-1/2">
                   {formConfig.map((formItem: any, idx: number) => {
                     return (
