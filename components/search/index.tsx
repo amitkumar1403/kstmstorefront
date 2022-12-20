@@ -74,53 +74,53 @@ export default function Search({ closeWrapper = () => {}, keywords }: any) {
   }, [Router.asPath])
 
   return (
-    <div className="z-9999 w-full h-full bg-white absolute">
+    <div className="fixed top-0 w-full h-full bg-white z-9999">
       <div
-        className="h-9 text-gray-900 w-9 right-10 top-10 absolute cursor-pointer"
+        className="absolute text-gray-900 cursor-pointer h-9 w-9 right-10 top-10"
         onClick={closeWrapper}
       >
         <XIcon />
       </div>
-      <div className="w-full mt-10 justify-center items-center flex flex-col sm:px-10 px-4 py-5">
-        <div className="mb-4 sm:w-3/5 w-full mx-auto">
-          <div className="flex flex-row  rounded-sm px-1">
+      <div className="flex flex-col items-center justify-center w-full px-4 py-5 mt-10 sm:px-10">
+        <div className="w-full mx-auto mb-4 sm:w-3/5">
+          <div className="flex flex-row px-1 rounded-sm">
             <label className="hidden" htmlFor={'search-bar'}>
               {BTN_SEARCH}
             </label>
             <input
               id={'search-bar'}
               autoFocus
-              className="text-gray-700 appearance-none min-w-0 w-full bg-white border-b border-0 border-gray-300 px-3 py-4 placeholder-gray-500 text-xl focus:outline-none focus:border-white focus:ring-0 focus:ring-white focus:border-gray-700"
+              className="w-full min-w-0 px-3 py-4 text-xl text-gray-700 placeholder-gray-500 bg-white border-0 border-b border-gray-300 appearance-none focus:outline-none focus:border-white focus:ring-0 focus:ring-white focus:border-gray-700"
               placeholder={BTN_SEARCH}
               onChange={(e: any) => setInputValue(e.target.value)}
             />
-            <div className="text-gray-400 py-4 relative right-10">
+            <div className="relative py-4 text-gray-400 right-10">
               <SearchIcon className="w-6 h-6" aria-hidden="true" />
             </div>
           </div>
         </div>
-        <div className="sm:w-3/5 w-full grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid w-full grid-cols-2 sm:w-3/5 sm:mx-0 md:grid-cols-3 lg:grid-cols-4 max-panel-search">
           {isLoading &&
             rangeMap(12, (i) => (
               <div
                 key={i}
-                className="shadow-md w-60 h-72 rounded-md mx-auto mt-20"
+                className="mx-auto mt-20 rounded-md shadow-md w-60 h-72"
               >
-                <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
+                <div className="flex flex-row items-center justify-center h-full space-x-5 animate-pulse">
                   <div className="flex flex-col space-y-3">
-                    <div className="w-full bg-gray-100 h-48 rounded-md "></div>
-                    <div className="w-36 bg-gray-100 h-6 mt-40 rounded-md "></div>
+                    <div className="w-full h-48 bg-gray-100 rounded-md "></div>
+                    <div className="h-6 mt-40 bg-gray-100 rounded-md w-36 "></div>
                   </div>
                 </div>
               </div>
             ))}
           {products?.map((product: any, idx: number) => {
             return (
-              <div className="border-r border-b border-gray-200" key={idx}>
-                <div className="group relative p-4 sm:p-6">
+              <div className="border-b border-gray-200" key={idx}>
+                <div className="relative p-4 group sm:p-6">
                   <Link passHref href={`/${product.slug}`}>
                     <a href={`/${product.slug}`}>
-                      <div className="relative rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75">
+                      <div className="relative overflow-hidden bg-gray-200 rounded-lg aspect-w-1 aspect-h-1 group-hover:opacity-75">
                         <div className='image-container'>
                            {product.image &&
                               <Image 
@@ -128,7 +128,7 @@ export default function Search({ closeWrapper = () => {}, keywords }: any) {
                                 alt={product.name}
                                 layout='fill' 
                                 sizes='50vw'
-                                className='w-full sm:h-72 h-48 object-center object-cover image'>
+                                className='object-cover object-center w-full h-48 sm:h-72 image'>
                               </Image> 
                             }
                         </div>
@@ -137,7 +137,7 @@ export default function Search({ closeWrapper = () => {}, keywords }: any) {
                   </Link>
 
                   <div className="pt-10 pb-4 text-center">
-                    <h3 className="min-h-50px text-sm font-medium text-gray-900">
+                    <h3 className="text-sm font-medium text-gray-900 min-h-50px">
                       <Link href={`/${product.slug}`}>
                         <a href={`/${product.slug}`}>{product.name}</a>
                       </Link>

@@ -382,3 +382,23 @@ body {
     min-height: 400px;
   }
 }
+
+.max-panel-search {
+  max-height: 80vh !important;
+  overflow-y: auto;
+}
+
+.max-panel-search::-webkit-scrollbar {
+  width: 6px;
+}
+
+.max-panel-search::-webkit-scrollbar-track {
+  background: #fff;
+  opacity: 1;
+}
+
+.max-panel-search::-webkit-scrollbar-thumb {
+  background: #d3d3d36e !important;
+  width: 6px;
+  border-radius: 6px;
+}
