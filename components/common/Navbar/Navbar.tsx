@@ -99,7 +99,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
   let accountDropdownConfig = accountDropDownConfigUnauthorized
   let title = !isGuestUser
     ? user.userId
-      ? `Hi, ${user.firstName}`
+      ? `Hi, ${user.firstName}  ${user.lastName} `
       : 'My account'
     : ''
 

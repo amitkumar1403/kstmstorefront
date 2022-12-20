@@ -13,7 +13,8 @@ import useAnalytics from '@components/services/analytics/useAnalytics'
 import { useUI } from '@components/ui/context'
 
 import React from 'react'
-import MyDetails from '@components/account/MyDetails'
+import Wishlist from '@components/account/Wishlist'
+import wishlist from 'pages/wishlist'
 function MyAccount({ defaultView, isLoggedIn }: any) {
   const [isShow, setShow] = useState(true)
   const [view, setView] = useState(defaultView)
@@ -59,7 +60,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
     <section className="relative pb-10 text-gray-900">
     <div className="w-full px-0 mx-auto accunt-main-container sm:px-0 lg:px-0">
       <div className="grid w-full grid-cols-12 px-4 sm:px-2 sm:pr-0 main-account-grid pt-16">
-        <div className="col-span-12 lg:col-span-4 md:col-span-4 pl-16 border-r border-gray-200 sm:pl-6 tab-list-sm sm:pt-10">
+        <div className="col-span-12 lg:col-span-4 md:col-span-4 pl-16 border-r border-gray-200 sm:pl-6 tab-list-sm sm:pt-10 mob-hidden">
            
                 <div className="sticky left-0 z-10 flex flex-col top-36">
                   {config.map((item: any, idx: number) => (
@@ -80,10 +81,8 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                         {item.text == 'My Profile' ? (
                           <>
                           <div
-                          
                              key={`my-acc-${idx}`}
                              // href="#"
-                             
                              className={`ring-white relative ring-opacity-60 border-b border-slate-300 sm:border-0 cursor-pointer ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2  w-full text-14  leading-5 text-left pl-4 ${item.text == "My Saved Address" ? "bg-white border-r-0  sm:border-b-0 sm:border-r-2 sm:border-black font-bold opacity-full" : "text-primary font-medium opacity-60"}`}
                           >
                              <span className="pr-2 leading-none align-middle acc-mob-icon-i sm:absolute top-2/4 -translate-y-2/4" >
@@ -97,7 +96,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                                    handleClick;
                                    setShow(false);
                                 }}
-                                   className="inline-block w-full h-full text-sm sm:pl-8 text-primary px-5 py-5">
+                                   className="inline-block w-full h-full py-4 text-sm sm:pl-8 text-primary">
                                    <span className='inline-block sm:hidden'>{item.mtext}</span>
                                    <span className='hidden sm:inline-block'>{item.text}</span>
                                 </a>
@@ -135,7 +134,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                 }`}
               >
                 <div className={'orders bg-white my-2 sm:my-6'}>
-                  <MyDetails />
+                  <Wishlist />
                 </div>
               </div>
             </div>
