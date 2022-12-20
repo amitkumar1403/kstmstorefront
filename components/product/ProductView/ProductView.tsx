@@ -406,6 +406,7 @@ export default function ProductView({
 
         setCartItems(newCart.data)
         showEngravingModal(false)
+        window.location.reload()
       } catch (error) {
         console.log(error, 'err')
       }
