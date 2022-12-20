@@ -9,26 +9,26 @@ import {
 } from '@components/utils/textVariables'
 export default function CategoryList(props: any) {
   return (
-    <main className="w-full px-4 mx-auto sm:px-0 md:w-4/5 lg:px-0">
-      <section aria-labelledby="products-heading" className="mt-16">
-        <h2 className="text-2xl font-bold tracking-tight text-center text-gray-900 uppercase">
+    <main className="w-full px-4 mx-auto sm:pt-4 sm:px-0 md:w-4/5 lg:px-0">
+      <section aria-labelledby="products-heading ">
+        <h2 className="pb-4 text-2xl font-bold tracking-tight text-center text-gray-900">
           {SHOP_BY_CATEGORY}
         </h2>
         {props?.data.length > 0 &&
-          <div className="flow-root mt-1 sm:mt-0">
+          <div className="flow-root mt-1 sm:mt-0 ">
             <div className="my-0">
-              <div className="box-content relative">
-                <div className="grid grid-cols-2 py-1 sm:py-6 sm:gap-y-8 gap-y-6 sm:grid-cols-6 gap-x-6 lg:grid-cols-6 xl:gap-x-8">
+              <div className="box-content relative px-3">
+                <div className="grid grid-cols-1 sm:p-3 sm:gap-y-2 gap-y-2 md:grid-cols-3 md:gap-x-28 sm:grid-cols-2 gap-x-0 lg:grid-cols-4 xl:gap-x-6">
                   {props?.data?.map((category: any, key: number) => (
                     <Link key={key} href={`/${category.link}`}>
                       <a
                         key={category.id}
                         href={`/${category.link}`}
-                        className="relative flex flex-col w-full p-6 overflow-hidden sm:w-56 sm:h-80 h-60 hover:opacity-75 xl:w-auto"
+                        className="relative flex flex-col w-screen overflow-hidden category-landing-image h-60 hover:opacity-75 xl:w-auto"
                       >
                         <span
                           aria-hidden="true"
-                          className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-gray-100 opacity-90"
+                          className="absolute inset-x-0 top-0 h-screen opacity-90 "
                         />
 
                         <span aria-hidden="true" className="absolute inset-1">
@@ -52,9 +52,9 @@ export default function CategoryList(props: any) {
                         </span>
                         <span
                           aria-hidden="true"
-                          className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-gray-900 opacity-40"
+                          className="absolute inset-x-0 bottom-4 h-1/3 opacity-40"
                         />
-                        <span className="relative mt-auto text-sm font-bold text-center text-white uppercase sm:text-lg">
+                        <span className="relative mt-auto text-sm font-bold text-center text-white uppercase bottom-6 sm:text-lg">
                           {category.name}
                         </span>
                       </a>

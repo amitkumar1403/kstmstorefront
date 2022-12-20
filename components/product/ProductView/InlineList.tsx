@@ -20,7 +20,7 @@ export default function InlineList({
   return (
     <>
     <div className='flex'>
-      <h3 className="text-sm text-black font-bold text-left">{label}</h3>
+      <h3 className="text-sm font-bold text-left text-black">{label}</h3>
       {/* <h3 className='px-2' >{color}</h3>
       <div style={{ color: `${color}` }}></div> */}
     </div>
@@ -32,19 +32,31 @@ export default function InlineList({
             const path = generateLink(fieldCode, item.fieldValue)
             return (
               <RadioGroup.Option
-                key={idx}
-                value={item.fieldValue}
-                style={{ backgroundColor: item.fieldValue }}
+                              key={idx}
+                              value={item.fieldValue}
+                              style={{ backgroundColor: item.fieldValue }}
+                              className={({ active, checked }) =>
+                                classNames(
+                                  currentAttribute == item.fieldValue ? 'border-black' : 'border-gray-40',
+                                  'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '  
+                                )
+                              }
+                            >
+               {/* <RadioGroup.Option */}
+              {/* //   key={idx}
+              //   value={item.fieldValue}
+              //   style={{ backgroundColor: item.fieldValue }}
                 
-                className={({ active, checked }) =>
-                  classNames(
-                    active && checked ? 'ring ring-offset-1' : '',
-                    !active && checked ? 'ring-2' : '',
-                    'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black '
-                  )
-                }
-                
-              >
+              //   className={({ active, checked }) =>
+              //     classNames(
+              //       active && checked ? 'ring ring-offset-1' : '',
+              //       !active && checked ? 'ring-2 ' : '',
+              //       'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '
+              //       'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '
+              //       )
+              //   }
+              //   'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '
+              // > */}
                 <RadioGroup.Label as="p" className="sr-only">
                   {item.fieldName}
                 </RadioGroup.Label>
@@ -92,7 +104,7 @@ export default function InlineList({
 //       <h3 className="pt-3 text-sm font-medium text-left text-gray-600 uppercase border-t border-gray-200 border-solid">{label}</h3>
 //       <RadioGroup value={'ring-gray-700'} onChange={() => { }} className="mt-4">
 //         <RadioGroup.Label className="sr-only">{label}</RadioGroup.Label>
-//         <div className="flex items-center space-x-2 lg-grid lg-grid-cols-8 border border-grey-40">
+//         <div className="flex items-center space-x-2 border lg-grid lg-grid-cols-8 border-grey-40">
 //           {items.map((item: any, idx: any) => {
 //             const path = generateLink(fieldCode, item.fieldValue)
 //             return (

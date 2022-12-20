@@ -5,8 +5,13 @@ import classNames from '@components/utils/classNames'
 import {SUSTAINAIBILITY, FABRIC_DETAILS,PRODUCT_DESCRIPTION,PRODUCT_SPECIFICATION,GENERAL_SHIPPING,GENERAL_RETURNS} from '@components/utils/textVariables'
 
 const colorRegex = /^#(?:[0-9a-f]{3}){1,2}$/i
+let SPECIFICATION:any = ""
+let FABRIC_CARE:any = ""
+let SUSTAINAIBILITY_IMPACT:any = ""
+
 
 const Attributes = ({ attributes = [] }: any) => {
+  {console.log("attr "+JSON.stringify(attributes))}
   return (
     <table className="text-gray-900">
       <tbody>
@@ -33,16 +38,35 @@ const Attributes = ({ attributes = [] }: any) => {
 }
 
 export default function ProductDetails({ product, description }: any) {
+
+  {product.customAttributes.map( (val:any) => {
+    if(val.key === "product.details"){
+      SPECIFICATION = val.value || ""
+    }
+    if(val.key === "fabriccare"){
+      FABRIC_CARE = val.value || ""
+      console.log(FABRIC_CARE)
+    }
+    if(val.key === "sustainabilityimpact"){
+      SUSTAINAIBILITY_IMPACT = val.value || ""
+    }
+  })}
+  
   const detailsConfig = [
     {
       title: PRODUCT_SPECIFICATION,
-      InnerComponent: (props: any) => <Attributes {...props} />,
+      InnerComponent: (props: any) =>  (
+      <p className="text-gray-900">
+        {SPECIFICATION || <p>Custom fit means you get garments perfectly fitted to you and only you. All our algorithm needs is your height, weight, age, and shoe size to create your size. Unless you order it, we don't make it. Our made-to-order solution achieves zero inventory waste and ensures ethical conditions throughout the supply chain.</p>}
+      </p>
+      ),
+
     },
     {
       title: SUSTAINAIBILITY,
       InnerComponent: (props: any) => (
         <p className="text-gray-900">
-          {props.shippingMessage || <p>Our Product is highly Sustainable for all the kinds of Weather.<br/><br/>We accept payment via PayPal, Clearpay, and major card payment providers (including Visa, Mastercard, Maestro, and Switch) and more.</p>}
+          {SUSTAINAIBILITY_IMPACT || <p>Our Product is highly Sustainable for all the kinds of Weather.<br/><br/>We accept payment via PayPal, Clearpay, and major card payment providers (including Visa, Mastercard, Maestro, and Switch) and more.</p>}
         </p>
       ),
     },
@@ -50,7 +74,7 @@ export default function ProductDetails({ product, description }: any) {
       title: FABRIC_DETAILS,
       InnerComponent: (props: any) => (
         <p className="text-gray-900">
-          {props.returnsMessage || <p>We assure you a very high Quality of Fabric. If any Defect Items may be returned for a full refund within 14 days from the date an order was received.</p>}
+          {FABRIC_CARE || <p>We assure you a very high Quality of Fabric. If any Defect Items may be returned for a full refund within 14 days from the date an order was received.</p>}
         </p>
       ),
     },

@@ -186,15 +186,15 @@ const HomeProductCard: FC<Props> = ({ product }) => {
           <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 group-hover:bg-gray-200 ">
               <Image
                 priority
-                src={generateUri(currentProductData.image, "h=400&fm=webp") || '/assets/icons/newPajama.png'} 
+                src={generateUri(currentProductData.image, "h=800&fm=webp") || '/assets/icons/newPajama.png'} 
                 // src='/assets/icons/newPajama.png' 
                 alt={product.name}
                 onMouseEnter={() => {handleHover('enter')}}
                 onMouseLeave={() => {handleHover('leave')}}
                 className="object-cover object-center w-full h-full sm:h-full"
                 layout='responsive'
-                width={200}
-                height={200}
+                width={800}
+                height={800}
               >
                 
                 </Image>  

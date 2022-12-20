@@ -14,6 +14,8 @@ import {
   ITEMS_IN_YOUR_CART,
   SUBTOTAL_INCLUDING_TAX
 } from '@components/utils/textVariables'
+let PERSONALISED_TEXT = ""
+let PERSONALIZATION = ""
 
 export default function Summary({
   cart,
@@ -29,6 +31,15 @@ export default function Summary({
         <ul role="list" className="divide-y divide-gray-200">
           {cart.lineItems?.map((product: any) => (
             <li key={product.id} className="flex py-3 px-4 sm:px-6">
+              {cart.lineItems.map( (val:any) => {
+                  if(val.customInfo1 !== ""){
+                    PERSONALISED_TEXT = val.customInfo1;
+                  }
+                  if(val.name !== ""){
+                    PERSONALIZATION = val.name;
+                    console.log("fur "+JSON.stringify(cart.lineItems))
+                  }
+              })}
               <div className="flex-shrink-0">
                 <Image
                   layout='fixed'
@@ -62,6 +73,16 @@ export default function Summary({
                           </span>
                         ) : null}
                     </p>
+                    <div>
+                      {}
+                    </div>
+                    <div className='flex justify-between' >
+                          <div>
+                            <p className='text-md font-semibold text-black'>Personalization</p>
+                          </div>
+                    <label>+€20</label>
+                    </div>
+                    <label>{PERSONALISED_TEXT}</label>
                   </div>
                 </div>               
               </div>

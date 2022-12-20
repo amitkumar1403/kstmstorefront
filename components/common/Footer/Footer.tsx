@@ -1,9 +1,10 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import Link from 'next/link'
 import type { Page } from '@commerce/types/page'
 import { Logo } from '@components/ui'
 import config from './config'
 import { useRouter } from 'next/router'
+import { useUI } from '@components/ui';
 import {
   BTN_SUBSCRIBE,
   COPYRIGHT_FOOTER_INFO,
@@ -16,6 +17,8 @@ import {
   NEW_PRODUCT,
   TOUCH,
 } from '@components/utils/textVariables'
+import { NEXT_SUBSCRIBE } from '@components/utils/constants'
+import axios from 'axios'
 
 interface Props {
   config: []
@@ -23,8 +26,33 @@ interface Props {
 
 const Footer: FC<Props> = ({ config }) => {
   const router = useRouter()
-
+  const [value, setValue] = useState('')
+  const [userName, setName] = useState('')
+  const [isMessage, setMessage] = useState(false)
+  const { setAlert } = useUI();
   const handleRedirect = (path: string) => (path ? router.push(path) : {})
+  const handleChange = (e: any) => {
+    setValue(e.target.value)
+  }
+
+  const handleNameChange = (e: any) => {
+    setName(e.target.userName)
+  }
+  const submitSubscription = async (data: any, fname: any) => {
+    await axios.post(NEXT_SUBSCRIBE, {
+      email: data,
+      firstName: fname,
+      notifyByEmail: true,
+    })
+    setMessage(true);
+    setTimeout(() => {
+      setMessage(false);
+      setValue('')
+      setName('')
+    }, 3000);
+
+
+  }
 
   return (
     <footer aria-labelledby="footer-heading" className="p-2 mt-5 bg-black">
@@ -74,18 +102,22 @@ const Footer: FC<Props> = ({ config }) => {
                     type="text"
                     autoComplete="email"
                     required
-                    placeholder="Email"
+                    onChange={handleChange}
+                    name={'email-address'}
+                    placeholder="Email Address"
+                    value={value}
                     className="h-16 sm:h-10 md:h-12 form-control block w-1/2 px-3 py-1.5 text-md font-bold text-start text-white bg-black border border-solid border-gray-300 transition ease-in-out m-0
                 focus:text-white focus:border-blue-600 focus:outline-none"
                   />
-                  <label htmlFor="email-address" className="sr-only">
+                  <label htmlFor="firstname" className="sr-only">
                     {GENERAL_EMAIL_ADDRESS}
                   </label>
                   <input
-                    id="name"
+                    id="firstname"
+                    name={'firstname'}
                     type="text"
-                    autoComplete="name"
-                    required
+                    onChange={handleNameChange}
+                    value={userName}
                     placeholder="Name"
                     className="h-16 sm:h-10 md:h-12 form-control block w-1/2 px-3 py-1.5 text-md font-bold text-start text-white bg-black border border-solid border-gray-300 transition ease-in-out m-0
                 focus:text-white focus:border-blue-600 focus:outline-none"
@@ -93,13 +125,18 @@ const Footer: FC<Props> = ({ config }) => {
                 </div>
                 <div className="w-full">
                   <button
-                    type="submit"
+                    onClick={() => submitSubscription(value, name)}
+                    type="button"
                     className="flex items-center justify-center w-full h-16 px-6 py-3 font-bold text-white uppercase bg-black border border-white rounded-sm sm:h-10 md:h-12 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                   >
                     {BTN_SUBSCRIBE}
                   </button>
                 </div>
+                {isMessage &&
+                  <span className='block w-full p-1 mt-2 text-xs text-white bg-gray-600 rounded'>Newsletter Subscribed Successfully!</span>
+                }
               </div>
+
             </form>
             {/* Sitemap sections */}
           </div>
@@ -300,8 +337,8 @@ const Footer: FC<Props> = ({ config }) => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                 href="https://www.instagram.com"
-                 className="inline-block"
+                  href="https://www.instagram.com"
+                  className="inline-block"
                 >
                   <i className="sprite-icon sprite-insta"></i>
                 </a>

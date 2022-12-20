@@ -8,6 +8,7 @@ import { NextSeo } from 'next-seo'
 import classNames from '@components/utils/classNames'
 import { useUI } from '@components/ui/context'
 import { KEYS_MAP, EVENTS } from '@components/utils/dataLayer'
+import { setItem, getItem } from '../../utils/localStorage'
 import cartHandler from '@components/services/cart'
 import axios from 'axios'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -40,6 +41,7 @@ import {
   GENERAL_REVIEW_OUT_OF_FIVE,
   IMG_PLACEHOLDER,
   ITEM_TYPE_ADDON,
+  ITEM_TYPE_ADDON_10,
   PRICEMATCH_ADDITIONAL_DETAILS,
   PRICEMATCH_BEST_PRICE,
   PRICEMATCH_SEEN_IT_CHEAPER,
@@ -54,6 +56,7 @@ import { ELEM_ATTR, PDP_ELEM_SELECTORS } from '@framework/content/use-content-sn
 import { generateUri } from '@commerce/utils/uri-util'
 import { round } from 'lodash'
 import ImageZoom from "react-image-zooom";
+
 
 //DYNAMIC COMPONENT LOAD IN PRODUCT DETAIL
 const AttributesHandler = dynamic(() => import('./AttributesHandler'));
@@ -83,11 +86,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import ProductColors from './ProductColors'
 
 export default function ProductView({
   data = { images: [] },
   snippets,
   setEntities,
+  relatedProducts,
   recordEvent,
   slug,
   isPreview = false
@@ -117,37 +122,47 @@ export default function ProductView({
     ...product,
   })
   //for storing products in local storage for recently viewed
-  const [localState, setLocalState] = useState([]);
+  const dataFromLocalStorage = getItem('Recent-Products') || "";
+  const [localState, setLocalState] = useState(dataFromLocalStorage);
+
+  // const [userStorage, setUserStorage] = useState ( () => {
+  //   const savedItem:any = localStorage.getItem("Recent-Products");
+  //   const parsedItem:any = JSON.parse(savedItem);
+  //   return parsedItem || "";
+  // });
 
   const { ProductViewed } = EVENTS_MAP.EVENT_TYPES
   const { Product } = EVENTS_MAP.ENTITY_TYPES
   const fetchProduct = async () => {
     const url = !isPreview ? NEXT_GET_PRODUCT : NEXT_GET_PRODUCT_PREVIEW;;
     const response: any = await axios.post(url, { slug: slug })
-    console.log(JSON.stringify(response?.data))
+    console.log("hello " + JSON.stringify(response?.data))
 
-    // // condition to store products in local storage for recently viewed functionality
-    // if(response?.data?.product){
-    //   const recentlyViewedProduct = {
-    //     image : response.data.product.image,
-    //     price : response.data.product.listPrice.formatted.withTax,
-    //     name : response.data.product.name,
-    //     link : response.data.product.link,
-    //   }
+    // condition to store products in local storage for recently viewed functionality
+    if (response?.data?.product) {
+      const recentlyViewedProduct = {
+        image: response.data.product.image,
+        price: response.data.product.listPrice.formatted.withTax,
+        name: response.data.product.name,
+        link: response.data.product.link,
+      }
 
-    //     let oldData = JSON.parse(localStorage.getItem("Recent-Products")  || "")
-    //     if(oldData){
-    //       window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
-    //     }
-    //     else{
-    //       window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
-    //     }
-    //     //setting only unique elem in State
-    //     const key = 'name';
-    //     const arrayUniqueByKey:any = [...new Map(oldData?.map((item:any) =>
-    //       [item[key], item])).values()];
-    //         setLocalState(arrayUniqueByKey)
-    // }
+      setLocalState(recentlyViewedProduct);
+      setItem('Recent-Products', recentlyViewedProduct);
+
+      // let oldData = JSON.parse(localStorage.getItem("Recent-Products")  || "")
+      // if(oldData){
+      //   window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
+      // }
+      // else{
+      //   window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
+      // }
+      // //setting only unique elem in State
+      // const key = 'name';
+      // const arrayUniqueByKey:any = [...new Map(oldData?.map((item:any) =>
+      //   [item[key], item])).values()];
+      //     setLocalState(arrayUniqueByKey)
+    }
 
     if (response?.data?.product) {
       eventDispatcher(ProductViewed, {
@@ -164,7 +179,7 @@ export default function ProductView({
         eventType: ProductViewed,
         omniImg: response.data.product.image,
       })
-      
+
       setUpdatedProduct(response.data.product)
       setSelectedAttrData({
         productId: response.data.product.recordId,
@@ -172,7 +187,7 @@ export default function ProductView({
         ...response.data.product,
       })
     }
-  } 
+  }
 
   useEffect(() => {
     fetchProduct()
@@ -218,7 +233,7 @@ export default function ProductView({
     (value: any, index: number, self: any) =>
       index === self.findIndex((t: any) => t.image === value.image)
   )
-    {console.log(product)}
+  { console.log(product) }
   if (product.videos && product.videos.length > 0) {
     content = [...product.images, ...product.videos].filter(
       (value: any, index: number, self: any) =>
@@ -319,8 +334,9 @@ export default function ProductView({
         stockCode: selectedAttrData.stockCode,
       },
     }
-    const addonProducts = product.relatedProducts?.filter(
-      (item: any) => item.stockCode === ITEM_TYPE_ADDON
+    // console.log("related "+JSON.stringify(relatedProducts.relatedProducts))
+    const addonProducts = relatedProducts.relatedProducts?.filter(
+      (item: any) => item.itemType === ITEM_TYPE_ADDON_10
     )
     const addonProductsWithParentProduct = addonProducts.map((item: any) => {
       item.parentProductId = product.recordId
@@ -390,6 +406,7 @@ export default function ProductView({
 
         setCartItems(newCart.data)
         showEngravingModal(false)
+        window.location.reload()
       } catch (error) {
         console.log(error, 'err')
       }
@@ -397,8 +414,8 @@ export default function ProductView({
     asyncHandler()
   }
 
-  const isEngravingAvailable = !!product.relatedProducts?.filter(
-    (item: any) => item.stockCode === ITEM_TYPE_ADDON
+  const isEngravingAvailable = !!relatedProducts.relatedProducts?.filter(
+    (item: any) => item.itemType === ITEM_TYPE_ADDON_10
   ).length
 
   //TODO no additionalProperties key found on product object
@@ -433,7 +450,6 @@ export default function ProductView({
   const filteredRelatedProductList = product.relatedProductList?.filter(
     (item: any) => item.stockCode !== ITEM_TYPE_ADDON
   )
-
 
   const handleProductBundleUpdate = (bundledProduct: any) => {
     //debugger;
@@ -490,13 +506,15 @@ export default function ProductView({
   };
   const saving = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
   const discount = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
+  const addonPrice = relatedProducts.relatedProducts?.find((x:any)=> x?.itemType == 10)?.price?.formatted?.withTax;
   return (
     <div className="mx-auto bg-white page-container md:w-5/5 lg:p-0 md:p-0 sm:p-2">
       {/* Mobile menu */}
-      <main className="sm:pt-8">
+      <main className="sm:pt-0">
+        {/* {JSON.stringify(isEngravingAvailable)} */}
         <div className="lg:w-full ">
           {/* Product */}
-          <div className="pr-10 lg:grid lg:grid-cols-12 lg:gap-x-16 lg:items-start">
+          <div className="lg:grid lg:pr-10 lg:grid-cols-12 lg:gap-x-16 lg:items-start">
             {/* Image gallery */}
             <Tab.Group as="div" className="flex flex-col-reverse lg:col-span-6 md:col-span-6 sm:col-span-6 xs:col-span-6 min-mobile-pdp">
               {/* Image selector */}
@@ -537,13 +555,13 @@ export default function ProductView({
                                   <div className='image-container'>
                                     <Image
                                       priority
-                                      src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}
+                                      src={generateUri(image.image, "h=1800&fm=webp") || IMG_PLACEHOLDER}
                                       //src="/slider-1 - Copy.jpg"
                                       alt={image.name}
-                                      className="object-cover object-center w-full h-full image"
+                                      className="object-fill object-center w-full h-full image"
                                       layout='responsive'
                                       sizes='320 600 100'
-                                      width={600} height={1000}
+                                      width={1800} height={1400}
                                       blurDataURL={`${image.image}?h=600&w=400&fm=webp` || IMG_PLACEHOLDER}
                                     />
                                   </div>
@@ -559,29 +577,30 @@ export default function ProductView({
                   </div>
                   {/*DESKTOP PRODUCT IMAGE SLIDER*/}
                   <div className="w-full mx-auto max-w sm:block lg:max-w-none">
-                    <Tab.List className="grid gap-2 sm:grid-cols-1 grid-cols-1-row-3 ">
+                    <Tab.List className="grid sm:grid-cols-1 md:grid-cols-1 grid-cols-1-row-3 ">
                       {content?.map((image: any, idx) => (
-                      
+
                         <Tab
                           key={`${idx}-tab`}
                         >
                           {() => (
                             <>
-                              
+
                               <span className="sr-only">{image.name}</span>
-                              <span className="relative">
+                              <span className="relative md:w-full sm:w-full">
                                 {image.image ? (
-                                  <div className='image-container'>
+                                  <div className='image-container sm:w-full md:w-full'>
                                     {/* <ControlledZoom isZoomed={isZoomedT} onZoomChange={handleZoomChangeT}> */}
                                     <Image
-                                     src={generateUri(image.image, "h=2000&fm=webp") || IMG_PLACEHOLDER}   
-                                     alt={image.name} 
-                                     priority
-                                     className="object-cover object-center w-full h-full image"
-                                     layout='responsive'
-                                     sizes='320 600 1000'
-                                     width={1000} height={1000}
+                                      src={generateUri(image.image, "h=1800&fm=webp") || IMG_PLACEHOLDER}
+                                      alt={image.name}
+                                      priority
+                                      className="object-cover object-center w-full h-full image"
+                                      layout='responsive'
+                                      sizes='320 600 1000'
+                                      width={1800} height={1400}
                                     />
+
                                     {/* <Image
                                       priority
                                       src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}
@@ -597,9 +616,9 @@ export default function ProductView({
                                   </div>
                                 ) : (
                                   <>
-                                  {/* <PlayIcon className="object-cover object-center w-full h-full" /> */}
-                                  <img src="/pdp1.png" className=''/>
-                                  <img src="/pdp2.png" className=''/>
+                                    {/* <PlayIcon className="object-cover object-center w-full h-full" /> */}
+                                    <img src="/pdp1.png" className='' />
+                                    <img src="/pdp2.png" className='' />
                                   </>
                                 )}
                               </span>
@@ -612,12 +631,12 @@ export default function ProductView({
                 </div>
               </div>
             </Tab.Group>
-            
-            
+
+
 
             {/* Product info */}
-            <div className="px-4 py-10 sm:mt-10 sm:px-0 lg:mt-0 lg:col-span-6">
-              
+            <div className="px-4 sm:mt-10 md:py-10 sm:py-4 sm:px-0 sm:pr-2 sm:pl-2 lg:mt-0 lg:col-span-6">
+
               {/* <h3 className="mb-2 text-sm font-semibold tracking-tight text-gray-700 uppercase sm:text-md sm:font-bold">
                 {selectedAttrData.brand}
               </h3> */}
@@ -627,40 +646,40 @@ export default function ProductView({
                 </h1>
 
                 <h2 className="sr-only">{PRODUCT_INFORMATION}</h2>
-                
+
                 {updatedProduct ? (
-                    <p className="text-2xl font-bold text-black sm:text-xl">
-                      {selectedAttrData.price?.formatted?.withTax}
-                      {selectedAttrData.listPrice?.raw.tax > 0 ? (
-                        <>
-                          <span className="px-2 font-normal text-gray-400 line-through font-xl">
-                            {product.listPrice.formatted.withTax}
-                          </span>
-                          <span className='font-semibold text-red-500 text-md'>{discount}% off</span>
-                        </>
-                      ) : null}
-                    </p>
-                  ) : (
-                    <p className="text-3xl text-gray-900">------</p>
-                  )}
-                  
-                </div>
-                  
+                  <p className="text-2xl font-bold text-black sm:text-xl">
+                    {selectedAttrData.price?.formatted?.withTax}
+                    {selectedAttrData.listPrice?.raw.tax > 0 ? (
+                      <>
+                        <span className="px-2 font-normal text-gray-400 line-through font-xl">
+                          {product.listPrice.formatted.withTax}
+                        </span>
+                        <span className='font-semibold text-red-500 text-md'>{discount}% off</span>
+                      </>
+                    ) : null}
+                  </p>
+                ) : (
+                  <p className="text-3xl text-gray-900">------</p>
+                )}
+
+              </div>
+
               <label className="text-sm py-100">{selectedAttrData.description}</label>
 
-      <div className="block pt-4 ">
-  
-        <div className="w-full ">
-            <AttributesHandler
-              product={product}
-              variant={selectedAttrData}
-              setSelectedAttrData={setSelectedAttrData}
-            />
-        </div>
-          
-        
+              <div className="block pt-4 ">
 
-        {/* <div className="container py-0 text-center lg:grid lg:grid-cols-5">
+                <div className="w-full ">
+                  <AttributesHandler
+                    product={product}
+                    variant={selectedAttrData}
+                    setSelectedAttrData={setSelectedAttrData}
+                  />
+                </div>
+
+
+
+                {/* <div className="container py-0 text-center lg:grid lg:grid-cols-5">
             <div className="w-full mx-auto border border-grey-40 hover:border-black">
                 <label className=''>XXL</label>
             </div>
@@ -678,32 +697,32 @@ export default function ProductView({
             </div>
         </div> */}
 
-        <div className='flex py-3'>
-          <h3 className="text-sm font-bold ">Fabric : </h3>
-          <h3 className="px-3 py-0 text-sm"> 100% GOTS Organic Cotton in 350gm </h3>
-        </div>
- 
-        <div className="container grid py-0 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xsm:grid-cols-3 ">
-            <div className="w-full border h-17 border-grey-40 hover:border-black">
-                <img src='/Untitled-1-fabric.jpg'  className='w-full h-16'  ></img>
-            </div>
-            <div className="w-full border h-17 border-grey-40 hover:border-black ">
-                <img src='/Untitled-2-fabric.jpg' className='w-full h-16' ></img>
-            </div>
-            <div className="w-full border h-17 border-grey-40 hover:border-black ">
-            <img src='/Untitled-3-fabric.jpg' className='w-full h-16' ></img>
-            </div>
-        </div>
+                <div className='flex py-3'>
+                  <h3 className="text-sm font-bold ">Fabric : </h3>
+                  <h3 className="px-3 py-0 text-sm"> 100% GOTS Organic Cotton in 350gm </h3>
+                </div>
 
-         <div className='flex justify-between py-8' >
+                <div className="container grid py-0 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xsm:grid-cols-3 ">
+                  <div className="w-full border h-17 border-grey-40 hover:border-black">
+                    <img src='/Untitled-1-fabric.jpg' className='w-full h-16'  ></img>
+                  </div>
+                  <div className="w-full border h-17 border-grey-40 hover:border-black">
+                    <img src='/Untitled-2-fabric.jpg' className='w-full h-16' ></img>
+                  </div>
+                  <div className="w-full border h-17 border-grey-40 hover:border-black">
+                    <img src='/Untitled-3-fabric.jpg' className='w-full h-16' ></img>
+                  </div>
+                </div>
+
+                {/* <div className='flex justify-between py-8' >
           <div>
             <img src='/KSTMize.jpg' width={100}></img>
             <label className="text-sm">Personalise with custom embroidery</label>
           </div>
           <label className='text-lg font-bold'>+ £20</label>
-          </div>
-       
-       </div>
+          </div> */}
+
+              </div>
               {/* Reviews */}
               <div className="mt-3">
                 <h3 className="sr-only">{GENERAL_REVIEWS}</h3>
@@ -727,7 +746,7 @@ export default function ProductView({
                   </p>
                 </div>
               </div>
-      
+
               {/* <div className="w-full sm:w-6/12">
                 <AttributesHandler
                   product={product}
@@ -735,9 +754,10 @@ export default function ProductView({
                   setSelectedAttrData={setSelectedAttrData}
                 />
               </div> */}
-       
+
               {updatedProduct ? (
                 <>
+                  {/* { !updatedProduct?.customAttributes[2]?.value && ( */}
                   {!isEngravingAvailable && (
                     <div className="flex sm:flex-col1">
                       <Button
@@ -766,7 +786,22 @@ export default function ProductView({
 
                   {isEngravingAvailable && (
                     <>
-                      <div className="flex mt-6 sm:mt-8 sm:flex-col1">
+                      <div className="mt-6 sm:mt-8 sm:col-1">
+                        <div className='flex justify-between'>
+                          <div>
+                            <img
+                              src='/KSTMize.jpg'
+                              className="w-24 h-4 cursor-pointer"
+                              onClick={() => {
+                                showEngravingModal(true)
+                              }}
+                            >
+                              {/* <span className="font">KSTMize it</span> */}
+                            </img>
+                            <label className="text-sm">Personalise with custom embroidery</label>
+                          </div>
+                          <label className='font-bold'>{addonPrice}</label>
+                        </div>
                         <Button
                           className='block py-3 sm:hidden'
                           title={buttonConfig.title}
@@ -774,7 +809,7 @@ export default function ProductView({
                           buttonType={buttonConfig.type || 'cart'}
                         />
                       </div>
-                      
+
                       <div className="flex mt-6 sm:mt-8 sm:flex-col1">
                         <Button
                           className='hidden sm:block '
@@ -782,13 +817,7 @@ export default function ProductView({
                           action={buttonConfig.action}
                           buttonType={buttonConfig.type || 'cart'}
                         />
-                        <button
-                          className="flex items-center justify-center flex-1 max-w-xs px-8 py-3 font-medium text-white uppercase bg-gray-400 border border-transparent rounded-sm sm:ml-4 hover:bg-pink focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-500 sm:w-full"
-                          onClick={() => showEngravingModal(true)}
-                        >
-                          <span className="font-bold">{GENERAL_ENGRAVING}</span>
-                        </button>
-                        <button
+                        {/* <button
                           type="button"
                           onClick={() => {
                             if (!isInWishList) {
@@ -803,7 +832,7 @@ export default function ProductView({
                             <HeartIcon className="flex-shrink-0 w-6 h-6" />
                           )}
                           <span className="sr-only">{BTN_ADD_TO_FAVORITES}</span>
-                        </button>
+                        </button> */}
                       </div>
                     </>
                   )}
@@ -814,7 +843,7 @@ export default function ProductView({
                 aria-labelledby="details-heading"
                 className="mt-4 sm:mt-6"
               >
-                 
+
                 <h2 id="details-heading" className="sr-only">
                   {PRICEMATCH_ADDITIONAL_DETAILS}
                 </h2>
@@ -849,19 +878,16 @@ export default function ProductView({
             />
           ) : null}
 
-            
-            <div className='grid mr-0 grid-col-1'>
-              <img src="/Banner-pic.jpg" className='h-30' ></img>
-            </div>
-
-
+          <div className='grid mr-0 grid-col-1'>
+            <img src="/Banner-pic.jpg" className='h-30' ></img>
+          </div>
 
           <div className='py-2 text-center'>
             <label className='text-lg font-semibold'>Recently viewed</label>
-       
-         {/* for recently viewed items */}     
-       <div className='w-full py-4 h-100 '>
-        {/* <Swiper
+
+            {/* for recently viewed items */}
+            <div className='w-full py-4 h-100 '>
+              {/* <Swiper
             // install Swiper modules
             modules={[Navigation]}
             slidesPerView={3}
@@ -883,35 +909,37 @@ export default function ProductView({
               
         ) 
        }) } */}
-          <Swiper
-            // install Swiper modules
-              modules={[Navigation]}
-              slidesPerView={3}
-              spaceBetween={0}
-              className="external-buttons py-7 "
-              navigation
-          >
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide>
-          </Swiper>
+              <Swiper
+                // install Swiper modules
+                modules={[Navigation]}
+                slidesPerView={3}
+                spaceBetween={0}
+                className="external-buttons py-7 "
+                navigation
+              >
+                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
+                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide>
+              </Swiper>
 
-          </div>
+            </div>
           </div>
 
           {/* Placeholder for pdp snippet */}
           <div className={`${ELEM_ATTR}${PDP_ELEM_SELECTORS[0]}`}></div>
 
 
-          {/* <Reviews data={product.reviews} productId={product.recordId} />
+          {/* <Reviews data={product.reviews} productId={product.recordId} /> */}
           {isEngravingAvailable && (
+            // { updatedProduct?.customAttributes[2]?.value && (
             <Engraving
               show={isEngravingOpen}
               submitForm={handleEngravingSubmit}
-              onClose={() => showEngravingModal(false)}
+              showEngravingModal={showEngravingModal}
+              product={product}
             />
-          )} */}
+          )}
 
           <PriceMatch
             show={isPriceMatchModalShown}
@@ -949,7 +977,7 @@ export default function ProductView({
           }}
         />
       </main>
-    
+
       {
         previewImg ? (
           <Transition.Root show={previewImg != undefined} as={Fragment} >

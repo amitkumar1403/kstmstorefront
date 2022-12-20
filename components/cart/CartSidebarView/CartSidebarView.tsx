@@ -231,14 +231,14 @@ const CartSidebarView: FC = () => {
                                 (child: any, idx: number) => {
                                   return (
                                     <div className="flex" key={idx}>
-                                      <div className="ml-10 flex-shrink-0 w-12 h-12 border border-gray-200 rounded-md overflow-hidden">
+                                      <div className="ml-1 flex-shrink-0 w-24 h-16 overflow-hidden py-1">
                                         <div className='image-container'>
-                                          <Image
-                                            layout='fill'
-                                            src={`${child.image}?w=100&h=100&fm=webp`}
-                                            alt={child.name}
+                                          <img
+                                            // layout='fill'
+                                            src='/KSTMize.jpg'
+                                           // alt={child.name}
                                             className="w-full h-full object-center object-cover image"
-                                          ></Image>
+                                          ></img>
                                         </div>
                                       </div>
                                       <div className="ml-4 flex-1 flex flex-col">
@@ -256,7 +256,7 @@ const CartSidebarView: FC = () => {
                                           {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                         </div>
                                       </div>
-                                      <div className="flex-1 flex items-end justify-end text-sm">
+                                      <div className="flex-1 flex items-start text-sm ml-4">
                                         {/* <p className="text-gray-500">Qty {product.quantity}</p> */}
 
                                         <button

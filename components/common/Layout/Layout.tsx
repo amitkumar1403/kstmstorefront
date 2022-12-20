@@ -29,7 +29,7 @@ import {
 } from '@components/utils/textVariables'
 import Sale from '@components/Sale'
 const Loading = () => (
-  <div className="w-80 h-80 flex items-center text-center fixed z-50 justify-center p-3">
+  <div className="fixed z-50 flex items-center justify-center p-3 text-center w-80 h-80">
     <LoadingDots />
   </div>
 )
@@ -170,7 +170,7 @@ const Layout: FC<Props> = ({
           config={sortedData}
           languages={config?.languages}
         />
-        <main className="fit pt-16">{children}</main>
+        <main className="mt-28 fit">{children}</main>
         <Footer config={data.footer} />
         <ModalUI />
         <SidebarUI />
