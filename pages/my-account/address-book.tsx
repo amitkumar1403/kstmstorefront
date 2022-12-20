@@ -96,7 +96,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                                    handleClick;
                                    setShow(false);
                                 }}
-                                   className="inline-block w-full h-full py-4 text-sm sm:pl-2 text-primary">
+                                   className="inline-block w-full h-full py-4 text-sm  text-primary">
                                    <span className='inline-block sm:hidden'>{item.mtext}</span>
                                    <span className='hidden sm:inline-block text-xs'>{item.text}</span>
                                 </a>
@@ -110,7 +110,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                                 onClick={() => {
                                   handleClick
                                 }}
-                                className="inline-block w-full h-full py-4 text-sm sm:pl-8 text-primary"
+                                className="inline-block w-full h-full py-4 text-sm  text-primary"
                               >
                                 <span className="inline-block sm:hidden">
                                   {item.mtext}

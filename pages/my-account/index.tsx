@@ -67,7 +67,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                       <div
                         key={`my-acc-${idx}`}
                         // href="#"
-                        className={`hover:bg-white hover:text-indigo-600 border border-transparent text-md leading-3 font-medium text-gray-900 rounded-md focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60"}`}
+                        className={`hover:bg-white hover:text-indigo-600 hover:border border-gray-800 text-md leading-3 font-medium text-gray-900 rounded-md focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60"}`}
                       >
                         <span className="pr-2 leading-none align-middle acc-mob-icon-i sm:absolute top-2/4 -translate-y-2/4">
                           <i
@@ -111,7 +111,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                                 onClick={() => {
                                   handleClick
                                 }}
-                                className="inline-block w-full h-full py-4 text-sm sm:pl-8 text-primary"
+                                className="inline-block w-full h-full py-4 text-sm text-primary"
                               >
                                 <span className="inline-block sm:hidden">
                                   {item.mtext}
@@ -134,7 +134,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                   isShow ? `mob-hidden` : ''
                 }`}
               >
-                <div className={'orders bg-white my-2 sm:my-6 pl-4'}>
+                <div className={'orders bg-white my-2 sm:my-6 px-4'}>
                   <MyDetails />
                 </div>
               </div>
