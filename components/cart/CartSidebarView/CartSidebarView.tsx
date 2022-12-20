@@ -256,7 +256,7 @@ const CartSidebarView: FC = () => {
                                           {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                         </div>
                                       </div>
-                                      <div className="flex-1 flex items-end justify-end text-sm">
+                                      <div className="flex-1 flex items-start text-sm ml-4">
                                         {/* <p className="text-gray-500">Qty {product.quantity}</p> */}
 
                                         <button
