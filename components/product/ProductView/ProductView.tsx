@@ -122,21 +122,14 @@ export default function ProductView({
     ...product,
   })
   //for storing products in local storage for recently viewed
-  const dataFromLocalStorage = getItem('Recent-Products') || "";
-  const [localState, setLocalState] = useState(dataFromLocalStorage);
-
-  // const [userStorage, setUserStorage] = useState ( () => {
-  //   const savedItem:any = localStorage.getItem("Recent-Products");
-  //   const parsedItem:any = JSON.parse(savedItem);
-  //   return parsedItem || "";
-  // });
+  const [localState, setLocalState] = useState([]);
+  let flag = false;
 
   const { ProductViewed } = EVENTS_MAP.EVENT_TYPES
   const { Product } = EVENTS_MAP.ENTITY_TYPES
   const fetchProduct = async () => {
     const url = !isPreview ? NEXT_GET_PRODUCT : NEXT_GET_PRODUCT_PREVIEW;;
     const response: any = await axios.post(url, { slug: slug })
-    console.log("hello "+JSON.stringify(response?.data))
 
     // condition to store products in local storage for recently viewed functionality
     if(response?.data?.product){
@@ -144,24 +137,30 @@ export default function ProductView({
         image : response.data.product.image,
         price : response.data.product.listPrice.formatted.withTax,
         name : response.data.product.name,
+        id : response.data.product.id,
         link : response.data.product.link,
       }
 
-      setLocalState(recentlyViewedProduct);
-      setItem('Recent-Products',recentlyViewedProduct);
+    let oldData = JSON.parse(localStorage.getItem("Recent-Products") || "[]")
+    oldData?.map((val:any)=>{
+      if(val.id === response.data.product.id){
+        flag = true;
+      }
+    })
+   
+    if( flag===false && oldData ){  
+      window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
+    }
+    else if(!oldData){
+      window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
+    }
+    else{ }
+      //setting only unique elem in State
+      const key = 'id';
+      const arrayUniqueByKey:any = [...new Map(oldData?.map((item:any) =>
+        [item[key], item])).values()];
 
-    // let oldData = JSON.parse(localStorage.getItem("Recent-Products")  || "")
-    // if(oldData){
-    //   window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
-    // }
-    // else{
-    //   window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
-    // }
-    // //setting only unique elem in State
-    // const key = 'name';
-    // const arrayUniqueByKey:any = [...new Map(oldData?.map((item:any) =>
-    //   [item[key], item])).values()];
-    //     setLocalState(arrayUniqueByKey)
+      setLocalState(arrayUniqueByKey)
     }
 
     if (response?.data?.product) {
@@ -464,7 +463,6 @@ export default function ProductView({
       notFound: true,
     }
   }*/
-
 
   SwiperCore.use([Navigation])
   var settings = {
@@ -884,30 +882,30 @@ export default function ProductView({
             <label className='text-lg font-semibold'>Recently viewed</label>
        
          {/* for recently viewed items */}     
-       <div className='w-full py-4 h-100 '>
-        {/* <Swiper
+       <div className='w-full py-4 h-full'>
+        <Swiper
             // install Swiper modules
             modules={[Navigation]}
             slidesPerView={3}
             spaceBetween={0}
-            className="pt-2 external-buttons py-7"
+            className="external-buttons py-7"
             navigation
-            height={6}
           >
         { localState?.map((val:any) => {
         return(
-            <SwiperSlide className='py-2 mx-0 border border-grey-40 hover:border-black'>
-              <div >
+            <SwiperSlide className=' p-10 border border-grey-40 hover:border-black'>
+              <div className='h-full'>
                 <a href={val.link}>
-                <img src="/slider-1 - Copy.jpg" className=''></img>
-                <p>{val.name}</p>
+                <Image src={val.image} className='object-cover' height={400} width={200}></Image>
+                <p className='text-sm font-semibold'>{val.name}</p>
+                <label>{val.price}</label>
                 </a>
               </div>
             </SwiperSlide>
               
         ) 
-       }) } */}
-          <Swiper
+       }) }
+          {/* <Swiper
             // install Swiper modules
               modules={[Navigation]}
               slidesPerView={3}
@@ -918,7 +916,7 @@ export default function ProductView({
             <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
             <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
             <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide> */}
           </Swiper>
 
           </div>

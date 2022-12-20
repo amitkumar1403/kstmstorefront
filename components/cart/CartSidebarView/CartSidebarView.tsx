@@ -244,10 +244,11 @@ const CartSidebarView: FC = () => {
                                       <div className="ml-4 flex-1 flex flex-col">
                                         <div>
                                           <div className="flex justify-between font-medium text-gray-900">
-                                            <h3 onClick={handleClose}>
-                                              <Link href={`/${child.slug}`}>
+                                            {/* <h3 onClick={handleClose}> */}
+                                            <h3>
+                                              <label>
                                                 {child.name}
-                                              </Link>
+                                              </label>
                                             </h3>
                                             <p className="ml-4">
                                               {child.price?.formatted?.withTax}

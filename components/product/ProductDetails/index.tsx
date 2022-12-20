@@ -7,7 +7,7 @@ import {SUSTAINAIBILITY, FABRIC_DETAILS,PRODUCT_DESCRIPTION,PRODUCT_SPECIFICATIO
 const colorRegex = /^#(?:[0-9a-f]{3}){1,2}$/i
 
 const Attributes = ({ attributes = [] }: any) => {
-  {console.log("attr "+JSON.stringify(attributes))}
+  // {console.log("attr "+JSON.stringify(attributes))}
   return (
     <table className="text-gray-900">
       <tbody>
