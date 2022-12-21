@@ -294,7 +294,7 @@ function Search({ query, setEntities, recordEvent }: any) {
     <div
       className="w-full mx-auto bg-white ">
       {/* Mobile menu */}
-      <main className="pb-24">
+      <main className="">
         <div className="mt-24 px-4 py-4 text-center sm:py-5 sm:px-0 lg:px-0">
           {/* for sticky subnav*/}
           {/* <div className="sticky z-50 px-4 py-4 text-center bg-white border border-red-600 top-16 sm:py-5 sm:px-0 lg:px-0">    */}
@@ -302,7 +302,7 @@ function Search({ query, setEntities, recordEvent }: any) {
           {/* <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4> */}
          
 
-          <h1 className="text-xl font-semibold tracking-tight text-black sm:text-2xl">
+          <h1 className="pb-4 text-2xl font-bold tracking-tight text-center text-gray-900">
             {GENERAL_CATALOG} 
          
           </h1>
