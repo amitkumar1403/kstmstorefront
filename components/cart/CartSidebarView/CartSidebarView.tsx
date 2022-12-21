@@ -231,7 +231,7 @@ const CartSidebarView: FC = () => {
                                 (child: any, idx: number) => {
                                   return (
                                     <div className="flex" key={idx}>
-                                      <div className="ml-1 flex-shrink-0 w-24 h-16 overflow-hidden py-1">
+                                      <div className="ml-1 flex-shrink-0 w-24 overflow-hidden py-1">
                                         <div className='image-container'>
                                           <img
                                             // layout='fill'
@@ -244,7 +244,7 @@ const CartSidebarView: FC = () => {
                                       <div className="ml-4 flex-1 flex flex-col">
                                         <div>
                                           <div className="flex justify-between font-medium text-gray-900">
-                                            <h3 onClick={handleClose}>
+                                            <h3 onClick={handleClose} className="font-bold">
                                               <Link href={`/${child.slug}`}>
                                                 {child.name}
                                               </Link>
@@ -254,6 +254,9 @@ const CartSidebarView: FC = () => {
                                             </p>
                                           </div>
                                           {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
+                                        </div>
+                                        <div className='w-full'>
+                                        {child.customInfo1}
                                         </div>
                                       </div>
                                       <div className="flex-1 flex items-start text-sm ml-4">

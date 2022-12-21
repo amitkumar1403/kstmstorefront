@@ -794,7 +794,7 @@ export default function ProductView({
                           <div>
                             <img
                               src='/KSTMize.jpg'
-                              className="w-24 h-4 cursor-pointer"
+                              className="w-24 h-4 cursor-pointer font-bold"
                               onClick={() => {
                                 showEngravingModal(true)
                               }}
