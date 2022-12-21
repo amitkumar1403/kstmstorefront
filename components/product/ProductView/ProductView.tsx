@@ -794,14 +794,14 @@ export default function ProductView({
                           <div>
                             <img
                               src='/KSTMize.jpg'
-                              className="w-24 h-4 cursor-pointer font-bold"
+                              className="w-24 h-4 cursor-pointer"
                               onClick={() => {
                                 showEngravingModal(true)
                               }}
                             >
                               {/* <span className="font">KSTMize it</span> */}
                             </img>
-                            <label className="text-sm">Personalise with custom embroidery</label>
+                            <label className="text-sm font-medium hover:text-gray-800 underline">Personalise with custom embroidery</label>
                           </div>
                           <label className='font-bold'>{addonPrice}</label>
                         </div>
