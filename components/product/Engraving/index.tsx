@@ -83,7 +83,7 @@ export default function Engraving({
                     <div className='w-1/2'>
                       {/* {JSON.stringify(product.image)} */}
                       <label className='text-sm font-bold'>{product.name}</label>
-                       {/* <img src={product.image || '/pdp1.png'} className='w-full '></img> */}
+                       <img src={product.image || '/pdp1.png'} className='w-full '></img>
                     </div>
                     <div className='w-1/2 p-4'>
                     
