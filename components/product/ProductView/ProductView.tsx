@@ -711,23 +711,6 @@ export default function ProductView({
             </div>
         </div> */}
 
-                <div className='flex py-3'>
-                  <h3 className="text-sm font-bold ">Fabric : </h3>
-                  <h3 className="px-3 py-0 text-sm"> 100% GOTS Organic Cotton in 350gm </h3>
-                </div>
-
-                <div className="container grid py-0 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xsm:grid-cols-3 ">
-                  <div className="w-full border h-17 border-grey-40 hover:border-black">
-                    <img src='/Untitled-1-fabric.jpg' className='w-full h-16'  ></img>
-                  </div>
-                  <div className="w-full border h-17 border-grey-40 hover:border-black">
-                    <img src='/Untitled-2-fabric.jpg' className='w-full h-16' ></img>
-                  </div>
-                  <div className="w-full border h-17 border-grey-40 hover:border-black">
-                    <img src='/Untitled-3-fabric.jpg' className='w-full h-16' ></img>
-                  </div>
-                </div>
-
                 {/* <div className='flex justify-between py-8' >
           <div>
             <img src='/KSTMize.jpg' width={100}></img>
