@@ -38,7 +38,7 @@ function Cart({ cart }: any) {
 
   const mapShippingPlansToItems = (plans?: any, items?: any) => {
     const itemsClone = [...items]
-    return plans.reduce((acc: any, obj: any) => {
+    return plans?.reduce((acc: any, obj: any) => {
       acc?.forEach((cartItem?: any) => {
         const foundShippingPlan = obj.Items.find((item: any) => {
           return (

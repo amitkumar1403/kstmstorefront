@@ -110,7 +110,7 @@ const CartSidebarView: FC = () => {
             <Dialog.Overlay className="w-full h-screen" onClick={handleClose} />
           </Transition.Child>
 
-          <div className="fixed inset-y-0 right-0 pl-10 max-w-full flex">
+          <div className="fixed inset-y-0 right-0 flex max-w-full pl-10">
             <Transition.Child
               as={Fragment}
               enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -121,20 +121,20 @@ const CartSidebarView: FC = () => {
               leaveTo="translate-x-full"
             >
               <div className="w-screen max-w-md">
-                <div className="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
-                  <div className="flex-1 py-6 overflow-y-auto px-4 sm:px-6">
+                <div className="flex flex-col h-full overflow-y-scroll bg-white shadow-xl">
+                  <div className="flex-1 px-4 py-6 overflow-y-auto sm:px-6">
                     <div className="flex items-start justify-between">
                       <Dialog.Title className="text-lg font-medium text-gray-900">
                         {GENERAL_SHOPPING_CART}
                       </Dialog.Title>
-                      <div className="ml-3 h-7 flex items-center">
+                      <div className="flex items-center ml-3 h-7">
                         <button
                           type="button"
-                          className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                          className="p-2 -m-2 text-gray-400 hover:text-gray-500"
                           onClick={handleClose}
                         >
                           <span className="sr-only">{CLOSE_PANEL}</span>
-                          <XIcon className="h-6 w-6" aria-hidden="true" />
+                          <XIcon className="w-6 h-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>
@@ -142,12 +142,12 @@ const CartSidebarView: FC = () => {
                     <div className="mt-8">
                       <div className="flow-root">
                         {isEmpty && (
-                          <div className="text-gray-900 h-full w-full flex flex-col justify-center items-center">
+                          <div className="flex flex-col items-center justify-center w-full h-full text-gray-900">
                             {WISHLIST_SIDEBAR_MESSAGE}
                             <Link href="/search">
                               <button
                                 type="button"
-                                className="text-indigo-600 font-medium hover:text-indigo-500"
+                                className="font-medium text-indigo-600 hover:text-indigo-500"
                                 onClick={handleClose}
                               >
                                 {GENERAL_CATALOG}
@@ -162,26 +162,26 @@ const CartSidebarView: FC = () => {
                         >
                           {cartItems.lineItems?.map((product: any) => (
                             <li key={product.id} className="">
-                              <div className="py-6 flex">
-                                <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
+                              <div className="flex py-6">
+                                <div className="flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md">
                                   <Image
                                     width={100}
                                     height={100}
                                     layout='fixed'
-                                    src={`${product.image}`|| '/assets/icons/newPajama.png'}
+                                    src={`${product.image}` || '/assets/icons/newPajama.png'}
                                     alt={product.name}
-                                    className="w-full h-full object-center object-cover"
+                                    className="object-cover object-center w-full h-full"
                                   ></Image>
                                   {/* <img
                                     src={product.image}
                                     alt={product.name}
-                                    className="w-full h-full object-center object-cover"
+                                    className="object-cover object-center w-full h-full"
                                   /> */}
                                 </div>
 
-                                <div className="ml-4 flex-1 flex flex-col">
+                                <div className="flex flex-col flex-1 ml-4">
                                   <div>
-                                    <div className="flex justify-between font-sm font-semibold text-gray-900">
+                                    <div className="flex justify-between font-semibold text-gray-900 font-sm">
                                       <h3 onClick={handleClose}>
                                         <Link href={`/${product.slug}`}>
                                           {product.name}
@@ -193,7 +193,7 @@ const CartSidebarView: FC = () => {
                                     </div>
                                     {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                   </div>
-                                  <div className="flex-1 flex items-end justify-between text-sm">
+                                  <div className="flex items-end justify-between flex-1 text-sm">
                                     {/* <p className="text-gray-500">Qty {product.quantity}</p> */}
 
                                     <div className="flex justify-between w-full">
@@ -206,14 +206,14 @@ const CartSidebarView: FC = () => {
                                       >
                                         {GENERAL_REMOVE}
                                       </button>
-                                      <div className="border px-4 text-gray-900 flex flex-row">
+                                      <div className="flex flex-row px-4 text-gray-900 border">
                                         <MinusSmIcon
                                           onClick={() =>
                                             handleItem(product, 'decrease')
                                           }
                                           className="w-4 cursor-pointer"
                                         />
-                                        <span className="text-md px-2 py-2">
+                                        <span className="px-2 py-2 text-md">
                                           {product.qty}
                                         </span>
                                         <PlusSmIcon
@@ -231,20 +231,20 @@ const CartSidebarView: FC = () => {
                                 (child: any, idx: number) => {
                                   return (
                                     <div className="flex" key={idx}>
-                                      <div className="ml-1 flex-shrink-0 w-24 h-16 overflow-hidden py-1">
+                                      <div className="flex-shrink-0 w-24 py-1 ml-1 overflow-hidden">
                                         <div className='image-container'>
                                           <img
                                             // layout='fill'
                                             src='/KSTMize.jpg'
-                                           // alt={child.name}
-                                            className="w-full h-full object-center object-cover image"
+                                            // alt={child.name}
+                                            className="object-cover object-center w-full h-full image"
                                           ></img>
                                         </div>
                                       </div>
-                                      <div className="ml-4 flex-1 flex flex-col">
+                                      <div className="flex flex-col flex-1 ml-4">
                                         <div>
                                           <div className="flex justify-between font-medium text-gray-900">
-                                            <h3 onClick={handleClose}>
+                                            <h3 onClick={handleClose} className="font-bold">
                                               {/* <Link href={`/${child.slug}`}> */}
                                               <label>
                                                 {child.name}
@@ -257,8 +257,11 @@ const CartSidebarView: FC = () => {
                                           </div>
                                           {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                         </div>
+                                        <div className='w-full'>
+                                          {child.customInfo1}
+                                        </div>
                                       </div>
-                                      <div className="flex-1 flex items-start text-sm ml-4">
+                                      <div className="flex items-start flex-1 ml-4 text-sm">
                                         {/* <p className="text-gray-500">Qty {product.quantity}</p> */}
 
                                         <button
@@ -283,44 +286,44 @@ const CartSidebarView: FC = () => {
                   </div>
 
                   {!isEmpty && (
-                    <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
+                    <div className="px-4 py-6 border-t border-gray-200 sm:px-6">
                       <PromotionInput />
-                      <div className="flex py-2 justify-between font-small text-gray-900">
+                      <div className="flex justify-between py-2 text-gray-900 font-small">
                         <p className='text-sm'>{SUBTOTAL_INCLUDING_TAX}</p>
                         <p className='font-bold text-black'>{cartItems.subTotal?.formatted?.withTax}</p>
                       </div>
-                      <div className="flex py-2 justify-between font-small text-black">
+                      <div className="flex justify-between py-2 text-black font-small">
                         <p>{GENERAL_SHIPPING}</p>
                         <p className='font-bold text-black'>{cartItems.shippingCharge?.formatted?.withTax}</p>
                       </div>
 
                       {cartItems.promotionsApplied?.length > 0 && (
-                        <div className="flex py-2 justify-between font-small text-black">
+                        <div className="flex justify-between py-2 text-black font-small">
                           <p className='text-sm'>{GENERAL_DISCOUNT}</p>
                           <p className='font-bold text-red-500'>{'-'}{cartItems.discount?.formatted?.withTax}</p>
                         </div>
                       )}
                       <div className="flex justify-between font-medium text-black">
                         <p className='text-xl'>{GENERAL_TOTAL}</p>
-                        <p className='font-bold text-xl text-black'>{cartItems.grandTotal?.formatted?.withTax}</p>
+                        <p className='text-xl font-bold text-black'>{cartItems.grandTotal?.formatted?.withTax}</p>
                       </div>
                       <div className="mt-6">
                         <Link href="/cart" passHref>
                           <a
                             onClick={handleClose}
-                            className="flex justify-center items-center px-6 py-3 border border-transparent rounded-sm uppercase shadow-sm font-medium text-white bg-black hover:bg-gray-900"
+                            className="flex items-center justify-center px-6 py-3 font-medium text-white uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900"
                             href="/cart"
                           >
                             {content.GENERAL_CHECKOUT}
                           </a>
                         </Link>
                       </div>
-                      <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
+                      <div className="flex justify-center mt-6 text-sm text-center text-gray-500">
                         <p>
                           {GENERAL_OR_TEXT}{' '}
                           <button
                             type="button"
-                            className="text-black font-medium hover:text-indigo-500"
+                            className="font-medium text-black hover:text-indigo-500"
                             onClick={handleClose}
                           >
                             {GENERAL_CONTINUE_SHOPPING}

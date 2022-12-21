@@ -812,7 +812,7 @@ export default function ProductView({
                             >
                               {/* <span className="font">KSTMize it</span> */}
                             </img>
-                            <label className="text-sm">Personalise with custom embroidery</label>
+                            <label className="text-sm font-medium hover:text-gray-800 underline">Personalise with custom embroidery</label>
                           </div>
                           <label className='font-bold'>{addonPrice}</label>
                         </div>
