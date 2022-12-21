@@ -76,7 +76,7 @@ export default function MyReturns() {
       {/* Mobile menu */}
 
       <main className="sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-12">
           <div className="px-4 sm:px-0">
             <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
               {RETURN_ORDER_TITLE}

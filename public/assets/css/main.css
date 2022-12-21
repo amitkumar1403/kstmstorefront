@@ -82,6 +82,11 @@
     object-fit: cover;
   }
 }
+@media screen and (max-width: 640px) {
+  .text-xm {
+    width: 50%;
+  }
+}
 
 .max-panel {
   max-height: 250px;

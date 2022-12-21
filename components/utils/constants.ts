@@ -12,6 +12,7 @@ export const COLLECTIONS_ENDPOINT = `/api/${process.env.NEXT_PUBLIC_API_VERSION}
 export const LOOKBOOK_ENDPOINT = `/api/${process.env.NEXT_PUBLIC_API_VERSION}/catalog/lookbook`
 export const SITEVIEW_ENDPOINT = `api/${process.env.NEXT_PUBLIC_API_VERSION}/content/siteview`
 export const CATALOG_ENDPOINT = `api/${process.env.NEXT_PUBLIC_API_VERSION}/catalog/brand`
+export const NEXT_RETURN_ORDER_LINE = `/api/return-order-line`;
 export const SEARCH_MINIMAL_ENDPOINT = `/api/${process.env.NEXT_PUBLIC_API_VERSION}/catalog/search/advanced/minimal`
 export const SEARCH_ADVANCED_ENDPOINT = `/api/${process.env.NEXT_PUBLIC_API_VERSION}/catalog/search/advanced`
 export const NEXT_SEARCH_ADVANCED_ENDPOINT =
@@ -83,6 +84,7 @@ export const NEXT_GET_PRODUCT_PREVIEW = '/api/catalog/get-product-preview'
 export const NEXT_PAYMENT_METHODS = '/api/payment-methods'
 export const NEXT_CONFIRM_ORDER = '/api/confirm-order'
 export const NEXT_INFRA_ENDPOINT = '/api/infra'
+export const NEXT_RETURN_REASON = `/api/return-reason`
 export const NEXT_SET_CONFIG = '/api/set-config'
 export const NEXT_POST_PAYMENT_RESPONSE = '/api/payment-response'
 export const NEXT_FORGOT_PASSWORD = '/api/customer/forgot-password'
@@ -92,7 +94,7 @@ export const NEXT_GET_RETURN_DATA = '/api/return/get-return-data'
 export const NEXT_CREATE_RETURN_DATA = '/api/return/create'
 export const NEXT_GET_RETURNS = '/api/return/get-user-returns'
 //CONSTANTS
-
+export const EmptyGuid = "00000000-0000-0000-0000-000000000000";
 export const HOME_PAGE_DEFAULT_SLUG = "home";
 export const DefaultSessionCookieKey: string = `defaultSession`
 export const SessionIdCookieKey: string = `sessionId`

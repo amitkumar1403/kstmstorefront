@@ -13,8 +13,8 @@ import useAnalytics from '@components/services/analytics/useAnalytics'
 import { useUI } from '@components/ui/context'
 
 import React from 'react'
-import MyDetails from '@components/account/MyDetails'
-import MyOrders from '@components/account/MyOrders'
+import AddressBook from '@components/account/Address/AddressBook'
+//D:\Projects\kstmstorefront\components\account\Address\AddressBook.tsx
 function MyAccount({ defaultView, isLoggedIn }: any) {
   const [isShow, setShow] = useState(true)
   const [view, setView] = useState(defaultView)
@@ -57,12 +57,12 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
   useAnalytics(CustomerProfileViewed, loggedInEventData)
 
   return (
-    <section className="relative pb-10 text-gray-900">
+    <section className="relative pb-10 text-gray-900 sm:text-sm">
     <div className="w-full px-0 mx-auto sm:container sm:px-0 lg:px-0">
-      <div className="grid w-full grid-cols-12 px-4 pt-16 sm:px-2 sm:pr-0 main-account-grid">
-        <div className="col-span-3 border-r border-gray-600 md:pl-12 sm:pl-6 tab-list-sm sm:pt-10 mob-hidden">
+      <div className="grid w-full grid-cols-12 px-4 sm:px-2 sm:pr-0 main-account-grid pt-16">
+        <div className="col-span-3 sm:pl-4 md:pl-12 border-r border-gray-600 sm:pl-6 tab-list-sm sm:pt-10 mob-hidden">
            
-                <div className="sticky left-0 z-10 flex flex-col top-36 sm:px-2">
+                <div className="sticky left-0 z-10 flex flex-col top-36  sm:px-2">
                   {config.map((item: any, idx: number) => (
                     <>
                       <div
@@ -96,9 +96,9 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                                    handleClick;
                                    setShow(false);
                                 }}
-                                   className="inline-block w-full h-full py-4 text-sm text-primary">
+                                   className="inline-block w-full h-full py-4 text-sm  text-primary">
                                    <span className='inline-block sm:hidden'>{item.mtext}</span>
-                                   <span className='hidden text-xs sm:inline-block'>{item.text}</span>
+                                   <span className='hidden sm:inline-block text-xs'>{item.text}</span>
                                 </a>
                              </Link>
                           </div>
@@ -110,7 +110,7 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                                 onClick={() => {
                                   handleClick
                                 }}
-                                className="inline-block w-full h-full py-4 text-sm text-primary"
+                                className="inline-block w-full h-full py-4 text-sm  text-primary"
                               >
                                 <span className="inline-block sm:hidden">
                                   {item.mtext}
@@ -129,12 +129,12 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
               </div>
 
               <div
-                className={`relative col-span-9 lg:col-span-8 md:col-span-8 border-l tabpanel-sm mob-tab-full ${
+                className={`relative col-span-9 border-l tabpanel-sm mob-tab-full ${
                   isShow ? `mob-hidden` : ''
                 }`}
               >
-                <div className={'orders bg-white my-2 sm:my-6 pl-12'}>
-                  <MyOrders />
+                <div className={'orders bg-white my-2 sm:my-6 pl-2'}>
+                  <AddressBook />
                 </div>
               </div>
             </div>
