@@ -79,7 +79,7 @@ export default function OrderConfirmation() {
               {order.orderNo ? GENERAL_ON_THE_WAY : NO_ORDER_PROVIDED}
             </p>
             {order.orderNo ? (
-              <p className="mt-2 text-black text-gray-500">
+              <p className="mt-2 text-black">
                 {GENERAL_YOUR_ORDER}{' '}<span className='font-bold text-black'>{order.orderNo}</span>{' '}
                 {GENERAL_ORDER_WILL_BE_WITH_YOU_SOON}
               </p>

@@ -310,7 +310,7 @@ function Cart({ cart }: any) {
                           </button>
                         </div>
                       </div>
-                      <div className="flex flex-col block sm:hidden">
+                      <div className="flex flex-col sm:hidden">
                         <p className="pt-3 text-xs font-bold text-gray-700 sm:text-sm">
                           {product.shippingPlan?.shippingSpeed}
                         </p>
