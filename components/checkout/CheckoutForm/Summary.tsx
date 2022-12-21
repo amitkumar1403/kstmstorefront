@@ -30,8 +30,11 @@ export default function Summary({
         <h3 className="sr-only">{ITEMS_IN_YOUR_CART}</h3>
         <ul role="list" className="divide-y divide-gray-200">
           {cart.lineItems?.map((product: any) => {
-            const message = JSON.parse(product.customInfo1);
-            const personalization = message?.formatted?.data?.Message;
+            let personalization = "";
+            if (product?.customInfo1 != "") {
+              const message = JSON.parse(product?.customInfo1);
+              personalization = message?.formatted?.data?.Message;
+            }
             return (
 
               <li key={product.id} className="flex px-4 py-3 sm:px-6">
