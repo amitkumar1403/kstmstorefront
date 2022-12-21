@@ -142,8 +142,8 @@ export default function ProductView({
         link : response.data.product.link,
       }
 
-    let oldData=[12,12]
-    oldData = JSON.parse(localStorage.getItem("Recent-Products") || "[]") || []
+    
+    let oldData = JSON.parse(localStorage.getItem("Recent-Products") || "[]" )
 
     // to store only unique elems in the local storage
     oldData?.map((val:any)=>{
