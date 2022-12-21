@@ -133,43 +133,42 @@ export default function ProductView({
     console.log("hello " + JSON.stringify(response?.data))
 
     // condition to store products in local storage for recently viewed functionality
-    if(response?.data?.product){
+    if (response?.data?.product) {
       const recentlyViewedProduct = {
-        image : response.data.product.image,
-        price : response.data.product.listPrice.formatted.withTax,
-        name : response.data.product.name,
-        id : response.data.product.id,
-        link : response.data.product.link,
+        image: response.data.product.image,
+        price: response.data.product.listPrice.formatted.withTax,
+        name: response.data.product.name,
+        id: response.data.product.id,
+        link: response.data.product.link,
       }
 
-    let oldData = JSON.parse(localStorage?.getItem("Recent-Products") || "[]") || []
+      let oldData = JSON.parse(localStorage?.getItem("Recent-Products") || "[]") || []
 
-    // to store only unique elems in the local storage
-    oldData?.map((val:any)=>{
-      if(val?.id === response?.data?.product?.id){
-        flag = true;
+      // to store only unique elems in the local storage
+      oldData?.map((val: any) => {
+        if (val?.id === response?.data?.product?.id) {
+          flag = true;
+        }
+      })
+
+      if (flag === false && oldData) {
+        window?.localStorage.setItem("Recent-Products", JSON.stringify([...oldData, recentlyViewedProduct]));
       }
-    })
-   
-    if( flag===false && oldData ){  
-      window?.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
-    }
-    else if(!oldData){
-      window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
-    }
-    else{ }
+      else if (!oldData) {
+        window.localStorage.setItem("Recent-Products", JSON.stringify([recentlyViewedProduct]));
+      }
+      else { }
 
-    var array_last_ten;    // to add only last 10 recently viewed products
-      if(oldData?.length > 10){
+      var array_last_ten;    // to add only last 10 recently viewed products
+      if (oldData?.length > 10) {
         array_last_ten = oldData.slice(-10);
-        if (oldData?.length < 11) 
-        {
+        if (oldData?.length < 11) {
           array_last_ten.shift();
         }
         array_last_ten.reverse()
         setLocalState(array_last_ten)
       }
-      else{
+      else {
         oldData.reverse()
         setLocalState(oldData)
       }
@@ -367,7 +366,7 @@ export default function ProductView({
         ItemType: obj.itemType || 0,
         CustomInfo1: JSON.stringify(
           {
-            "formatted":{"title":"Personalisation", "data":{"Message":values.line1 || null}}
+            "formatted": { "title": "Personalisation", "data": { "Message": values.line1 || null } }
           }
         ),
         // CustomInfo1: values.line1 || null,
@@ -869,33 +868,33 @@ export default function ProductView({
           </div>
 
           <div className='py-2 text-center'>
-       <label className='text-lg font-semibold'>Recently viewed</label>
-       
-         {/* for recently viewed items */}     
-       <div className='w-full h-full py-4'>
-        <Swiper
-            // install Swiper modules
-            modules={[Navigation]}
-            slidesPerView={4}
-            spaceBetween={0}
-            className="external-buttons py-7"
-            navigation
-          >
-        { localState?.map((val:any) => {
-        return(
-            <SwiperSlide className='p-10 border border-grey-40 hover:border-black'>
-              <div className='h-full'>
-                <a href={val.link}>
-                <Image src={val.image || '/pdp1.png'} className='object-cover' height={400} width={200}></Image>
-                <p className='text-sm font-semibold'>{val.name}</p>
-                <label>{val.price}</label>
-                </a>
-              </div>
-            </SwiperSlide>
-              
-        ) 
-       }) }
-          {/* <Swiper
+            <label className='text-lg font-semibold'>Recently viewed</label>
+
+            {/* for recently viewed items */}
+            <div className='w-full h-full py-4'>
+              <Swiper
+                // install Swiper modules
+                modules={[Navigation]}
+                slidesPerView={4}
+                spaceBetween={0}
+                className="external-buttons py-7"
+                navigation
+              >
+                {localState?.map((val: any, valId: number) => {
+                  return (
+                    <SwiperSlide className='p-10 border border-grey-40 hover:border-black' key={valId}>
+                      <div className='h-full'>
+                        <a href={val.link}>
+                          <Image src={val.image || '/pdp1.png'} className='object-cover' height={400} width={200}></Image>
+                          <p className='text-sm font-semibold'>{val.name}</p>
+                          <label>{val.price}</label>
+                        </a>
+                      </div>
+                    </SwiperSlide>
+
+                  )
+                })}
+                {/* <Swiper
             // install Swiper modules
               modules={[Navigation]}
               slidesPerView={3}
@@ -907,10 +906,10 @@ export default function ProductView({
             <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
             <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
             <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide> */}
-          </Swiper>
+              </Swiper>
 
-    </div>
-    </div>
+            </div>
+          </div>
 
           {/* Placeholder for pdp snippet */}
           <div className={`${ELEM_ATTR}${PDP_ELEM_SELECTORS[0]}`}></div>
