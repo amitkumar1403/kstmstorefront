@@ -123,7 +123,7 @@ export default function ContactPreferences() {
 
   return (
     <main className="sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-12">
         <div className="px-4 sm:px-0">
           <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
             {title}
@@ -134,7 +134,7 @@ export default function ContactPreferences() {
           </p>
         </div>
       </div>
-      <div className="max-w-4xl mx-auto flex flex-col mt-10">
+      <div className="max-w-4xl mx-12 flex flex-col mt-10">
         <div className="w-1/2 flex justify-between align-center">
           {items.map((btn: any, idx: number) => {
             return (
