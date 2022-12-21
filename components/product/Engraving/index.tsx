@@ -6,8 +6,9 @@ import axios from 'axios'
 import Form from './form'
 import { GENERAL_CLOSE, GENERAL_ENGRAVING, GENERAL_ENGRAVING_PERSONALIZE_BOTTLE } from '@components/utils/textVariables'
 import { Product } from '@commerce/types'
+import Image from 'next/image'
 export default function Engraving({
-  onClose = () => {},
+  onClose = () => { },
   engravingPrice = '£20',
   show = false,
   submitForm,
@@ -15,7 +16,7 @@ export default function Engraving({
   showEngravingModal
 }: any) {
 
-  const closeModal = ()=> {
+  const closeModal = () => {
     showEngravingModal(false);
     window.location.reload();
   }
@@ -63,7 +64,7 @@ export default function Engraving({
                 <button
                   type="button"
                   className="absolute text-gray-400 top-4 right-4 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8"
-                 // className="absolute w-4 h-4 p-1 text-black border-none rounded-none opacity-50 btn-close top-4 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                  // className="absolute w-4 h-4 p-1 text-black border-none rounded-none opacity-50 btn-close top-4 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                   onClick={() => closeModal()}
                 >
                   <span className="sr-only">{GENERAL_CLOSE}</span>
@@ -83,10 +84,14 @@ export default function Engraving({
                     <div className='w-1/2'>
                       {/* {JSON.stringify(product.image)} */}
                       <label className='text-sm font-bold'>{product.name}</label>
-                       <img src={product.image || '/pdp1.png'} className='w-full '></img>
+                      <Image
+                        layout='fixed'
+                        width={220}
+                        height={300}
+                        src={product.image || '/pdp1.png'}
+                        className='w-full ' />
                     </div>
                     <div className='w-1/2 p-4'>
-                    
                       <Form submitForm={submitForm} />
                     </div>
                   </div>

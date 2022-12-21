@@ -229,6 +229,8 @@ const CartSidebarView: FC = () => {
                               </div>
                               {product.children?.map(
                                 (child: any, idx: number) => {
+                                  const message = JSON.parse(child.customInfo1);
+                                  const personalization = message?.formatted?.data?.Message;
                                   return (
                                     <div className="flex" key={idx}>
                                       <div className="flex-shrink-0 w-24 py-1 ml-1 overflow-hidden">
@@ -258,7 +260,7 @@ const CartSidebarView: FC = () => {
                                           {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                         </div>
                                         <div className='w-full'>
-                                          {child.customInfo1}
+                                          {personalization}
                                         </div>
                                       </div>
                                       <div className="flex items-start flex-1 ml-4 text-sm">
