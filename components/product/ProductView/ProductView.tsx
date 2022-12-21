@@ -642,7 +642,7 @@ export default function ProductView({
               </h3> */}
               <div className="flex justify-between">
                 <h1 className="text-sm font-semibold tracking-tight text-black sm:text-2xl">
-                  {product.name || product.productName}
+                  {product.name || product.name}
                 </h1>
 
                 <h2 className="sr-only">{PRODUCT_INFORMATION}</h2>
