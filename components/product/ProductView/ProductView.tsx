@@ -122,14 +122,8 @@ export default function ProductView({
     ...product,
   })
   //for storing products in local storage for recently viewed
-  const dataFromLocalStorage = getItem('Recent-Products') || "";
-  const [localState, setLocalState] = useState(dataFromLocalStorage);
-
-  // const [userStorage, setUserStorage] = useState ( () => {
-  //   const savedItem:any = localStorage.getItem("Recent-Products");
-  //   const parsedItem:any = JSON.parse(savedItem);
-  //   return parsedItem || "";
-  // });
+  const [localState, setLocalState] = useState([]);
+  let flag = false;
 
   const { ProductViewed } = EVENTS_MAP.EVENT_TYPES
   const { Product } = EVENTS_MAP.ENTITY_TYPES
@@ -139,29 +133,46 @@ export default function ProductView({
     console.log("hello " + JSON.stringify(response?.data))
 
     // condition to store products in local storage for recently viewed functionality
-    if (response?.data?.product) {
+    if(response?.data?.product){
       const recentlyViewedProduct = {
-        image: response.data.product.image,
-        price: response.data.product.listPrice.formatted.withTax,
-        name: response.data.product.name,
-        link: response.data.product.link,
+        image : response.data.product.image,
+        price : response.data.product.listPrice.formatted.withTax,
+        name : response.data.product.name,
+        id : response.data.product.id,
+        link : response.data.product.link,
       }
 
-      setLocalState(recentlyViewedProduct);
-      setItem('Recent-Products', recentlyViewedProduct);
+    let oldData = JSON.parse(localStorage?.getItem("Recent-Products") || "[]") || []
 
-      // let oldData = JSON.parse(localStorage.getItem("Recent-Products")  || "")
-      // if(oldData){
-      //   window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
-      // }
-      // else{
-      //   window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
-      // }
-      // //setting only unique elem in State
-      // const key = 'name';
-      // const arrayUniqueByKey:any = [...new Map(oldData?.map((item:any) =>
-      //   [item[key], item])).values()];
-      //     setLocalState(arrayUniqueByKey)
+    // to store only unique elems in the local storage
+    oldData?.map((val:any)=>{
+      if(val?.id === response?.data?.product?.id){
+        flag = true;
+      }
+    })
+   
+    if( flag===false && oldData ){  
+      window?.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
+    }
+    else if(!oldData){
+      window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
+    }
+    else{ }
+
+    var array_last_ten;    // to add only last 10 recently viewed products
+      if(oldData?.length > 10){
+        array_last_ten = oldData.slice(-10);
+        if (oldData?.length < 11) 
+        {
+          array_last_ten.shift();
+        }
+        array_last_ten.reverse()
+        setLocalState(array_last_ten)
+      }
+      else{
+        oldData.reverse()
+        setLocalState(oldData)
+      }
     }
 
     if (response?.data?.product) {
@@ -886,48 +897,48 @@ export default function ProductView({
           </div>
 
           <div className='py-2 text-center'>
-            <label className='text-lg font-semibold'>Recently viewed</label>
-
-            {/* for recently viewed items */}
-            <div className='w-full py-4 h-100 '>
-              {/* <Swiper
+       <label className='text-lg font-semibold'>Recently viewed</label>
+       
+         {/* for recently viewed items */}     
+       <div className='w-full h-full py-4'>
+        <Swiper
             // install Swiper modules
             modules={[Navigation]}
-            slidesPerView={3}
+            slidesPerView={4}
             spaceBetween={0}
-            className="pt-2 external-buttons py-7"
+            className="external-buttons py-7"
             navigation
-            height={6}
           >
         { localState?.map((val:any) => {
         return(
-            <SwiperSlide className='py-2 mx-0 border border-grey-40 hover:border-black'>
-              <div >
+            <SwiperSlide className='p-10 border border-grey-40 hover:border-black'>
+              <div className='h-full'>
                 <a href={val.link}>
-                <img src="/slider-1 - Copy.jpg" className=''></img>
-                <p>{val.name}</p>
+                <Image src={val.image || '/pdp1.png'} className='object-cover' height={400} width={200}></Image>
+                <p className='text-sm font-semibold'>{val.name}</p>
+                <label>{val.price}</label>
                 </a>
               </div>
             </SwiperSlide>
               
         ) 
-       }) } */}
-              <Swiper
-                // install Swiper modules
-                modules={[Navigation]}
-                slidesPerView={3}
-                spaceBetween={0}
-                className="external-buttons py-7 "
-                navigation
-              >
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide>
-              </Swiper>
+       }) }
+          {/* <Swiper
+            // install Swiper modules
+              modules={[Navigation]}
+              slidesPerView={3}
+              spaceBetween={0}
+              className="external-buttons py-7 "
+              navigation
+          >
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide> */}
+          </Swiper>
 
-            </div>
-          </div>
+    </div>
+    </div>
 
           {/* Placeholder for pdp snippet */}
           <div className={`${ELEM_ATTR}${PDP_ELEM_SELECTORS[0]}`}></div>
