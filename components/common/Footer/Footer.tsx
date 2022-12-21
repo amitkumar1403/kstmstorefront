@@ -2,6 +2,7 @@ import { FC, useState } from 'react'
 import Link from 'next/link'
 import type { Page } from '@commerce/types/page'
 import { Logo } from '@components/ui'
+import WhiteLogo from '@components/ui/WhiteLogo'
 import config from './config'
 import { useRouter } from 'next/router'
 import { useUI } from '@components/ui';
@@ -301,15 +302,15 @@ const Footer: FC<Props> = ({ config }) => {
         </div>
       </div>
       <div className="pt-2 pb-2 border-t border-gray-100">
-        <div className="grid grid-cols-3 gap-0 mr-14">
-          <div className="mx-14">
+        <div className="grid grid-cols-3 gap-0 xl:mr-14 lg:mr-14 md:mr-4">
+          <div className=" xl:mx-auto lg:mx-auto md:mx-14 sm:ml-12">
             {' '}
-            <p className="mt-0 text-white sm:mx-auto sm:text-md md:text-xl lg:text-2xl xl:text-2xl font-heading mx-14">
+            <p className="mt-0 text-white sm:mx-auto sm:text-md md:text-xl lg:text-2xl xl:text-2xl font-heading mx-auto">
               &copy; {COPYRIGHT_FOOTER_INFO}
             </p>
           </div>
           <div className="mx-auto">
-            <Logo />
+            <WhiteLogo  className='sm-logo'/>
           </div>
           <div className="flex flex-wrap mx-auto text-xl sm:text-sm md:text-lg">
             <ul className="flex items-center justify-center social-icon sm:justify-between">
@@ -353,7 +354,7 @@ const Footer: FC<Props> = ({ config }) => {
                   <i className="sprite-icon sprite-tic"></i>
                 </a>
               </li>
-              <li className="inline-block align-middle">
+              <li className="inline-block align-middle img-hidden">
                 <a
                   rel="noreferrer"
                   target="_blank"
