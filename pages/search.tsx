@@ -302,7 +302,7 @@ function Search({ query, setEntities, recordEvent }: any) {
           {/* <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4> */}
          
 
-          <h1 className="text-xl font-semibold tracking-tight text-black sm:text-2xl">
+          <h1 className="pb-4 text-2xl font-bold tracking-tight text-center text-gray-900">
             {GENERAL_CATALOG} 
          
           </h1>
