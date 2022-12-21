@@ -141,37 +141,6 @@ export default function ProductView({
         id: response.data.product.id,
         link: response.data.product.link,
       }
-
-      let oldData = JSON.parse(localStorage?.getItem("Recent-Products") || "[]") || []
-
-      // to store only unique elems in the local storage
-      oldData?.map((val: any) => {
-        if (val?.id === response?.data?.product?.id) {
-          flag = true;
-        }
-      })
-
-      if (flag === false && oldData) {
-        window?.localStorage.setItem("Recent-Products", JSON.stringify([...oldData, recentlyViewedProduct]));
-      }
-      else if (!oldData) {
-        window.localStorage.setItem("Recent-Products", JSON.stringify([recentlyViewedProduct]));
-      }
-      else { }
-
-      var array_last_ten;    // to add only last 10 recently viewed products
-      if (oldData?.length > 10) {
-        array_last_ten = oldData.slice(-10);
-        if (oldData?.length < 11) {
-          array_last_ten.shift();
-        }
-        array_last_ten.reverse()
-        setLocalState(array_last_ten)
-      }
-      else {
-        oldData.reverse()
-        setLocalState(oldData)
-      }
     }
 
     if (response?.data?.product) {
@@ -872,40 +841,20 @@ export default function ProductView({
 
             {/* for recently viewed items */}
             <div className='w-full h-full py-4'>
+
+
               <Swiper
                 // install Swiper modules
                 modules={[Navigation]}
-                slidesPerView={4}
+                slidesPerView={3}
                 spaceBetween={0}
-                className="external-buttons py-7"
+                className="external-buttons py-7 "
                 navigation
               >
-                {localState?.map((val: any, valId: number) => {
-                  return (
-                    <SwiperSlide className='p-10 border border-grey-40 hover:border-black' key={valId}>
-                      <div className='h-full'>
-                        <a href={val.link}>
-                          <Image src={val.image || '/pdp1.png'} className='object-cover' height={400} width={200}></Image>
-                          <p className='text-sm font-semibold'>{val.name}</p>
-                          <label>{val.price}</label>
-                        </a>
-                      </div>
-                    </SwiperSlide>
-
-                  )
-                })}
-                {/* <Swiper
-            // install Swiper modules
-              modules={[Navigation]}
-              slidesPerView={3}
-              spaceBetween={0}
-              className="external-buttons py-7 "
-              navigation
-          >
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide> */}
+                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
+                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide>
               </Swiper>
 
             </div>
