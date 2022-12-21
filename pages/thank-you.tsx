@@ -97,8 +97,11 @@ export default function OrderConfirmation() {
 
               <h3 className="sr-only">{GENERAL_ITEMS}</h3>
               {order.items.map((product: any) => {
-                const message = JSON.parse(product.customInfo1);
-                const personalization = message?.formatted?.data?.Message;
+                let personalization = "";
+                if (product?.customInfo1 != "") {
+                  const message = JSON.parse(product?.customInfo1);
+                  personalization = message?.formatted?.data?.Message;
+                }
 
                 return (
                   product?.name != "Personalization" &&
@@ -125,10 +128,15 @@ export default function OrderConfirmation() {
                           }}
                           className="mt-2 text-sm text-gray-500"
                         />
-                        <div className='mt-2 ml-2 font-semibold text-black'>personalization</div>
-                        <div
-                          className="mt-1 ml-2 text-sm text-gray-500"
-                        >{personalization}</div>
+                        {personalization != "" &&
+                          <>
+                            <div className='mt-2 ml-2 font-semibold text-black'>personalization</div>
+                            <div
+                              className="mt-1 ml-2 text-sm text-gray-500"
+                            >{personalization}</div>
+                          </>
+                        }
+
                       </div>
                       <div className="flex items-end flex-1 mt-6">
                         <dl className="flex space-x-4 text-sm divide-x divide-gray-200 sm:space-x-6">
