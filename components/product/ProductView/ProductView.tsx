@@ -142,17 +142,17 @@ export default function ProductView({
         link : response.data.product.link,
       }
 
-    let oldData = JSON.parse(localStorage.getItem("Recent-Products") || "[]") || []
+    let oldData = JSON.parse(localStorage?.getItem("Recent-Products") || "[]") || []
 
     // to store only unique elems in the local storage
     oldData?.map((val:any)=>{
-      if(val.id === response.data.product.id){
+      if(val?.id === response?.data?.product?.id){
         flag = true;
       }
     })
    
     if( flag===false && oldData ){  
-      window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
+      window?.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
     }
     else if(!oldData){
       window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
@@ -160,9 +160,9 @@ export default function ProductView({
     else{ }
 
     var array_last_ten;    // to add only last 10 recently viewed products
-      if(oldData.length > 10){
+      if(oldData?.length > 10){
         array_last_ten = oldData.slice(-10);
-        if (oldData.length < 11) 
+        if (oldData?.length < 11) 
         {
           array_last_ten.shift();
         }
@@ -900,7 +900,7 @@ export default function ProductView({
        <label className='text-lg font-semibold'>Recently viewed</label>
        
          {/* for recently viewed items */}     
-       <div className='w-full py-4 h-full'>
+       <div className='w-full h-full py-4'>
         <Swiper
             // install Swiper modules
             modules={[Navigation]}
@@ -911,7 +911,7 @@ export default function ProductView({
           >
         { localState?.map((val:any) => {
         return(
-            <SwiperSlide className=' p-10 border border-grey-40 hover:border-black'>
+            <SwiperSlide className='p-10 border border-grey-40 hover:border-black'>
               <div className='h-full'>
                 <a href={val.link}>
                 <Image src={val.image || '/pdp1.png'} className='object-cover' height={400} width={200}></Image>
