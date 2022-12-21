@@ -58,11 +58,11 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
 
   return (
     <section className="relative pb-10 text-gray-900">
-    <div className="w-full px-0 mx-auto accunt-main-container sm:px-0 lg:px-0">
-      <div className="grid w-full grid-cols-12 px-4 sm:px-2 sm:pr-0 main-account-grid pt-16">
-        <div className="col-span-3 sm:pl-4 md:pl-12 border-r border-gray-600 sm:pl-6 tab-list-sm sm:pt-10 mob-hidden">
+    <div className="w-full px-0 mx-auto sm:container sm:px-0 lg:px-0">
+      <div className="grid w-full grid-cols-12 px-4 pt-16 sm:px-2 sm:pr-0 main-account-grid">
+        <div className="col-span-3 border-r border-gray-600 md:pl-12 sm:pl-6 tab-list-sm sm:pt-10 mob-hidden">
            
-                <div className="sticky left-0 z-10 flex flex-col top-36 lg:px-36 md:px:24 sm:px-2">
+                <div className="sticky left-0 z-10 flex flex-col top-36 sm:px-2">
                   {config.map((item: any, idx: number) => (
                     <>
                       <div
@@ -96,9 +96,9 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                                    handleClick;
                                    setShow(false);
                                 }}
-                                   className="inline-block w-full h-full py-4 text-sm  text-primary">
+                                   className="inline-block w-full h-full py-4 text-sm text-primary">
                                    <span className='inline-block sm:hidden'>{item.mtext}</span>
-                                   <span className='hidden sm:inline-block text-xs'>{item.text}</span>
+                                   <span className='hidden text-xs sm:inline-block'>{item.text}</span>
                                 </a>
                              </Link>
                           </div>
