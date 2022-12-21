@@ -294,7 +294,7 @@ function Search({ query, setEntities, recordEvent }: any) {
     <div
       className="w-full mx-auto bg-white ">
       {/* Mobile menu */}
-      <main className="pb-24">
+      <main className="">
         <div className="mt-24 px-4 py-4 text-center sm:py-5 sm:px-0 lg:px-0">
           {/* for sticky subnav*/}
           {/* <div className="sticky z-50 px-4 py-4 text-center bg-white border border-red-600 top-16 sm:py-5 sm:px-0 lg:px-0">    */}
