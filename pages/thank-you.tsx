@@ -38,6 +38,8 @@ export default function OrderConfirmation() {
   const [isLoading, setIsLoading] = useState(true)
   const { setOrderId, orderId } = useUI()
 
+  console.log("--------------------",order)
+
   useEffect(() => {
     const fetchOrder = async () => {
       const { data }: any = await axios.post(NEXT_GET_ORDER_DETAILS, {
@@ -86,6 +88,7 @@ export default function OrderConfirmation() {
             ) : null}
           </div>
 
+         
           {order.orderNo ? (
             <section
               aria-labelledby="order-heading"
@@ -97,7 +100,7 @@ export default function OrderConfirmation() {
 
               <h3 className="sr-only">{GENERAL_ITEMS}</h3>
               {order.items.map((product: any) => (
-                <div
+                ((product.name!='Personalization') && <div
                   key={product.id}
                   className="py-10 border-b border-gray-200 flex space-x-6"
                 >
@@ -121,6 +124,35 @@ export default function OrderConfirmation() {
                         className="mt-2 text-sm text-gray-500"
                       />
                     </div>
+                   {/* ---------add here------------ */} 
+               
+                   { order.items.map((personalization:any)=>{
+                  
+                   return <>
+                  {(personalization.parentProductId==(product.productId).toLowerCase()) &&
+                        ( 
+                  <div className="mt-7" key={personalization.id}>
+                  <div className=" flex justify-between font-small  text-gray-900">
+                  <div className="font-medium text-gray-900">{personalization.name} By</div>
+                  <div className="pr-6">
+                  <div className=" flex-shrink-0 w-20 h-8 overflow-hidden py-1">
+                  <div className="image-container">
+                  <img src="/KSTMize.jpg" className="w-full h-full object-center object-cover image"/>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  <div className="py-0 text-sm text-gray-500">
+                  <label>{personalization.customInfo1}</label>
+                  </div>
+                 
+                  </div>
+                        )}
+                   </> 
+                   })  }
+                   
+
+                    {/* ---------- */}
                     <div className="mt-6 flex-1 flex items-end">
                       <dl className="flex text-sm divide-x divide-gray-200 space-x-4 sm:space-x-6">
                         <div className="flex">
@@ -140,7 +172,7 @@ export default function OrderConfirmation() {
                       </dl>
                     </div>
                   </div>
-                </div>
+                </div>   )
               ))}
 
               <div className="sm:ml-40 sm:pl-6">
