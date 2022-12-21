@@ -142,7 +142,8 @@ export default function ProductView({
         link : response.data.product.link,
       }
 
-    let oldData = JSON.parse(localStorage.getItem("Recent-Products") || "[]") || []
+    let oldData=[12,12]
+    oldData = JSON.parse(localStorage.getItem("Recent-Products") || "[]") || []
 
     // to store only unique elems in the local storage
     oldData?.map((val:any)=>{
@@ -155,7 +156,7 @@ export default function ProductView({
       window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
     }
     else if(!oldData){
-      window.localStorage.setItem("Recent-Products",JSON.stringify([recentlyViewedProduct]));
+      window.localStorage.setItem("Recent-Products",JSON.stringify([...oldData, recentlyViewedProduct]));
     }
     else{ }
 
