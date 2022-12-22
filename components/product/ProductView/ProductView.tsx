@@ -52,22 +52,28 @@ import {
   SLUG_TYPE_MANUFACTURER,
   YOUTUBE_VIDEO_PLAYER,
 } from '@components/utils/textVariables'
-import { ELEM_ATTR, PDP_ELEM_SELECTORS } from '@framework/content/use-content-snippet'
+import {
+  ELEM_ATTR,
+  PDP_ELEM_SELECTORS,
+} from '@framework/content/use-content-snippet'
 import { generateUri } from '@commerce/utils/uri-util'
 import { round } from 'lodash'
-import ImageZoom from "react-image-zooom";
-
+import ImageZoom from 'react-image-zooom'
 
 //DYNAMIC COMPONENT LOAD IN PRODUCT DETAIL
-const AttributesHandler = dynamic(() => import('./AttributesHandler'));
-const BreadCrumbs = dynamic(() => import('@components/ui/BreadCrumbs'));
-const RelatedProducts = dynamic(() => import('@components/product/RelatedProducts'));
-const Bundles = dynamic(() => import('@components/product/Bundles'));
-const Reviews = dynamic(() => import('@components/product/Reviews'));
-const PriceMatch = dynamic(() => import('@components/product/PriceMatch'));
-const Engraving = dynamic(() => import('@components/product/Engraving'));
-const ProductDetails = dynamic(() => import('@components/product/ProductDetails'));
-const Button = dynamic(() => import('@components/ui/IndigoButton'));
+const AttributesHandler = dynamic(() => import('./AttributesHandler'))
+const BreadCrumbs = dynamic(() => import('@components/ui/BreadCrumbs'))
+const RelatedProducts = dynamic(
+  () => import('@components/product/RelatedProducts')
+)
+const Bundles = dynamic(() => import('@components/product/Bundles'))
+const Reviews = dynamic(() => import('@components/product/Reviews'))
+const PriceMatch = dynamic(() => import('@components/product/PriceMatch'))
+const Engraving = dynamic(() => import('@components/product/Engraving'))
+const ProductDetails = dynamic(
+  () => import('@components/product/ProductDetails')
+)
+const Button = dynamic(() => import('@components/ui/IndigoButton'))
 const PLACEMENTS_MAP: any = {
   Head: {
     element: 'head',
@@ -82,10 +88,10 @@ const PLACEMENTS_MAP: any = {
     position: 'beforebegin',
   },
 }
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
 import ProductColors from './ProductColors'
 
 export default function ProductView({
@@ -95,7 +101,7 @@ export default function ProductView({
   relatedProducts,
   recordEvent,
   slug,
-  isPreview = false
+  isPreview = false,
 }: any) {
   const {
     openNotifyUser,
@@ -112,7 +118,7 @@ export default function ProductView({
   const [isPriceMatchModalShown, showPriceMatchModal] = useState(false)
   const [isEngravingOpen, showEngravingModal] = useState(false)
   const [isInWishList, setItemsInWishList] = useState(false)
-  const [previewImg, setPreviewImg] = useState<any>();
+  const [previewImg, setPreviewImg] = useState<any>()
 
   const product = updatedProduct || data
 
@@ -122,24 +128,66 @@ export default function ProductView({
     ...product,
   })
   //for storing products in local storage for recently viewed
-  const [localState, setLocalState] = useState([]);
-  let flag = false;
+  const [localState, setLocalState] = useState([])
+  let flag = false
 
   const { ProductViewed } = EVENTS_MAP.EVENT_TYPES
   const { Product } = EVENTS_MAP.ENTITY_TYPES
   const fetchProduct = async () => {
-    const url = !isPreview ? NEXT_GET_PRODUCT : NEXT_GET_PRODUCT_PREVIEW;;
+    const url = !isPreview ? NEXT_GET_PRODUCT : NEXT_GET_PRODUCT_PREVIEW
     const response: any = await axios.post(url, { slug: slug })
-    console.log("hello " + JSON.stringify(response?.data))
 
     // condition to store products in local storage for recently viewed functionality
     if (response?.data?.product) {
-      const recentlyViewedProduct = {
+      const recentlyViewedProduct = [{
         image: response.data.product.image,
         price: response.data.product.listPrice.formatted.withTax,
         name: response.data.product.name,
         id: response.data.product.id,
         link: response.data.product.link,
+      }]
+
+      let new_obj;
+      recentlyViewedProduct.map((val)=>{
+        new_obj = Object.assign({}, val);
+      })
+      
+      let oldData =
+        JSON.parse(localStorage.getItem('Recent-Products') || '[]') || []
+
+      // to store only unique elems in the local storage
+      // if(oldData.length){
+      oldData?.map((val: any) => {
+        if (val.id === response.data.product.id) {
+          flag = true
+        }
+      })
+
+      if (flag === false && oldData) {
+        window.localStorage.setItem(
+          'Recent-Products',
+          JSON.stringify([...oldData, new_obj])
+        )
+      } else if (!oldData) {
+        window.localStorage.setItem(
+          'Recent-Products',
+          JSON.stringify([new_obj] || '[]')
+        )
+      } else {
+      }
+      // }
+
+      var array_last_ten // to add only last 10 recently viewed products
+      if (oldData.length > 10) {
+        array_last_ten = oldData.slice(-10)
+        if (oldData.length < 11) {
+          array_last_ten.shift()
+        }
+        array_last_ten.reverse()
+        setLocalState(array_last_ten)
+      } else {
+        oldData.reverse()
+        setLocalState(oldData)
       }
     }
 
@@ -212,7 +260,9 @@ export default function ProductView({
     (value: any, index: number, self: any) =>
       index === self.findIndex((t: any) => t.image === value.image)
   )
-  { console.log(product) }
+  {
+    console.log(product)
+  }
   if (product.videos && product.videos.length > 0) {
     content = [...product.images, ...product.videos].filter(
       (value: any, index: number, self: any) =>
@@ -221,11 +271,11 @@ export default function ProductView({
   }
 
   const handleImgLoadT = (image: any) => {
-    setPreviewImg(image);
+    setPreviewImg(image)
   }
 
   const handlePreviewClose = () => {
-    setPreviewImg(undefined);
+    setPreviewImg(undefined)
   }
   const buttonTitle = () => {
     let buttonConfig: any = {
@@ -333,11 +383,12 @@ export default function ProductView({
         DisplayOrder: obj.displayOrder || 0,
         StockCode: obj.stockCode,
         ItemType: obj.itemType || 0,
-        CustomInfo1: JSON.stringify(
-          {
-            "formatted": { "title": "Personalisation", "data": { "Message": values.line1 || null } }
-          }
-        ),
+        CustomInfo1: JSON.stringify({
+          formatted: {
+            title: 'Personalisation',
+            data: { Message: values.line1 || null },
+          },
+        }),
         CustomInfo1Formatted: values.line1 || null,
         CustomInfo2: values.line2 || null,
         CustomInfo3: values.line3 || null,
@@ -422,9 +473,9 @@ export default function ProductView({
   const handleProductBundleUpdate = (bundledProduct: any) => {
     //debugger;
     if (bundledProduct && bundledProduct.id) {
-      let clonedProduct = Object.assign({}, updatedProduct);
+      let clonedProduct = Object.assign({}, updatedProduct)
       if (clonedProduct && clonedProduct.componentProducts) {
-        setUpdatedProduct(clonedProduct);
+        setUpdatedProduct(clonedProduct)
       }
     }
   }
@@ -433,7 +484,6 @@ export default function ProductView({
       notFound: true,
     }
   }*/
-
 
   SwiperCore.use([Navigation])
   var settings = {
@@ -452,29 +502,31 @@ export default function ProductView({
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 1
-        }
+          initialSlide: 1,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-  const saving = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
-  const discount = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
-  const addonPrice = relatedProducts.relatedProducts?.find((x: any) => x?.itemType == 10)?.price?.formatted?.withTax;
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  }
+  const saving = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax
+  const discount = round((saving / product?.listPrice?.raw?.withTax) * 100, 0)
+  const addonPrice = relatedProducts.relatedProducts?.find(
+    (x: any) => x?.itemType == 10
+  )?.price?.formatted?.withTax
   return (
     <div className="mx-auto bg-white page-container md:w-5/5 lg:p-0 md:p-0 sm:p-2">
       {/* Mobile menu */}
@@ -484,18 +536,20 @@ export default function ProductView({
           {/* Product */}
           <div className="lg:grid lg:pr-10 lg:grid-cols-12 lg:gap-x-16 lg:items-start">
             {/* Image gallery */}
-            <Tab.Group as="div" className="flex flex-col-reverse lg:col-span-6 md:col-span-6 sm:col-span-6 xs:col-span-6 min-mobile-pdp">
+            <Tab.Group
+              as="div"
+              className="flex flex-col-reverse lg:col-span-6 md:col-span-6 sm:col-span-6 xs:col-span-6 min-mobile-pdp"
+            >
               {/* Image selector */}
               <div className="grid sm:grid-cols-12 grid-cols-1-row-3 sm:gap-x-8 w-50">
-                <div className='col-span-12 px-4 sm:px-0'>
+                <div className="col-span-12 px-4 sm:px-0">
                   {/*MOBILE PRODUCT IMAGE SLIDER*/}
-                  <div className='block w-full pt-6 mx-auto sm:hidden sm:pt-0'>
+                  <div className="block w-full pt-6 mx-auto sm:hidden sm:pt-0">
                     <Swiper
                       slidesPerView={1}
                       spaceBetween={10}
                       navigation={true}
                       loop={true}
-
                       breakpoints={{
                         640: {
                           slidesPerView: 1,
@@ -520,17 +574,26 @@ export default function ProductView({
                             >
                               <div className="relative group">
                                 {image.image ? (
-                                  <div className='image-container'>
+                                  <div className="image-container">
                                     <Image
                                       priority
-                                      src={generateUri(image.image, "h=1800&fm=webp") || IMG_PLACEHOLDER}
+                                      src={
+                                        generateUri(
+                                          image.image,
+                                          'h=1800&fm=webp'
+                                        ) || IMG_PLACEHOLDER
+                                      }
                                       //src="/slider-1 - Copy.jpg"
                                       alt={image.name}
                                       className="object-fill object-center w-full h-full image"
-                                      layout='responsive'
-                                      sizes='320 600 100'
-                                      width={1800} height={1400}
-                                      blurDataURL={`${image.image}?h=600&w=400&fm=webp` || IMG_PLACEHOLDER}
+                                      layout="responsive"
+                                      sizes="320 600 100"
+                                      width={1800}
+                                      height={1400}
+                                      blurDataURL={
+                                        `${image.image}?h=600&w=400&fm=webp` ||
+                                        IMG_PLACEHOLDER
+                                      }
                                     />
                                   </div>
                                 ) : (
@@ -547,26 +610,28 @@ export default function ProductView({
                   <div className="w-full mx-auto max-w sm:block lg:max-w-none">
                     <Tab.List className="grid sm:grid-cols-1 md:grid-cols-1 grid-cols-1-row-3 ">
                       {content?.map((image: any, idx) => (
-
-                        <Tab
-                          key={`${idx}-tab`}
-                        >
+                        <Tab key={`${idx}-tab`}>
                           {() => (
                             <>
-
                               <span className="sr-only">{image.name}</span>
                               <span className="relative md:w-full sm:w-full">
                                 {image.image ? (
-                                  <div className='image-container sm:w-full md:w-full'>
+                                  <div className="image-container sm:w-full md:w-full">
                                     {/* <ControlledZoom isZoomed={isZoomedT} onZoomChange={handleZoomChangeT}> */}
                                     <Image
-                                      src={generateUri(image.image, "h=1800&fm=webp") || IMG_PLACEHOLDER}
+                                      src={
+                                        generateUri(
+                                          image.image,
+                                          'h=1800&fm=webp'
+                                        ) || IMG_PLACEHOLDER
+                                      }
                                       alt={image.name}
                                       priority
                                       className="object-cover object-center w-full h-full image"
-                                      layout='responsive'
-                                      sizes='320 600 1000'
-                                      width={1800} height={1400}
+                                      layout="responsive"
+                                      sizes="320 600 1000"
+                                      width={1800}
+                                      height={1400}
                                     />
 
                                     {/* <Image
@@ -585,8 +650,8 @@ export default function ProductView({
                                 ) : (
                                   <>
                                     {/* <PlayIcon className="object-cover object-center w-full h-full" /> */}
-                                    <img src="/pdp1.png" className='' />
-                                    <img src="/pdp2.png" className='' />
+                                    <img src="/pdp1.png" className="" />
+                                    <img src="/pdp2.png" className="" />
                                   </>
                                 )}
                               </span>
@@ -600,11 +665,8 @@ export default function ProductView({
               </div>
             </Tab.Group>
 
-
-
             {/* Product info */}
             <div className="sticky px-4 sm:mt-10 md:py-10 sm:py-4 sm:px-0 sm:pr-2 sm:pl-2 lg:mt-0 lg:col-span-6 top-20">
-
               {/* <h3 className="mb-2 text-sm font-semibold tracking-tight text-gray-700 uppercase sm:text-md sm:font-bold">
                 {selectedAttrData.brand}
               </h3> */}
@@ -623,23 +685,25 @@ export default function ProductView({
                         <span className="px-2 font-normal text-gray-400 line-through font-xl">
                           {product.listPrice.formatted.withTax}
                         </span>
-                        <span className='font-semibold text-red-500 text-md'>{discount}% off</span>
+                        <span className="font-semibold text-red-500 text-md">
+                          {discount}% off
+                        </span>
                       </>
                     ) : null}
                   </p>
                 ) : (
                   <p className="text-3xl text-gray-900">------</p>
                 )}
-
               </div>
 
               <div
                 className="py-2 text-sm"
-                dangerouslySetInnerHTML={{ __html: selectedAttrData.description || '' }}
+                dangerouslySetInnerHTML={{
+                  __html: selectedAttrData.description || '',
+                }}
               />
 
               <div className="block pt-4 ">
-
                 <div className="w-full ">
                   <AttributesHandler
                     product={product}
@@ -647,8 +711,6 @@ export default function ProductView({
                     setSelectedAttrData={setSelectedAttrData}
                   />
                 </div>
-
-
 
                 {/* <div className="container py-0 text-center lg:grid lg:grid-cols-5">
             <div className="w-full mx-auto border border-grey-40 hover:border-black">
@@ -675,7 +737,6 @@ export default function ProductView({
           </div>
           <label className='text-lg font-bold'>+ £20</label>
           </div> */}
-
               </div>
               {/* Reviews */}
               <div className="mt-3">
@@ -741,10 +802,10 @@ export default function ProductView({
                   {isEngravingAvailable && (
                     <>
                       <div className="mt-6 sm:mt-8 sm:col-1">
-                        <div className='flex justify-between'>
+                        <div className="flex justify-between">
                           <div>
                             <img
-                              src='/KSTMize.jpg'
+                              src="/KSTMize.jpg"
                               className="w-24 h-4 cursor-pointer"
                               onClick={() => {
                                 showEngravingModal(true)
@@ -752,12 +813,14 @@ export default function ProductView({
                             >
                               {/* <span className="font">KSTMize it</span> */}
                             </img>
-                            <label className="text-sm font-medium underline hover:text-gray-800">Personalise with custom embroidery</label>
+                            <label className="text-sm font-medium underline hover:text-gray-800">
+                              Personalise with custom embroidery
+                            </label>
                           </div>
-                          <label className='font-bold'>{addonPrice}</label>
+                          <label className="font-bold">{addonPrice}</label>
                         </div>
                         <Button
-                          className='block py-3 sm:hidden'
+                          className="block py-3 sm:hidden"
                           title={buttonConfig.title}
                           action={buttonConfig.action}
                           buttonType={buttonConfig.type || 'cart'}
@@ -766,7 +829,7 @@ export default function ProductView({
 
                       <div className="flex mt-6 sm:mt-8 sm:flex-col1">
                         <Button
-                          className='hidden sm:block '
+                          className="hidden sm:block "
                           title={buttonConfig.title}
                           action={buttonConfig.action}
                           buttonType={buttonConfig.type || 'cart'}
@@ -790,22 +853,18 @@ export default function ProductView({
                       </div>
                     </>
                   )}
-
                 </>
               ) : null}
               <section
                 aria-labelledby="details-heading"
                 className="mt-4 sm:mt-6"
               >
-
                 <h2 id="details-heading" className="sr-only">
                   {PRICEMATCH_ADDITIONAL_DETAILS}
                 </h2>
                 <ProductDetails
                   product={product}
-                  description={
-                    product.description || product.shortDescription
-                  }
+                  description={product.description || product.shortDescription}
                 />
                 <div className="mt-6 sm:mt-10">
                   <p className="text-lg text-gray-900">
@@ -832,37 +891,61 @@ export default function ProductView({
             />
           ) : null}
 
-          <div className='grid mr-0 grid-col-1'>
-            <img src="/Banner-pic.jpg" className='h-30' ></img>
+          <div className="grid mr-0 grid-col-1">
+            <img src="/Banner-pic.jpg" className="h-30"></img>
           </div>
 
-          <div className='py-2 text-center'>
-            <label className='text-lg font-semibold'>Recently viewed</label>
+          <div className="py-2 text-center">
+            {localState?.length > 0 && (
+              <label className="text-lg font-semibold">Recently viewed</label>
+            )}
 
             {/* for recently viewed items */}
-            <div className='w-full h-full py-4'>
-
-
+            <div className="w-full py-4 h-full">
               <Swiper
                 // install Swiper modules
                 modules={[Navigation]}
-                slidesPerView={3}
+                slidesPerView={4}
                 spaceBetween={0}
-                className="external-buttons py-7 "
+                className="external-buttons py-7"
                 navigation
               >
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide>
+                {localState?.map((val: any) => {
+                  return (
+                    <SwiperSlide className=" p-10 border border-grey-40 hover:border-black">
+                      <div className="h-full">
+                        <a href={val.link}>
+                          <Image
+                            src={val.image || '/pdp1.png'}
+                            className="object-cover"
+                            height={400}
+                            width={200}
+                          ></Image>
+                          <p className="text-sm font-semibold">{val.name}</p>
+                          <label>{val.price}</label>
+                        </a>
+                      </div>
+                    </SwiperSlide>
+                  )
+                })}
+                {/* <Swiper
+            // install Swiper modules
+              modules={[Navigation]}
+              slidesPerView={3}
+              spaceBetween={0}
+              className="external-buttons py-7 "
+              navigation
+          >
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide> */}
               </Swiper>
-
             </div>
           </div>
 
           {/* Placeholder for pdp snippet */}
           <div className={`${ELEM_ATTR}${PDP_ELEM_SELECTORS[0]}`}></div>
-
 
           {/* <Reviews data={product.reviews} productId={product.recordId} /> */}
           {isEngravingAvailable && (
@@ -912,66 +995,71 @@ export default function ProductView({
         />
       </main>
 
-      {
-        previewImg ? (
-          <Transition.Root show={previewImg != undefined} as={Fragment} >
-            <Dialog as="div" className="relative mt-4 z-999 top-4" onClose={handlePreviewClose}>
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-              >
-                <div className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" onClick={handlePreviewClose} />
-              </Transition.Child>
+      {previewImg ? (
+        <Transition.Root show={previewImg != undefined} as={Fragment}>
+          <Dialog
+            as="div"
+            className="relative mt-4 z-999 top-4"
+            onClose={handlePreviewClose}
+          >
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div
+                className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
+                onClick={handlePreviewClose}
+              />
+            </Transition.Child>
 
-              <div className="fixed top-0 left-0 w-full overflow-y-auto z-9999">
-                <div className="flex items-end justify-center h-screen min-h-screen p-4 mx-auto text-center sm:items-center sm:p-0">
-                  <Transition.Child
-                    as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                  >
-                    <div className="relative px-4 pt-5 pb-4 mx-auto overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-2/6 sm:p-2">
-                      <div>
-                        <div className="flex items-center">
-                          <button
-                            type="button"
-                            className="absolute p-2 text-gray-400 hover:text-gray-500 right-2 top-2 z-99"
-                            onClick={handlePreviewClose}
-                          >
-                            <span className="sr-only">{CLOSE_PANEL}</span>
-                            <XIcon className="w-6 h-6 text-black" aria-hidden="true" />
-                          </button>
-                        </div>
-                        <div className="text-center">
-                          {
-                            previewImg && (
-                              <div key={previewImg.name + 'tab-panel'}>
-                                <ImageZoom src={previewImg} alt={previewImg.name} />
-                              </div>
-                            )
-                          }
-                        </div>
+            <div className="fixed top-0 left-0 w-full overflow-y-auto z-9999">
+              <div className="flex items-end justify-center h-screen min-h-screen p-4 mx-auto text-center sm:items-center sm:p-0">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  enterTo="opacity-100 translate-y-0 sm:scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                >
+                  <div className="relative px-4 pt-5 pb-4 mx-auto overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-2/6 sm:p-2">
+                    <div>
+                      <div className="flex items-center">
+                        <button
+                          type="button"
+                          className="absolute p-2 text-gray-400 hover:text-gray-500 right-2 top-2 z-99"
+                          onClick={handlePreviewClose}
+                        >
+                          <span className="sr-only">{CLOSE_PANEL}</span>
+                          <XIcon
+                            className="w-6 h-6 text-black"
+                            aria-hidden="true"
+                          />
+                        </button>
                       </div>
-
+                      <div className="text-center">
+                        {previewImg && (
+                          <div key={previewImg.name + 'tab-panel'}>
+                            <ImageZoom src={previewImg} alt={previewImg.name} />
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </Transition.Child>
-                </div>
+                  </div>
+                </Transition.Child>
               </div>
-            </Dialog>
-          </Transition.Root>
-        ) : (
-          <></>
-        )
-      }
+            </div>
+          </Dialog>
+        </Transition.Root>
+      ) : (
+        <></>
+      )}
     </div>
   )
 }
