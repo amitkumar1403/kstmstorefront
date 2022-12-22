@@ -338,7 +338,7 @@ export default function ProductView({
             "formatted": { "title": "Personalisation", "data": { "Message": values.line1 || null } }
           }
         ),
-        // CustomInfo1: values.line1 || null,
+        CustomInfo1Formatted: values.line1 || null,
         CustomInfo2: values.line2 || null,
         CustomInfo3: values.line3 || null,
         CustomInfo4: values.line4 || null,
