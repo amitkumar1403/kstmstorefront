@@ -225,7 +225,7 @@ export default function ProductView({
 
     //this function is triggered when the component is unmounted. here we clean the injected scripts
     return function cleanup() {
-      snippets.forEach((snippet: any) => {
+      snippets?.forEach((snippet: any) => {
         document
           .getElementsByName(snippet.name)
           .forEach((node: any) => node.remove())
@@ -897,11 +897,11 @@ export default function ProductView({
             <img src="/Banner-pic.jpg" className='h-30' ></img>
           </div>
 
-          <div className='py-2 text-center'>
-       <label className='text-lg font-semibold'>Recently viewed</label>
+          {localState.length>=1 &&( <div className='py-2   text-center'>
+           <label className='ext-sm font-semibold tracking-tight text-black sm:text-2xl'>Recently viewed</label>
        
          {/* for recently viewed items */}     
-       <div className='w-full py-4 h-full'>
+       <div className='w-full py-4 h-full '>
         <Swiper
             // install Swiper modules
             modules={[Navigation]}
@@ -912,34 +912,25 @@ export default function ProductView({
           >
         { localState?.map((val:any) => {
         return(
-            <SwiperSlide className=' p-10 border border-grey-40 hover:border-black'>
-              <div className='h-full'>
-                <a href={val.link}>
-                <Image src={val.image || '/pdp1.png'} className='object-cover' height={400} width={200}></Image>
+            <SwiperSlide className='py-0 border border-grey-40 hover:border-black'>
+              <div className='h-full w-full cursor-pointer'>
+                <Link className='' href={(val.link).replace('products/','')}>
+                  <a>
+                <Image src={val.image || '/pdp1.png'} className='object-top' height={600} width={480}></Image>
                 <p className='text-sm font-semibold'>{val.name}</p>
                 <label>{val.price}</label>
-                </a>
+                  </a>
+                </Link>
               </div>
             </SwiperSlide>
               
         ) 
        }) }
-          {/* <Swiper
-            // install Swiper modules
-              modules={[Navigation]}
-              slidesPerView={3}
-              spaceBetween={0}
-              className="external-buttons py-7 "
-              navigation
-          >
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide> */}
+         
           </Swiper>
 
-    </div>
-    </div>
+           </div>
+           </div>)}
 
           {/* Placeholder for pdp snippet */}
           <div className={`${ELEM_ATTR}${PDP_ELEM_SELECTORS[0]}`}></div>
