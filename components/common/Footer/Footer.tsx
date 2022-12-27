@@ -29,6 +29,7 @@ const Footer: FC<Props> = ({ config }) => {
   const [value, setValue] = useState('')
   const [userName, setName] = useState('')
   const [isMessage, setMessage] = useState(false)
+  const [isTouchMe, setTouchMe] = useState(false)
   const { setAlert } = useUI();
   const handleRedirect = (path: string) => (path ? router.push(path) : {})
   const handleChange = (e: any) => {
@@ -50,10 +51,13 @@ const Footer: FC<Props> = ({ config }) => {
       setValue('')
       setName('')
     }, 3000);
-
-
   }
-
+  const submitTouchMe = async () => {
+    setTouchMe(true);
+    setTimeout(() => {
+    setTouchMe(false);
+}, 1000);
+  }
   return (
     <footer aria-labelledby="footer-heading" className="p-2 mt-5 bg-black">
       <h2 id="footer-heading" className="sr-only">
@@ -71,12 +75,15 @@ const Footer: FC<Props> = ({ config }) => {
               <div className="flex-shrink-0 w-48 ml-4 border sm:w-64 md:w-64 lg:w-96 xl:w-96">
                 <button
                   type="submit"
+                  onClick={submitTouchMe}
                   className="flex items-center justify-center w-full px-6 py-4 font-medium text-white uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                 >
                   {TOUCH}
                 </button>
               </div>
-            </form>
+            </form> {isTouchMe && 
+                  <span className='block w-full p-1 mt-2 text-xs text-white bg-gray-600 rounded'>Contact Us, Need help? Get in touch with us and we’ll be more than happy to guide you through!</span>
+                }
           </div>
         </div>
       </div>
