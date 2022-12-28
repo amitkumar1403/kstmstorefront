@@ -26,6 +26,7 @@ import {
   NEXT_GET_PRODUCT_PREVIEW,
 } from '@components/utils/constants'
 import eventDispatcher from '@components/services/analytics/eventDispatcher'
+import analytics from '@components/services/analytics/analytics'
 import { EVENTS_MAP } from '@components/services/analytics/constants'
 import {
   ALERT_SUCCESS_WISHLIST_MESSAGE,
@@ -93,6 +94,8 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import ProductColors from './ProductColors'
+import { once } from 'process'
+import { set } from 'store/dist/store.legacy.min'
 
 export default function ProductView({
   data = { images: [] },
@@ -130,6 +133,8 @@ export default function ProductView({
   //for storing products in local storage for recently viewed
   const [localState, setLocalState] = useState([])
   let flag = false
+  var existingEntries: any
+  let reVisitPdp = false
 
   const { ProductViewed } = EVENTS_MAP.EVENT_TYPES
   const { Product } = EVENTS_MAP.ENTITY_TYPES
@@ -139,56 +144,135 @@ export default function ProductView({
 
     // condition to store products in local storage for recently viewed functionality
     if (response?.data?.product) {
-      const recentlyViewedProduct = [{
+      const recentlyViewedProduct: any = {
         image: response.data.product.image,
         price: response.data.product.listPrice.formatted.withTax,
         name: response.data.product.name,
         id: response.data.product.id,
         link: response.data.product.link,
-      }]
+      }
 
-      let new_obj;
-      recentlyViewedProduct.map((val)=>{
-        new_obj = Object.assign({}, val);
-      })
-      
-      let oldData =
-        JSON.parse(localStorage.getItem('Recent-Products') || '[]') || []
+      // if(recentlyViewedProduct){
+      //   setXyz((oldTasks: any) => {
+      //     return [...oldTasks, recentlyViewedProduct];
+      //   })
+      // }
+      const oldExisting = JSON.parse(
+        localStorage.getItem('Recently-viewed-Products') || '[]'
+      )
+      existingEntries = JSON.parse(
+        localStorage.getItem('Recently-viewed-Products') || '[]'
+      )
+      if (existingEntries.length === 0) {
+        existingEntries = []
+        console.log('nothing earlier')
+        console.log(existingEntries.length)
+        // setLocalState([])
+      } else {
+        console.log('something something')
+        console.log(existingEntries)
+        reVisitPdp = existingEntries?.includes(response?.data?.product?.id)
+      }
+      // if(existingEntries == null) existingEntries = [];
 
-      // to store only unique elems in the local storage
-      // if(oldData.length){
-      oldData?.map((val: any) => {
+      existingEntries?.map((val: any) => {
         if (val.id === response.data.product.id) {
           flag = true
         }
       })
 
-      if (flag === false && oldData) {
-        window.localStorage.setItem(
-          'Recent-Products',
-          JSON.stringify([...oldData, new_obj])
-        )
-      } else if (!oldData) {
-        window.localStorage.setItem(
-          'Recent-Products',
-          JSON.stringify([new_obj] || '[]')
-        )
+      if (flag === true) {
+        console.log('true true')
+
+        // existingEntries?.reverse()
+        // setLocalState(existingEntries)
       } else {
+        localStorage.setItem(
+          'recentlyViewedProduct',
+          JSON.stringify(recentlyViewedProduct)
+        )
+        // Save allEntries back to local storage
+        existingEntries?.push(recentlyViewedProduct)
+        localStorage.setItem(
+          'Recently-viewed-Products',
+          JSON.stringify(existingEntries)
+        )
+        var prod = JSON.parse(
+          localStorage.getItem('recentlyViewedProduct') || '{}'
+        )
+        // existingEntries?.reverse()
+        // setLocalState(existingEntries)
       }
-      // }
 
       var array_last_ten // to add only last 10 recently viewed products
-      if (oldData.length > 10) {
-        array_last_ten = oldData.slice(-10)
-        if (oldData.length < 11) {
+      if (existingEntries.length > 10) {
+        array_last_ten = existingEntries.slice(-10)
+        console.log(array_last_ten)
+
+        if (existingEntries.length < 11) {
           array_last_ten.shift()
         }
-        array_last_ten.reverse()
-        setLocalState(array_last_ten)
+        if (!reVisitPdp) {
+          oldExisting.reverse()
+          setLocalState(oldExisting)
+        } else if (reVisitPdp) {
+          array_last_ten.reverse()
+          setLocalState(array_last_ten)
+        }
       } else {
-        oldData.reverse()
-        setLocalState(oldData)
+        if (!reVisitPdp) {
+          oldExisting.reverse()
+          setLocalState(oldExisting)
+        } else if (reVisitPdp) {
+          existingEntries.reverse()
+          setLocalState(existingEntries)
+        }
       }
+
+      // let new_obj;
+      // recentlyViewedProduct.map((val)=>{
+      //   new_obj = Object.assign({}, val);
+      // })
+
+      // let oldData =
+      //   JSON.parse(localStorage.getItem('Recent-Products') || '[]') || []
+
+      // // to store only unique elems in the local storage
+      // // if(oldData.length){
+      // oldData?.map((val: any) => {
+      //   if (val.id === response.data.product.id) {
+      //     flag = true
+      //   }
+      // })
+
+      // if (flag === false && oldData) {
+      //   window.localStorage.setItem(
+      //     'Recent-Products',
+      //     JSON.stringify([...oldData, new_obj])
+      //   )
+      // } else if (!oldData) {
+      //   window.localStorage.setItem(
+      //     'Recent-Products',
+      //     JSON.stringify([new_obj] || '[]')
+      //   )
+      // } else {
+      // }
+      // // }
+
+      // var array_last_ten // to add only last 10 recently viewed products
+      // if (oldData.length > 10) {
+      //   array_last_ten = oldData.slice(-10)
+      //   console.log(array_last_ten);
+
+      //   if (oldData.length < 11) {
+      //     array_last_ten.shift()
+      //   }
+      //   array_last_ten.reverse()
+      //   setLocalState(array_last_ten)
+      // } else {
+      //   oldData.reverse()
+      //   setLocalState(oldData)
+      // }
     }
 
     if (response?.data?.product) {
@@ -215,6 +299,14 @@ export default function ProductView({
       })
     }
   }
+
+  // useEffect( ()=> {
+  //   console.log("local local local local local local local local local")
+  // }, [xyz])
+
+  // useEffect(() => {
+  //   setLocalState(existingEntries)
+  // },[localState])
 
   useEffect(() => {
     fetchProduct()
@@ -907,19 +999,19 @@ export default function ProductView({
                 modules={[Navigation]}
                 slidesPerView={4}
                 spaceBetween={0}
-                className="external-buttons py-7"
+                className="external-buttons"
                 navigation
               >
                 {localState?.map((val: any) => {
                   return (
-                    <SwiperSlide className=" p-10 border border-grey-40 hover:border-black">
-                      <div className="h-full">
+                    <SwiperSlide className="border border-grey-40 hover:border-black">
+                      <div className="h-full w-full lg:pt-2 md:pt-0">
                         <a href={val.link}>
                           <Image
                             src={val.image || '/pdp1.png'}
                             className="object-cover"
-                            height={400}
-                            width={200}
+                            height={500}
+                            width={300}
                           ></Image>
                           <p className="text-sm font-semibold">{val.name}</p>
                           <label>{val.price}</label>
