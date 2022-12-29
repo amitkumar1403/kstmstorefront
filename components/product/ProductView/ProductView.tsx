@@ -740,24 +740,28 @@ export default function ProductView({
 
                   {isEngravingAvailable && (
                     <>
-                      <div className="mt-6 sm:mt-8 sm:col-1">
-                        <div className='flex justify-between'>
-                          <div>
-                            <img
-                              src='/KSTMize.jpg'
-                              className="w-24 h-4 cursor-pointer"
-                              onClick={() => {
+                     <div className="mt-6 sm:mt-8 sm:col-1">
+                        <div className="flex cursor-pointer justify-between border border-grey-40 transform transition duration-500 hover:scale-105 hover:shadow-md p-3" onClick={() => {
                                 showEngravingModal(true)
-                              }}
+                              }}>
+                          <div className=''>
+                            <img
+                              src="/KSTMize.jpg"
+                              className="w-24 h-4  "
+                              // onClick={() => {
+                              //   showEngravingModal(true)
+                              // }}
                             >
-                              {/* <span className="font">KSTMize it</span> */}
+                               {/* <span className="font">KSTMize it</span>  */}
                             </img>
-                            <label className="text-sm font-medium underline hover:text-gray-800">Personalise with custom embroidery</label>
+                            <label className="text-sm font-medium underline hover:text-gray-800">
+                              Personalise with custom embroidery
+                            </label>
                           </div>
-                          <label className='font-bold'>{addonPrice}</label>
+                          <label className="font-bold">{addonPrice}</label>
                         </div>
                         <Button
-                          className='block py-3 sm:hidden'
+                          className="block py-3 sm:hidden"
                           title={buttonConfig.title}
                           action={buttonConfig.action}
                           buttonType={buttonConfig.type || 'cart'}
