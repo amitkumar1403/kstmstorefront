@@ -86,6 +86,13 @@ const CartSidebarView: FC = () => {
     asyncHandleItem()
   }
 
+  const handleKSTM = (product:any,child:any) => {
+    // order is important : first delete (not decrease) and then add
+    // this insure UI and api response both are correct.
+    handleItem(product,'delete')
+    handleItem(product)
+  }
+
   const handleClose = () => closeSidebar()
 
   const isEmpty: boolean = cartItems?.lineItems?.length === 0
@@ -270,7 +277,8 @@ const CartSidebarView: FC = () => {
                                           type="button"
                                           className="font-medium text-indigo-600 hover:text-indigo-500"
                                           onClick={() =>
-                                            handleItem(child, GENERAL_DELETE)
+                                            // handleItem(child, GENERAL_DELETE)
+                                            handleKSTM(product,child)
                                           }
                                         >
                                           {GENERAL_REMOVE}

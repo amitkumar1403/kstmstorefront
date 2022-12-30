@@ -130,7 +130,7 @@ export default function ProductView({
   const fetchProduct = async () => {
     const url = !isPreview ? NEXT_GET_PRODUCT : NEXT_GET_PRODUCT_PREVIEW;;
     const response: any = await axios.post(url, { slug: slug })
-    console.log("hello " + JSON.stringify(response?.data))
+    // console.log("hello " + JSON.stringify(response?.data))
 
     // condition to store products in local storage for recently viewed functionality
     if (response?.data?.product) {
@@ -212,7 +212,7 @@ export default function ProductView({
     (value: any, index: number, self: any) =>
       index === self.findIndex((t: any) => t.image === value.image)
   )
-  { console.log(product) }
+  // { console.log(product) }
   if (product.videos && product.videos.length > 0) {
     content = [...product.images, ...product.videos].filter(
       (value: any, index: number, self: any) =>
@@ -360,6 +360,8 @@ export default function ProductView({
       return acc
     }, [])
 
+    console.log("COMPUTED_PRODS",computedProducts)
+
     const asyncHandler = async () => {
       try {
         const newCart = await axios.post(NEXT_BULK_ADD_TO_CART, {
@@ -371,9 +373,10 @@ export default function ProductView({
           info: [...Object.values(values)],
           lineInfo: computedProducts,
         })
-
+        console.log("NEW_CART",newCart)
         setCartItems(newCart.data)
         showEngravingModal(false)
+        openCart()
         window.location.reload()
       } catch (error) {
         console.log(error, 'err')
