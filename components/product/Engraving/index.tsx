@@ -91,7 +91,7 @@ export default function Engraving({
                         src={product.image || '/pdp1.png'}
                         className='w-full ' />
                     </div>
-                    <div className='w-1/2 p-4'>
+                    <div className='w-1/2 py-4 pl-4'>
                       <Form submitForm={submitForm} />
                     </div>
                   </div>

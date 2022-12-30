@@ -2,6 +2,7 @@ import { GENERAL_ADD_TO_BASKET, VALIDATION_PLEASE_COMPLETE_THIS_FIELD } from '@c
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import { config } from './config'
+import ColorOptions from './colorOptions'
 
 const schema = Yup.object().shape({
   line1: Yup.string().required(VALIDATION_PLEASE_COMPLETE_THIS_FIELD),
@@ -23,7 +24,6 @@ export default function EngravingForm({ submitForm }: any) {
                   <label className="text-black font-semibold uppercase text-xs">
                     {itemForm.label}
                   </label>
-
                   <Field
                     key={itemIdx}
                     name={itemForm.key}
@@ -41,6 +41,12 @@ export default function EngravingForm({ submitForm }: any) {
                 </>
               )
             })}
+            <div>
+              <label className="text-black font-semibold uppercase text-xs">
+                 {'Message Color'} 
+              </label>
+              <ColorOptions/>
+            </div>
             <div className="mt-5 flex justify-center items-center">
               <button
                 type="submit"
