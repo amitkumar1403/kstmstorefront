@@ -268,8 +268,8 @@ body {
   max-width: 100%;
 }
 
-.image-container>div,
-.image-container>span {
+.image-container > div,
+.image-container > span {
   position: unset !important;
 }
 
@@ -368,14 +368,13 @@ body {
   }
 }
 
-
 .category-landing-image {
   height: 100% !important;
   width: auto;
   min-height: 520px;
 }
 
-@media screen and (max-width:1580px) {
+@media screen and (max-width: 1580px) {
   .category-landing-image {
     height: 100% !important;
     width: auto;
@@ -401,4 +400,9 @@ body {
   background: #d3d3d36e !important;
   width: 6px;
   border-radius: 6px;
+}
+.error-container {
+  max-width: 660px;
+  width: 100%;
+  margin: 0 auto;
 }
