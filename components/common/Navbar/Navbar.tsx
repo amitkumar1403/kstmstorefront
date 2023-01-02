@@ -79,7 +79,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
       className: 'text-left p-2 cursor-pointer',
     },
     {
-      href: '/my-account/orders',
+      href: '/my-account?view=orders',
       title: GENERAL_MY_ORDERS,
       className: 'text-left p-2 cursor-pointer',
     },
@@ -98,14 +98,10 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
 
   let accountDropdownConfig = accountDropDownConfigUnauthorized
   let title = !isGuestUser
-    ? user.userId
-      ? !(typeof user.firstName === 'undefined')
-        ? `Hi, ` +
-          user.firstName.charAt(0).toUpperCase() +
-          user.firstName.slice(1)
-        : `Hi`
-      : 'My account'
-    : ''
+  ? user.userId  
+    ? (!(typeof(user.firstName)==='undefined')?(`Hi, `+user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)):`Hi`)
+    : 'My account'
+  : ''
 
   if (!isGuestUser && user.userId) {
     accountDropdownConfig = accountDropDownConfigAuthorized
@@ -298,7 +294,10 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
           <div className="p-3 bg-black">
             <p className="text-xs text-center text-white">{NEWSLETTER}</p>
           </div>
-          <nav aria-label="Top" className="w-full px-4 mx-auto sm:px-0 lg:px-0">
+          <nav
+            aria-label="Top"
+            className="w-full px-4 mx-auto sm:px-0 lg:px-0"
+          >
             <div className="pb-0 sm:px-0 sm:pb-0">
               <div className="flex items-center justify-between h-16 lg:px-20 md:px-5 sm:px-3 sm:grid sm:grid-cols-3">
                 {/* Flyout menus */}
