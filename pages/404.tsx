@@ -1,8 +1,13 @@
 import type { GetStaticPropsContext } from 'next'
 import commerce from '@lib/api/commerce'
-import { Layout } from '@components/common'
+import LayoutError from '../components/common/Layout/LayoutError'
 import { Text } from '@components/ui'
-import { ERROR_PAGE_NOT_FOUND, ERROR_PAGE_NOT_FOUND_MESSAGE } from '@components/utils/textVariables'
+import Image from 'next/image'
+import { isMobile } from 'react-device-detect'
+import {
+  ERROR_PAGE_NOT_FOUND,
+  ERROR_PAGE_NOT_FOUND_MESSAGE,
+} from '@components/utils/textVariables'
 
 export async function getStaticProps({
   preview,
@@ -24,13 +29,75 @@ export async function getStaticProps({
 
 export default function NotFound() {
   return (
-    <div className="max-w-2xl mx-8 sm:mx-auto py-20 flex flex-col items-center justify-center fit">
-      <Text variant="heading">{ERROR_PAGE_NOT_FOUND}</Text>
-      <Text className="">
-        {ERROR_PAGE_NOT_FOUND_MESSAGE}
-      </Text>
-    </div>
+    <>
+      {!isMobile && (
+        <>
+          <div className="w-full py-14">
+            <div className="error-container">
+              <div className="img-section w-full text-center mb-8 mt-28">
+                <Image
+                  priority
+                  layout="fixed"
+                  width={152}
+                  height={152}
+                  src="/assets/icons/error-icon.svg"
+                  alt="404 Error Image"
+                  className="inline-block"
+                ></Image>
+              </div>
+              <div className="error-text-section w-full text-center">
+                <h1 className="text-black sm:text-2xl font-semibold mb-2">
+                  404 : Page Not Found
+                </h1>
+                <p className="flow-rootblock">
+                  Check that you typed the address correctly. Maybe go back to
+                  your previous page or try using our site search to find
+                  something specific.
+                </p>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+      {isMobile && (
+        <>
+          <div className="w-full py-8 px-4">
+            <div className="error-container">
+              <div className="img-section w-full text-left mb-4">
+                <Image
+                  priority
+                  layout="fixed"
+                  width={54}
+                  height={54}
+                  src="/assets/icons/error-icon.svg"
+                  alt="404 Error Image"
+                  className="inline-block"
+                ></Image>
+              </div>
+              <div className="error-text-section w-full text-left mb-6">
+                <h1 className="text-black text-base font-semibold mb-2">
+                  404 : Page Not Found
+                </h1>
+                <p className="text-brown-light text-xs">
+                  Check that you typed the address correctly. Maybe go back to
+                  your previous page or try using our site search to find
+                  something specific.
+                </p>
+              </div>
+              <div className="w-full">
+                <a
+                  href="/"
+                  className="text-white bg-black block p-4 text-center text-sm font-semibold"
+                >
+                  Back to Homepage
+                </a>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   )
 }
 
-NotFound.Layout = Layout
+NotFound.Layout = LayoutError
