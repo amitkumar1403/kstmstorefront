@@ -122,8 +122,10 @@ export default function ProductView({
     ...product,
   })
   //for storing products in local storage for recently viewed
-  const [localState, setLocalState] = useState([]);
-  let flag = false;
+  const [localState, setLocalState] = useState([])
+  let flag = false
+  var existingEntries: any
+  let reVisitPdp = false  
 
   const { ProductViewed } = EVENTS_MAP.EVENT_TYPES
   const { Product } = EVENTS_MAP.ENTITY_TYPES
@@ -132,16 +134,77 @@ export default function ProductView({
     const response: any = await axios.post(url, { slug: slug })
     console.log("hello " + JSON.stringify(response?.data))
 
-    // condition to store products in local storage for recently viewed functionality
-    if (response?.data?.product) {
-      const recentlyViewedProduct = {
-        image: response.data.product.image,
-        price: response.data.product.listPrice.formatted.withTax,
-        name: response.data.product.name,
-        id: response.data.product.id,
-        link: response.data.product.link,
+  // condition to store products in local storage for recently viewed functionality
+  if (response?.data?.product) {
+    const recentlyViewedProduct: any = {
+      image: response.data.product.image,
+      price: response.data.product.listPrice.formatted.withTax,
+      name: response.data.product.name,
+      id: response.data.product.id,
+      link: response.data.product.link,
+    }
+
+    const oldExisting = JSON.parse(
+      localStorage.getItem('Recently-viewed-Products') || '[]'
+    )
+    existingEntries = JSON.parse(
+      localStorage.getItem('Recently-viewed-Products') || '[]'
+    )
+    if (existingEntries.length === 0) {
+      existingEntries = []
+    } else {
+      reVisitPdp = existingEntries?.includes(response?.data?.product?.id)
+    }
+
+    existingEntries?.map((val: any) => {
+      if (val.id === response.data.product.id) {
+        flag = true
+      }
+    })
+
+    if (flag === true) {
+      console.log('true')
+    } else {
+      localStorage.setItem(
+        'recentlyViewedProduct',
+        JSON.stringify(recentlyViewedProduct)
+      )
+      // Save allEntries back to local storage
+      existingEntries?.push(recentlyViewedProduct)
+      localStorage.setItem(
+        'Recently-viewed-Products',
+        JSON.stringify(existingEntries)
+      )
+      var prod = JSON.parse(
+        localStorage.getItem('recentlyViewedProduct') || '{}'
+      )
+    }
+
+    var array_last_ten // to add only last 10 recently viewed products
+    if (existingEntries?.length > 10) {
+      array_last_ten = existingEntries.slice(-10)
+      console.log(array_last_ten)
+
+      if (existingEntries?.length < 11) {
+        array_last_ten.shift()
+      }
+      if (!reVisitPdp) {
+        oldExisting.reverse()
+        setLocalState(oldExisting)
+      } else if (reVisitPdp) {
+        array_last_ten.reverse()
+        setLocalState(array_last_ten)
+      }
+    } else {
+      if (!reVisitPdp) {
+        oldExisting.reverse()
+        setLocalState(oldExisting)
+      } else if (reVisitPdp) {
+        existingEntries.reverse()
+        setLocalState(existingEntries)
       }
     }
+  }
 
     if (response?.data?.product) {
       eventDispatcher(ProductViewed, {
@@ -839,30 +902,52 @@ export default function ProductView({
           <div className='grid mr-0 grid-col-1'>
             <img src="/Banner-pic.jpg" className='h-30' ></img>
           </div>
+          {localState.length>=1 &&( <div className='py-2   text-center'>
+           <label className='ext-sm font-semibold tracking-tight text-black sm:text-2xl'>Recently viewed</label>
 
-          <div className='py-2 text-center'>
-            <label className='text-lg font-semibold'>Recently viewed</label>
+         {/* for recently viewed items */}     
+       <div className='w-full py-4 h-full '>
+        <Swiper
+            // install Swiper modules
+            modules={[Navigation]}
+            slidesPerView={4}
+            spaceBetween={0}
+            className="external-buttons py-7"
+            navigation
+          >
+        { localState?.map((val:any) => {
+        return(
+            <SwiperSlide className='py-0 border border-grey-40 hover:border-black'>
+              <div className='h-full w-full cursor-pointer'>
+                <Link className='' href={(val.link).replace('products/','')}>
+                  <a>
+                <Image src={val.image || '/pdp1.png'} className='object-top' height={600} width={480}></Image>
+                <p className='text-sm font-semibold'>{val.name}</p>
+                <label>{val.price}</label>
+                  </a>
+                </Link>
+              </div>
+            </SwiperSlide>
 
-            {/* for recently viewed items */}
-            <div className='w-full h-full py-4'>
+        ) 
+       }) }
+        {/* <Swiper
+            // install Swiper modules
+              modules={[Navigation]}
+              slidesPerView={3}
+              spaceBetween={0}
+              className="external-buttons py-7 "
+              navigation
+          >
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
+            <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide> */}
 
+          </Swiper>
 
-              <Swiper
-                // install Swiper modules
-                modules={[Navigation]}
-                slidesPerView={3}
-                spaceBetween={0}
-                className="external-buttons py-7 "
-                navigation
-              >
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper2.jpg' ></img></SwiperSlide>
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper3.jpg' ></img></SwiperSlide>
-                <SwiperSlide className='w-10 h-10 p-10 border border-grey-40 hover:border-black'><img src='/swiper4.jpg' ></img></SwiperSlide>
-              </Swiper>
-
-            </div>
-          </div>
+           </div>
+           </div>)}
 
           {/* Placeholder for pdp snippet */}
           <div className={`${ELEM_ATTR}${PDP_ELEM_SELECTORS[0]}`}></div>
