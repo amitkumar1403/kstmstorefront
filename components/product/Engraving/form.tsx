@@ -16,7 +16,9 @@ export default function EngravingForm({ submitForm }: any) {
   const { openCart } = useUI()
 
   const handleNotification = () => {
-    openCart(submitForm.recordId)
+     setTimeout(() => {
+      openCart(submitForm.recordId)
+    }, 6000);
   }
   return (
     <Formik
