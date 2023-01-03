@@ -163,10 +163,10 @@ const CartSidebarView: FC = () => {
                           {cartItems.lineItems?.map((product: any) => (
                             <li key={product.id} className="">
                               <div className="flex py-6">
-                                <div className="flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md">
+                                <div className=" w-26 h-30 overflow-hidden border border-gray-200 rounded-md">
                                   <Image
                                     width={100}
-                                    height={100}
+                                    height={150}
                                     layout='fixed'
                                     src={`${product.image}` || '/assets/icons/newPajama.png'}
                                     alt={product.name}
@@ -179,12 +179,12 @@ const CartSidebarView: FC = () => {
                                   /> */}
                                 </div>
 
-                                <div className="flex flex-col flex-1 ml-4">
+                                <div className="flex flex-col flex-1 ml-4 p-6">
                                   <div>
                                     <div className="flex justify-between font-semibold text-gray-900 font-sm">
                                       <h3 onClick={handleClose}>
                                         <Link href={`/${product.slug}`}>
-                                          {product.name}
+                                          {product.name.replace('Color','')}
                                         </Link>
                                       </h3>
                                       <p className="ml-4">
@@ -233,7 +233,7 @@ const CartSidebarView: FC = () => {
                                   const personalization = message?.formatted?.data?.Message;
                                   return (
                                     <div className="flex" key={idx}>
-                                      <div className="flex-shrink-0 w-24 py-1 ml-1 overflow-hidden">
+                                      <div className="flex-shrink-0 w-24 py-1 ml-1 overflow-hidden justify-between">
                                         <div className='image-container'>
                                           <img
                                             // layout='fill'
