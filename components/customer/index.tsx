@@ -66,7 +66,12 @@ export default function CustomerForm({
         return (
           <div className="flex-col w-full px-5 py-5 flex items-center justify-center">
             <Form className="font-semibold w-full sm:w-1/2">
-              {config.map((formItem: any, idx: number) => {
+            {config.map((formItem: any, idx: number) => {
+                function handleKeyPress(e: any) {
+                  if(e.key === 'Enter'){
+                    handleSubmit();
+                  }
+                }
                 return (
                   <>
                     <label className="text-gray-700 text-sm">
@@ -78,6 +83,7 @@ export default function CustomerForm({
                       placeholder={formItem.placeholder}
                       onChange={handleChange}
                       value={values[formItem.key]}
+                      onKeyUp={(e:any) => handleKeyPress(e)}
                       type={formItem.type}
                       className="mb-2 mt-2 appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 "
                     />
