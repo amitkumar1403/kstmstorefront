@@ -9,6 +9,7 @@ import { Guid } from '@commerce/types'
 interface CartItem {
   basketId?: string
   productId?: string
+  parentProductId?: string
   qty: number
   manualUnitPrice?: number
   displayOrder?: number
@@ -30,6 +31,7 @@ export default function cartHandler() {
       {
         basketId,
         productId,
+        parentProductId,
         qty,
         manualUnitPrice,
         displayOrder,
@@ -44,6 +46,7 @@ export default function cartHandler() {
       let postData: any = {
         basketId,
         productId,
+        parentProductId,
         qty,
         manualUnitPrice,
         displayOrder,

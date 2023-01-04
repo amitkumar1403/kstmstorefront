@@ -838,22 +838,22 @@ export default function ProductView({
                           action={buttonConfig.action}
                           buttonType={buttonConfig.type || 'cart'}
                         />
-                        {/* <button
+                        <button
                           type="button"
                           onClick={() => {
                             if (!isInWishList) {
                               handleWishList()
                             }
                           }}
-                          className="flex items-center justify-center px-4 py-3 ml-4 text-gray-500 bg-white border border-gray-300 rounded-sm hover:bg-red-50 hover:text-pink sm:px-10 hover:border-pink"
+                          className="flex items-center justify-center px-4 py-3 ml-4 text-gray-500 bg-white border border-gray-300 rounded-sm hover:bg-gray-200 hover:text-black sm:px-10 hover:border-black focus:border-black focus:bg-gray-200"
                         >
                           {isInWishList ? (
-                            <HeartIcon className="flex-shrink-0 w-6 h-6 text-pink" />
+                            <HeartIcon className="flex-shrink-0 w-6 h-6 text-black" />
                           ) : (
                             <HeartIcon className="flex-shrink-0 w-6 h-6" />
                           )}
                           <span className="sr-only">{BTN_ADD_TO_FAVORITES}</span>
-                        </button> */}
+                        </button>
                       </div>
                     </>
                   )}
@@ -928,7 +928,6 @@ export default function ProductView({
                 </Link>
               </div>
             </SwiperSlide>
-
         ) 
        }) }
         {/* <Swiper

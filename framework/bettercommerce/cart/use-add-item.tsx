@@ -3,6 +3,7 @@ import fetcher from '../fetcher'
 interface Props {
   basketId?: string
   productId?: string
+  parentProductId?: string  // added recenty
   qty?: number
   manualUnitPrice?: number
   displayOrder?: number
@@ -14,6 +15,7 @@ export default function useAddItem() {
   return async function handler({
     basketId,
     productId,
+    parentProductId,    // added recently
     qty,
     manualUnitPrice,
     displayOrder,
@@ -23,6 +25,7 @@ export default function useAddItem() {
     const data = {
       basketId,
       productId,
+      parentProductId,    // added recently
       qty,
       manualUnitPrice,
       displayOrder,
