@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { useState, useEffect, Fragment, useCallback } from 'react'
+import { useState, useEffect, Fragment, useRef } from 'react'
 import { Tab } from '@headlessui/react'
 import { HeartIcon } from '@heroicons/react/outline'
 import { StarIcon, PlayIcon } from '@heroicons/react/solid'
@@ -87,6 +87,26 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import ProductColors from './ProductColors'
+import { ProductPersonaliser } from '../ProductPersonaliser'
+import { PersonalisationOptions } from '@commerce/utils/personalisation'
+import { Canvas } from '../Canvas'
+
+// An example of what the image data would need to look like in order to support
+// personalisation of a product with multiple positions.
+const PERSONALISER_EXAMPLE_IMAGES = [
+  {
+    url: 'https://liveocx.imgix.net/kstm/products/slow_fashion_brand_2022_ecom_lighting_0098rd_(5).jpg',
+    position: 'Top',
+    coordinates: '60,65',
+    fontSize: 48,
+  },
+  {
+    url: 'https://liveocx.imgix.net/kstm/products/slow_fashion_brand_2022_ecom_lighting_0098_(160).jpg',
+    position: 'Right',
+    coordinates: '55,40',
+    fontSize: 24,
+  },
+];
 
 export default function ProductView({
   data = { images: [] },
@@ -113,6 +133,7 @@ export default function ProductView({
   const [isEngravingOpen, showEngravingModal] = useState(false)
   const [isInWishList, setItemsInWishList] = useState(false)
   const [previewImg, setPreviewImg] = useState<any>();
+  const [personalisationOptions, setPersonalisationOptions] = useState<PersonalisationOptions>();
 
   const product = updatedProduct || data
 
@@ -398,10 +419,27 @@ export default function ProductView({
         ItemType: obj.itemType || 0,
         CustomInfo1: JSON.stringify(
           {
-            "formatted": { "title": "Personalisation", "data": { "Message": values.line1 || null } }
+            "formatted": {
+              "title": "Personalisation",
+              "data": {
+                "Message": personalisationOptions?.text || null,
+                "Colour": personalisationOptions?.textColor || null,
+                "Font": personalisationOptions?.fontFamily || null,
+                "Position": personalisationOptions?.textPosition || null,
+                "ImageUrl": personalisationOptions?.imageUrl || null,
+              }
+            }
           }
         ),
-        CustomInfo1Formatted: values.line1 || null,
+        CustomInfo1Formatted: !!personalisationOptions?.text
+          ? [
+            personalisationOptions?.text,
+            personalisationOptions?.textColor,
+            personalisationOptions?.fontFamily,
+            personalisationOptions?.textPosition,
+            personalisationOptions?.imageUrl,
+          ].join()
+          : null,
         CustomInfo2: values.line2 || null,
         CustomInfo3: values.line3 || null,
         CustomInfo4: values.line4 || null,
@@ -584,7 +622,7 @@ export default function ProductView({
                               <div className="relative group">
                                 {image.image ? (
                                   <div className='image-container'>
-                                    <Image
+                                    {/* <Image
                                       priority
                                       src={generateUri(image.image, "h=1800&fm=webp") || IMG_PLACEHOLDER}
                                       //src="/slider-1 - Copy.jpg"
@@ -594,7 +632,7 @@ export default function ProductView({
                                       sizes='320 600 100'
                                       width={1800} height={1400}
                                       blurDataURL={`${image.image}?h=600&w=400&fm=webp` || IMG_PLACEHOLDER}
-                                    />
+                                    /> */}
                                   </div>
                                 ) : (
                                   <PlayIcon className="object-cover object-center w-full h-full" />
@@ -616,34 +654,32 @@ export default function ProductView({
                         >
                           {() => (
                             <>
-
                               <span className="sr-only">{image.name}</span>
-                              <span className="relative md:w-full sm:w-full">
+                              <div className="relative w-full">
                                 {image.image ? (
-                                  <div className='image-container sm:w-full md:w-full'>
-                                    {/* <ControlledZoom isZoomed={isZoomedT} onZoomChange={handleZoomChangeT}> */}
-                                    <Image
-                                      src={generateUri(image.image, "h=1800&fm=webp") || IMG_PLACEHOLDER}
-                                      alt={image.name}
-                                      priority
-                                      className="object-cover object-center w-full h-full image"
-                                      layout='responsive'
-                                      sizes='320 600 1000'
-                                      width={1800} height={1400}
-                                    />
-
-                                    {/* <Image
-                                      priority
-                                      src={generateUri(image.image, "h=1000&fm=webp") || IMG_PLACEHOLDER}
-                                      alt={image.name}
-                                      className="object-cover object-center w-full h-full image"
-                                      layout='responsive'
-                                      sizes='320 600 1000'
-                                      width={600} height={1000}
-                                      onClick={(ev: any) => handleImgLoadT(image.image)}
-                                      blurDataURL={`${image.image}?h=600&w=400&fm=webp` || IMG_PLACEHOLDER}
-                                    /> */}
-                                    {/* </ControlledZoom> */}
+                                  <div className='image-container w-full'>
+                                    {!!personalisationOptions?.text ? (
+                                      <Canvas
+                                        imageUrl={personalisationOptions.imageUrl}
+                                        width={1800}
+                                        height={1400}
+                                        text={personalisationOptions.text}
+                                        textColor={personalisationOptions.textColor}
+                                        textPosition={personalisationOptions.textCoordinates}
+                                        fontFamily={personalisationOptions.fontFamily}
+                                        fontSize={personalisationOptions.fontSize}
+                                      />
+                                    ) : (
+                                      <Image
+                                        src={generateUri(image.image, "h=1800&fm=webp") || IMG_PLACEHOLDER}
+                                        alt={image.name}
+                                        priority
+                                        className="object-cover object-center w-full h-full image"
+                                        layout='responsive'
+                                        sizes='320 600 1000'
+                                        width={1800} height={1400}
+                                      />
+                                    )}
                                   </div>
                                 ) : (
                                   <>
@@ -652,7 +688,7 @@ export default function ProductView({
                                     <img src="/pdp2.png" className='' />
                                   </>
                                 )}
-                              </span>
+                              </div>
                             </>
                           )}
                         </Tab>
@@ -804,24 +840,67 @@ export default function ProductView({
                   {isEngravingAvailable && (
                     <>
                       <div className="mt-6 sm:mt-8 sm:col-1">
-                        <div className="flex justify-between p-3 transition duration-500 transform border cursor-pointer border-grey-40 hover:scale-105 hover:shadow-md" onClick={() => {
-                          showEngravingModal(true)
-                        }}>
-                          <div className=''>
-                            <img
-                              src="/KSTMize.jpg"
-                              className="w-24 h-4 "
-                            // onClick={() => {
-                            //   showEngravingModal(true)
-                            // }}
-                            >
-                              {/* <span className="font">KSTMize it</span>  */}
-                            </img>
-                            <label className="text-sm font-medium underline hover:text-gray-800">
-                              Personalise with custom embroidery
-                            </label>
+                        <div className="p-3 border border-grey-40">
+                          <div className="flex justify-between mb-1">
+                            <div>
+                              <img
+                                src="/KSTMize.jpg"
+                                className="w-24 h-4 "
+                              // onClick={() => {
+                              //   showEngravingModal(true)
+                              // }}
+                              >
+                                {/* <span className="font">KSTMize it</span>  */}
+                              </img>
+                              <label className="text-sm font-medium underline hover:text-gray-800">
+                                Personalise with custom embroidery
+                              </label>
+                            </div>
+                            <label className="font-bold">{addonPrice}</label>
                           </div>
-                          <label className="font-bold">{addonPrice}</label>
+                          {isEngravingAvailable && (
+                            <ProductPersonaliser
+                              canvasWidth={220}
+                              canvasHeight={300}
+                              colors={[
+                                {
+                                  label: 'White',
+                                  value: '#FFFFFF',
+                                },
+                                {
+                                  label: 'Blue',
+                                  value: '#1166FF',
+                                },
+                                {
+                                  label: 'Magenta',
+                                  value: '#FF00FF',
+                                },
+                                {
+                                  label: 'Purple',
+                                  value: '#7851a9',
+                                },
+                              ]}
+                              fonts={[
+                                {
+                                  label: 'Cantarell',
+                                  value: 'Cantarell',
+                                },
+                                {
+                                  label: 'Rubik Bubbles',
+                                  value: 'Rubik Bubbles',
+                                },
+                                {
+                                  label: 'Yeon Sung',
+                                  value: 'Yeon Sung',
+                                },
+                              ]}
+                              images={PERSONALISER_EXAMPLE_IMAGES}
+                              characters="123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                              maxTextLength={5}
+                              submitText={GENERAL_ADD_TO_BASKET}
+                              onChange={setPersonalisationOptions}
+                            />
+                          )}
                         </div>
                         <Button
                           className="block py-3 sm:hidden"
@@ -954,15 +1033,6 @@ export default function ProductView({
 
 
           {/* <Reviews data={product.reviews} productId={product.recordId} /> */}
-          {isEngravingAvailable && (
-            // { updatedProduct?.customAttributes[2]?.value && (
-            <Engraving
-              show={isEngravingOpen}
-              submitForm={handleEngravingSubmit}
-              showEngravingModal={showEngravingModal}
-              product={product}
-            />
-          )}
 
           <PriceMatch
             show={isPriceMatchModalShown}

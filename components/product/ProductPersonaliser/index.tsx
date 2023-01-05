@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { ChangeEvent, FC, MouseEventHandler, useCallback, useEffect, useState } from 'react';
 import { Canvas } from '../Canvas';
 import { Select } from '../../common/Select';
+import { PersonalisationOptions } from '@commerce/utils/personalisation';
 
 type ProductPersonaliserOption = { label: string; value: string };
 
@@ -21,19 +22,7 @@ type ProductPersonaliserProps = {
   characters: string;
   maxTextLength: number;
   submitText: string;
-  onSubmit: ({
-    message,
-    colour,
-    font,
-    position,
-    imageUrl,
-  }: {
-    message: string,
-    colour: string,
-    font: string,
-    position: string,
-    imageUrl: string,
-  }) => void;
+  onChange: (options: PersonalisationOptions) => void;
 };
 
 const convertTextPosition = (value: string) => {
@@ -51,7 +40,7 @@ export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
   characters,
   maxTextLength,
   submitText,
-  onSubmit,
+  onChange,
 }: ProductPersonaliserProps) => {
   const [text, setText] = useState<string>('');
   const [textColor, setTextColor] = useState<string>(colors[0].value);
@@ -107,16 +96,6 @@ export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
     setText('');
   }, []);
 
-  const handleSubmit = useCallback(() => {
-    onSubmit({
-      message: text,
-      colour: textColor,
-      font: fontFamily,
-      position: image.coordinates,
-      imageUrl: image.url,
-    });
-  }, [onSubmit, text, textColor, fontFamily, image]);
-
   useEffect(() => {
     require('webfontloader').load({
       google: {
@@ -125,27 +104,27 @@ export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
     });
   }, [fonts]);
 
+  useEffect(() => {
+    onChange({
+      imageUrl: image.url,
+      text,
+      textColor,
+      textPosition: image.position,
+      textCoordinates: convertTextPosition(image.coordinates),
+      fontFamily,
+      fontSize: image.fontSize,
+    })
+  }, [image, text, textColor, fontFamily, onChange]);
+
   return (
     <div className="flex">
-      <div style={{ minWidth: canvasWidth, minHeight: canvasHeight }}>
-        <Canvas
-          text={text}
-          imageUrl={image.url}
-          width={canvasWidth}
-          height={canvasHeight}
-          textColor={textColor}
-          textPosition={convertTextPosition(image.coordinates)}
-          fontSize={image.fontSize}
-          fontFamily={fontFamily}
-        />
-      </div>
-      <div className="ml-5 w-full max-w-full">
+      <div className="w-full">
         <span className="text-sm">
           {text.length} / {maxTextLength} characters
         </span>
         <div
           className={cn(
-            'mt-2 w-full max-w-full grid grid grid-flow-row grid-cols-7 md:grid-cols-6 lg:grid-cols-7 border-t border-l border-accent-2',
+            'mt-2 w-full max-w-full grid grid grid-flow-row grid-cols-7 md:grid-cols-6 lg:grid-cols-12 border-t border-l border-accent-2',
             !!maxTextLengthReached && 'opacity-30',
           )}
         >
@@ -169,7 +148,7 @@ export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
             </button>
           ))}
         </div>
-        <div className="mt-3 flex space-x-1">
+        <div className="mt-3 flex space-x-1 lg:space-x-2">
           <button
             type="button"
             className={cn(
@@ -189,7 +168,7 @@ export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
             Backspace
           </button>
         </div>
-        <div className="mt-6 space-y-4">
+        <div className="mt-6 space-y-4 lg:flex lg:space-y-0 lg:space-x-2 xl:space-x-4">
           <Select
             label="Colour"
             name="colours"
@@ -213,15 +192,6 @@ export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
               onChange={onPositionChange}
             />
           )}
-        </div>
-        <div className="mt-5 flex justify-center items-center">
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className="max-w-xs flex-1 uppercase bg-black border border-transparent rounded-sm py-3 px-8 flex items-center justify-center font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-black sm:w-full"
-          >
-            {submitText}
-          </button>
         </div>
       </div>
     </div>

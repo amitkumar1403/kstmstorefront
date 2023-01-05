@@ -13,7 +13,7 @@ export const Select: FC<SelectProps> = ({
   onChange,
   label,
 }: SelectProps) => (
-  <div className="flex flex-col mb-1">
+  <div className="flex flex-1 flex-col mb-1">
     {label && (
       <label
         className="text-black font-semibold uppercase text-xs"

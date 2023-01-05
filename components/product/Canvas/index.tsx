@@ -47,7 +47,6 @@ const drawText = (
 const drawCanvas = (
   canvas: HTMLCanvasElement,
   image: HTMLImageElement,
-  width: number,
   text: string,
   textColor: string,
   textPosition: { x: number; y: number },
@@ -66,7 +65,7 @@ const drawCanvas = (
 
   ctx.clearRect(0, 0, image.width, image.height);
 
-  const scaleFactor = image.width / width;
+  const scaleFactor = image.width / canvas.getBoundingClientRect().width;
 
   drawScaledImage(image, ctx);
   drawText(
@@ -83,8 +82,6 @@ const drawCanvas = (
 
 export const Canvas: FC<CanvasProps> = ({
   imageUrl,
-  width,
-  height,
   text = '',
   textColor,
   textPosition,
@@ -116,14 +113,13 @@ export const Canvas: FC<CanvasProps> = ({
     drawCanvas(
       canvas,
       image,
-      width,
       text,
       textColor,
       textPosition,
       fontFamily,
       fontSize,
     );
-  }, [image, width, text, textColor, textPosition, fontFamily, fontSize]);
+  }, [image, text, textColor, textPosition, fontFamily, fontSize]);
 
   if (!image) {
     return null;
@@ -134,7 +130,7 @@ export const Canvas: FC<CanvasProps> = ({
       ref={canvasRef}
       width={image.width}
       height={image.height}
-      style={{ width, height }}
+      style={{ width: '100%', height: 'auto' }}
     />
   );
 };
