@@ -8,6 +8,24 @@ import { Product } from '@commerce/types'
 import Image from 'next/image'
 import { ProductPersonaliser } from '../ProductPersonaliser'
 import { useUI } from '@components/ui'
+
+// An example of what the image data would need to look like in order to support
+// personalisation of a product with multiple positions.
+const EXAMPLE_IMAGES = [
+  {
+    url: 'https://liveocx.imgix.net/kstm/products/slow_fashion_brand_2022_ecom_lighting_0098rd_(5).jpg',
+    position: 'Top',
+    coordinates: '60,65',
+    fontSize: 16,
+  },
+  {
+    url: 'https://liveocx.imgix.net/kstm/products/slow_fashion_brand_2022_ecom_lighting_0098_(160).jpg',
+    position: 'Right',
+    coordinates: '50,40',
+    fontSize: 10,
+  },
+];
+
 export default function Engraving({
   onClose = () => { },
   engravingPrice = '£20',
@@ -104,7 +122,6 @@ export default function Engraving({
                       {/* {JSON.stringify(product.image)} */}
                       <label className='text-sm font-bold'>{product.name}</label>
                       <ProductPersonaliser
-                        imageUrl={product.image || '/pdp1.png'}
                         canvasWidth={220}
                         canvasHeight={300}
                         colors={[
@@ -139,19 +156,9 @@ export default function Engraving({
                             value: 'Yeon Sung',
                           },
                         ]}
-                        positions={[
-                          {
-                            label: 'Right',
-                            value: '24,62',
-                          },
-                          {
-                            label: 'Left',
-                            value: '65,62',
-                          },
-                        ]}
+                        images={EXAMPLE_IMAGES}
                         characters="123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         maxTextLength={5}
-                        textSize={10}
                         submitText={GENERAL_ADD_TO_BASKET}
                         onSubmit={onSubmit}
                       />

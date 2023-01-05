@@ -5,16 +5,21 @@ import { Select } from '../../common/Select';
 
 type ProductPersonaliserOption = { label: string; value: string };
 
+type ProductPersonaliserImage = {
+  url: string;
+  position: string;
+  coordinates: string;
+  fontSize: number;
+};
+
 type ProductPersonaliserProps = {
-  imageUrl: string;
+  images: ProductPersonaliserImage[];
   canvasWidth: number;
   canvasHeight: number;
   colors: ProductPersonaliserOption[];
   fonts: ProductPersonaliserOption[];
-  positions: ProductPersonaliserOption[];
   characters: string;
   maxTextLength: number;
-  textSize: number;
   submitText: string;
   onSubmit: ({
     message,
@@ -38,22 +43,20 @@ const convertTextPosition = (value: string) => {
 };
 
 export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
-  imageUrl,
   canvasWidth,
   canvasHeight,
   colors,
   fonts,
-  positions,
+  images,
   characters,
   maxTextLength,
-  textSize,
   submitText,
   onSubmit,
 }: ProductPersonaliserProps) => {
   const [text, setText] = useState<string>('');
   const [textColor, setTextColor] = useState<string>(colors[0].value);
   const [fontFamily, setFontFamily] = useState<string>(fonts[0].value);
-  const [textPosition, setTextPosition] = useState<string>(positions[0].value);
+  const [image, setImage] = useState<ProductPersonaliserImage>(images[0]);
 
   const maxTextLengthReached = text.length >= maxTextLength;
 
@@ -67,9 +70,16 @@ export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
 
   const onPositionChange = useCallback(
     (evt: ChangeEvent<HTMLSelectElement>) => {
-      setTextPosition(evt.target.value);
+      const imageIndex = Number(evt.target.value);
+      const newImage = images[imageIndex];
+
+      if (!newImage) {
+        throw new Error(`No image found at index: ${imageIndex}`);
+      }
+
+      setImage(newImage);
     },
-    [],
+    [images],
   );
 
   const addCharacter = useCallback(
@@ -102,10 +112,10 @@ export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
       message: text,
       colour: textColor,
       font: fontFamily,
-      position: textPosition,
-      imageUrl,
+      position: image.coordinates,
+      imageUrl: image.url,
     });
-  }, [onSubmit, text, textColor, fontFamily, textPosition, imageUrl]);
+  }, [onSubmit, text, textColor, fontFamily, image]);
 
   useEffect(() => {
     require('webfontloader').load({
@@ -120,12 +130,12 @@ export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
       <div style={{ minWidth: canvasWidth, minHeight: canvasHeight }}>
         <Canvas
           text={text}
-          imageUrl={imageUrl}
+          imageUrl={image.url}
           width={canvasWidth}
           height={canvasHeight}
           textColor={textColor}
-          textPosition={convertTextPosition(textPosition)}
-          fontSize={textSize}
+          textPosition={convertTextPosition(image.coordinates)}
+          fontSize={image.fontSize}
           fontFamily={fontFamily}
         />
       </div>
@@ -192,12 +202,17 @@ export const ProductPersonaliser: FC<ProductPersonaliserProps> = ({
             options={fonts}
             onChange={onFontChange}
           />
-          <Select
-            label="Position"
-            name="position"
-            options={positions}
-            onChange={onPositionChange}
-          />
+          {images.length > 1 && (
+            <Select
+              label="Position"
+              name="position"
+              options={images.map(({ position }, index) => ({
+                label: position,
+                value: String(index),
+              }))}
+              onChange={onPositionChange}
+            />
+          )}
         </div>
         <div className="mt-5 flex justify-center items-center">
           <button
