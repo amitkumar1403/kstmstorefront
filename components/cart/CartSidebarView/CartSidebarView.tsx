@@ -108,7 +108,7 @@ const CartSidebarView: FC = () => {
             enterTo="opacity-100"
             leave="ease-in-out duration-500"
             leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+            leaveTo="opacity-0" 
           >
             <Dialog.Overlay className="w-full h-screen" onClick={handleClose} />
           </Transition.Child>
@@ -166,7 +166,7 @@ const CartSidebarView: FC = () => {
                           {cartItems.lineItems?.map((product: any) => (
                             <li key={product.id} className="">
                               <div className="flex py-6">
-                                <div className=" w-26 h-30 overflow-hidden border border-gray-200 rounded-md">
+                                <div className="overflow-hidden border border-gray-200 rounded-md  w-26 h-30">
                                   <Image
                                     width={100}
                                     height={150}
@@ -182,7 +182,7 @@ const CartSidebarView: FC = () => {
                                   /> */}
                                 </div>
 
-                                <div className="flex flex-col flex-1 ml-4 p-6">
+                                <div className="flex flex-col flex-1 p-6 ml-4">
                                   <div>
                                     <div className="flex justify-between font-semibold text-gray-900 font-sm">
                                       <h3 onClick={handleClose}>
@@ -238,7 +238,7 @@ const CartSidebarView: FC = () => {
                                   return (
                                     <div className="flex" key={idx}>
                                       {/* {console.log("check "+JSON.stringify(child))} */}
-                                      <div className="flex-shrink-0 w-24 py-1 ml-1 overflow-hidden justify-between">
+                                      <div className="justify-between flex-shrink-0 w-24 py-1 ml-1 overflow-hidden">
                                         <div className='image-container'>
                                           <img
                                             // layout='fill'
