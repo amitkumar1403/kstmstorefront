@@ -215,12 +215,12 @@ export default function OrderConfirmation() {
                     </dt>
                     <dd className="mt-2 text-gray-700">
                       <p>{order.shipping.displayName}</p>
-                      <p>
+                      {/* <p>
                         {GENERAL_DELIVERED_BY}:{' '}
                         {new Date(
                           order.shipping.expectedDeliveryDate
                         ).toLocaleDateString()}
-                      </p>
+                      </p> */}
                     </dd>
                   </div>
                 </dl>
