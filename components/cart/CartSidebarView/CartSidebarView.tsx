@@ -87,7 +87,6 @@ const CartSidebarView: FC = () => {
   }
 
   const handleClose = () => closeSidebar()
-
   const isEmpty: boolean = cartItems?.lineItems?.length === 0
 
   return (
@@ -131,7 +130,8 @@ const CartSidebarView: FC = () => {
                         <button
                           type="button"
                           className="p-2 -m-2 text-gray-400 hover:text-gray-500"
-                          onClick={handleClose}
+                          onClick={()=> {handleClose
+                            window.location.reload()}}
                         >
                           <span className="sr-only">{CLOSE_PANEL}</span>
                           <XIcon className="w-6 h-6" aria-hidden="true" />
