@@ -3,10 +3,29 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { XIcon } from '@heroicons/react/outline'
 import axios from 'axios'
-import Form from './form'
-import { GENERAL_CLOSE, GENERAL_ENGRAVING, GENERAL_ENGRAVING_PERSONALIZE_BOTTLE } from '@components/utils/textVariables'
+import { GENERAL_ADD_TO_BASKET, GENERAL_CLOSE } from '@components/utils/textVariables'
 import { Product } from '@commerce/types'
 import Image from 'next/image'
+import { ProductPersonaliser } from '../ProductPersonaliser'
+import { useUI } from '@components/ui'
+
+// An example of what the image data would need to look like in order to support
+// personalisation of a product with multiple positions.
+const EXAMPLE_IMAGES = [
+  {
+    url: 'https://liveocx.imgix.net/kstm/products/slow_fashion_brand_2022_ecom_lighting_0098rd_(5).jpg',
+    position: 'Top',
+    coordinates: '60,65',
+    fontSize: 16,
+  },
+  {
+    url: 'https://liveocx.imgix.net/kstm/products/slow_fashion_brand_2022_ecom_lighting_0098_(160).jpg',
+    position: 'Right',
+    coordinates: '50,40',
+    fontSize: 10,
+  },
+];
+
 export default function Engraving({
   onClose = () => { },
   engravingPrice = '£20',
@@ -15,11 +34,29 @@ export default function Engraving({
   product,
   showEngravingModal
 }: any) {
+  const { openCart } = useUI()
 
   const closeModal = () => {
     showEngravingModal(false);
     window.location.reload();
   }
+
+  const onSubmit = (data: {
+    message: string,
+    colour: string,
+    font: string,
+    position: string,
+    imageUrl: string,
+  }) => {
+    // Object for CustomInfo1
+    console.log(data);
+
+    // Comma separated values for CustomInfo1Formatted
+    console.log(Object.values(data).join());
+
+    openCart(submitForm.recordId)
+  }
+
   return (
     <Transition.Root show={show} as={Fragment}>
       <Dialog
@@ -81,18 +118,50 @@ export default function Engraving({
                     </span>
                   </div>
                   <div className='flex'>
-                    <div className='w-1/2'>
+                    <div>
                       {/* {JSON.stringify(product.image)} */}
                       <label className='text-sm font-bold'>{product.name}</label>
-                      <Image
-                        layout='fixed'
-                        width={220}
-                        height={300}
-                        src={product.image || '/pdp1.png'}
-                        className='w-full ' />
-                    </div>
-                    <div className='w-1/2 p-4'>
-                      <Form submitForm={submitForm} />
+                      <ProductPersonaliser
+                        canvasWidth={220}
+                        canvasHeight={300}
+                        colors={[
+                          {
+                            label: 'White',
+                            value: '#FFFFFF',
+                          },
+                          {
+                            label: 'Blue',
+                            value: '#1166FF',
+                          },
+                          {
+                            label: 'Magenta',
+                            value: '#FF00FF',
+                          },
+                          {
+                            label: 'Purple',
+                            value: '#7851a9',
+                          },
+                        ]}
+                        fonts={[
+                          {
+                            label: 'Cantarell',
+                            value: 'Cantarell',
+                          },
+                          {
+                            label: 'Rubik Bubbles',
+                            value: 'Rubik Bubbles',
+                          },
+                          {
+                            label: 'Yeon Sung',
+                            value: 'Yeon Sung',
+                          },
+                        ]}
+                        images={EXAMPLE_IMAGES}
+                        characters="123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        maxTextLength={5}
+                        submitText={GENERAL_ADD_TO_BASKET}
+                        onSubmit={onSubmit}
+                      />
                     </div>
                   </div>
                 </section>
