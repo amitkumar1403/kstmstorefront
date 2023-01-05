@@ -10,7 +10,14 @@ export default class MyDocument extends NextDocument /*Document*/ {
   render() {
     return (
       <html>
-        <Head></Head>
+        <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
+        </Head>
         <body className="custom_class">
           <Main />
           <NextScript />
