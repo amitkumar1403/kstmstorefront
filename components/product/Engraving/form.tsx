@@ -6,18 +6,20 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import { config } from './config'
 import cartHandler from '@components/services/cart'
+import dynamic from 'next/dynamic'
 import { useUI } from '@components/ui/context'
+const Button = dynamic(() => import('@components/ui/IndigoButton'));
 
 const schema = Yup.object().shape({
   line1: Yup.string().required(VALIDATION_PLEASE_COMPLETE_THIS_FIELD),
 })
 
 export default function EngravingForm({ submitForm }: any) {
-  const { openCart } = useUI()
+  
+  const {
+    openCart,
+  } = useUI()
 
-  const handleNotification = () => {
-    openCart(submitForm.recordId)
-  }
   return (
     <Formik
       initialValues={{ line1: '' }} // initial values
@@ -52,13 +54,14 @@ export default function EngravingForm({ submitForm }: any) {
               )
             })}
             <div className="mt-5 flex justify-center items-center">
-              <button
+              <Button
                 type="submit"
-                onClick={handleNotification}
+                title={GENERAL_ADD_TO_BASKET}
+                buttonType={'cart'}
+                action={handleSubmit}
                 className="w-full max-w-xs flex-1 uppercase bg-black border border-transparent rounded-sm py-3 px-8 flex items-center justify-center font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-black sm:w-full"
               >
-                {GENERAL_ADD_TO_BASKET}
-              </button>
+              </Button>
             </div>
           </Form>
         )
