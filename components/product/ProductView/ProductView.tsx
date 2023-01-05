@@ -132,7 +132,6 @@ export default function ProductView({
   const fetchProduct = async () => {
     const url = !isPreview ? NEXT_GET_PRODUCT : NEXT_GET_PRODUCT_PREVIEW;;
     const response: any = await axios.post(url, { slug: slug })
-    console.log("hello " + JSON.stringify(response?.data))
 
     // condition to store products in local storage for recently viewed functionality
     if (response?.data?.product) {
@@ -143,25 +142,26 @@ export default function ProductView({
         id: response.data.product.id,
         link: response.data.product.link,
       }
-
+  
       const oldExisting = JSON.parse(
         localStorage.getItem('Recently-viewed-Products') || '[]'
       )
       existingEntries = JSON.parse(
         localStorage.getItem('Recently-viewed-Products') || '[]'
       )
+      
       if (existingEntries.length === 0) {
         existingEntries = []
       } else {
         reVisitPdp = existingEntries?.includes(response?.data?.product?.id)
       }
-
+      
       existingEntries?.map((val: any) => {
         if (val.id === response.data.product.id) {
           flag = true
         }
       })
-
+  
       if (flag === true) {
         console.log('true')
       } else {
@@ -179,27 +179,27 @@ export default function ProductView({
           localStorage.getItem('recentlyViewedProduct') || '{}'
         )
       }
-
+  
       var array_last_ten // to add only last 10 recently viewed products
+      
       if (existingEntries?.length > 10) {
-        array_last_ten = existingEntries.slice(-10)
-        console.log(array_last_ten)
-
+        array_last_ten = existingEntries?.slice(-10)
+  
         if (existingEntries?.length < 11) {
           array_last_ten.shift()
         }
-        if (!reVisitPdp) {
+        if (!flag) {
           oldExisting.reverse()
           setLocalState(oldExisting)
-        } else if (reVisitPdp) {
+        } else if (flag) {
           array_last_ten.reverse()
           setLocalState(array_last_ten)
         }
       } else {
-        if (!reVisitPdp) {
+        if (!flag) {
           oldExisting.reverse()
           setLocalState(oldExisting)
-        } else if (reVisitPdp) {
+        } else if (flag) {
           existingEntries.reverse()
           setLocalState(existingEntries)
         }
@@ -838,22 +838,22 @@ export default function ProductView({
                           action={buttonConfig.action}
                           buttonType={buttonConfig.type || 'cart'}
                         />
-                        {/* <button
+                        <button
                           type="button"
                           onClick={() => {
                             if (!isInWishList) {
                               handleWishList()
                             }
                           }}
-                          className="flex items-center justify-center px-4 py-3 ml-4 text-gray-500 bg-white border border-gray-300 rounded-sm hover:bg-red-50 hover:text-pink sm:px-10 hover:border-pink"
+                          className="flex items-center justify-center px-4 py-3 ml-4 text-gray-500 bg-white border border-gray-300 rounded-sm hover:bg-gray-200 hover:text-black sm:px-10 hover:border-black focus:border-black focus:bg-gray-200"
                         >
                           {isInWishList ? (
-                            <HeartIcon className="flex-shrink-0 w-6 h-6 text-pink" />
+                            <HeartIcon className="flex-shrink-0 w-6 h-6 text-black" />
                           ) : (
                             <HeartIcon className="flex-shrink-0 w-6 h-6" />
                           )}
                           <span className="sr-only">{BTN_ADD_TO_FAVORITES}</span>
-                        </button> */}
+                        </button>
                       </div>
                     </>
                   )}

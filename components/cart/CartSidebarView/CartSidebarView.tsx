@@ -27,6 +27,7 @@ import useTranslation, {
   GENERAL_OR_TEXT,
   IMG_PLACEHOLDER,
 } from '@components/utils/textVariables'
+import products from 'pages/api/catalog/products'
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setCartItems, cartItems, basketId } = useUI()
@@ -65,6 +66,7 @@ const CartSidebarView: FC = () => {
       const data: any = {
         basketId,
         productId: product.id,
+        parentProductId: product.parentProductId, // added value
         stockCode: product.stockCode,
         manualUnitPrice: product.manualUnitPrice,
         displayOrder: product.displayOrderta,
@@ -76,6 +78,7 @@ const CartSidebarView: FC = () => {
       if (type === 'delete') {
         data.qty = 0
       }
+      
       try {
         const item = await addToCart(data, type, { product })
         setCartItems(item)
@@ -96,7 +99,7 @@ const CartSidebarView: FC = () => {
         as="div"
         className="fixed inset-0 overflow-hidden z-999"
         onClose={handleClose}
-      >
+        >
         <div className="absolute inset-0 overflow-hidden z-999">
           <Transition.Child
             as={Fragment}
@@ -105,7 +108,7 @@ const CartSidebarView: FC = () => {
             enterTo="opacity-100"
             leave="ease-in-out duration-500"
             leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+            leaveTo="opacity-0" 
           >
             <Dialog.Overlay className="w-full h-screen" onClick={handleClose} />
           </Transition.Child>
@@ -119,7 +122,7 @@ const CartSidebarView: FC = () => {
               leave="transform transition ease-in-out duration-500 sm:duration-700"
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
-            >
+              >
               <div className="w-screen max-w-md">
                 <div className="flex flex-col h-full overflow-y-scroll bg-white shadow-xl">
                   <div className="flex-1 px-4 py-6 overflow-y-auto sm:px-6">
@@ -132,7 +135,7 @@ const CartSidebarView: FC = () => {
                           type="button"
                           className="p-2 -m-2 text-gray-400 hover:text-gray-500"
                           onClick={handleClose}
-                        >
+                          >
                           <span className="sr-only">{CLOSE_PANEL}</span>
                           <XIcon className="w-6 h-6" aria-hidden="true" />
                         </button>
@@ -149,7 +152,7 @@ const CartSidebarView: FC = () => {
                                 type="button"
                                 className="font-medium text-indigo-600 hover:text-indigo-500"
                                 onClick={handleClose}
-                              >
+                                >
                                 {GENERAL_CATALOG}
                                 <span aria-hidden="true"> &rarr;</span>
                               </button>
@@ -159,11 +162,11 @@ const CartSidebarView: FC = () => {
                         <ul
                           role="list"
                           className="-my-6 divide-y divide-gray-200"
-                        >
+                          >
                           {cartItems.lineItems?.map((product: any) => (
                             <li key={product.id} className="">
                               <div className="flex py-6">
-                                <div className=" w-26 h-30 overflow-hidden border border-gray-200 rounded-md">
+                                <div className="overflow-hidden border border-gray-200 rounded-md  w-26 h-30">
                                   <Image
                                     width={100}
                                     height={150}
@@ -171,7 +174,7 @@ const CartSidebarView: FC = () => {
                                     src={`${product.image}` || '/assets/icons/newPajama.png'}
                                     alt={product.name}
                                     className="object-cover object-center w-full h-full"
-                                  ></Image>
+                                    ></Image>
                                   {/* <img
                                     src={product.image}
                                     alt={product.name}
@@ -179,7 +182,7 @@ const CartSidebarView: FC = () => {
                                   /> */}
                                 </div>
 
-                                <div className="flex flex-col flex-1 ml-4 p-6">
+                                <div className="flex flex-col flex-1 p-6 ml-4">
                                   <div>
                                     <div className="flex justify-between font-semibold text-gray-900 font-sm">
                                       <h3 onClick={handleClose}>
@@ -203,7 +206,7 @@ const CartSidebarView: FC = () => {
                                         onClick={() =>
                                           handleItem(product, 'delete')
                                         }
-                                      >
+                                        >
                                         {GENERAL_REMOVE}
                                       </button>
                                       <div className="flex flex-row px-4 text-gray-900 border">
@@ -231,9 +234,11 @@ const CartSidebarView: FC = () => {
                                 (child: any, idx: number) => {
                                   const message = JSON.parse(child.customInfo1);
                                   const personalization = message?.formatted?.data?.Message;
+                                  
                                   return (
                                     <div className="flex" key={idx}>
-                                      <div className="flex-shrink-0 w-24 py-1 ml-1 overflow-hidden justify-between">
+                                      {/* {console.log("check "+JSON.stringify(child))} */}
+                                      <div className="justify-between flex-shrink-0 w-24 py-1 ml-1 overflow-hidden">
                                         <div className='image-container'>
                                           <img
                                             // layout='fill'

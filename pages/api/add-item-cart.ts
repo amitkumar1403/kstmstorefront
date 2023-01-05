@@ -3,6 +3,7 @@ export default async (req: any, res: any) => {
   const {
     basketId,
     productId,
+    parentProductId,
     qty,
     manualUnitPrice,
     displayOrder,
@@ -12,6 +13,7 @@ export default async (req: any, res: any) => {
     const response = await useAddItem()({
       basketId,
       productId,
+      parentProductId,
       qty,
       manualUnitPrice,
       displayOrder,
