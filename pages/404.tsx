@@ -40,7 +40,11 @@ export default function NotFound() {
                 height={152}
                 src="/assets/icons/error-icon.svg"
                 alt="404 Error Image"
-                className="inline-block"></Image>
+                className="inline-block"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }}></Image>
             </div>
             <div className="error-text-section w-full text-center">
               <h1 className="text-black sm:text-2xl font-semibold mb-2">
@@ -67,7 +71,11 @@ export default function NotFound() {
                 height={54}
                 src="/assets/icons/error-icon.svg"
                 alt="404 Error Image"
-                className="inline-block"></Image>
+                className="inline-block"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }}></Image>
             </div>
             <div className="error-text-section w-full text-left mb-6">
               <h1 className="text-black text-base font-semibold mb-2">

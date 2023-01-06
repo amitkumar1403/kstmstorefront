@@ -61,8 +61,11 @@ function LookbookPage({ data }: any) {
                           src={lookbook.mainImage || IMG_PLACEHOLDER}
                           alt={lookbook.name}
                           className="w-auto h-96 object-center object-cover hover:opacity-75 sm:min-h-screen sm:max-h-screen image"
-                          fill
-                          sizes="100vw"></Image>  
+                          sizes="100vw"
+                          style={{
+                            maxWidth: "100%",
+                            height: "auto"
+                          }}></Image>  
                       </div>
                     </div>
                     <div className="w-full sm:w-1/2 p-5 flex justify-left flex-col items-center">

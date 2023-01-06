@@ -93,9 +93,12 @@ export default function RelatedProducts({
                                 <Link href={`/${product.slug}`} passHref>
                                   <div className='image-container'>
                                     <Image
-                                      layout='fill'
                                       src={product.image || IMG_PLACEHOLDER}
                                       alt={product.name}
+                                      style={{
+                                        maxWidth: "100%",
+                                        height: "auto"
+                                      }}
                                       className="w-full h-full object-center object-cover image">                                      
                                     </Image>  
                                   </div>

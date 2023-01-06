@@ -151,7 +151,10 @@ export default function Wishlist() {
                        <Image
                             width={80}
                             height={80}
-                            layout='fixed'
+                            style={{
+                              maxWidth: "100%",
+                              height: "auto"
+                            }}
                             src={product.image}
                             alt={product.name}
                             className="col-start-2 col-end-3 sm:col-start-1 sm:row-start-1 sm:row-span-2 w-20 h-20 rounded-lg object-center object-cover sm:w-40 sm:h-40 lg:w-52 lg:h-52 image"

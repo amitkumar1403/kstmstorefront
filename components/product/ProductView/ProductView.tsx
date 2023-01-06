@@ -590,7 +590,10 @@ export default function ProductView({
                                       //src="/slider-1 - Copy.jpg"
                                       alt={image.name}
                                       className="object-fill object-center w-full h-full image"
-                                      layout='responsive'
+                                      style={{
+                                        maxWidth: "100%",
+                                        height: "auto"
+                                      }}
                                       sizes='320 600 100'
                                       width={1800} height={1400}
                                       blurDataURL={`${image.image}?h=600&w=400&fm=webp` || IMG_PLACEHOLDER}
@@ -627,9 +630,12 @@ export default function ProductView({
                                       alt={image.name}
                                       priority
                                       className="object-cover object-center w-full h-full image"
-                                      layout='responsive'
                                       sizes='320 600 1000'
                                       width={1800} height={1400}
+                                      style={{
+                                        maxWidth: "100%",
+                                        height: "auto"
+                                      }}
                                     />
 
                                     {/* <Image

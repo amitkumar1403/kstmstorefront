@@ -49,11 +49,14 @@ export default function Summary({
                 })}
                 <div className="flex-shrink-0">
                   <Image
-                    layout='fixed'
                     width={80}
                     height={100}
                     src={`${product.image}` || IMG_PLACEHOLDER}
                     alt={product.name}
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto"
+                    }}
                     className="w-20 rounded-md"
                   ></Image>
                 </div>

@@ -173,7 +173,11 @@ function Cart({ cart }: any) {
                           IMG_PLACEHOLDER
                         }
                         alt={product.name}
-                        className="object-cover object-center w-16 h-20 rounded-sm sm:w-48 sm:h-48 image" />
+                        className="object-cover object-center w-16 h-20 rounded-sm sm:w-48 sm:h-48 image"
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }} />
                     </div>
                     <div className="flex flex-col justify-between flex-1 ml-4 sm:ml-6">
                       <div className="relative flex justify-between h-full pr-6 sm:pr-9 sm:pr-0">

@@ -428,7 +428,10 @@ export default function SizeInline({
                                           <Image
                                             src={image?.imageURL}
                                             className="image"
-                                            layout="fill"
+                                            style={{
+                                              maxWidth: "100%",
+                                              height: "auto"
+                                            }}
                                           />
                                         </div>
                                       </>
@@ -996,7 +999,10 @@ export default function SizeInline({
                                           <Image
                                             src={image?.imageURL}
                                             className="image"
-                                            layout="fill"
+                                            style={{
+                                              maxWidth: "100%",
+                                              height: "auto"
+                                            }}
                                           />
                                         </div>
                                       </>

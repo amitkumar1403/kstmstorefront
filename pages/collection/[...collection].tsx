@@ -232,7 +232,11 @@ export default function CollectionPage(props: any) {
                       height={460}
                       src={img.url || IMG_PLACEHOLDER}
                       alt={props.name}
-                      className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"></Image>
+                      className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                      }}></Image>
                   </Link>
                 </SwiperSlide>
               );

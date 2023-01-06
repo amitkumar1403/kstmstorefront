@@ -196,7 +196,10 @@ const SearchProductCard: FC<Props> = ({ product }) => {
                 handleHover('leave')
               }}
               className="object-cover object-center w-full h-full sm:h-full"
-              layout="responsive"
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }}
               width={800}
               height={800}
             ></Image>

@@ -108,9 +108,12 @@ const ProductSlider: FC<Props> = ({ config }) => {
                             <Image priority
                               src={product?.image || IMG_PLACEHOLDER}
                               alt={product?.name}
-                              layout="responsive"
                               width={257}
                               height={362}
+                              style={{
+                                maxWidth: "100%",
+                                height: "auto"
+                              }}
                               className="w-full h-full object-center object-cover group-hover:opacity-75"></Image>
                           </div>
                           <div className="mt-6">

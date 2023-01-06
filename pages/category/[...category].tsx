@@ -318,7 +318,11 @@ function CategoryPage({ category, products }: any) {
                         height={460}
                         src={image.url || IMG_PLACEHOLDER}
                         alt={category.name}
-                        className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"></Image>
+                        className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }}></Image>
                     </Link>
                   </SwiperSlide>
                 );

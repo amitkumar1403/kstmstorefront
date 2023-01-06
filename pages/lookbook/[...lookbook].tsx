@@ -101,8 +101,11 @@ function LookbookDetailPage({ data, slug }: any) {
                   src={data.mainImage || IMG_PLACEHOLDER}
                   alt={data.name}
                   className="w-full h-screen min-h-screen object-center object-cover image"
-                  fill
-                  sizes="100vw" />
+                  sizes="100vw"
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto"
+                  }} />
                 <div className='lookbook-data'>
                     <h1 className="py-1 text-4xl font-semibold tracking-tight text-white">
                       {data.name}

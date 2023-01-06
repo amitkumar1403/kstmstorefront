@@ -1,7 +1,7 @@
 import type { GetStaticPropsContext } from 'next'
 import { getAllCategories } from '@framework/category'
 import Link from 'next/link'
-import Image from "next/image";
+import Image from 'next/legacy/image';
 import { Layout } from '@components/common'
 import {
   IMG_PLACEHOLDER,

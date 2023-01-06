@@ -85,7 +85,10 @@ export default function Engraving({
                       {/* {JSON.stringify(product.image)} */}
                       <label className='text-sm font-bold'>{product.name}</label>
                       <Image
-                        layout='fixed'
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }}
                         width={220}
                         height={300}
                         src={product.image || '/pdp1.png'}

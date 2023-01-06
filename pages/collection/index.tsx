@@ -2,7 +2,7 @@ import type { GetStaticPathsContext, GetStaticPropsContext } from 'next'
 import getCollections from '@framework/api/content/getCollections'
 import { Layout } from '@components/common'
 import Link from 'next/link'
-import Image from "next/image";
+import Image from 'next/legacy/image';
 import {
   IMG_PLACEHOLDER,
   PRODUCTS_AVAILABLE,

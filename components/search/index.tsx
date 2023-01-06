@@ -128,9 +128,12 @@ export default function Search({ closeWrapper = () => {}, keywords }: any) {
                               IMG_PLACEHOLDER
                             }
                             alt={product.name}
-                            layout="fill"
                             sizes="50vw"
                             className="object-cover object-center w-full h-48 sm:h-72 image"
+                            style={{
+                              maxWidth: "100%",
+                              height: "auto"
+                            }}
                           ></Image>
                         )}
                       </div>
