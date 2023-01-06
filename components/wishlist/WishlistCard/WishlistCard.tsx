@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import cn from 'classnames'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import s from './WishlistCard.module.css'
 import { Trash } from '@components/icons'
 import { Button, Text } from '@components/ui'
@@ -62,7 +62,7 @@ const WishlistCard: FC<Props> = ({ product }) => {
       <div className="col-span-7">
         <h3 className="text-2xl mb-2">
           <Link href={`/product${product.path}`}>
-            <a>{product.name}</a>
+            {product.name}
           </Link>
         </h3>
         <div className="mb-4">

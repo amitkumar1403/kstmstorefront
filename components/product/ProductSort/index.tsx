@@ -51,9 +51,6 @@ export default function ProductSort({
                           },
                         }}
                         passHref
-                      >
-                        <a
-                          href={option.href}
                           onClick={() => action(option.key)}
                           className={classNames(
                             'text-gray-500 hover:bg-gray-100',
@@ -65,7 +62,6 @@ export default function ProductSort({
                         >
                           {option.value.length>15? (option.value.substring(0,15) +`...`):option.value }
                          
-                        </a>
                       </Link>
                     </span>
                  </div>

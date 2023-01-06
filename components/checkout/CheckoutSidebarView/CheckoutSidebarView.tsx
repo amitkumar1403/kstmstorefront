@@ -10,15 +10,15 @@ import useCheckout from '@framework/checkout/use-checkout'
 import ShippingWidget from '../ShippingWidget'
 import PaymentWidget from '../PaymentWidget'
 import s from './CheckoutSidebarView.module.css'
-import { 
-  BTN_CONFIRM_PURCHASE, 
-  CALCULATED_AT_CHECKOUT, 
-  GENERAL_CHECKOUT, 
-  GENERAL_FREE, 
-  GENERAL_SHIPPING, 
-  GENERAL_SUBTOTAL, 
-  GENERAL_TAXES, 
-  GENERAL_TOTAL 
+import {
+  BTN_CONFIRM_PURCHASE,
+  CALCULATED_AT_CHECKOUT,
+  GENERAL_CHECKOUT,
+  GENERAL_FREE,
+  GENERAL_SHIPPING,
+  GENERAL_SUBTOTAL,
+  GENERAL_TAXES,
+  GENERAL_TOTAL,
 } from '@components/utils/textVariables'
 
 const CheckoutSidebarView: FC = () => {
@@ -40,9 +40,7 @@ const CheckoutSidebarView: FC = () => {
     >
       <div className="px-4 sm:px-6 flex-1">
         <Link href="/cart">
-          <a>
-            <Text variant="sectionHeading">{GENERAL_CHECKOUT}</Text>
-          </a>
+          <Text variant="sectionHeading">{GENERAL_CHECKOUT}</Text>
         </Link>
 
         <PaymentWidget

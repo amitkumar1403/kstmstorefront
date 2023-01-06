@@ -14,7 +14,7 @@ import {
 } from '@components/utils/constants'
 import { useEffect, useState } from 'react'
 import { NextSeo } from 'next-seo'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import { EVENTS_MAP } from '@components/services/analytics/constants'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 import {IMG_PLACEHOLDER, SHOP_THE_LOOK} from '@components/utils/textVariables'
@@ -98,11 +98,14 @@ function LookbookDetailPage({ data, slug }: any) {
           <div className="w-full bg-gray-200 rounded-sm overflow-hidden">
               <div className='image-container lookbook-image'>
                 <Image
-                  layout='fill'
                   src={data.mainImage || IMG_PLACEHOLDER}
                   alt={data.name}
                   className="w-full h-screen min-h-screen object-center object-cover image"
-                />
+                  sizes="100vw"
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto"
+                  }} />
                 <div className='lookbook-data'>
                     <h1 className="py-1 text-4xl font-semibold tracking-tight text-white">
                       {data.name}
@@ -151,7 +154,7 @@ function LookbookDetailPage({ data, slug }: any) {
         }}
       />
     </div>
-  )
+  );
 }
 
 export async function getStaticProps({

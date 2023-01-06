@@ -15,7 +15,8 @@ const ALPHABET = '#abcdefghijklmnopqrstuvwxyz'
 const dataNormalizr = (data: any = []) => {
   return data.reduce((acc: any, item: any) => {
     let ref = acc.findIndex(
-      (i: any) => i.title.toLowerCase() === item.manufacturerName.charAt(0).toLowerCase()
+      (i: any) =>
+        i.title.toLowerCase() === item.manufacturerName.charAt(0).toLowerCase()
     )
     if (ref >= 0) {
       acc[ref].results = [...acc[ref].results, item]
@@ -78,10 +79,13 @@ function BrandsPage({ brands }: any) {
               )
               if (brandExists) {
                 return (
-                  <Link key={key} passHref href={`#${letter.toUpperCase()}`}>
-                    <a className="hover:bg-indigo-600 hover:text-white sm:mr-3 sm:mt-5 sm:py-2 sm:px-4 mr-1 mt-2 py-1 px-2 text-gray-900 border font-extrabold sm:text-lg text-sm">
-                      {letter.toUpperCase()}
-                    </a>
+                  <Link
+                    key={key}
+                    passHref
+                    href={`#${letter.toUpperCase()}`}
+                    className="hover:bg-indigo-600 hover:text-white sm:mr-3 sm:mt-5 sm:py-2 sm:px-4 mr-1 mt-2 py-1 px-2 text-gray-900 border font-extrabold sm:text-lg text-sm"
+                  >
+                    {letter.toUpperCase()}
                   </Link>
                 )
               }
@@ -140,10 +144,9 @@ function BrandsPage({ brands }: any) {
                             id: result.id,
                           },
                         }}
+                        className="sm:text-lg text-sm sm:py-5 py-2 hover:underline cursor-pointer"
                       >
-                        <a className="sm:text-lg text-sm sm:py-5 py-2 hover:underline cursor-pointer">
-                          {result.manufacturerName}
-                        </a>
+                        {result.manufacturerName}
                       </Link>
                     </div>
                   )

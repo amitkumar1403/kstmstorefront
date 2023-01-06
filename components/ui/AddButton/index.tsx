@@ -3,7 +3,7 @@ import { useUI } from '@components/ui/context'
 import { useState } from 'react'
 import { LoadingDots } from '@components/ui'
 import { ShoppingBagIcon } from '@heroicons/react/outline'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
@@ -66,7 +66,10 @@ const DefaultButton: FC<Props> = ({
           <LoadingDots /> :
           <>
             <span className="relative pr-1 top-1">
-              <Image src="/assets/icons/add-to-bag.svg" width={20} height={20} layout="fixed" className="relative pr-2 right-2 top-1" />
+              <Image src="/assets/icons/add-to-bag.svg" width={20} height={20} style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }} className="relative pr-2 right-2 top-1" />
             </span>
             <span>{title}</span>
           </>

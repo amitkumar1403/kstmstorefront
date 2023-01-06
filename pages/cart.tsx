@@ -10,9 +10,11 @@ import Link from 'next/link'
 import { useUI } from '@components/ui/context'
 import cartHandler from '@components/services/cart'
 import { PlusSmIcon, MinusSmIcon } from '@heroicons/react/outline'
-const PromotionInput = dynamic(() => import('../components/cart/PromotionInput'));
+const PromotionInput = dynamic(
+  () => import('../components/cart/PromotionInput')
+)
 import { useEffect } from 'react'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import axios from 'axios'
 import { getShippingPlans } from '@framework/shipping'
 import {
@@ -88,7 +90,7 @@ function Cart({ cart }: any) {
       DeliveryCenter: null,
     }
     //const response = await axios.post(NEXT_SHIPPING_PLANS, { model })
-    const shippingPlans = await getShippingPlans()({ model: model });
+    const shippingPlans = await getShippingPlans()({ model: model })
     //console.log(JSON.stringify(shippingPlans));
 
     setCartItems({
@@ -99,13 +101,12 @@ function Cart({ cart }: any) {
 
   useEffect(() => {
     async function loadShippingPlans() {
-      await fetchShippingPlans();
+      await fetchShippingPlans()
     }
 
     if (cart?.shippingMethods.length > 0) {
       loadShippingPlans()
-    }
-    else {
+    } else {
       setCartItems(cart)
     }
   }, [])
@@ -146,7 +147,11 @@ function Cart({ cart }: any) {
     <div className="w-full mx-auto bg-white sm:w-3/5">
       <main className="px-4 pt-6 pb-12 sm:pt-6 sm:pb-16 sm:px-0 lg:px-0 mt-14">
         <h1 className="relative text-2xl font-semibold tracking-tight text-center text-black uppercase sm:text-2xl">
-          {GENERAL_SHOPPING_CART} <span className='absolute pl-2 text-sm font-semibold text-gray-400 top-2'>{'- '}{userCart?.lineItems?.length} Items added</span>
+          {GENERAL_SHOPPING_CART}{' '}
+          <span className="absolute pl-2 text-sm font-semibold text-gray-400 top-2">
+            {'- '}
+            {userCart?.lineItems?.length} Items added
+          </span>
         </h1>
         {!isEmpty && (
           <form className="relative mt-4 sm:mt-6 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
@@ -155,39 +160,42 @@ function Cart({ cart }: any) {
                 {ITEMS_IN_YOUR_CART}
               </h2>
 
-              <ul
-                role="list"
-                className=""
-              >
+              <ul role="list" className="">
                 {userCart.lineItems?.map((product: any, productIdx: number) => (
-                  <li key={productIdx} className="flex p-2 mb-2 border border-gray-200 rounded-md sm:p-3">
+                  <li
+                    key={productIdx}
+                    className="flex p-2 mb-2 border border-gray-200 rounded-md sm:p-3"
+                  >
                     <div className="flex-shrink-0">
                       <Image
-                        layout="fixed"
                         width={160}
                         height={250}
-                        src={generateUri(product.image, "h=200&fm=webp") || IMG_PLACEHOLDER}
+                        src={
+                          generateUri(product.image, 'h=200&fm=webp') ||
+                          IMG_PLACEHOLDER
+                        }
                         alt={product.name}
                         className="object-cover object-center w-16 h-20 rounded-sm sm:w-48 sm:h-48 image"
-                      />
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }} />
                     </div>
                     <div className="flex flex-col justify-between flex-1 ml-4 sm:ml-6">
                       <div className="relative flex justify-between h-full pr-6 sm:pr-9">
                         <div className="flex flex-col justify-between h-full">
                           <div>
-                            <div className='flex'>
+                            <div className="flex">
                               <div className="flex flex-col justify-between">
                                 <h3 className="py-0 font-semibold text-black sm:py-0 sm:text-md text-md">
                                   {product.brand}
                                 </h3>
                                 <h3 className="my-2 sm:text-md text-md sm:my-1">
-                                  <Link href={`/${product.slug}`}>
-                                    <a
-                                      href={product.slug}
-                                      className="font-normal text-gray-700 hover:text-gray-800"
-                                    >
-                                      {product.name}
-                                    </a>
+                                  <Link
+                                    href={`/${product.slug}`}
+                                    className="font-normal text-gray-700 hover:text-gray-800"
+                                  >
+                                    {product.name}
                                   </Link>
                                 </h3>
                               </div>
@@ -213,7 +221,9 @@ function Cart({ cart }: any) {
                             </div>
                             <p className="mt-1 font-bold text-black text-md sm:font-medium">
                               {product.price?.formatted?.withTax}
-                              {product.listPrice?.raw.withTax > 0 && product.listPrice?.raw.withTax != product.price?.raw?.withTax ? (
+                              {product.listPrice?.raw.withTax > 0 &&
+                              product.listPrice?.raw.withTax !=
+                                product.price?.raw?.withTax ? (
                                 <span className="px-2 text-sm text-red-400 line-through">
                                   {GENERAL_PRICE_LABEL_RRP}{' '}
                                   {product.listPrice.formatted.withTax}
@@ -222,18 +232,16 @@ function Cart({ cart }: any) {
                             </p>
                             {product.children?.map(
                               (child: any, idx: number) => {
-                                const message = JSON.parse(child.customInfo1);
-                                const personalization = message?.formatted?.data?.Message;
+                                const message = JSON.parse(child.customInfo1)
+                                const personalization =
+                                  message?.formatted?.data?.Message
                                 return (
-                                  <div
-                                    className="mt-7"
-                                    key={'child' + idx}
-                                  >
+                                  <div className="mt-7" key={'child' + idx}>
                                     <div className="flex-shrink-0 w-20 h-8 py-1 overflow-hidden ">
-                                      <div className='image-container'>
+                                      <div className="image-container">
                                         <img
                                           // layout='fill'
-                                          src='/KSTMize.jpg'
+                                          src="/KSTMize.jpg"
                                           // alt={child.name}
                                           className="object-cover object-center w-full h-full image"
                                         ></img>
@@ -243,53 +251,48 @@ function Cart({ cart }: any) {
                                     {/* <div className='flex'> */}
                                     <div className="flex justify-between py-2 text-gray-900 font-small">
                                       {/* <Link href={`/${child.slug}`}> */}
-                                      <div className='font-bold'>
+                                      <div className="font-bold">
                                         {/* {JSON.stringify(child)} */}
                                         {child.name}
                                       </div>
-                                      <div className='pr-6'>
+                                      <div className="pr-6">
                                         {child.price.formatted.withTax}
                                       </div>
                                     </div>
-                                    <div className='py-0'>
-                                      <label>
-                                        {personalization}                                        
-                                      </label>
+                                    <div className="py-0">
+                                      <label>{personalization}</label>
                                     </div>
-                                    {
-                                      !child.parentProductId ? (
-                                        <div className="flex items-center justify-end flex-1 text-sm">
-                                          <button
-                                            type="button"
-                                            onClick={() =>
-                                              handleItem(child, 'delete')
-                                            }
-                                            className="inline-flex p-2 -m-2 text-gray-400 hover:text-gray-500"
-                                          >
-                                            <span className="sr-only">
-                                              {GENERAL_REMOVE}
-                                            </span>
-                                            <XIconSolid
-                                              className="w-5 h-5"
-                                              aria-hidden="true"
-                                            />
-                                          </button>
-                                        </div>
-                                      ) : (
-                                        <div className="pl-10 pr-0 mt-0 sm:mt-0 sm:pr-9">
-                                          {/* <div className="flex flex-row px-2 text-gray-900 border sm:px-4">
+                                    {!child.parentProductId ? (
+                                      <div className="flex items-center justify-end flex-1 text-sm">
+                                        <button
+                                          type="button"
+                                          onClick={() =>
+                                            handleItem(child, 'delete')
+                                          }
+                                          className="inline-flex p-2 -m-2 text-gray-400 hover:text-gray-500"
+                                        >
+                                          <span className="sr-only">
+                                            {GENERAL_REMOVE}
+                                          </span>
+                                          <XIconSolid
+                                            className="w-5 h-5"
+                                            aria-hidden="true"
+                                          />
+                                        </button>
+                                      </div>
+                                    ) : (
+                                      <div className="pl-10 pr-0 mt-0 sm:mt-0 sm:pr-9">
+                                        {/* <div className="flex flex-row px-2 text-gray-900 border sm:px-4">
                                             <span className="px-2 py-1 text-md sm:py-2">
                                               {child.qty}
                                             </span>
                                           </div> */}
-                                        </div>
-                                      )
-                                    }
+                                      </div>
+                                    )}
                                   </div>
                                 )
                               }
                             )}
-
                           </div>
                           <p className="hidden py-5 text-sm font-medium text-gray-900 sm:block">
                             {product.shippingPlan?.shippingSpeed}
@@ -331,7 +334,7 @@ function Cart({ cart }: any) {
               >
                 {GENERAL_ORDER_SUMMARY}
               </h2>
-              <div className='p-3 mt-6 border sm:p-3 '>
+              <div className="p-3 mt-6 border sm:p-3 ">
                 <PromotionInput />
               </div>
               <dl className="mt-6 space-y-2 sm:space-y-2">
@@ -358,14 +361,19 @@ function Cart({ cart }: any) {
                         <span>{GENERAL_DISCOUNT}</span>
                       </dt>
                       <dd className="font-semibold text-red-500 text-md">
-                        <p>{'-'}{cartItems.discount?.formatted?.withTax}</p>
+                        <p>
+                          {'-'}
+                          {cartItems.discount?.formatted?.withTax}
+                        </p>
                       </dd>
                     </>
                   )}
                 </div>
 
                 <div className="flex items-center justify-between pt-2 text-gray-900 border-t">
-                  <dt className="text-lg font-bold text-black">{GENERAL_TOTAL}</dt>
+                  <dt className="text-lg font-bold text-black">
+                    {GENERAL_TOTAL}
+                  </dt>
                   <dd className="text-xl font-bold text-black">
                     {cartItems.grandTotal?.formatted?.withTax}
                   </dd>
@@ -373,13 +381,12 @@ function Cart({ cart }: any) {
               </dl>
 
               <div className="mt-6">
-                <Link href="/checkout">
-                  <a
-                    type="submit"
-                    className="w-full px-4 py-3 font-medium text-center text-white uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-black"
-                  >
-                    {BTN_PLACE_ORDER}
-                  </a>
+                <Link
+                  href="/checkout"
+                  type="submit"
+                  className="w-full px-4 py-3 font-medium text-center text-white uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-black"
+                >
+                  {BTN_PLACE_ORDER}
                 </Link>
               </div>
             </section>
@@ -401,7 +408,7 @@ function Cart({ cart }: any) {
         )}
       </main>
     </div>
-  )
+  );
 }
 Cart.Layout = Layout
 

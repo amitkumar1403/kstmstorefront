@@ -91,22 +91,19 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                                 shallow={true}
                                 href={item.href}
                                 passHref
-                             >
-                                <a onClick={() => {
+                                onClick={() => {
                                    handleClick;
                                    setShow(false);
                                 }}
                                    className="inline-block w-full h-full py-4 text-sm text-primary">
                                    <span className='inline-block sm:hidden'>{item.mtext}</span>
                                    <span className='hidden sm:inline-block text-xs'>{item.text}</span>
-                                </a>
                              </Link>
                           </div>
                        </>
                         ) : (
                           <>
-                            <Link shallow={true} href={item.href} passHref>
-                              <a
+                            <Link shallow={true} href={item.href} passHref
                                 onClick={() => {
                                   handleClick
                                 }}
@@ -118,7 +115,6 @@ function MyAccount({ defaultView, isLoggedIn }: any) {
                                 <span className="hidden sm:inline-block">
                                   {item.text}
                                 </span>
-                              </a>
                             </Link>
                           </>
                         )}

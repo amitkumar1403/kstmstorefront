@@ -143,10 +143,12 @@ export default function MyReturns() {
                                 </p>
                               </div>
                               <div className="mt-2 flex text-sm font-medium sm:mt-4">
-                                <Link href={`/${product.slug}`} passHref>
-                                  <a className="text-indigo-600 hover:text-indigo-500">
-                                    {GENERAL_VIEW_PRODUCT}
-                                  </a>
+                                <Link
+                                  href={`/${product.slug}`}
+                                  className="text-indigo-600 hover:text-indigo-500"
+                                  passHref
+                                >
+                                  {GENERAL_VIEW_PRODUCT}
                                 </Link>
                                 <div className="border-l border-gray-200 ml-4 pl-4 sm:ml-6 sm:pl-6">
                                   <div className="border-l border-gray-200 ml-4 pl-4 sm:ml-6 sm:pl-6">

@@ -8,7 +8,7 @@ import { useUI } from '@components/ui/context'
 import Link from 'next/link'
 import cartHandler from '@components/services/cart'
 import { LoadingDots } from '@components/ui'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import {
   WISHLIST_TITLE,
   WISHLIST_SUB_TITLE,
@@ -121,13 +121,10 @@ export default function Wishlist() {
                             </p>
                           </div>
                           <div className="mt-2 flex text-sm font-medium sm:mt-4">
-                            <Link href={`/${product.slug}`}>
-                              <a
-                                href={product.slug}
+                            <Link href={`/${product.slug}`}
                                 className="text-indigo-600 hover:text-indigo-500"
                               >
                                 {GENERAL_VIEW_PRODUCT}
-                              </a>
                             </Link>
                             <div className="border-l border-gray-200 ml-4 pl-4 sm:ml-6 sm:pl-6">
                               <button
@@ -154,7 +151,10 @@ export default function Wishlist() {
                        <Image
                             width={80}
                             height={80}
-                            layout='fixed'
+                            style={{
+                              maxWidth: "100%",
+                              height: "auto"
+                            }}
                             src={product.image}
                             alt={product.name}
                             className="col-start-2 col-end-3 sm:col-start-1 sm:row-start-1 sm:row-span-2 w-20 h-20 rounded-lg object-center object-cover sm:w-40 sm:h-40 lg:w-52 lg:h-52 image"

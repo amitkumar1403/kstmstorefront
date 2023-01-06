@@ -61,8 +61,7 @@ export default function InlineList({
                   {item.fieldName}
                 </RadioGroup.Label>
                 
-                <Link href={`/${path}`} passHref>
-                  <a
+                <Link href={`/${path}`} passHref
                     aria-hidden="true"
                     onClick={() => { 
                       handleChange(item.fieldvalue)
@@ -71,7 +70,7 @@ export default function InlineList({
                       item.fieldvalue,
                       ' border shadow-md drop-shadow-md border-black border-opacity-10 '
                     )}
-                  />
+                  >
                 </Link>
               </RadioGroup.Option>
             )

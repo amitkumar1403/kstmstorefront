@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 
 interface HeroProps {
   banners?: []
@@ -36,7 +36,10 @@ const Hero: FC<HeroProps> = ({ banners = [] }) => {
                     priority
                     src={banner?.url}
                     alt={banner?.alt}
-                    layout="fill"
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto"
+                    }}
                     className='sm:max-h-screen sm:min-h-screen image banner-Image'></Image>
                 </div>
               </Link>

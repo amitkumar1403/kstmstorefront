@@ -31,7 +31,10 @@ import {
   SUBTOTAL_INCLUDING_TAX,
   YOUR_INFORMATION,
 } from '@components/utils/textVariables'
-import { ELEM_ATTR, ORDER_CONFIRMATION_AFTER_PROGRESS_BAR_ELEM_SELECTORS } from '@framework/content/use-content-snippet'
+import {
+  ELEM_ATTR,
+  ORDER_CONFIRMATION_AFTER_PROGRESS_BAR_ELEM_SELECTORS,
+} from '@framework/content/use-content-snippet'
 
 export default function OrderConfirmation() {
   const [order, setOrderData] = useState(defaultModel)
@@ -80,7 +83,8 @@ export default function OrderConfirmation() {
             </p>
             {order.orderNo ? (
               <p className="mt-2 text-black">
-                {GENERAL_YOUR_ORDER}{' '}<span className='font-bold text-black'>{order.orderNo}</span>{' '}
+                {GENERAL_YOUR_ORDER}{' '}
+                <span className="font-bold text-black">{order.orderNo}</span>{' '}
                 {GENERAL_ORDER_WILL_BE_WITH_YOU_SOON}
               </p>
             ) : null}
@@ -97,67 +101,71 @@ export default function OrderConfirmation() {
 
               <h3 className="sr-only">{GENERAL_ITEMS}</h3>
               {order.items.map((product: any) => {
-                let personalization = "";
-                if (product?.customInfo1 != "") {
-                  const message = JSON.parse(product?.customInfo1);
-                  personalization = message?.formatted?.data?.Message;
+                let personalization = ''
+                if (product?.customInfo1 != '') {
+                  const message = JSON.parse(product?.customInfo1)
+                  personalization = message?.formatted?.data?.Message
                 }
 
                 return (
-                  product?.name != "Personalization" &&
-                  <div
-                    key={product.id}
-                    className="flex py-10 space-x-6 border-b border-gray-200"
-                  >
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="flex-none object-cover object-center w-20 h-20 bg-gray-100 rounded-lg sm:w-40 sm:h-40"
-                    />
-                    <div className="flex flex-col flex-auto">
-                      <div>
-                        <h4 className="font-medium text-gray-900">
-                          <Link href={`/${product.slug}`}>
-                            <a>{product.name}</a>
-                          </Link>
-                        </h4>
+                  product?.name != 'Personalization' && (
+                    <div
+                      key={product.id}
+                      className="flex py-10 space-x-6 border-b border-gray-200"
+                    >
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="flex-none object-cover object-center w-20 h-20 bg-gray-100 rounded-lg sm:w-40 sm:h-40"
+                      />
+                      <div className="flex flex-col flex-auto">
+                        <div>
+                          <h4 className="font-medium text-gray-900">
+                            <Link href={`/${product.slug}`}>
+                              {product.name}
+                            </Link>
+                          </h4>
 
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: product.shortDescription,
-                          }}
-                          className="mt-2 text-sm text-gray-500"
-                        />
-                        {personalization != "" &&
-                          <>
-                            <div className='mt-2 ml-2 font-semibold text-black'>personalization</div>
-                            <div
-                              className="mt-1 ml-2 text-sm text-gray-500"
-                            >{personalization}</div>
-                          </>
-                        }
-
-                      </div>
-                      <div className="flex items-end flex-1 mt-6">
-                        <dl className="flex space-x-4 text-sm divide-x divide-gray-200 sm:space-x-6">
-                          <div className="flex">
-                            <dt className="font-medium text-gray-900">
-                              {GENERAL_QUANTITY}
-                            </dt>
-                            <dd className="ml-2 text-gray-700">{product.qty}</dd>
-                          </div>
-                          <div className="flex pl-4 sm:pl-6">
-                            <dt className="font-medium text-gray-900">
-                              {GENERAL_PRICE}
-                            </dt>
-                            <dd className="ml-2 text-gray-700">
-                              {product.price.formatted.withTax}
-                            </dd>
-                          </div>
-                        </dl>
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: product.shortDescription,
+                            }}
+                            className="mt-2 text-sm text-gray-500"
+                          />
+                          {personalization != '' && (
+                            <>
+                              <div className="mt-2 ml-2 font-semibold text-black">
+                                personalization
+                              </div>
+                              <div className="mt-1 ml-2 text-sm text-gray-500">
+                                {personalization}
+                              </div>
+                            </>
+                          )}
+                        </div>
+                        <div className="flex items-end flex-1 mt-6">
+                          <dl className="flex space-x-4 text-sm divide-x divide-gray-200 sm:space-x-6">
+                            <div className="flex">
+                              <dt className="font-medium text-gray-900">
+                                {GENERAL_QUANTITY}
+                              </dt>
+                              <dd className="ml-2 text-gray-700">
+                                {product.qty}
+                              </dd>
+                            </div>
+                            <div className="flex pl-4 sm:pl-6">
+                              <dt className="font-medium text-gray-900">
+                                {GENERAL_PRICE}
+                              </dt>
+                              <dd className="ml-2 text-gray-700">
+                                {product.price.formatted.withTax}
+                              </dd>
+                            </div>
+                          </dl>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )
                 )
               })}
 
@@ -245,7 +253,9 @@ export default function OrderConfirmation() {
                     </dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="font-medium text-gray-900">{GENERAL_TOTAL}</dt>
+                    <dt className="font-medium text-gray-900">
+                      {GENERAL_TOTAL}
+                    </dt>
                     <dd className="text-gray-900">
                       {order.grandTotal?.formatted?.withTax}
                     </dd>
@@ -255,20 +265,21 @@ export default function OrderConfirmation() {
             </section>
           ) : null}
           <div className="max-w-xl">
-            <Link href={`/`} passHref>
-              <a
-                href="/"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                {BTN_BACK_TO_HOME}
-              </a>
+            <Link
+              href={`/`}
+              passHref
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              {BTN_BACK_TO_HOME}
             </Link>
           </div>
         </div>
       </main>
 
       {/* Placeholder for order confirmation after progress bar snippet */}
-      <div className={`${ELEM_ATTR}${ORDER_CONFIRMATION_AFTER_PROGRESS_BAR_ELEM_SELECTORS[0]}`}></div>
+      <div
+        className={`${ELEM_ATTR}${ORDER_CONFIRMATION_AFTER_PROGRESS_BAR_ELEM_SELECTORS[0]}`}
+      ></div>
     </>
-  );
+  )
 }

@@ -5,7 +5,7 @@ import { useState } from 'react'
 import cartHandler from '@components/services/cart'
 import { useUI } from '@components/ui/context'
 import { GENERAL_ADD_TO_BASKET, GENERAL_ENGRAVING, IMG_PLACEHOLDER, ITEM_TYPE_ADDON } from '@components/utils/textVariables'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 export default function RelatedProducts({
   relatedProducts = [],
   relatedProductList = [],
@@ -93,9 +93,12 @@ export default function RelatedProducts({
                                 <Link href={`/${product.slug}`} passHref>
                                   <div className='image-container'>
                                     <Image
-                                      layout='fill'
                                       src={product.image || IMG_PLACEHOLDER}
                                       alt={product.name}
+                                      style={{
+                                        maxWidth: "100%",
+                                        height: "auto"
+                                      }}
                                       className="w-full h-full object-center object-cover image">                                      
                                     </Image>  
                                   </div>
@@ -104,9 +107,7 @@ export default function RelatedProducts({
                               <div className="relative mt-4">
                                 <h3 className="min-h-50px text-sm font-medium text-gray-900">
                                   <Link href={`/${product.slug}`} passHref>
-                                    <a href={`/${product.slug}`}>
                                       {product.name}
-                                    </a>
                                   </Link>
                                 </h3>
                               </div>

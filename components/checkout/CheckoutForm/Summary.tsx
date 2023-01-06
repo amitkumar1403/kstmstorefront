@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import { TrashIcon } from '@heroicons/react/solid'
 import { PlusSmIcon, MinusSmIcon } from '@heroicons/react/outline'
 import PromotionInput from '@components/cart/PromotionInput'
@@ -49,11 +49,14 @@ export default function Summary({
                 })}
                 <div className="flex-shrink-0">
                   <Image
-                    layout='fixed'
                     width={80}
                     height={100}
                     src={`${product.image}` || IMG_PLACEHOLDER}
                     alt={product.name}
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto"
+                    }}
                     className="w-20 rounded-md"
                   ></Image>
                 </div>
@@ -65,10 +68,8 @@ export default function Summary({
                         <span className="block font-semibold text-black text-md">
                           {product.brand}
                         </span>
-                        <Link href={`/${product.slug}`}>
-                          <a className="block font-normal text-gray-700 hover:text-gray-800">
+                        <Link href={`/${product.slug}`} className="block font-normal text-gray-700 hover:text-gray-800">
                             {product.name}
-                          </a>
                         </Link>
                       </h4>
                       <p className="mt-1 text-sm font-bold text-black">

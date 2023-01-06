@@ -9,7 +9,7 @@ import { XIcon, PlusSmIcon, MinusSmIcon } from '@heroicons/react/outline'
 import PromotionInput from '../PromotionInput'
 import { EVENTS_MAP } from '@components/services/analytics/constants'
 import eventDispatcher from '@components/services/analytics/eventDispatcher'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 
 import useTranslation, {
   CLOSE_PANEL,
@@ -78,7 +78,7 @@ const CartSidebarView: FC = () => {
       if (type === 'delete') {
         data.qty = 0
       }
-      
+
       try {
         const item = await addToCart(data, type, { product })
         setCartItems(item)
@@ -99,7 +99,7 @@ const CartSidebarView: FC = () => {
         as="div"
         className="fixed inset-0 overflow-hidden z-999"
         onClose={handleClose}
-        >
+      >
         <div className="absolute inset-0 overflow-hidden z-999">
           <Transition.Child
             as={Fragment}
@@ -108,7 +108,7 @@ const CartSidebarView: FC = () => {
             enterTo="opacity-100"
             leave="ease-in-out duration-500"
             leaveFrom="opacity-100"
-            leaveTo="opacity-0" 
+            leaveTo="opacity-0"
           >
             <Dialog.Overlay className="w-full h-screen" onClick={handleClose} />  
           </Transition.Child>
@@ -122,7 +122,7 @@ const CartSidebarView: FC = () => {
               leave="transform transition ease-in-out duration-500 sm:duration-700"
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
-              >
+            >
               <div className="w-screen max-w-md">
                 <div className="flex flex-col h-full overflow-y-scroll bg-white shadow-xl">
                   <div className="flex-1 px-4 py-6 overflow-y-auto sm:px-6">
@@ -135,7 +135,7 @@ const CartSidebarView: FC = () => {
                           type="button"
                           className="p-2 -m-2 text-gray-400 hover:text-gray-500"
                           onClick={handleClose}
-                          >
+                        >
                           <span className="sr-only">{CLOSE_PANEL}</span>
                           <XIcon className="w-6 h-6" aria-hidden="true" />
                         </button>
@@ -152,7 +152,7 @@ const CartSidebarView: FC = () => {
                                 type="button"
                                 className="font-medium text-indigo-600 hover:text-indigo-500"
                                 onClick={handleClose}
-                                >
+                              >
                                 {GENERAL_CATALOG}
                                 <span aria-hidden="true"> &rarr;</span>
                               </button>
@@ -162,7 +162,7 @@ const CartSidebarView: FC = () => {
                         <ul
                           role="list"
                           className="-my-6 divide-y divide-gray-200"
-                          >
+                        >
                           {cartItems.lineItems?.map((product: any) => (
                             <li key={product.id} className="">
                               <div className="flex py-6">
@@ -170,11 +170,17 @@ const CartSidebarView: FC = () => {
                                   <Image
                                     width={100}
                                     height={150}
-                                    layout='fixed'
-                                    src={`${product.image}` || '/assets/icons/newPajama.png'}
+                                    style={{
+                                      maxWidth: "100%",
+                                      height: "auto"
+                                    }}
+                                    src={
+                                      `${product.image}` ||
+                                      '/assets/icons/newPajama.png'
+                                    }
                                     alt={product.name}
                                     className="object-cover object-center w-full h-full"
-                                    ></Image>
+                                  ></Image>
                                   {/* <img
                                     src={product.image}
                                     alt={product.name}
@@ -187,7 +193,7 @@ const CartSidebarView: FC = () => {
                                     <div className="flex justify-between font-semibold text-gray-900 font-sm">
                                       <h3 onClick={handleClose}>
                                         <Link href={`/${product.slug}`}>
-                                          {product.name.replace('Color','')}
+                                          {product.name.replace('Color', '')}
                                         </Link>
                                       </h3>
                                       <p className="ml-4">
@@ -206,7 +212,7 @@ const CartSidebarView: FC = () => {
                                         onClick={() =>
                                           handleItem(product, 'delete')
                                         }
-                                        >
+                                      >
                                         {GENERAL_REMOVE}
                                       </button>
                                       <div className="flex flex-row px-4 text-gray-900 border">
@@ -232,17 +238,18 @@ const CartSidebarView: FC = () => {
                               </div>
                               {product.children?.map(
                                 (child: any, idx: number) => {
-                                  const message = JSON.parse(child.customInfo1);
-                                  const personalization = message?.formatted?.data?.Message;
-                                  
+                                  const message = JSON.parse(child.customInfo1)
+                                  const personalization =
+                                    message?.formatted?.data?.Message
+
                                   return (
                                     <div className="flex" key={idx}>
                                       {/* {console.log("check "+JSON.stringify(child))} */}
                                       <div className="justify-between flex-shrink-0 w-24 py-1 ml-1 overflow-hidden">
-                                        <div className='image-container'>
+                                        <div className="image-container">
                                           <img
                                             // layout='fill'
-                                            src='/KSTMize.jpg'
+                                            src="/KSTMize.jpg"
                                             // alt={child.name}
                                             className="object-cover object-center w-full h-full image"
                                           ></img>
@@ -251,11 +258,12 @@ const CartSidebarView: FC = () => {
                                       <div className="flex flex-col flex-1 ml-4">
                                         <div>
                                           <div className="flex justify-between font-medium text-gray-900">
-                                            <h3 onClick={handleClose} className="font-bold">
+                                            <h3
+                                              onClick={handleClose}
+                                              className="font-bold"
+                                            >
                                               {/* <Link href={`/${child.slug}`}> */}
-                                              <label>
-                                                {child.name}
-                                              </label>
+                                              <label>{child.name}</label>
                                               {/* </Link> */}
                                             </h3>
                                             <p className="ml-4">
@@ -264,7 +272,7 @@ const CartSidebarView: FC = () => {
                                           </div>
                                           {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                         </div>
-                                        <div className='w-full'>
+                                        <div className="w-full">
                                           {personalization}
                                         </div>
                                       </div>
@@ -296,33 +304,41 @@ const CartSidebarView: FC = () => {
                     <div className="px-4 py-6 border-t border-gray-200 sm:px-6">
                       <PromotionInput />
                       <div className="flex justify-between py-2 text-gray-900 font-small">
-                        <p className='text-sm'>{SUBTOTAL_INCLUDING_TAX}</p>
-                        <p className='font-bold text-black'>{cartItems.subTotal?.formatted?.withTax}</p>
+                        <p className="text-sm">{SUBTOTAL_INCLUDING_TAX}</p>
+                        <p className="font-bold text-black">
+                          {cartItems.subTotal?.formatted?.withTax}
+                        </p>
                       </div>
                       <div className="flex justify-between py-2 text-black font-small">
                         <p>{GENERAL_SHIPPING}</p>
-                        <p className='font-bold text-black'>{cartItems.shippingCharge?.formatted?.withTax}</p>
+                        <p className="font-bold text-black">
+                          {cartItems.shippingCharge?.formatted?.withTax}
+                        </p>
                       </div>
 
                       {cartItems.promotionsApplied?.length > 0 && (
                         <div className="flex justify-between py-2 text-black font-small">
-                          <p className='text-sm'>{GENERAL_DISCOUNT}</p>
-                          <p className='font-bold text-red-500'>{'-'}{cartItems.discount?.formatted?.withTax}</p>
+                          <p className="text-sm">{GENERAL_DISCOUNT}</p>
+                          <p className="font-bold text-red-500">
+                            {'-'}
+                            {cartItems.discount?.formatted?.withTax}
+                          </p>
                         </div>
                       )}
                       <div className="flex justify-between font-medium text-black">
-                        <p className='text-xl'>{GENERAL_TOTAL}</p>
-                        <p className='text-xl font-bold text-black'>{cartItems.grandTotal?.formatted?.withTax}</p>
+                        <p className="text-xl">{GENERAL_TOTAL}</p>
+                        <p className="text-xl font-bold text-black">
+                          {cartItems.grandTotal?.formatted?.withTax}
+                        </p>
                       </div>
                       <div className="mt-6">
-                        <Link href="/cart" passHref>
-                          <a
-                            onClick={handleClose}
-                            className="flex items-center justify-center px-6 py-3 font-medium text-white uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900"
-                            href="/cart"
-                          >
-                            {content.GENERAL_CHECKOUT}
-                          </a>
+                        <Link
+                          href="/cart"
+                          passHref
+                          onClick={handleClose}
+                          className="flex items-center justify-center px-6 py-3 font-medium text-white uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900"
+                        >
+                          {content.GENERAL_CHECKOUT}
                         </Link>
                       </div>
                       <div className="flex justify-center mt-6 text-sm text-center text-gray-500">

@@ -14,7 +14,7 @@ const BreadCrumbs = dynamic(() => import('@components/ui/BreadCrumbs'))
 import { useReducer, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import useSwr from 'swr'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import { NextSeo } from 'next-seo'
 import { postData } from '@components/utils/clientFetcher'
 import { IMG_PLACEHOLDER, RESULTS } from '@components/utils/textVariables'
@@ -228,16 +228,18 @@ export default function CollectionPage(props: any) {
                 <SwiperSlide key={idx}>
                   <Link href={img.link || '#'}>
                     <Image
-                      layout='fixed'
                       width={1920}
                       height={460}
                       src={img.url || IMG_PLACEHOLDER}
                       alt={props.name}
                       className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"
-                    ></Image>
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                      }}></Image>
                   </Link>
                 </SwiperSlide>
-              )
+              );
             })}
           </Swiper>
         </div>
@@ -383,8 +385,7 @@ export default function CollectionPage(props: any) {
       {props.products.total == 0 &&
         <div className='w-full py-32 mx-auto text-center'>
           <h3 className='py-3 text-3xl font-semibold text-gray-200'>No Item Availabe in {props.name} Collection!</h3>
-          <Link href="/collection">
-            <a href='/collection' className='text-lg font-semibold text-indigo-500'><ChevronLeftIcon className='relative top-0 inline-block w-4 h-4'></ChevronLeftIcon> Back to collections</a>
+          <Link href="/collection" className='text-lg font-semibold text-indigo-500'><ChevronLeftIcon className='relative top-0 inline-block w-4 h-4'></ChevronLeftIcon> Back to collections
           </Link>
         </div>
       }
@@ -412,7 +413,7 @@ export default function CollectionPage(props: any) {
         }}
       />
     </main>
-  )
+  );
 }
 
 CollectionPage.Layout = Layout

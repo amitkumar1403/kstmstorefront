@@ -10,9 +10,9 @@ import Link from 'next/link'
 import { useUI } from '@components/ui/context'
 import cartHandler from '@components/services/cart'
 import { PlusSmIcon, MinusSmIcon } from '@heroicons/react/outline'
-const  PromotionInput  = dynamic(() => import('@components/cart/PromotionInput'));
+const PromotionInput = dynamic(() => import('@components/cart/PromotionInput'))
 import { useEffect } from 'react'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import axios from 'axios'
 import { getShippingPlans } from '@framework/shipping'
 import {
@@ -88,7 +88,7 @@ function Cart({ cart }: any) {
       DeliveryCenter: null,
     }
     //const response = await axios.post(NEXT_SHIPPING_PLANS, { model })
-    const shippingPlans = await getShippingPlans()({ model: model });
+    const shippingPlans = await getShippingPlans()({ model: model })
     //console.log(JSON.stringify(shippingPlans));
 
     setCartItems({
@@ -99,13 +99,12 @@ function Cart({ cart }: any) {
 
   useEffect(() => {
     async function loadShippingPlans() {
-      await fetchShippingPlans();
+      await fetchShippingPlans()
     }
 
     if (cart?.shippingMethods.length > 0) {
       loadShippingPlans()
-    }
-    else {
+    } else {
       setCartItems(cart)
     }
   }, [])
@@ -146,7 +145,11 @@ function Cart({ cart }: any) {
     <div className="w-full mx-auto bg-white sm:w-3/5">
       <main className="px-4 pt-6 pb-12 sm:pt-6 sm:pb-16 sm:pb-0 sm:px-0 lg:px-0">
         <h1 className="relative text-2xl font-semibold tracking-tight text-black uppercase sm:text-2xl">
-          {GENERAL_SHOPPING_CART} <span className='absolute pl-2 text-sm font-semibold text-gray-400 top-2'>{'- '}{userCart.lineItems.length} Items added</span>
+          {GENERAL_SHOPPING_CART}{' '}
+          <span className="absolute pl-2 text-sm font-semibold text-gray-400 top-2">
+            {'- '}
+            {userCart.lineItems.length} Items added
+          </span>
         </h1>
         {!isEmpty && (
           <form className="relative mt-4 sm:mt-6 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
@@ -155,21 +158,26 @@ function Cart({ cart }: any) {
                 {ITEMS_IN_YOUR_CART}
               </h2>
 
-              <ul
-                role="list"
-                className=""
-              >
+              <ul role="list" className="">
                 {userCart.lineItems?.map((product: any, productIdx: number) => (
-                  <li key={productIdx} className="flex p-2 mb-2 border border-gray-200 rounded-md sm:p-3">
+                  <li
+                    key={productIdx}
+                    className="flex p-2 mb-2 border border-gray-200 rounded-md sm:p-3"
+                  >
                     <div className="flex-shrink-0">
                       <Image
-                        layout="fixed"
                         width={140}
                         height={180}
-                        src={generateUri(product.image, "h=200&fm=webp") || IMG_PLACEHOLDER} 
+                        src={
+                          generateUri(product.image, 'h=200&fm=webp') ||
+                          IMG_PLACEHOLDER
+                        }
                         alt={product.name}
                         className="object-cover object-center w-16 h-20 rounded-sm sm:w-48 sm:h-48 image"
-                      />                     
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }} />
                     </div>
                     <div className="flex flex-col justify-between flex-1 ml-4 sm:ml-6">
                       <div className="relative flex justify-between h-full pr-6 sm:pr-9 sm:pr-0">
@@ -180,20 +188,20 @@ function Cart({ cart }: any) {
                                 {product.brand}
                               </h3>
                               <h3 className="my-2 sm:text-md text-md sm:my-1">
-                                <Link href={`/${product.slug}`}>
-                                  <a
-                                    href={product.slug}
-                                    className="font-normal text-gray-700 hover:text-gray-800"
-                                  >
-                                    {product.name}
-                                  </a>
+                                <Link
+                                  href={`/${product.slug}`}
+                                  className="font-normal text-gray-700 hover:text-gray-800"
+                                >
+                                  {product.name}
                                 </Link>
                               </h3>
                             </div>
                             <div className="pl-0 pr-0 mt-2 sm:mt-2 sm:pr-0">
                               <div className="flex flex-row w-4/6 px-2 text-gray-900 border sm:px-4 sm:w-2/6">
                                 <MinusSmIcon
-                                  onClick={() => handleItem(product, 'decrease')}
+                                  onClick={() =>
+                                    handleItem(product, 'decrease')
+                                  }
                                   className="w-4 cursor-pointer"
                                 />
                                 <span className="px-4 py-1 text-md sm:py-1">
@@ -201,13 +209,17 @@ function Cart({ cart }: any) {
                                 </span>
                                 <PlusSmIcon
                                   className="w-4 cursor-pointer"
-                                  onClick={() => handleItem(product, 'increase')}
+                                  onClick={() =>
+                                    handleItem(product, 'increase')
+                                  }
                                 />
                               </div>
                             </div>
                             <p className="mt-1 font-bold text-black text-md sm:font-medium">
                               {product.price?.formatted?.withTax}
-                              {product.listPrice?.raw.withTax > 0 && product.listPrice?.raw.withTax != product.price?.raw?.withTax ? (
+                              {product.listPrice?.raw.withTax > 0 &&
+                              product.listPrice?.raw.withTax !=
+                                product.price?.raw?.withTax ? (
                                 <span className="px-2 text-sm text-red-400 line-through">
                                   {GENERAL_PRICE_LABEL_RRP}{' '}
                                   {product.listPrice.formatted.withTax}
@@ -233,41 +245,41 @@ function Cart({ cart }: any) {
                                         {child.name}
                                       </Link>
                                       <p className="ml-4">
-                                        {child.price?.formatted?.withTax > 0 ? child.price?.formatted?.withTax : ""}
+                                        {child.price?.formatted?.withTax > 0
+                                          ? child.price?.formatted?.withTax
+                                          : ''}
                                       </p>
                                       {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                     </div>
-                                    {
-                                      !child.parentProductId ? (
-                                        <div className="flex items-center justify-end flex-1 text-sm">
-                                          {/* <p className="text-gray-500">Qty {product.quantity}</p> */}
+                                    {!child.parentProductId ? (
+                                      <div className="flex items-center justify-end flex-1 text-sm">
+                                        {/* <p className="text-gray-500">Qty {product.quantity}</p> */}
 
-                                          <button
-                                            type="button"
-                                            onClick={() =>
-                                              handleItem(child, 'delete')
-                                            }
-                                            className="inline-flex p-2 -m-2 text-gray-400 hover:text-gray-500"
-                                          >
-                                            <span className="sr-only">
-                                              {GENERAL_REMOVE}
-                                            </span>
-                                            <XIconSolid
-                                              className="w-5 h-5"
-                                              aria-hidden="true"
-                                            />
-                                          </button>
+                                        <button
+                                          type="button"
+                                          onClick={() =>
+                                            handleItem(child, 'delete')
+                                          }
+                                          className="inline-flex p-2 -m-2 text-gray-400 hover:text-gray-500"
+                                        >
+                                          <span className="sr-only">
+                                            {GENERAL_REMOVE}
+                                          </span>
+                                          <XIconSolid
+                                            className="w-5 h-5"
+                                            aria-hidden="true"
+                                          />
+                                        </button>
+                                      </div>
+                                    ) : (
+                                      <div className="pl-2 pr-0 mt-0 sm:mt-0 sm:pr-9">
+                                        <div className="flex flex-row px-2 text-gray-900 border sm:px-4">
+                                          <span className="px-2 py-1 text-md sm:py-2">
+                                            {child.qty}
+                                          </span>
                                         </div>
-                                      ) : (
-                                        <div className="pl-2 pr-0 mt-0 sm:mt-0 sm:pr-9">
-                                          <div className="flex flex-row px-2 text-gray-900 border sm:px-4">
-                                            <span className="px-2 py-1 text-md sm:py-2">
-                                              {child.qty}
-                                            </span>
-                                          </div>
-                                        </div>
-                                      )
-                                    }
+                                      </div>
+                                    )}
                                   </div>
                                 )
                               }
@@ -277,7 +289,7 @@ function Cart({ cart }: any) {
                             {product.shippingPlan?.shippingSpeed}
                           </p>
                         </div>
-                        
+
                         <div className="absolute top-0 right-0">
                           <button
                             type="button"
@@ -313,7 +325,7 @@ function Cart({ cart }: any) {
               >
                 {GENERAL_ORDER_SUMMARY}
               </h2>
-              <div className='p-3 mt-6 border sm:p-3 '>
+              <div className="p-3 mt-6 border sm:p-3 ">
                 <PromotionInput />
               </div>
               <dl className="mt-6 space-y-2 sm:space-y-2">
@@ -340,14 +352,19 @@ function Cart({ cart }: any) {
                         <span>{GENERAL_DISCOUNT}</span>
                       </dt>
                       <dd className="font-semibold text-red-500 text-md">
-                        <p>{'-'}{cartItems.discount?.formatted?.withTax}</p>
+                        <p>
+                          {'-'}
+                          {cartItems.discount?.formatted?.withTax}
+                        </p>
                       </dd>
                     </>
                   )}
-                </div>                
+                </div>
 
                 <div className="flex items-center justify-between pt-2 text-gray-900 border-t">
-                  <dt className="text-lg font-bold text-black">{GENERAL_TOTAL}</dt>
+                  <dt className="text-lg font-bold text-black">
+                    {GENERAL_TOTAL}
+                  </dt>
                   <dd className="text-xl font-bold text-black">
                     {cartItems.grandTotal?.formatted?.withTax}
                   </dd>
@@ -355,13 +372,12 @@ function Cart({ cart }: any) {
               </dl>
 
               <div className="mt-6">
-                <Link href="/checkout">
-                  <a
-                    type="submit"
-                    className="w-full px-4 py-3 font-medium text-center text-white uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-black"
-                  >
-                    {BTN_PLACE_ORDER}
-                  </a>
+                <Link
+                  href="/checkout"
+                  type="submit"
+                  className="w-full px-4 py-3 font-medium text-center text-white uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-black"
+                >
+                  {BTN_PLACE_ORDER}
                 </Link>
               </div>
             </section>
@@ -383,7 +399,7 @@ function Cart({ cart }: any) {
         )}
       </main>
     </div>
-  )
+  );
 }
 Cart.Layout = Layout
 

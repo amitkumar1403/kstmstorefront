@@ -12,7 +12,7 @@ import { setItem, getItem } from '../../utils/localStorage'
 import cartHandler from '@components/services/cart'
 import axios from 'axios'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import 'swiper/css'
 import 'swiper/css/navigation'
 import SwiperCore, { Navigation } from 'swiper'
@@ -590,7 +590,10 @@ export default function ProductView({
                                       //src="/slider-1 - Copy.jpg"
                                       alt={image.name}
                                       className="object-fill object-center w-full h-full image"
-                                      layout='responsive'
+                                      style={{
+                                        maxWidth: "100%",
+                                        height: "auto"
+                                      }}
                                       sizes='320 600 100'
                                       width={1800} height={1400}
                                       blurDataURL={`${image.image}?h=600&w=400&fm=webp` || IMG_PLACEHOLDER}
@@ -627,9 +630,12 @@ export default function ProductView({
                                       alt={image.name}
                                       priority
                                       className="object-cover object-center w-full h-full image"
-                                      layout='responsive'
                                       sizes='320 600 1000'
                                       width={1800} height={1400}
+                                      style={{
+                                        maxWidth: "100%",
+                                        height: "auto"
+                                      }}
                                     />
 
                                     {/* <Image
@@ -920,11 +926,9 @@ export default function ProductView({
                     <SwiperSlide className='py-0 border border-grey-40 hover:border-black' key={valId}>
                       <div className='w-full h-full cursor-pointer'>
                         <Link className='' href={(val.link).replace('products/', '')}>
-                          <a>
                             <Image src={val.image || '/pdp1.png'} className='object-top' height={600} width={480}></Image>
                             <p className='text-sm font-semibold'>{val.name}</p>
                             <label>{val.price}</label>
-                          </a>
                         </Link>
                       </div>
                     </SwiperSlide>

@@ -6,7 +6,7 @@ import axios from 'axios'
 import Form from './form'
 import { GENERAL_CLOSE, GENERAL_ENGRAVING, GENERAL_ENGRAVING_PERSONALIZE_BOTTLE } from '@components/utils/textVariables'
 import { Product } from '@commerce/types'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 export default function Engraving({
   onClose = () => { },
   engravingPrice = '£20',
@@ -85,7 +85,10 @@ export default function Engraving({
                       {/* {JSON.stringify(product.image)} */}
                       <label className='text-sm font-bold'>{product.name}</label>
                       <Image
-                        layout='fixed'
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }}
                         width={220}
                         height={300}
                         src={product.image || '/pdp1.png'}
