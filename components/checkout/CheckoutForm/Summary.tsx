@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import { TrashIcon } from '@heroicons/react/solid'
 import { PlusSmIcon, MinusSmIcon } from '@heroicons/react/outline'
 import PromotionInput from '@components/cart/PromotionInput'

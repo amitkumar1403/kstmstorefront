@@ -1,7 +1,7 @@
 // Base Imports
 import React from 'react'
 import Link from 'next/link'
-import Image from "next/image";
+import Image from 'next/legacy/image';
 import type { GetStaticPropsContext } from 'next'
 import dynamic from 'next/dynamic'
 import { IMG_PLACE } from '@components/utils/textVariables'

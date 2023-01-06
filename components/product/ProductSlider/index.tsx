@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import 'swiper/css'
 import 'swiper/css/navigation'
 

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 
 interface HeroProps {
   banners?: []

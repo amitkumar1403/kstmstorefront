@@ -17,7 +17,7 @@ const ProductFiltersTopBar = dynamic(
   () => import('@components/product/Filters/FilterTopBar')
 )
 import Link from 'next/link'
-import Image from "next/image";
+import Image from 'next/legacy/image';
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import useSwr from 'swr'

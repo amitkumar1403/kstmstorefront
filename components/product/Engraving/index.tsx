@@ -6,7 +6,7 @@ import axios from 'axios'
 import Form from './form'
 import { GENERAL_CLOSE, GENERAL_ENGRAVING, GENERAL_ENGRAVING_PERSONALIZE_BOTTLE } from '@components/utils/textVariables'
 import { Product } from '@commerce/types'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 export default function Engraving({
   onClose = () => { },
   engravingPrice = '£20',

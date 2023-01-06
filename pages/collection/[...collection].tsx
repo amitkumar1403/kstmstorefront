@@ -14,7 +14,7 @@ const BreadCrumbs = dynamic(() => import('@components/ui/BreadCrumbs'))
 import { useReducer, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import useSwr from 'swr'
-import Image from "next/image";
+import Image from 'next/legacy/image';
 import { NextSeo } from 'next-seo'
 import { postData } from '@components/utils/clientFetcher'
 import { IMG_PLACEHOLDER, RESULTS } from '@components/utils/textVariables'

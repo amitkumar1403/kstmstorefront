@@ -12,7 +12,7 @@ import { setItem, getItem } from '../../utils/localStorage'
 import cartHandler from '@components/services/cart'
 import axios from 'axios'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import 'swiper/css'
 import 'swiper/css/navigation'
 import SwiperCore, { Navigation } from 'swiper'

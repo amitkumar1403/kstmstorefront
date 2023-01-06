@@ -5,7 +5,7 @@ import { useState } from 'react'
 import cartHandler from '@components/services/cart'
 import { useUI } from '@components/ui/context'
 import { GENERAL_ADD_TO_BASKET, GENERAL_ENGRAVING, IMG_PLACEHOLDER, ITEM_TYPE_ADDON } from '@components/utils/textVariables'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 export default function RelatedProducts({
   relatedProducts = [],
   relatedProductList = [],

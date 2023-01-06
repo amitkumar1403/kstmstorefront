@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import { useState, useEffect, useLayoutEffect } from 'react'
 import { SearchIcon } from '@heroicons/react/outline'
 import axios from 'axios'

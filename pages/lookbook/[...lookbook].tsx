@@ -14,7 +14,7 @@ import {
 } from '@components/utils/constants'
 import { useEffect, useState } from 'react'
 import { NextSeo } from 'next-seo'
-import Image from "next/image";
+import Image from 'next/legacy/image';
 import { EVENTS_MAP } from '@components/services/analytics/constants'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 import {IMG_PLACEHOLDER, SHOP_THE_LOOK} from '@components/utils/textVariables'

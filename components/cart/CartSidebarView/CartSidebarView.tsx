@@ -9,7 +9,7 @@ import { XIcon, PlusSmIcon, MinusSmIcon } from '@heroicons/react/outline'
 import PromotionInput from '../PromotionInput'
 import { EVENTS_MAP } from '@components/services/analytics/constants'
 import eventDispatcher from '@components/services/analytics/eventDispatcher'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 
 import useTranslation, {
   CLOSE_PANEL,

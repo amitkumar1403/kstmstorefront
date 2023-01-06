@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import { getProductFromAttributes } from '@components/utils/attributesGenerator'
 import Link from 'next/link'
 import { HeartIcon, XIcon } from '@heroicons/react/outline'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import { groupBy, round } from 'lodash'
 import Button from '@components/ui/AddButton'
 import { BTN_ADD_TO_FAVORITES } from '@components/utils/textVariables'

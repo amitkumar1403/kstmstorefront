@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEventHandler, useEffect, useState } from 'react'
 import cn from 'classnames'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import Link from 'next/link'
 import s from './CartItem.module.css'
 import { Trash, Plus, Minus, Cross } from '@components/icons'

@@ -2,7 +2,7 @@ import type { GetStaticPathsContext, GetStaticPropsContext } from 'next'
 import getCollections from '@framework/api/content/getCollections'
 import { Layout } from '@components/common'
 import Link from 'next/link'
-import Image from 'next/legacy/image';
+import Image from "next/image";
 import {
   IMG_PLACEHOLDER,
   PRODUCTS_AVAILABLE,
@@ -29,8 +29,11 @@ export default function CollectionList(props: any) {
                       src={collection.mainImage || IMG_PLACEHOLDER}
                       alt={collection.name}
                       className="w-full h-full object-center object-cover group-hover:opacity-75 image"
-                      fill
-                      sizes="100vw"></Image>
+                      sizes="100vw"
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                      }}></Image>
                   </div>
                 </div>
                 <div className="flex-1">
