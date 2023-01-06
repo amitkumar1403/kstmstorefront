@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps, nav, footer, ...props }: any) {
   const [isAppLoading, setAppIsLoading] = useState(true)
   const [language, setLanguage] = useState('')
 
-  const snippets = [...pageProps?.globalSnippets ?? [], ...pageProps?.snippets ?? []];
+  const snippets = [...(pageProps?.globalSnippets ?? []), ...(pageProps?.snippets ?? [])];
 
   const router = useRouter()
   const Layout = (Component as any).Layout || Noop

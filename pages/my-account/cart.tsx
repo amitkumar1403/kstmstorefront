@@ -12,7 +12,7 @@ import cartHandler from '@components/services/cart'
 import { PlusSmIcon, MinusSmIcon } from '@heroicons/react/outline'
 const PromotionInput = dynamic(() => import('@components/cart/PromotionInput'))
 import { useEffect } from 'react'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import axios from 'axios'
 import { getShippingPlans } from '@framework/shipping'
 import {

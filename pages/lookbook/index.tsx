@@ -1,7 +1,7 @@
 import withDataLayer, { PAGE_TYPES } from '@components/withDataLayer'
 import { Layout } from '@components/common'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import type { GetStaticPropsContext } from 'next'
 import getLookbooks from '@framework/api/content/lookbook'
 import { Swiper, SwiperSlide } from 'swiper/react'

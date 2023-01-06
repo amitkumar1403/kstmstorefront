@@ -2,7 +2,7 @@ import type { GetStaticPropsContext } from 'next'
 import commerce from '@lib/api/commerce'
 import LayoutError from '../components/common/Layout/LayoutError'
 import { Text } from '@components/ui'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import { isMobile } from 'react-device-detect'
 import {
   ERROR_PAGE_NOT_FOUND,
