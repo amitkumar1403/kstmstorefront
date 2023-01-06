@@ -14,7 +14,7 @@ const BreadCrumbs = dynamic(() => import('@components/ui/BreadCrumbs'))
 import { useReducer, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import useSwr from 'swr'
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { NextSeo } from 'next-seo'
 import { postData } from '@components/utils/clientFetcher'
 import { IMG_PLACEHOLDER, RESULTS } from '@components/utils/textVariables'
@@ -228,16 +228,14 @@ export default function CollectionPage(props: any) {
                 <SwiperSlide key={idx}>
                   <Link href={img.link || '#'}>
                     <Image
-                      layout='fixed'
                       width={1920}
                       height={460}
                       src={img.url || IMG_PLACEHOLDER}
                       alt={props.name}
-                      className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"
-                    ></Image>
+                      className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"></Image>
                   </Link>
                 </SwiperSlide>
-              )
+              );
             })}
           </Swiper>
         </div>
@@ -411,7 +409,7 @@ export default function CollectionPage(props: any) {
         }}
       />
     </main>
-  )
+  );
 }
 
 CollectionPage.Layout = Layout

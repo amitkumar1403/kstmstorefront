@@ -23,6 +23,7 @@
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^1.0.6",
     "@material-tailwind/react": "^1.2.4",
+    "@next/font": "^13.1.1",
     "@react-spring/web": "^9.2.1",
     "@stripe/react-stripe-js": "^1.7.0",
     "@stripe/stripe-js": "^1.22.0",

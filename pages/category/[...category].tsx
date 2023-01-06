@@ -17,7 +17,7 @@ const ProductFiltersTopBar = dynamic(
   () => import('@components/product/Filters/FilterTopBar')
 )
 import Link from 'next/link'
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import useSwr from 'swr'
@@ -314,16 +314,14 @@ function CategoryPage({ category, products }: any) {
                   <SwiperSlide key={idx}>
                     <Link href={image.link || '#'}>
                       <Image
-                        layout="fixed"
                         width={1920}
                         height={460}
                         src={image.url || IMG_PLACEHOLDER}
                         alt={category.name}
-                        className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"
-                      ></Image>
+                        className="object-cover object-center w-full h-48 cursor-pointer sm:h-96 sm:max-h-96"></Image>
                     </Link>
                   </SwiperSlide>
-                )
+                );
               })}
             </Swiper>
           ) : (
@@ -505,7 +503,7 @@ function CategoryPage({ category, products }: any) {
         }}
       />
     </div>
-  )
+  );
 }
 
 export default withDataLayer(CategoryPage, PAGE_TYPE)

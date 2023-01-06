@@ -1,7 +1,7 @@
 import type { GetStaticPropsContext } from 'next'
 import { getAllCategories } from '@framework/category'
 import Link from 'next/link'
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import { Layout } from '@components/common'
 import {
   IMG_PLACEHOLDER,
@@ -40,16 +40,16 @@ export default function CategoryList(props: any) {
                               }
                               alt={category.name}
                               className="object-cover object-center w-full h-full group-hover:opacity-75 image"
-                              layout="fill"
-                            ></Image>
+                              fill
+                              sizes="100vw"></Image>
                           </div>
                         ) : (
                           <Image
                             src={IMG_PLACEHOLDER}
                             alt={category.name}
                             className="object-cover object-center w-full h-full group-hover:opacity-75 image"
-                            layout="fill"
-                          ></Image>
+                            fill
+                            sizes="100vw"></Image>
                         )}
                       </span>
                       <span
@@ -77,7 +77,7 @@ export default function CategoryList(props: any) {
         )}
       </section>
     </main>
-  )
+  );
 }
 
 CategoryList.Layout = Layout

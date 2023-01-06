@@ -8,7 +8,7 @@ import { useUI } from '@components/ui/context'
 import Link from 'next/link'
 import cartHandler from '@components/services/cart'
 import { LoadingDots } from '@components/ui'
-import Image from 'next/image'
+import Image from 'next/legacy/image';
 import {
   WISHLIST_TITLE,
   WISHLIST_SUB_TITLE,

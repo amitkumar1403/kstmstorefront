@@ -14,7 +14,7 @@ const PromotionInput = dynamic(
   () => import('../components/cart/PromotionInput')
 )
 import { useEffect } from 'react'
-import Image from "next/legacy/image";
+import Image from "next/image";
 import axios from 'axios'
 import { getShippingPlans } from '@framework/shipping'
 import {
@@ -168,7 +168,6 @@ function Cart({ cart }: any) {
                   >
                     <div className="flex-shrink-0">
                       <Image
-                        layout="fixed"
                         width={160}
                         height={250}
                         src={
@@ -176,8 +175,7 @@ function Cart({ cart }: any) {
                           IMG_PLACEHOLDER
                         }
                         alt={product.name}
-                        className="object-cover object-center w-16 h-20 rounded-sm sm:w-48 sm:h-48 image"
-                      />
+                        className="object-cover object-center w-16 h-20 rounded-sm sm:w-48 sm:h-48 image" />
                     </div>
                     <div className="flex flex-col justify-between flex-1 ml-4 sm:ml-6">
                       <div className="relative flex justify-between h-full pr-6 sm:pr-9">
@@ -406,7 +404,7 @@ function Cart({ cart }: any) {
         )}
       </main>
     </div>
-  )
+  );
 }
 Cart.Layout = Layout
 
