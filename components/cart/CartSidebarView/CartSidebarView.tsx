@@ -110,7 +110,7 @@ const CartSidebarView: FC = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0" 
           >
-            <Dialog.Overlay className="w-full h-screen" onClick={handleClose} />
+            <Dialog.Overlay className="w-full h-screen" onClick={handleClose} />  
           </Transition.Child>
 
           <div className="fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -166,7 +166,7 @@ const CartSidebarView: FC = () => {
                           {cartItems.lineItems?.map((product: any) => (
                             <li key={product.id} className="">
                               <div className="flex py-6">
-                                <div className="overflow-hidden border border-gray-200 rounded-md  w-26 h-30">
+                                <div className="overflow-hidden border border-gray-200 rounded-md w-26 h-30">
                                   <Image
                                     width={100}
                                     height={150}
