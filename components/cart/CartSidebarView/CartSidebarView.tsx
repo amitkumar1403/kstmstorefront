@@ -110,7 +110,7 @@ const CartSidebarView: FC = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0" 
           >
-            <Dialog.Overlay className="w-full h-screen" onClick={handleClose} />
+            <Dialog.Overlay className="w-full h-screen" onClick={handleClose} /> 
           </Transition.Child>
 
           <div className="fixed inset-y-0 right-0 flex max-w-full pl-10">
