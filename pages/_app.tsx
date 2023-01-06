@@ -1,4 +1,5 @@
 import "@assets/css/main.css"
+import { Roboto } from '@next/font/google';
 import '@assets/icon.css'
 import "@assets/css/chrome-bug.css"
 import 'keen-slider/keen-slider.min.css'
@@ -25,6 +26,10 @@ import { useRouter } from 'next/router'
 import { resetSnippetElements } from "@framework/content/use-content-snippet"
 import { ContentSnippet } from "@components/common/Content"
 
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+})
 const tagManagerArgs: any = {
   gtmId: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
 }
@@ -201,6 +206,7 @@ function MyApp({ Component, pageProps, nav, footer, ...props }: any) {
               config={appConfig}
               pageProps={pageProps}
               keywords={keywordsData}
+              className={roboto.className}
             >
               <Component
                 {...pageProps}
