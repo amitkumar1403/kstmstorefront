@@ -1,7 +1,7 @@
 import Dropdown from './Dropdown'
 import InlineList from './InlineList'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import attributesGenerator, {
   getAttributesFromSlug,
   productLookup,
@@ -23,8 +23,14 @@ export default function AttributesHandler({
   product,
   setSelectedAttrData,
   variant,
+  variantInfo,
+  handleSetProductVariantInfo,
 }: any) {
   const { attributes, variantAttributes = [], variantProducts } = product
+  const [ fieldData, setFieldData ] = useState({
+    "global.colour": "",
+    "clothing.size": "",
+  });
 
   const router = useRouter()
 
@@ -38,23 +44,52 @@ export default function AttributesHandler({
   const [attrCombination, setAttrCombination] = useState(
     generatedAttrCombination
   )
-
-  const generateLink = (fieldCode: any, value: any) => {
-    let slug = ''
-    variantProducts.find((item: any) => {
-      item.attributes.find((option: any) => {
-        const isFieldCode = option.fieldCode === fieldCode
-        const isFieldValue = option.fieldValue === value
-        if (isFieldCode && isFieldValue) {
-          slug = item.slug
-        }
-      })
+  
+  useEffect(() => {
+    setFieldData({
+      "global.colour": variantInfo.variantColour,
+      "clothing.size": variantInfo.variantSize
     })
+  }, [variantInfo])
+
+  // const generateLink = (fieldCode: any, value: any) => {
+  //   let slug = ''
+  //   variantProducts.find((item: any) => {
+  //     item.attributes.find((option: any) => {
+  //       const isFieldCode = option.fieldCode === fieldCode
+  //       const isFieldValue = option.fieldValue === value
+  //       if (isFieldCode && isFieldValue) {
+  //         slug = item.slug
+  //       }
+  //     })
+  //   })
+  //   console.log('slug ::', slug)
+  //   return slug
+  // }
+
+  const generateLink = (fieldData: any) => {
+    let slug = ''
+    for (let i = 0; i < variantProducts.length; i++) {
+      const attributes = variantProducts[i].attributes
+      const isFound = attributes.every(
+        (attribute: any) => 
+          fieldData[attribute.fieldCode] && fieldData[attribute.fieldCode] === attribute.fieldValue
+      )
+      if (isFound) {
+        slug = variantProducts[i].slug
+        break
+      }
+    }
     return slug
   }
 
   const handleChange = (fieldCode: string, value: string) => {
-    const slug = generateLink(fieldCode, value)
+    const updatedFieldData: any = {
+      ...fieldData,
+      [fieldCode]: value
+    }
+    setFieldData(updatedFieldData);
+    const slug = generateLink(updatedFieldData)
     if (slug) {
       router.push(`/${slug}`)
     }
@@ -216,6 +251,7 @@ export default function AttributesHandler({
               generateLink={generateLink}
               product={product}
               variant={variant}
+              handleSetProductVariantInfo={handleSetProductVariantInfo}
             />
           </div>
         )

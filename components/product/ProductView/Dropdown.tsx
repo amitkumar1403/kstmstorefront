@@ -216,6 +216,7 @@ export default function Dropdown({
   isDisabled,
   product,
   variant,
+  handleSetProductVariantInfo,
 }: any) {
   const { openNotifyUser, closeNotifyUser } = useUI()
 
@@ -233,6 +234,10 @@ export default function Dropdown({
     productId: productData.productId,
     stockCode: productData.stockCode,
   })
+
+  useEffect(() => {
+    handleSetProductVariantInfo({ clothSize: currentAttribute })
+  }, [])
 
   useEffect(() => {
     const getStockPerAttrData = getStockPerAttribute(
@@ -294,6 +299,7 @@ export default function Dropdown({
     if (value.stock === 0 && !isPreOrderEnabled) {
       openNotifyUser(stockPerAttrValue.productId)
     }
+    return onChange(fieldCode, value.currentAttribute)
   }
   return (
     <div className="px-0 py-0">

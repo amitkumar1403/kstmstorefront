@@ -2,7 +2,7 @@ import { RadioGroup } from '@headlessui/react'
 import classNames from '@components/utils/classNames'
 import Link from 'next/link'
 import { CHOOSE_A_COLOR } from '@components/utils/textVariables'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 export default function InlineList({
   items = [],
   onChange = () => {},
@@ -10,12 +10,17 @@ export default function InlineList({
   fieldCode = 'global.colour',
   currentAttribute = 'black',
   generateLink = () => {},
+  handleSetProductVariantInfo = () => {},
 }: any) {
   const [color, setColor] = useState(null) // to display color in the Page
   const handleChange = (value: any) => {
     {setColor(value)}
     return onChange(fieldCode, value)
   }
+  
+  useEffect(() => {
+    handleSetProductVariantInfo({ colour: currentAttribute })
+  }, [])
 
   return (
     <>
@@ -29,7 +34,7 @@ export default function InlineList({
         <div className="flex items-center">
 
           {items.map((item: any, idx: any) => {
-            const path = generateLink(fieldCode, item.fieldValue)
+            // const path = generateLink(fieldCode, item.fieldValue)
             return (
               <RadioGroup.Option
                               key={idx}
@@ -61,10 +66,11 @@ export default function InlineList({
                   {item.fieldName}
                 </RadioGroup.Label>
                 
-                <Link href={`/${path}`} passHref>
+                <Link href={`/${''}`} passHref>
                   <a
                     aria-hidden="true"
-                    onClick={() => { 
+                    onClick={(e) => { 
+                      e.preventDefault()
                       handleChange(item.fieldvalue)
                     }}
                     className={classNames(

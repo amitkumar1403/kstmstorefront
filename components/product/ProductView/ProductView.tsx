@@ -113,6 +113,10 @@ export default function ProductView({
   const [isEngravingOpen, showEngravingModal] = useState(false)
   const [isInWishList, setItemsInWishList] = useState(false)
   const [previewImg, setPreviewImg] = useState<any>();
+  const [variantInfo, setVariantInfo] = useState<any>({
+    variantColour: '',
+    variantSize: '',
+  })
 
   const product = updatedProduct || data
 
@@ -262,6 +266,21 @@ export default function ProductView({
       })
     }
   }, [])
+
+  const handleSetProductVariantInfo = ({ colour, clothSize } : any) => {
+    if (colour) {
+      setVariantInfo((v: any) => ({
+        ...v,
+        variantColour: colour,
+      }))
+    }
+    if (clothSize) {
+      setVariantInfo((v: any) => ({
+        ...v,
+        variantSize: clothSize,
+      }))
+    }
+  }
 
   if (!product) {
     return null
@@ -708,6 +727,8 @@ export default function ProductView({
                     product={product}
                     variant={selectedAttrData}
                     setSelectedAttrData={setSelectedAttrData}
+                    variantInfo={variantInfo}
+                    handleSetProductVariantInfo={handleSetProductVariantInfo}
                   />
                 </div>
 
