@@ -41,7 +41,7 @@ function LoginPage({ recordEvent, setEntities }: any) {
   if (!isGuestUser && user.userId) {
     Router.push('/')
   }
-  
+
   if (!isGuestUser && user.userId) {
     return (
       <div className="font-extrabold text-center w-full h-full text-gray-900">
@@ -88,7 +88,12 @@ function LoginPage({ recordEvent, setEntities }: any) {
             {GENERAL_LOGIN}
           </h2>
         </div>
-        <Form btnText="Login" type="login" onSubmit={handleUserLogin} apiError={noAccount ? VALIDATION_NO_ACCOUNT_FOUND : ""} />
+        <Form
+          btnText="Login"
+          type="login"
+          onSubmit={handleUserLogin}
+          apiError={noAccount ? VALIDATION_NO_ACCOUNT_FOUND : ''}
+        />
         <div className="w-full flex flex-col justify-center items-center">
           {noAccount && (
             <span className="text-red-700 text-lg">
@@ -97,10 +102,12 @@ function LoginPage({ recordEvent, setEntities }: any) {
           )}
         </div>
         <div className="w-full flex justify-center items-center">
-          <Link href="/my-account/forgot-password" passHref>
-            <a className="block text-indigo-400 hover:text-indigo-500 hover:underline cursor-pointer">
-              Forgot password?
-            </a>
+          <Link
+            href="/my-account/forgot-password"
+            passHref
+            className="block text-indigo-400 hover:text-indigo-500 hover:underline cursor-pointer"
+          >
+            Forgot password?
           </Link>
         </div>
       </div>

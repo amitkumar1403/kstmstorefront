@@ -383,8 +383,7 @@ export default function CollectionPage(props: any) {
       {props.products.total == 0 &&
         <div className='w-full py-32 mx-auto text-center'>
           <h3 className='py-3 text-3xl font-semibold text-gray-200'>No Item Availabe in {props.name} Collection!</h3>
-          <Link href="/collection">
-            <a href='/collection' className='text-lg font-semibold text-indigo-500'><ChevronLeftIcon className='relative top-0 inline-block w-4 h-4'></ChevronLeftIcon> Back to collections</a>
+          <Link href="/collection" className='text-lg font-semibold text-indigo-500'><ChevronLeftIcon className='relative top-0 inline-block w-4 h-4'></ChevronLeftIcon> Back to collections
           </Link>
         </div>
       }

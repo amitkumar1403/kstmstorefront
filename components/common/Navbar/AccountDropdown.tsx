@@ -40,14 +40,14 @@ export default function Account({ config, title }: any) {
                     )}
                     {config.map((item: any, idx: number) => {
                       return (
-                        <Link key={idx} passHref href={item.href}>
-                          <a
-                            className={item.className}
-                            onClick={item.onClick || false}
-                            href={item.href}
-                          >
-                            {item.title}
-                          </a>
+                        <Link
+                          key={idx}
+                          passHref
+                          href={item.href}
+                          className={item.className}
+                          onClick={item.onClick || false}
+                        >
+                          {item.title}
                         </Link>
                       )
                     })}

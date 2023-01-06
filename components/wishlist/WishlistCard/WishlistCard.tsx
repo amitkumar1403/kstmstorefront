@@ -62,7 +62,7 @@ const WishlistCard: FC<Props> = ({ product }) => {
       <div className="col-span-7">
         <h3 className="text-2xl mb-2">
           <Link href={`/product${product.path}`}>
-            <a>{product.name}</a>
+            {product.name}
           </Link>
         </h3>
         <div className="mb-4">

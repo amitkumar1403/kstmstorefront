@@ -115,7 +115,6 @@ function Home({
       <div className="grid gap-0 mt-10 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
         {pageContents?.topbanner?.map((topbanners: any, hid: number) => (
           <Link href={topbanners?.topbanner_link} passHref key={hid}>
-            <a>
               <div className="relative">
                 <img src={topbanners?.topbanner_image} alt="" />
                 <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
@@ -123,7 +122,7 @@ function Home({
                     {topbanners?.topbanner_title}
                   </h2>
                 </div>
-              </div></a>
+              </div>
           </Link>
         ))}
       </div>
@@ -131,7 +130,7 @@ function Home({
       {/* categorylist */}
       <div className="grid gap-0 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2">
         {pageContents?.categorylist?.map((category: any, id: number) => (
-          <Link href={category?.categorylist_link} passHref key={id}><a>
+          <Link href={category?.categorylist_link} passHref key={id}>
             <div
               className="relative border border-slate-300 hover:border-black"
 
@@ -142,17 +141,17 @@ function Home({
                   {category?.categorylist_title}
                 </h2>
               </div>
-            </div></a>
+            </div>
           </Link>
         ))}
       </div>
 
       {/* Banner */}
       {pageContents?.banner?.map((banner: any, sid: number) => (
-        <Link href={banner?.link} key={sid} passHref><a>
+        <Link href={banner?.link} key={sid} passHref>
           <div className="flex columns-auto">
             <img src={banner?.url} alt="" />
-          </div></a>
+          </div>
         </Link>
       ))}
 

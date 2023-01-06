@@ -119,27 +119,27 @@ export default function Search({ closeWrapper = () => {}, keywords }: any) {
               <div className="border-b border-gray-200" key={idx}>
                 <div className="relative p-4 group sm:p-6">
                   <Link passHref href={`/${product.slug}`}>
-                    <a href={`/${product.slug}`}>
-                      <div className="relative overflow-hidden bg-gray-200 rounded-lg aspect-w-1 aspect-h-1 group-hover:opacity-75">
-                        <div className='image-container'>
-                           {product.image &&
-                              <Image 
-                                src={generateUri(product.image, "h=200&fm=webp") || IMG_PLACEHOLDER}                              
-                                alt={product.name}
-                                layout='fill' 
-                                sizes='50vw'
-                                className='object-cover object-center w-full h-48 sm:h-72 image'>
-                              </Image> 
+                    <div className="relative overflow-hidden bg-gray-200 rounded-lg aspect-w-1 aspect-h-1 group-hover:opacity-75">
+                      <div className="image-container">
+                        {product.image && (
+                          <Image
+                            src={
+                              generateUri(product.image, 'h=200&fm=webp') ||
+                              IMG_PLACEHOLDER
                             }
-                        </div>
+                            alt={product.name}
+                            layout="fill"
+                            sizes="50vw"
+                            className="object-cover object-center w-full h-48 sm:h-72 image"
+                          ></Image>
+                        )}
                       </div>
-                    </a>
+                    </div>
                   </Link>
 
                   <div className="pt-10 pb-4 text-center">
                     <h3 className="text-sm font-medium text-gray-900 min-h-50px">
-                      <Link href={`/${product.slug}`}>
-                        <a href={`/${product.slug}`}>{product.name}</a>
+                      <Link href={`/${product.slug}`}>{product.name}
                       </Link>
                     </h3>
 

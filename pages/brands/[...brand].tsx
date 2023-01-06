@@ -252,8 +252,8 @@ function BrandDetailPage({
       <div className="container mx-auto py-10 text-center relative top-20">
         <h4 className="text-3xl font-medium text-gray-400 pb-6">
           This is a bad url. please go back to
-          <Link href="/brands">
-            <a className="text-indigo-500 px-3">all brands</a>
+          <Link href="/brands" className="text-indigo-500 px-3">
+            all brands
           </Link>
         </h4>
       </div>
@@ -323,18 +323,18 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const response = await getBrandBySlug(
     `brands/${context.query.brand.pop()}`,
     context.req.cookies
-  );
+  )
 
-  const infraPromise = commerce.getInfra();
-  const infra = await infraPromise;
+  const infraPromise = commerce.getInfra()
+  const infra = await infraPromise
   return {
     props: {
       query: context.query,
       brandDetails: response.result,
       globalSnippets: infra?.snippets ?? [],
-      snippets: response?.snippets ?? []
+      snippets: response?.snippets ?? [],
     }, // will be passed to the page component as props
-  };
+  }
 }
 
 const PAGE_TYPE = PAGE_TYPES['Brand']

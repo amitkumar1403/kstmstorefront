@@ -104,9 +104,7 @@ export default function RelatedProducts({
                               <div className="relative mt-4">
                                 <h3 className="min-h-50px text-sm font-medium text-gray-900">
                                   <Link href={`/${product.slug}`} passHref>
-                                    <a href={`/${product.slug}`}>
                                       {product.name}
-                                    </a>
                                   </Link>
                                 </h3>
                               </div>

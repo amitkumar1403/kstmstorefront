@@ -42,7 +42,7 @@ interface Attribute {
 const SearchProductCard: FC<Props> = ({ product }) => {
   const [isInWishList, setItemsInWishList] = useState(false)
   const [isEntered, setisEntered] = useState(false)
-  
+
   const [currentProductData, setCurrentProductData] = useState({
     image: product.image,
     link: product.slug,
@@ -118,7 +118,7 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   const secondImage = product.images[1]?.image
 
   const handleHover = (type: string) => {
-    if (type === 'enter' && secondImage) 
+    if (type === 'enter' && secondImage)
       setCurrentProductData({ ...currentProductData, image: secondImage })
     if (type === 'leave' && secondImage)
       setCurrentProductData({ ...currentProductData, image: product.image })
@@ -164,35 +164,42 @@ const SearchProductCard: FC<Props> = ({ product }) => {
   }
 
   const buttonConfig = buttonTitle()
-  const saving  = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
-  const discount  = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
+  const saving = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax
+  const discount = round((saving / product?.listPrice?.raw?.withTax) * 100, 0)
   return (
     <div className="bg-gray-100 border border-gray-300 hover:border-black ">
-    <div key={product.id} className="relative group "
-    onMouseEnter={()=>setisEntered(true)}
-    onMouseLeave={()=>{setisEntered(false)}}
-    >
-        
-      <Link
-        passHref
-        href={`/${currentProductData.link}`}
-        key={'data-product' + currentProductData.link}
+      <div
+        key={product.id}
+        className="relative group "
+        onMouseEnter={() => setisEntered(true)}
+        onMouseLeave={() => {
+          setisEntered(false)
+        }}
       >
-        <a href={currentProductData.link}>
+        <Link
+          passHref
+          href={`/${currentProductData.link}`}
+          key={'data-product' + currentProductData.link}
+        >
           <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 group-hover:bg-gray-200 ">
-              <Image
-                priority
-                src={generateUri(currentProductData.image, "h=800&fm=webp") || '/assets/icons/newPajama.png'} 
-                alt={product.name}
-                onMouseEnter={() => {handleHover('enter')}}
-                onMouseLeave={() => {handleHover('leave')}}
-                className="object-cover object-center w-full h-full sm:h-full"
-                layout='responsive'
-                width={800}
-                height={800}
-              >
-                
-                </Image>  
+            <Image
+              priority
+              src={
+                generateUri(currentProductData.image, 'h=800&fm=webp') ||
+                '/assets/icons/newPajama.png'
+              }
+              alt={product.name}
+              onMouseEnter={() => {
+                handleHover('enter')
+              }}
+              onMouseLeave={() => {
+                handleHover('leave')
+              }}
+              className="object-cover object-center w-full h-full sm:h-full"
+              layout="responsive"
+              width={800}
+              height={800}
+            ></Image>
 
             {buttonConfig.isPreOrderEnabled && (
               <div className="absolute px-1 py-1 bg-yellow-400 rounded-sm top-2">
@@ -204,12 +211,12 @@ const SearchProductCard: FC<Props> = ({ product }) => {
                 {BTN_NOTIFY_ME}
               </div>
             )}
-            {isInWishList ? (
-              <span className="text-gray-900">
-                {ALERT_SUCCESS_WISHLIST_MESSAGE}
-              </span>
-            ) : (
-                  null
+            {
+              isInWishList ? (
+                <span className="text-gray-900">
+                  {ALERT_SUCCESS_WISHLIST_MESSAGE}
+                </span>
+              ) : null
               // <button
               //     className="absolute bottom-0 right-2 z-99 add-wishlist"
               //     onClick={handleWishList}
@@ -220,44 +227,44 @@ const SearchProductCard: FC<Props> = ({ product }) => {
               // /> */}
               //     <span className="ml-2 text-sm font-medium text-gray-700 hover:text-red-800"></span>
               //     <span className="sr-only">f</span>
-              // </button>            
-            )}   
+              // </button>
+            }
           </div>
-        </a>
-      </Link>
-    
-      <div className="pt-0 text-center bg-gray-100 group-hover:bg-gray-200">
-        
-        {hasColorVariation && isEntered ? (
-          <AttributeSelector
-            attributes={product.variantProductsAttributeMinimal}
-            onChange={handleVariableProduct}
-            link={currentProductData.link}
-          />
-        ) : (
-          
-          <div className="inline-block w-1 h-10 mt-2 mr-1 sm:h-4 sm:w-1 sm:mr-2" />
-          
-        )}
-        
-        <h3 className="pb-3 text-xs font-normal text-black truncate sm:text-sm ">
-          <Link href={`/${currentProductData.link}`}>
-            {/* Product Name */}
-                                                                      {/* {showColorPrice.name} */}
-            <a  className='font-medium' href={`/${currentProductData.link}`}> {product.name}  </a>                  
-          </Link>
-        </h3>
+        </Link>
 
-        <p className="mt-1 mb-2 font-bold text-gray-500 sm:mt-1 text-md">
-          {/* Product Price */}
-            {isEntered ? 
-          (
-            <div className='mt-1 font-bold text-gray-500 group-hover:bg-gray-200 sm:mt-1 text-md '>
-            <p className='text-center text-gray-500 text-bold' >  {product?.price?.formatted?.withTax}</p>
-            </div>
-          ):<div className='h-14 '></div>
-          }
-          {/* {(product?.listPrice?.raw?.withTax > 0 && product?.listPrice?.raw?.withTax != product?.price?.raw?.withTax ) &&
+        <div className="pt-0 text-center bg-gray-100 group-hover:bg-gray-200">
+          {hasColorVariation && isEntered ? (
+            <AttributeSelector
+              attributes={product.variantProductsAttributeMinimal}
+              onChange={handleVariableProduct}
+              link={currentProductData.link}
+            />
+          ) : (
+            <div className="inline-block w-1 h-10 mt-2 mr-1 sm:h-4 sm:w-1 sm:mr-2" />
+          )}
+
+          <h3 className="pb-3 text-xs font-normal text-black truncate sm:text-sm ">
+            {/* Product Name */}
+            {/* {showColorPrice.name} */}
+            <Link href={`/${currentProductData.link}`} className="font-medium">
+              {' '}
+              {product.name}
+            </Link>
+          </h3>
+
+          <p className="mt-1 mb-2 font-bold text-gray-500 sm:mt-1 text-md">
+            {/* Product Price */}
+            {isEntered ? (
+              <div className="mt-1 font-bold text-gray-500 group-hover:bg-gray-200 sm:mt-1 text-md ">
+                <p className="text-center text-gray-500 text-bold">
+                  {' '}
+                  {product?.price?.formatted?.withTax}
+                </p>
+              </div>
+            ) : (
+              <div className="h-14 "></div>
+            )}
+            {/* {(product?.listPrice?.raw?.withTax > 0 && product?.listPrice?.raw?.withTax != product?.price?.raw?.withTax ) &&
              ( <>
                 <span className='px-2 text-sm font-normal text-gray-400 line-through '>{product?.listPrice?.formatted?.withTax}</span>
                 <span className='text-sm font-semibold text-red-600 '>{discount}% Off</span>
@@ -265,22 +272,20 @@ const SearchProductCard: FC<Props> = ({ product }) => {
         
             } */}
 
-          {/* {product?.price?.formatted?.withTax} */}
-        </p>            
-        <div className="flex flex-col">
-          <Button
-            className="hidden mt-2"
-            title={buttonConfig.title}
-            action={buttonConfig.action}
-            type="button"
-            buttonType={buttonConfig.buttonType || 'cart'}
-          />            
+            {/* {product?.price?.formatted?.withTax} */}
+          </p>
+          <div className="flex flex-col">
+            <Button
+              className="hidden mt-2"
+              title={buttonConfig.title}
+              action={buttonConfig.action}
+              type="button"
+              buttonType={buttonConfig.buttonType || 'cart'}
+            />
+          </div>
         </div>
       </div>
-    
-
     </div>
-  </div>
   )
 }
 export default SearchProductCard

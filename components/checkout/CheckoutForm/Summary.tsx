@@ -65,10 +65,8 @@ export default function Summary({
                         <span className="block font-semibold text-black text-md">
                           {product.brand}
                         </span>
-                        <Link href={`/${product.slug}`}>
-                          <a className="block font-normal text-gray-700 hover:text-gray-800">
+                        <Link href={`/${product.slug}`} className="block font-normal text-gray-700 hover:text-gray-800">
                             {product.name}
-                          </a>
                         </Link>
                       </h4>
                       <p className="mt-1 text-sm font-bold text-black">

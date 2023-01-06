@@ -920,11 +920,9 @@ export default function ProductView({
                     <SwiperSlide className='py-0 border border-grey-40 hover:border-black' key={valId}>
                       <div className='w-full h-full cursor-pointer'>
                         <Link className='' href={(val.link).replace('products/', '')}>
-                          <a>
                             <Image src={val.image || '/pdp1.png'} className='object-top' height={600} width={480}></Image>
                             <p className='text-sm font-semibold'>{val.name}</p>
                             <label>{val.price}</label>
-                          </a>
                         </Link>
                       </div>
                     </SwiperSlide>

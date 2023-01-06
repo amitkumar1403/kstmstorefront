@@ -136,14 +136,12 @@ export default function ProductColors({
                                 <RadioGroup.Label as="div" className="sr-only">
                                   {item.fieldName} {item.value}
                                 </RadioGroup.Label>
-                                <Link href="javascript:void(0);">
-                                  <a aria-hidden="true" onClick={() => handleChange(key, item.fieldValue, values)}
+                                <Link href="javascript:void(0);"
+                                  aria-hidden="true" onClick={() => handleChange(key, item.fieldValue, values)}
                                     className={classNames(item.fieldvalue,)}>
                                     <img src={item?.fieldValue || IMG_PLACEHOLDER}
                                       className={`${matchStrings(item?.fieldLabel, !selectedGroupName ? defaultFieldLabel : selectedGroupName[key], true) ? "border-gray-800" : "border-gray-200"} rounded border  hover:border-gray-400`}
-
                                     />
-                                  </a>
                                 </Link>
                               </RadioGroup.Option>
                             </>
@@ -253,14 +251,12 @@ export default function ProductColors({
                                       <RadioGroup.Label as="div" className="sr-only">
                                         {item.fieldName} {item.value}
                                       </RadioGroup.Label>
-                                      <Link href="javascript:void(0);">
-                                        <a aria-hidden="true" onClick={() => handleChange(key, item.fieldValue, values)}
+                                      <Link href="javascript:void(0);"
+                                        aria-hidden="true" onClick={() => handleChange(key, item.fieldValue, values)}
                                           className={classNames(item.fieldvalue,)}>
                                           <img src={item?.fieldValue || IMG_PLACEHOLDER}
                                             className={`${matchStrings(item?.fieldLabel, !selectedGroupName ? defaultFieldLabel : selectedGroupName[key], true) ? "border-gray-800" : "border-gray-200"} rounded border  hover:border-gray-400`}
-
                                           />
-                                        </a>
                                       </Link>
                                     </RadioGroup.Option>
                                   </>

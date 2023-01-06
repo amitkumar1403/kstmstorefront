@@ -185,14 +185,10 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                             <Link
                               href={hyperlinkHandler(item.hyperlink)}
                               passHref
+                              onClick={() => setOpen(false)}
+                              className="flex flex-col px-4 py-4 text-sm font-bold text-black border-b whitespace-nowrap"
                             >
-                              <a
-                                onClick={() => setOpen(false)}
-                                className="flex flex-col px-4 py-4 text-sm font-bold text-black border-b whitespace-nowrap"
-                                href={hyperlinkHandler(item.hyperlink)}
-                              >
-                                {item.caption}
-                              </a>
+                              {item.caption}
                             </Link>
                           ) : (
                             <>
@@ -251,19 +247,16 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                                                 <Link
                                                                   href={`/${navItem.itemLink}`}
                                                                   passHref
+                                                                  onClick={() =>
+                                                                    setOpen(
+                                                                      false
+                                                                    )
+                                                                  }
+                                                                  className="text-sm hover:text-gray-800"
                                                                 >
-                                                                  <a
-                                                                    onClick={() =>
-                                                                      setOpen(
-                                                                        false
-                                                                      )
-                                                                    }
-                                                                    className="text-sm hover:text-gray-800"
-                                                                  >
-                                                                    {
-                                                                      navItem.caption
-                                                                    }
-                                                                  </a>
+                                                                  {
+                                                                    navItem.caption
+                                                                  }
                                                                 </Link>
                                                               </li>
                                                             )
@@ -315,22 +308,21 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                           {({ open }) => (
                             <>
                               {!item.navBlocks.length ? (
-                                <Link href={`/${item.hyperlink}`} passHref>
-                                  <a
-                                    className="relative flex"
-                                    href={`/${item.hyperlink}`}
+                                <Link
+                                  href={`/${item.hyperlink}`}
+                                  passHref
+                                  className="relative flex"
+                                >
+                                  <div
+                                    className={classNames(
+                                      openState == idx
+                                        ? 'border-indigo-600 text-indigo-600'
+                                        : 'border-transparent text-black hover:text-black',
+                                      'relative z-10 flex items-center sm:h-16 transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px'
+                                    )}
                                   >
-                                    <div
-                                      className={classNames(
-                                        openState == idx
-                                          ? 'border-indigo-600 text-indigo-600'
-                                          : 'border-transparent text-black hover:text-black',
-                                        'relative z-10 flex items-center sm:h-16 transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px'
-                                      )}
-                                    >
-                                      {item.caption}
-                                    </div>
-                                  </a>
+                                    {item.caption}
+                                  </div>
                                 </Link>
                               ) : (
                                 <Popover.Button
@@ -393,8 +385,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                                               <Link
                                                                 href={`/${navItem.itemLink}`}
                                                                 passHref
-                                                              >
-                                                                <a className="hover:text-gray-800">
+                                                                className="hover:text-gray-800">
                                                                   <Popover.Button
                                                                     className={classNames(
                                                                       openState ==
@@ -408,7 +399,6 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                                                       navItem.caption
                                                                     }
                                                                   </Popover.Button>
-                                                                </a>
                                                               </Link>
                                                             </li>
                                                           )
