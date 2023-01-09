@@ -43,7 +43,7 @@ export default function InlineList({
                               className={({ active, checked }) =>
                                 classNames(
                                   currentAttribute == item.fieldValue ? 'border-black' : 'border-gray-40',
-                                  'relative w-full h-16 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '  
+                                  'relative h-10 w-10 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '  
                                 )
                               }
                             >
