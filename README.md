@@ -12,20 +12,20 @@ npx create-next-app [project-name] -e https://github.com/better-commerce/betters
 
 ### Run Locally
 - In the root folder create an .env file - use .env.template as a reference
-- Run command: `yarn` or if you want to use npm use `npm install`
-- To run it locally enter the next command `yarn dev` or `npm run dev`
+- Run command: `yarn`
+- To run it locally enter the next command `yarn dev`
 - Visit http://localhost:3000
 
 ### Pre-requisites
-- Request a sandbox with BetterCommerce platform by getting in touch letstalk@bettercommerce.io 
+- Request a sandbox with BetterCommerce platform by getting in touch letstalk@bettercommerce.io
 - Once you have the sandbox, you can login and generate the API Key & Shared Secret.
 
 
-# BetterCommerce Storefront on Next.js 
+# BetterCommerce Storefront on Next.js
 
-BetterCommerce is a **Headless**, **API-First SaaS based**  suite of independent **composable** modules **Ecommerce, PIM, OMS**, **AI Product Recommendations** and **Analytics** that work independently with other platforms as well as it works fully integrated as an end-to-end commerce solution. 
+BetterCommerce is a **Headless**, **API-First SaaS based**  suite of independent **composable** modules **Ecommerce, PIM, OMS**, **AI Product Recommendations** and **Analytics** that work independently with other platforms as well as it works fully integrated as an end-to-end commerce solution.
 
-This storefront is an all-in-one storefront based on Next.js, for high-performance e-commerce sites. With a few clicks, developers can clone, deploy and fully customize their own store. The storefront by default works out-of-the-box with BetterCommerce suite of APIs, however can be customized to work with other headless commerce API providers as well. 
+This storefront is an all-in-one storefront based on Next.js, for high-performance e-commerce sites. With a few clicks, developers can clone, deploy and fully customize their own store. The storefront by default works out-of-the-box with BetterCommerce suite of APIs, however can be customized to work with other headless commerce API providers as well.
 
 Start right now at [bettercommerce.io](https://bettercommerce.io)
 
@@ -39,13 +39,13 @@ LIVE demo at: [demostore.bettercommerce.io](https://demostore.bettercommerce.io/
 - Responsive
 - Shopping Cart
 - Wishlist
-- Checkout 
+- Checkout
 - Internationalization
     - Multi-lingual
     - Multi-currency
-- CMS driven 
+- CMS driven
     - Mega menu
-    - Home page 
+    - Home page
     - Support pages
 - Search
     - Typeahead search
@@ -61,18 +61,18 @@ LIVE demo at: [demostore.bettercommerce.io](https://demostore.bettercommerce.io/
     - Structured Data
     - Media - images & videos
     - Dynamic breadcrumbs
-    - Reviews 
+    - Reviews
     - Variants
     - Bundles & Components
     - Related Products
 - My Account
-    - Registration / Login 
+    - Registration / Login
     - Profile
     - Wishlist
     - Address Book
     - Order History
     - Returns / Cancel
-- Integrations - Integrate seamlessly with the most common plugins needed - google analytics, post code locator, marketing platforms, etc. 
+- Integrations - Integrate seamlessly with the most common plugins needed - google analytics, post code locator, marketing platforms, etc.
 - And lot many more features...
 
 ## Integrations

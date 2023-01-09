@@ -37,7 +37,6 @@ framework/bettercommerce/seo.json
 framework/bettercommerce/locales.json
 # vercel
 .vercel
-yarn.lock
 
 
 #tailwind screenshots and templates
