@@ -298,12 +298,12 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
           <div className="p-3 bg-customBlack-50">
             <p className="capitalize text-xs text-center text-gray-50">{NEWSLETTER}</p>
           </div>
-          <nav aria-label="Top" className="w-full px-4 mx-auto sm:px-0 lg:px-0">
+          <nav aria-label="Top" className="w-full py-2 mx-auto lg:px-6 md:px-6 sm:px-6 px-6">
             <div className="pb-0 sm:px-0 sm:pb-0">
-              <div className="flex items-center justify-around h-10 lg:px-20 md:px-5 sm:px-3 sm:grid sm:grid-cols-3">
+              <div className="flex items-center justify-around lg:px-0 md:px-5 sm:px-3 sm:grid sm:grid-cols-3">
                 {/* Flyout menus */}
                 <Popover.Group className="absolute inset-x-0 bottom-0 hidden sm:static sm:self-stretch sm:block sm:h-10">
-                  <div className="flex pb-px overflow-x-auto border-t lg:px-20 md:px-5 sm:px-3 lg:space-x-8 sm:space-x-4 md:space-x-6 sm:h-full sm:border-t-0 sm:justify-left sm:overflow-visible sm:pb-0">
+                  <div className="flex overflow-x-auto border-t lg:space-x-8 sm:space-x-4 md:space-x-6 sm:h-full sm:border-t-0 sm:justify-left sm:overflow-visible sm:pb-0">
                     {config?.map((item: any, idx: number) => {
                       return (
                         <Popover
@@ -435,7 +435,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                 </Popover.Group>
 
                 {/* Logo */}
-                <div className="flex items-center justify-center flex-1">
+                <div className="flex items-center sm:justify-center flex-1">
                   <button
                     type="button"
                     className="py-1 pl-2 pr-2 -ml-2 text-gray-400 bg-white rounded-md sm:hidden"
@@ -455,38 +455,34 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                   </Link>
                 </div>
                 
-                <div className="flex items-center justify-end flex-1">
+                <div className="flex items-center justify-end gap-5 flex-1">
                   {/* Wishlist*/}
-                  <div className="flow-root w-10 px-1 sm:w-16">
-                    <button
-                      className="relative grid flex-col items-center justify-center grid-cols-1 mx-auto text-center group align-center"
-                      onClick={openWishlist}
-                    >
-                      <HeartIcon
-                        className="flex-shrink-0 block w-4 mx-auto text-black group-hover:text-red-600"
-                        aria-hidden="true"
-                        aria-label="Wishlist"
-                      />
-                      {/* <span className="hidden text-sm font-normal text-black sm:block">
-                      Wishlist
-                    </span> */}
-                      {wishListItems.length > 0 && (
-                        <span className="absolute top-0 hidden w-4 ml-2 text-xs font-medium text-center text-white rounded-full sm:block -right-0 bg-pink">
-                          {wishListItems.length}
-                        </span>
-                      )}
-                      <span className="sr-only">{GENERAL_ITEM_IN_CART}</span>
-                    </button>
-                  </div>
-
+                  <button onClick={openWishlist}>
+                    <HeartIcon
+                      className="flex-shrink-0 block w-4 mx-auto text-black hover:text-red-600"
+                      aria-hidden="true"
+                      aria-label="Wishlist"
+                    />
+                    {/* <span className="hidden text-sm font-normal text-black sm:block">
+                    Wishlist
+                  </span> */}
+                    {wishListItems.length > 0 && (
+                      <span className="absolute top-0 hidden w-4 ml-2 text-xs font-medium text-center text-white rounded-full sm:block -right-0 bg-pink">
+                        {wishListItems.length}
+                      </span>
+                    )}
+                    <span className="sr-only">{GENERAL_ITEM_IN_CART}</span>
+                  </button>
                   {/* Search */}
-                  <Searchbar onClick={setShowSearchBar} />
+                  <button>
+                    <Searchbar onClick={setShowSearchBar} />
+                  </button>
 
                   {/* account */}
                   <Account title={title} config={accountDropdownConfig} />
 
                   {/* Cart */}
-                  <div className="flow-root w-10 px-1 sm:w-16">
+                  <div>
                     <button
                       className="relative grid flex-col items-center justify-center grid-cols-1 text-center group align-center"
                       onClick={openCart}

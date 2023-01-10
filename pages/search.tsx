@@ -299,12 +299,9 @@ function Search({ query, setEntities, recordEvent }: any) {
           {/* for sticky subnav*/}
           {/* <div className="sticky z-50 px-4 py-4 text-center bg-white border border-red-600 top-16 sm:py-5 sm:px-0 lg:px-0">    */}
 
-          {/* <h4><span className='text-sm font-normal'>Showing {data.products.total} Results for</span></h4> */}
-         
-
-          <h1 className="pb-4 text-2xl font-bold tracking-tight text-center text-gray-900">
-            {GENERAL_CATALOG} 
-         
+          <h4 className='text-center'><span className='text-sm font-normal text-gray-500 '>Showing {data?.products?.total} results</span></h4>
+          <h1 className="text-2xl font-bold tracking-tight text-center text-gray-900">
+            {GENERAL_CATALOG}
           </h1>
 
           <img src='/assets/icons/filter.png'

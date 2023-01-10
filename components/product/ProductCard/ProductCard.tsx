@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-const AttributeSelector = dynamic(() => import('./AttributeSelector'))
+const AttributeSelector = dynamic(() => import('./HomeAttributeSelector'))
 const Button = dynamic(() => import('@components/ui/IndigoButton'))
 import cartHandler from '@components/services/cart'
 import { useUI } from '@components/ui/context'

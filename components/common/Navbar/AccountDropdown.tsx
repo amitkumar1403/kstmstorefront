@@ -7,7 +7,7 @@ export default function Account({ config, title }: any) {
   return (
     <Menu
       as="div"
-      className="relative inline-block text-left px-0 sm:w-16 w-10 flow-root"
+      className="relative inline-block text-left px-0 flow-root"
     >
       <Menu.Button
         className="group grid grid-cols-1 items-center text-center align-center justify-center flex-col mx-auto"
