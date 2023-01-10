@@ -1,15 +1,17 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
+
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import classNames from '@components/utils/classNames'
 import { useUI } from '@components/ui/context'
 import { useRouter } from 'next/router'
 import { getProductFromAttributes } from '@components/utils/attributesGenerator'
+import { Dialog, RadioGroup, Switch } from '@headlessui/react'
 import { PRODUCTS_SLUG_PREFIX } from '@components/utils/constants'
 
 export default function Dropdown({
   items = [],
-  onChange = () => {},
+  onChange = () => { },
   label = '',
   fieldCode = '',
   currentAttribute = '',
@@ -20,12 +22,13 @@ export default function Dropdown({
   isDisabled,
   product,
   variant,
+  handleSetProductVariantInfo,
 }: any) {
   const { openNotifyUser, closeNotifyUser } = useUI()
 
   const router = useRouter()
 
-  const slug = `${PRODUCTS_SLUG_PREFIX}${router.query.slug}`
+  const slug = `products/${router.query.slug}`
 
   const [productData, setProductData] = useState(
     getStockPerAttribute(fieldCode, currentAttribute)
@@ -37,6 +40,10 @@ export default function Dropdown({
     productId: productData.productId,
     stockCode: productData.stockCode,
   })
+
+  useEffect(() => {
+    handleSetProductVariantInfo({ clothSize: currentAttribute })
+  }, [])
 
   useEffect(() => {
     const getStockPerAttrData = getStockPerAttribute(
@@ -80,10 +87,19 @@ export default function Dropdown({
   }
 
   const handleOnChange = (value: any) => {
-    const stockPerAttrValue = getStockPerAttribute(
+     // const stockPerAttrValue = getStockPerAttribute(
+    //   fieldCode,
+    //   value.currentAttribute
+    // )
+
+    const stockPerAttrValue = getProductFromAttributes(
       fieldCode,
-      value.currentAttribute
+      value.currentAttribute,
+      variant,
+      product.variantProducts,
+      slug
     )
+   
 
     // const stockPerAttrValue = getProductFromAttributes(
     //   fieldCode,
@@ -98,6 +114,7 @@ export default function Dropdown({
     if (value.stock === 0 && !isPreOrderEnabled) {
       openNotifyUser(stockPerAttrValue.productId)
     }
+    return onChange(fieldCode, value.currentAttribute)
   }
 
   return (
