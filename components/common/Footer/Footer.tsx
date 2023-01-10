@@ -19,6 +19,7 @@ import {
 } from '@components/utils/textVariables'
 import { NEXT_SUBSCRIBE } from '@components/utils/constants'
 import axios from 'axios'
+import NewsletterForm from './NewsLetterForm'
 
 interface Props {
   config: []
@@ -38,40 +39,40 @@ const Footer: FC<Props> = ({ config }) => {
   const handleNameChange = (e: any) => {
     setName(e.target.userName)
   }
-  const submitSubscription = async (data: any, fname: any) => {
-    await axios.post(NEXT_SUBSCRIBE, {
-      email: data,
-      firstName: fname,
-      notifyByEmail: true,
-    })
-    setMessage(true);
-    setTimeout(() => {
-      setMessage(false);
-      setValue('')
-      setName('')
-    }, 3000);
 
-
+  const submitSubscription = async (data: any) => {
+    try {
+      // show successful message
+      setMessage(true);
+      
+      // hide the message after 3s
+      setTimeout(() => {
+        setMessage(false)
+      }, 3000);
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
-    <footer aria-labelledby="footer-heading" className="p-2 mt-5 bg-black">
+    <footer aria-labelledby="footer-heading">
+      <hr />
       <h2 id="footer-heading" className="sr-only">
         {GENERAL_FOOOTER}
       </h2>
       {/* <div className="mt-12 md:mt-0 md:row-start-2 md:col-start-3 md:col-span-8 lg:row-start-1 lg:col-start-7 lg:col-span-6"> */}
-      <div className="grid grid-cols-2 gap-0 py-3 mt-4">
-        <h1 className="pt-5 ml-20 font-bold text-white uppercase lg:text-xl md:text-lg sm:text-md xl:text-2xl">
+      <div className="flex items-center justify-between py-10 px-20">
+        <h1 className="text-customBlack-50 lg:text-xl md:text-md sm:text-md xl:text-2xl">
           {QUERY}
           {/* {SIGN_UP_TEXT} */}
         </h1>
-        <div className="flex justify-center mb-8">
-          <div className="pt-2 my-auto">
-            <form className="flex mt-2 sm:max-w-md">
+        <div className="flex justify-center">
+          <div>
+            <form className="flex sm:max-w-md">
               <div className="flex-shrink-0 w-48 ml-4 border sm:w-64 md:w-64 lg:w-96 xl:w-96">
                 <button
                   type="submit"
-                  className="flex items-center justify-center w-full px-6 py-4 font-medium text-white uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                  className="flex items-center justify-center w-full px-6 py-4 font-medium text-gray-50 uppercase bg-black border border-transparent rounded-sm shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                 >
                   {TOUCH}
                 </button>
@@ -80,67 +81,19 @@ const Footer: FC<Props> = ({ config }) => {
           </div>
         </div>
       </div>
-      <hr className="pt-2 pb-6 text-white" />
-      <div className="w-full px-4 sm:mx-auto md:mx-auto lg:ml-20 xl:ml-20 sm:w-4/5 sm:px-0 lg:px-0">
-        <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-x-12">
+      <hr />
+      <div className="py-10 px-4 sm:mx-auto md:mx-auto lg:ml-20 xl:mx-20 sm:px-0 lg:px-0">
+        <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-x-40">
           {/* Image section */}
-          <div className="pb-2 mt-2">
-            <p className="text-left text-white lg:text-xl md:text-lg dm:text-lg">
+          <div>
+            <p className="text-left text-black lg:text-xl md:text-lg dm:text-lg">
               {CUSTOM}
             </p>
-            <span className="text-sm text-left text-white">{NEW_PRODUCT}</span>
-            <form>
-              <div className="w-full newsletter-form">
-                <div className="w-full py-4">
-                  <label htmlFor="email-address" className="sr-only">
-                    {GENERAL_EMAIL_ADDRESS}
-                  </label>
-                </div>
-                <div className="flex justify-between">
-                  <input
-                    id="email-address"
-                    type="text"
-                    autoComplete="email"
-                    required
-                    onChange={handleChange}
-                    name={'email-address'}
-                    placeholder="Email Address"
-                    value={value}
-                    className="h-16 sm:h-10 md:h-12 form-control block w-1/2 px-3 py-1.5 text-md font-bold text-start text-white bg-black border border-solid border-gray-300 transition ease-in-out m-0
-                focus:text-white focus:border-blue-600 focus:outline-none"
-                  />
-                  <label htmlFor="firstname" className="sr-only">
-                    {GENERAL_EMAIL_ADDRESS}
-                  </label>
-                  <input
-                    id="firstname"
-                    name={'firstname'}
-                    type="text"
-                    onChange={handleNameChange}
-                    value={userName}
-                    placeholder="Name"
-                    className="h-16 sm:h-10 md:h-12 form-control block w-1/2 px-3 py-1.5 text-md font-bold text-start text-white bg-black border border-solid border-gray-300 transition ease-in-out m-0
-                focus:text-white focus:border-blue-600 focus:outline-none"
-                  />
-                </div>
-                <div className="w-full">
-                  <button
-                    onClick={() => submitSubscription(value, name)}
-                    type="button"
-                    className="flex items-center justify-center w-full h-16 px-6 py-3 font-bold text-white uppercase bg-black border border-white rounded-sm sm:h-10 md:h-12 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
-                  >
-                    {BTN_SUBSCRIBE}
-                  </button>
-                </div>
-                {isMessage &&
-                  <span className='block w-full p-1 mt-2 text-xs text-white bg-gray-600 rounded'>Newsletter Subscribed Successfully!</span>
-                }
-              </div>
-
-            </form>
+            <span className="text-sm text-left text-black">{NEW_PRODUCT}</span>
+            <NewsletterForm submitSubscription={submitSubscription} isMessage={isMessage} />
             {/* Sitemap sections */}
           </div>
-          <div className="grid grid-cols-1 gap-0 pt-4 pb-8 text-center lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 lg:text-left xl:gap-x-8 lg:gap-x-8 md:gap-x-4">
+          <div className="grid grid-cols-1 gap-0 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 lg:text-left xl:gap-x-8 lg:gap-x-8 md:gap-x-4">
             {/* {config?.map((item: any, idx: number) => {
               return (
                 <div key={`${idx}-footer-item`}>
@@ -175,122 +128,120 @@ const Footer: FC<Props> = ({ config }) => {
                 </div>
               )
             })} */}
-            <div className="pt-4 xl:ml-20 lg:ml-10">
-              <strong className="text-white lg:px-6 sm:px-6 md:px-6 lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
-                CUSTOMER
-              </strong>
+            <div className="justify-self-end">
+              <p className="font-normal lg:text-ms md:text-lg sm:text-xs xs:text-xs">
+                Customer
+              </p>
               <nav
                 aria-label="Footer Services Nav"
-                className="flex flex-col mx-6 mt-6 space-y-3 lg-text-md md:text-sm sm:text-xs sm:px-2 md:px-2"
+                className="flex flex-col mt-1 gap-y-1 flex-wrap mt-0 sm:px-0 md:px-0"
               >
                 <a
-                  className="text-white transition hover:text-gray-700/75"
-                  href="#"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
+                  href="/my-account/login"
                 >
                   My Account
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   Our Mission
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   Transparency
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   Size Guide
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   Shipping
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   FAQs
                 </a>
               </nav>
             </div>
-            <div className="pt-4 xl:ml-20 lg:ml-10 md:ml-10">
-              <strong className="text-white lg:px-6 sm:px-6 md:px-6 lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
-                {' '}
-                KSTM{' '}
-              </strong>
+            <div className="justify-self-end">
+              <p className="font-normal lg:text-ms md:text-lg sm:text-xs xs:text-xs">
+                KSTM
+              </p>
               <nav
-                aria-label="Footer About Nav"
-                className="flex flex-col mx-6 mt-6 space-y-3 lg-text-md md:text-sm sm:text-xs sm:px-2 md:px-2"
+                aria-label="Footer Services Nav"
+                className="flex flex-col mt-1 gap-y-1 flex-wrap mt-0 sm:px-0 md:px-0"
               >
                 <a
-                  className="text-white transition hover:text-gray-700/75"
-                  href="#"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
+                  href="/my-account/login"
                 >
                   My Account
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   Our Mission
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   Transparency
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   Size Guide
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   Shipping
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   FAQs
                 </a>
               </nav>
             </div>
-            <div className="pt-4 xl:ml-20 lg:ml-10 md:ml-10">
-              <strong className="text-white lg:px-6 sm:px-6 md:px-6 lg:text-2xl md:text-lg sm:text-xs xs:text-xs">
-                {' '}
-                LEGAL{' '}
-              </strong>
+            <div className="justify-self-end">
+              <p className="font-normal lg:text-ms md:text-lg sm:text-xs xs:text-xs">
+                Legal
+              </p>
               <nav
-                aria-label="Footer Support Nav"
-                className="flex flex-col mx-6 mt-6 space-y-3 lg-text-md md:text-sm sm:text-xs"
+                aria-label="Footer Services Nav"
+                className="flex flex-col mt-1 gap-y-1 flex-wrap mt-0 sm:px-0 md:px-0"
               >
                 <a
-                  className="text-white transition hover:text-gray-700/75"
-                  href="#"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
+                  href="/my-account/login"
                 >
                   Terms
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   Privacy
                 </a>
                 <a
-                  className="text-white transition hover:text-gray-700/75"
+                  className="transition lg:text-ms sm:text-xs xs:text-xs text-gray-600 hover:text-black hover:underline underline-offset inline-block"
                   href="#"
                 >
                   Consent
@@ -300,30 +251,30 @@ const Footer: FC<Props> = ({ config }) => {
           </div>
         </div>
       </div>
-      <div className="pt-2 pb-2 border-t border-gray-100">
-        <div className="grid grid-cols-3 gap-0 mr-14">
-          <div className="mx-14">
-            {' '}
-            <p className="mt-0 text-white sm:mx-auto sm:text-md md:text-xl lg:text-2xl xl:text-2xl font-heading mx-14">
+      <hr />
+      <div className="px-20">
+        <div className="grid grid-cols-3 items-center">
+          <div className="">
+            <p className="mt-0 sm:mx-auto sm:text-sm sm:text-sm lg:text-sm xl:text-sm font-heading mx-14">
               &copy; {COPYRIGHT_FOOTER_INFO}
             </p>
           </div>
-          <div className="mx-auto">
+          <div className="w-auto mx-auto">
             <Logo />
           </div>
-          <div className="flex flex-wrap mx-auto text-xl sm:text-sm md:text-lg">
-            <ul className="flex items-center justify-center social-icon sm:justify-between">
-              <li className="inline-block mr-1 align-middle">
+          <div className="flex flex-wrap justify-end">
+            <ul className="flex items-center gap-1 justify-center social-icon sm:justify-between">
+              <li className="inline-block align-middle">
                 <a
                   rel="noreferrer"
                   target="_blank"
                   href="https://www.facebook.com"
                   className="inline-block"
                 >
-                  <i className="sprite-icon sprite-fb"></i>
+                  <i className="sprite-icon sprite-fb w-5"></i>
                 </a>
               </li>
-              <li className="inline-block mr-1 align-middle">
+              <li className="inline-block align-middle">
                 <a
                   rel="noreferrer"
                   target="_blank"
@@ -333,7 +284,7 @@ const Footer: FC<Props> = ({ config }) => {
                   <i className="sprite-icon sprite-twitter"></i>
                 </a>
               </li>
-              <li className="inline-block mr-1 align-middle">
+              <li className="inline-block align-middle">
                 <a
                   rel="noreferrer"
                   target="_blank"
@@ -343,7 +294,7 @@ const Footer: FC<Props> = ({ config }) => {
                   <i className="sprite-icon sprite-insta"></i>
                 </a>
               </li>
-              <li className="inline-block mr-1 align-middle">
+              <li className="inline-block align-middle">
                 <a
                   rel="noreferrer"
                   target="_blank"
