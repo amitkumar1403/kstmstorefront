@@ -116,14 +116,15 @@ function Home({
         {pageContents?.topbanner?.map((topbanners: any, hid: number) => (
           <Link href={topbanners?.topbanner_link} passHref key={hid}>
             <a>
-              <div className="relative">
-                <img src={topbanners?.topbanner_image} alt="" />
-                <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
-                  <h2 className="text-sm font-bold">
+              <div className="relative h-full w-full bg-gray-100">
+                <img src={topbanners?.topbanner_image} alt={topbanners?.topbanner_title} className='w-full h-full object-contain'/>
+                <div className="absolute z-99 top-4 left-4">
+                  <h2 className="text-xl">
                     {topbanners?.topbanner_title}
                   </h2>
                 </div>
-              </div></a>
+              </div>
+            </a>
           </Link>
         ))}
       </div>
@@ -131,18 +132,26 @@ function Home({
       {/* categorylist */}
       <div className="grid gap-0 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2">
         {pageContents?.categorylist?.map((category: any, id: number) => (
-          <Link href={category?.categorylist_link} passHref key={id}><a>
-            <div
-              className="relative border border-slate-300 hover:border-black"
-
-            >
-              <img src={category?.categorylist_image} alt="" />
-              <div className="absolute bottom-0 left-0 w-16 h-16 mx-10">
-                <h2 className="text-sm font-bold">
-                  {category?.categorylist_title}
-                </h2>
+          <Link href={category?.categorylist_link} passHref key={id}>
+            <a>
+              <div className="relative">
+                <div className="absolute z-99 top-4 left-4">
+                  <h2 className="text-xl">
+                    {category?.categorylist_title}
+                  </h2>
+                </div>
+                <div style={{position: 'relative'}}>
+                  <Image
+                    priority
+                    src={category?.categorylist_image || ""} 
+                    alt={category?.categorylist_title || ""}
+                    layout='responsive'
+                    width={600}
+                    height={800}
+                  />
+                </div>
               </div>
-            </div></a>
+            </a>
           </Link>
         ))}
       </div>
@@ -158,12 +167,9 @@ function Home({
 
       {/* Headings */}
       {pageContents?.heading?.map((headings: any, pid: number) => (
-        <div className="mt-2 text-center" key={pid}>
-          <h2 className="text-lg font-bold">{headings?.heading_title}</h2>
-          <div
-            className=""
-            dangerouslySetInnerHTML={{ __html: headings?.heading_subtitle }}
-          ></div>
+        <div className="px-6 py-9 flex items-end gap-2" key={pid}>
+          <h2 className="text-xl capitalize">{headings?.heading_title?.toLowerCase()}</h2>
+          <div className="text-sm capitalize text-gray-500" dangerouslySetInnerHTML={{ __html: headings?.heading_subtitle?.toLowerCase() }}></div>
         </div>
       ))}
 
@@ -174,7 +180,7 @@ function Home({
         ))}
       </div> */}
 
-      <div className="flex flex-col w-full px-4 py-4 pr-0 sm:px-4 sm:pr-4 sm:py-8 home-banner-swiper m-hide-navigation swiper-slide-home">
+      <div className="flex flex-col w-full home-banner-swiper m-hide-navigation swiper-slide-home">
         <Swiper
           slidesPerView={4}
           navigation={true}

@@ -294,16 +294,16 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
           </Dialog>
         </Transition.Root>
         {/* Black Bar */}
-        <header className="fixed top-0 right-0 w-full bg-white shadow-md z-999">
-          <div className="p-3 bg-black">
-            <p className="text-xs text-center text-white">{NEWSLETTER}</p>
+        <header className="fixed top-0 right-0 w-full bg-gray-50 z-999">
+          <div className="p-3 bg-customBlack-50">
+            <p className="capitalize text-xs text-center text-gray-50">{NEWSLETTER}</p>
           </div>
           <nav aria-label="Top" className="w-full px-4 mx-auto sm:px-0 lg:px-0">
             <div className="pb-0 sm:px-0 sm:pb-0">
-              <div className="flex items-center justify-between h-16 lg:px-20 md:px-5 sm:px-3 sm:grid sm:grid-cols-3">
+              <div className="flex items-center justify-around h-10 lg:px-20 md:px-5 sm:px-3 sm:grid sm:grid-cols-3">
                 {/* Flyout menus */}
-                <Popover.Group className="absolute inset-x-0 bottom-0 hidden sm:static sm:self-stretch sm:block sm:h-16">
-                  <div className="flex h-16 pb-px overflow-x-auto border-t lg:px-20 md:px-5 sm:px-3 lg:space-x-8 sm:space-x-4 md:space-x-6 sm:h-full sm:border-t-0 sm:justify-left sm:overflow-visible sm:pb-0">
+                <Popover.Group className="absolute inset-x-0 bottom-0 hidden sm:static sm:self-stretch sm:block sm:h-10">
+                  <div className="flex pb-px overflow-x-auto border-t lg:px-20 md:px-5 sm:px-3 lg:space-x-8 sm:space-x-4 md:space-x-6 sm:h-full sm:border-t-0 sm:justify-left sm:overflow-visible sm:pb-0">
                     {config?.map((item: any, idx: number) => {
                       return (
                         <Popover
@@ -323,9 +323,9 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                     <div
                                       className={classNames(
                                         openState == idx
-                                          ? 'border-indigo-600 text-indigo-600'
+                                          ? 'border-black text-black'
                                           : 'border-transparent text-black hover:text-black',
-                                        'relative z-10 flex items-center sm:h-16 transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px'
+                                        'relative z-10 flex items-center sm:h-10 transition-colors ease-out duration-200 text-ms font-medium border-b-2 -mb-px pt-px'
                                       )}
                                     >
                                       {item.caption}
@@ -338,7 +338,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                                     openState == idx
                                       ? 'border-indigo-600 text-indigo-600'
                                       : 'border-transparent text-black hover:text-black',
-                                    'relative z-10 flex items-center sm:h-16 transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px'
+                                    'relative z-10 flex items-center sm:h-10 transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px'
                                   )}
                                 >
                                   {item.caption}
@@ -438,7 +438,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                 <div className="flex items-center justify-center flex-1">
                   <button
                     type="button"
-                    className="py-4 pl-2 pr-2 -ml-2 text-gray-400 bg-white rounded-md sm:hidden"
+                    className="py-1 pl-2 pr-2 -ml-2 text-gray-400 bg-white rounded-md sm:hidden"
                     onClick={() => setOpen(true)}
                   >
                     <span className="sr-only">Open menu</span>
@@ -454,7 +454,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                     </div>
                   </Link>
                 </div>
-
+                
                 <div className="flex items-center justify-end flex-1">
                   {/* Wishlist*/}
                   <div className="flow-root w-10 px-1 sm:w-16">
@@ -463,7 +463,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                       onClick={openWishlist}
                     >
                       <HeartIcon
-                        className="flex-shrink-0 block w-6 h-6 mx-auto text-black group-hover:text-red-600"
+                        className="flex-shrink-0 block w-4 mx-auto text-black group-hover:text-red-600"
                         aria-hidden="true"
                         aria-label="Wishlist"
                       />
@@ -471,7 +471,7 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                       Wishlist
                     </span> */}
                       {wishListItems.length > 0 && (
-                        <span className="absolute top-0 hidden w-4 h-4 ml-2 text-xs font-medium text-center text-white rounded-full sm:block -right-0 bg-pink">
+                        <span className="absolute top-0 hidden w-4 ml-2 text-xs font-medium text-center text-white rounded-full sm:block -right-0 bg-pink">
                           {wishListItems.length}
                         </span>
                       )}
@@ -488,11 +488,11 @@ const Navbar: FC<Props> = ({ config, currencies, languages }) => {
                   {/* Cart */}
                   <div className="flow-root w-10 px-1 sm:w-16">
                     <button
-                      className="relative grid flex-col items-center justify-center grid-cols-1 mx-auto text-center group align-center"
+                      className="relative grid flex-col items-center justify-center grid-cols-1 text-center group align-center"
                       onClick={openCart}
                     >
                       <ShoppingCartIcon
-                        className="flex-shrink-0 block w-6 h-6 mx-auto text-black group-hover:text-gray-500"
+                        className="flex-shrink-0 block w-4 mx-auto text-black group-hover:text-gray-500"
                         aria-hidden="true"
                         aria-label="Add to cart"
                       />

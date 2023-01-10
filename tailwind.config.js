@@ -16,6 +16,10 @@ module.exports = {
   },
   theme: {
     extend: {
+      fontSize: {
+        xs: '0.66rem',
+        ms: '0.775rem', // medium small
+      },
       maxWidth: {
         '8xl': '1920px',
         '40p': '40%',
@@ -35,6 +39,10 @@ module.exports = {
         width: 'width',
       },
       colors: {
+        customBlack: {
+          50: '#121212',
+          100: '#00000',
+        },
         primary: 'var(--primary)',
         'primary-2': 'var(--primary-2)',
         secondary: 'var(--secondary)',
@@ -77,6 +85,9 @@ module.exports = {
       scale: {
         120: '1.2',
       },
+      borderWidth: {
+        '1': '1px',
+      }
     },
   },
 }
