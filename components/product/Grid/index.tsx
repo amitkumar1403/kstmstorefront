@@ -1,6 +1,7 @@
 import rangeMap from '@lib/range-map'
 import dynamic from 'next/dynamic'
-const ProductCard = dynamic(() => import('@components/product/ProductCard/SearchProductCard'))
+// const ProductCard = dynamic(() => import('@components/product/ProductCard/SearchProductCard'))
+const ProductCard = dynamic(() => import('@components/product/ProductCard/HomeProductCart'))
 const InfiniteScroll = dynamic(() => import('@components/ui/InfiniteScroll'))
 const Pagination = dynamic(() => import('@components/product/Pagination'))
 import { TITLE_PRODUCTS } from '@components/utils/textVariables'
@@ -39,8 +40,8 @@ export default function Grid({
             <div
               className={`border-gray-100 grid grid-cols-2 sm:mx-0 md:grid-cols-4 gap-2 ${
                 products.results.length < 6
-                  ? `lg:grid-cols-4`
-                  : 'lg:grid-cols-4'
+                  ? `lg:grid-cols-6`
+                  : 'lg:grid-cols-6'
               }`}
             >
               {/* before load */}
@@ -69,7 +70,7 @@ export default function Grid({
       )}
       {!IS_INFINITE_SCROLL && (
         <>
-          <div className="border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-cols-4 lg:grid-cols-4">
+          <div className="border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-cols-4 lg:grid-cols-6">
             {!products.results.length &&
               rangeMap(12, (i) => (
                 <div

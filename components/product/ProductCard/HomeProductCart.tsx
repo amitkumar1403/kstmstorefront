@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-const AttributeSelector = dynamic(() => import('./AttributeSelector'))
+const AttributeSelector = dynamic(() => import('./HomeAttributeSelector'))
 const Button = dynamic(() => import('@components/ui/IndigoButton'))
 import cartHandler from '@components/services/cart'
 import { useUI } from '@components/ui/context'
@@ -92,14 +92,7 @@ const HomeProductCard: FC<Props> = ({ product }) => {
     })
   }, [product.slug])
 
-  const productWithColors =
-    product.variantProductsAttribute  &&
-    product.variantProductsAttribute.find(
-      (item: Attribute) => item.fieldCode === colorKey
-    )
-
-  const hasColorVariation =
-    productWithColors && productWithColors.fieldValues.length >= 1
+  const hasColorVariation = Boolean(product.variantProductsAttributeMinimal) || Boolean(product.variantProductsAttribute) || false
 
   const handleVariableProduct = (attr: any, type: string = 'enter') => {
     if (type === 'enter') {
@@ -171,8 +164,8 @@ const HomeProductCard: FC<Props> = ({ product }) => {
   const saving  = product?.listPrice?.raw?.withTax - product?.price?.raw?.withTax;
   const discount  = round((saving / product?.listPrice?.raw?.withTax) * 100, 0);
   return (
-    <div className="bg-gray-100 border border-gray-300 hover:border-black ">
-    <div key={product.id} className="relative group "
+    <div className="border border-gray-200 overflow-hidden">
+    <div key={product.id} className="relative group h-full"
     onMouseEnter={()=>setisEntered(true)}
     onMouseLeave={()=>{setisEntered(false)}}
     >
@@ -182,22 +175,34 @@ const HomeProductCard: FC<Props> = ({ product }) => {
         href={`/${currentProductData.link}`}
         key={'data-product' + currentProductData.link}
       >
-        <a href={currentProductData.link}>
-          <div className="relative overflow-hidden bg-gray-100 aspect-w-1 aspect-h-1 group-hover:bg-gray-200 ">
-              <Image
+        <a href={currentProductData.link} className="h-full">
+          <div className="relative overflow-hidden bg-white group-hover:bg-gray-200">
+            <div style={{
+              width: '100%',
+              height: '370px',
+            }}>
+                <img 
+                  src={generateUri(currentProductData.image, "h=800&fm=webp") || '/assets/icons/newPajama.png'} 
+                  alt={product.name}
+                  onMouseEnter={() => {handleHover('enter')}}
+                  onMouseLeave={() => {handleHover('leave')}}
+                  className="object-cover object-top w-full h-full"
+                />
+            </div>
+              {/* <Image
                 priority
                 src={generateUri(currentProductData.image, "h=800&fm=webp") || '/assets/icons/newPajama.png'} 
                 // src='/assets/icons/newPajama.png' 
                 alt={product.name}
                 onMouseEnter={() => {handleHover('enter')}}
                 onMouseLeave={() => {handleHover('leave')}}
-                className="object-cover object-center w-full h-full sm:h-full"
+                className="object-contain object-top w-full h-full"
                 layout='responsive'
-                width={800}
-                height={800}
+                width={600}
+                height={600}
               >
                 
-                </Image>  
+                </Image>   */}
 
             {buttonConfig.isPreOrderEnabled && (
               <div className="absolute px-1 py-1 bg-yellow-400 rounded-sm top-2">
@@ -231,46 +236,33 @@ const HomeProductCard: FC<Props> = ({ product }) => {
         </a>
       </Link>
     
-      <div className="pt-0 text-center bg-gray-100 group-hover:bg-gray-200">
-        
-        {hasColorVariation && isEntered ? (
+      <div className="pt-1 pl-3 bg-gray-100 group-hover:bg-gray-200 h-full">
+        {hasColorVariation && isEntered && (
           <AttributeSelector
-            attributes={product.variantProductsAttribute}
+            attributes={product.variantProductsAttributeMinimal || product.variantProductsAttribute || []}
             onChange={handleVariableProduct}
             link={currentProductData.link}
           />
-        ) : (
-          
-          <div className="inline-block w-1 h-10 mt-2 mr-1 sm:h-4 sm:w-1 sm:mr-2" />
-          
         )}
-        
-        <h3 className="pb-3 text-xs font-normal text-black truncate sm:text-sm ">
-          <Link href={`/${currentProductData.link}`}>
-            {/* Product Name */}
-                                                                      {/* {showColorPrice.name} */}
-            <a  className='font-medium' href={`/${currentProductData.link}`}> {product.name}  </a>                  
-          </Link>
-        </h3>
+        <Link href={`/${currentProductData.link}`}>
+          <a className="text-xs sm:text-sm" href={`/${currentProductData.link}`}>
+            {product.name}
+          </a>                  
+        </Link>
 
-        <p className="mt-1 mb-2 font-bold text-gray-500 sm:mt-1 text-md">
-          {/* Product Price */}
-            {isEntered ? 
-          (
-            <div className='mt-1 mb-1 font-bold text-gray-500 group-hover:bg-gray-200 sm:mt-1 text-md'>
-            <p className='text-center text-gray-500 text-bold' >  {product?.price?.formatted?.withTax}</p>
-            </div>
-          ):<div className='h-14'></div>
-          }
-
-          {/* {product?.price?.formatted?.withTax} */}
-          {product?.listPrice?.raw?.withTax > 0 && product?.listPrice?.raw?.withTax != product?.price?.raw?.withTax &&
-              <>
-                <span className='px-2 text-sm font-normal text-gray-400 line-through'>{product?.listPrice?.formatted?.withTax}</span>
-                <span className='text-sm font-semibold text-red-600'>{discount}% Off</span>
-              </>
-            }
-        </p>            
+        <div className="mt-1 mb-5 text-gray-500">
+          <div className='text-gray-500 group-hover:bg-gray-200 sm:mt-1 text-sm'>
+            <p className='text-gray-500'>
+              {product?.price?.formatted?.withTax}
+              {product?.listPrice?.raw?.withTax > 0 && product?.listPrice?.raw?.withTax != product?.price?.raw?.withTax &&
+                <>
+                  <span className='px-2 text-sm font-normal text-gray-400 line-through'>{product?.listPrice?.formatted?.withTax}</span>
+                  <span className='text-sm font-semibold text-red-600'>{discount}% Off</span>
+                </>
+              }
+            </p>
+          </div>
+        </div>            
         <div className="flex flex-col">
           <Button
             className="hidden mt-2"

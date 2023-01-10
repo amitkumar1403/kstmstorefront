@@ -470,3 +470,7 @@ body {
 .underline-offset {
   text-underline-offset: 3px;
 }
+#color-swatches-wrapper .color-swatch-item:hover {
+  transform: scale(1.5);
+  transition: transform 0.2s linear;
+}
