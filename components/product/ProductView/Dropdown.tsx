@@ -80,18 +80,18 @@ export default function Dropdown({
   }
 
   const handleOnChange = (value: any) => {
-    // const stockPerAttrValue = getStockPerAttribute(
-    //   fieldCode,
-    //   value.currentAttribute
-    // )
-
-    const stockPerAttrValue = getProductFromAttributes(
+    const stockPerAttrValue = getStockPerAttribute(
       fieldCode,
-      value.currentAttribute,
-      variant,
-      product.variantProducts,
-      slug
+      value.currentAttribute
     )
+
+    // const stockPerAttrValue = getProductFromAttributes(
+    //   fieldCode,
+    //   value.currentAttribute,
+    //   variant,
+    //   product.variantProducts,
+    //   slug
+    // )
     setSelected({ ...value, ...stockPerAttrValue })
     setAttrCombination(fieldCode, value.currentAttribute)
     setSelectedAttrData(stockPerAttrValue)
