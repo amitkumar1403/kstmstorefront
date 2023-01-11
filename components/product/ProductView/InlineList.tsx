@@ -25,11 +25,11 @@ export default function InlineList({
   return (
     <>
     <div className='flex'>
-      <h3 className="text-sm font-bold text-left text-black">{label}</h3>
+      <h3 className="text-sm text-gray-700">{label}</h3>
       {/* <h3 className='px-2' >{color}</h3>
       <div style={{ color: `${color}` }}></div> */}
     </div>
-      <RadioGroup value={'ring-gray-700 mt-0'} onChange={handleChange} className="mt-2">
+      <RadioGroup value={'ring-gray-700 mt-0'} onChange={handleChange} className="mt-1">
         <RadioGroup.Label className="sr-only">{label}</RadioGroup.Label>
         <div className="flex items-center">
 
@@ -37,16 +37,16 @@ export default function InlineList({
             // const path = generateLink(fieldCode, item.fieldValue)
             return (
               <RadioGroup.Option
-                              key={idx}
-                              value={item.fieldValue}
-                              style={{ backgroundColor: item.fieldValue }}
-                              className={({ active, checked }) =>
-                                classNames(
-                                  currentAttribute == item.fieldValue ? 'border-black' : 'border-gray-40',
-                                  'relative h-10 w-10 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '  
-                                )
-                              }
-                            >
+                key={idx}
+                value={item.fieldValue}
+                style={{ backgroundColor: item.fieldValue }}
+                className={({ active, checked }) =>
+                  classNames(
+                    currentAttribute == item.fieldValue ? 'border-black' : 'border-gray-40',
+                    'relative h-10 w-10 flex items-center mt-1 justify-center cursor-pointer border border-grey-40 hover:border-black focus:border-black '  
+                  )
+                }
+              >
                {/* <RadioGroup.Option */}
               {/* //   key={idx}
               //   value={item.fieldValue}

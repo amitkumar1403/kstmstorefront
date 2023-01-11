@@ -91,6 +91,60 @@ const Footer: FC<Props> = ({ config }) => {
             </p>
             <span className="text-sm text-left text-black">{NEW_PRODUCT}</span>
             <NewsletterForm submitSubscription={submitSubscription} isMessage={isMessage} />
+            <div className="flex flex-wrap mt-4">
+              <ul className="flex items-center gap-1 justify-center social-icon sm:justify-between">
+                <li className="inline-block align-middle">
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href="https://www.facebook.com"
+                    className="inline-block"
+                  >
+                    <i className="sprite-icon sprite-fb w-5"></i>
+                  </a>
+                </li>
+                <li className="inline-block align-middle">
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href="https://twitter.com"
+                    className="inline-block"
+                  >
+                    <i className="sprite-icon sprite-twitter"></i>
+                  </a>
+                </li>
+                <li className="inline-block align-middle">
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href="https://www.instagram.com"
+                    className="inline-block"
+                  >
+                    <i className="sprite-icon sprite-insta"></i>
+                  </a>
+                </li>
+                <li className="inline-block align-middle">
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href="#"
+                    className="inline-block"
+                  >
+                    <i className="sprite-icon sprite-tic"></i>
+                  </a>
+                </li>
+                <li className="inline-block align-middle">
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href="https://www.shopify.com"
+                    className="inline-block"
+                  >
+                    <i className="sprite-icon sprite-shopify"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
             {/* Sitemap sections */}
           </div>
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 lg:text-left xl:gap-x-8 lg:gap-x-8 md:gap-x-4">
@@ -252,7 +306,7 @@ const Footer: FC<Props> = ({ config }) => {
         </div>
       </div>
       <hr />
-      <div className="px-20">
+      <div className="px-6 py-4">
         <div className="grid grid-cols-3 items-center">
           <div className="">
             <p className="mt-0 sm:mx-auto sm:text-sm sm:text-sm lg:text-sm xl:text-sm font-heading mx-14">
@@ -261,60 +315,6 @@ const Footer: FC<Props> = ({ config }) => {
           </div>
           <div className="w-auto mx-auto">
             <Logo />
-          </div>
-          <div className="flex flex-wrap justify-end">
-            <ul className="flex items-center gap-1 justify-center social-icon sm:justify-between">
-              <li className="inline-block align-middle">
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href="https://www.facebook.com"
-                  className="inline-block"
-                >
-                  <i className="sprite-icon sprite-fb w-5"></i>
-                </a>
-              </li>
-              <li className="inline-block align-middle">
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href="https://twitter.com"
-                  className="inline-block"
-                >
-                  <i className="sprite-icon sprite-twitter"></i>
-                </a>
-              </li>
-              <li className="inline-block align-middle">
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href="https://www.instagram.com"
-                  className="inline-block"
-                >
-                  <i className="sprite-icon sprite-insta"></i>
-                </a>
-              </li>
-              <li className="inline-block align-middle">
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href="#"
-                  className="inline-block"
-                >
-                  <i className="sprite-icon sprite-tic"></i>
-                </a>
-              </li>
-              <li className="inline-block align-middle">
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href="https://www.shopify.com"
-                  className="inline-block"
-                >
-                  <i className="sprite-icon sprite-shopify"></i>
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>

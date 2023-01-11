@@ -24,13 +24,6 @@ export default function ProductSort({
   return (
     <>
     <div>
-
-    <div className=" px-0 pt-2 flex items-center justify-between">
-          <h2 className="text-lg font-medium text-gray-900">
-            {GENERAL_FILTER_TITLE}
-          </h2>
-        </div>
-
       <div className='pb-6 mt-3'>
         {/* Search bar in every filter category */}
       {/* {getCustomComponent(sectionKey)({ ...PROPS_LIST[sectionKey] })} */}

@@ -21,7 +21,7 @@ const FeatureBar: React.FC<FeatureBarProps> = ({
     {
       transform: true,
       'translate-y-0 opacity-100 cokkie-msg-sec shadow-md': !hide,
-      'translate-y-full opacity-0 hidden': hide,
+      'translate-y-full opacity-0 hidden cokkie-msg-sec': hide,
     },
     className
   )

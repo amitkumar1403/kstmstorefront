@@ -691,14 +691,14 @@ export default function ProductView({
                 {selectedAttrData.brand}
               </h3> */}
               <div className="flex justify-between">
-                <h1 className="text-sm font-semibold tracking-tight text-black sm:text-2xl">
+                <h1 className="text-sm tracking-tight text-gray-700 sm:text-2xl">
                   {product.name || product.name}
                 </h1>
 
                 <h2 className="sr-only">{PRODUCT_INFORMATION}</h2>
 
                 {updatedProduct ? (
-                  <p className="text-2xl font-bold text-black sm:text-xl">
+                  <p className="text-2xl text-gray-700 sm:text-xl">
                     {selectedAttrData.price?.formatted?.withTax}
                     {selectedAttrData.listPrice?.raw.tax > 0 ? (
                       <>
@@ -716,13 +716,12 @@ export default function ProductView({
               </div>
 
               <div
-                className="py-2 text-sm"
+                className="text-sm text-gray-400"
                 dangerouslySetInnerHTML={{ __html: selectedAttrData.description || '' }}
               />
-
-              <div className="block pt-4 ">
-
-                <div className="w-full ">
+              <hr className='my-3' />
+              <div>
+                <div className="w-full">
                   <AttributesHandler
                     product={product}
                     variant={selectedAttrData}
@@ -761,6 +760,7 @@ export default function ProductView({
           </div> */}
 
               </div>
+              <hr className='my-3' />
               {/* Reviews */}
               <div className="mt-3">
                 <h3 className="sr-only">{GENERAL_REVIEWS}</h3>
@@ -824,25 +824,25 @@ export default function ProductView({
 
                   {isEngravingAvailable && (
                     <>
-                      <div className="mt-6 sm:mt-8 sm:col-1">
-                        <div className="flex justify-between p-3 transition duration-500 transform border cursor-pointer border-grey-40 hover:scale-105 hover:shadow-md" onClick={() => {
+                      <div className="sm:col-1">
+                        <div className="flex justify-between py-3 px-5 transition duration-200 transform border cursor-pointer border-grey-40 hover:shadow-md" onClick={() => {
                           showEngravingModal(true)
                         }}>
                           <div className=''>
                             <img
                               src="/KSTMize.jpg"
-                              className="w-24 h-4 "
+                              className="w-24 mb-1"
                             // onClick={() => {
                             //   showEngravingModal(true)
                             // }}
                             >
                               {/* <span className="font">KSTMize it</span>  */}
                             </img>
-                            <label className="text-sm font-medium underline hover:text-gray-800">
+                            <label className="text-sm underline text-gray-700">
                               Personalise with custom embroidery
                             </label>
                           </div>
-                          <label className="font-bold">{addonPrice}</label>
+                          <label className="text-ms text-gray-700">{addonPrice}</label>
                         </div>
                         <Button
                           className="block py-3 sm:hidden"
