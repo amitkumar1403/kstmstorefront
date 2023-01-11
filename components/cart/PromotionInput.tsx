@@ -42,16 +42,21 @@ export default function PromotionInput() {
 
   return (
     <div className="flex items-center">
-      <div>
-        <label className="text-black uppercase font-semibold text-xs">{APPLY_PROMOTION}</label>
+      <form 
+        onSubmit={() => {
+          handleSubmit('apply')
+        }}
+        className="w-full"
+      >
+        {/* <label className="text-gray-900 capitalize font-semibold text-xs">{APPLY_PROMOTION}</label> */}
         <div className="flex flex-col">
           <div className="flex justify-start flex-col sm:my-0 my-0">
             {cartItems.promotionsApplied?.length
               ? cartItems.promotionsApplied.map((promo: any, key: number) => {
                   return (
                     <div className="flex items-center py-2" key={promo.name}>
-                      <span className="text-black">
-                        <span className='text-black p-1 rounded-full border bg-gray-50 text-sm px-4 font-bold'>{promo.name}</span> {' '}{APPLY_PROMOTION_SUCCESS_MESSAGE}
+                      <span className="text-gray-900">
+                        <span className='text-gray-900 p-1 rounded-full border bg-gray-50 text-sm px-4 font-bold'>{promo.name}</span> {' '}{APPLY_PROMOTION_SUCCESS_MESSAGE}
                       </span>
                       <TrashIcon
                         className="ml-5 cursor-pointer text-red-500 hover:text-red-700 max-w-xs h-5"
@@ -63,20 +68,21 @@ export default function PromotionInput() {
               : null}
           </div>
 
-          <div className="flex justify-center items-center">
+          <div className="flex mb-3 gap-3 justify-between items-center">
             <input
               name={'promotion-code'}
               placeholder={APPLY_PROMOTION}
               onChange={handleChange}
               value={value}
-              className="mb-2 mt-2 appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-sm shadow-sm py-3 px-4 text-black placeholder-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black "
+              className="text-md appearance-none min-w-0 w-full border border-gray-300 py-1 px-3 placeholder-gray-200 focus:outline-none focus:border-black"
+              required
             />
-            <Button
-              action={async () => await handleSubmit('apply')}
-              type="button"
-              title={GENERAL_APPLY_TEXT}
-              className={`max-w-xs flex-1 ml-2 bg-black border border-transparent rounded-sm uppercase py-2 px-4 flex items-center justify-center font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-black sm:w-full`}
-            />
+            <button
+              type='submit'
+              className='py-1 px-3 flex items-center justify-center bg-green hover:opacity-75 text-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-green w-16 md:w-32 lg:w-48'
+            >
+              {GENERAL_APPLY_TEXT}
+            </button>
           </div>
         </div>
         {error ? (
@@ -84,8 +90,7 @@ export default function PromotionInput() {
             {PROMO_ERROR}
           </div>
         ) : null}
-      </div>
-      <div></div>
+      </form>
     </div>
   )
 }

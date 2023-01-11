@@ -16,6 +16,7 @@ import { useUI } from '@components/ui/context'
 import useAnalytics from '@components/services/analytics/useAnalytics'
 import { GENERAL_CATALOG } from '@components/utils/textVariables'
 import Link from 'next/link'
+import FilterDialog from '@components/product/Filters/FilterDialog'
 export const ACTION_TYPES = {
   SORT_BY: 'SORT_BY',
   PAGE: 'PAGE',
@@ -290,6 +291,17 @@ function Search({ query, setEntities, recordEvent }: any) {
     ? productListMemory.products
     : data.products
 
+  const [ isFilterDialogOpen, setIsFilterDialogOpen ] = useState(false)
+
+  const handleToggleFilterDialog = () => {
+    setIsFilterDialogOpen(!isFilterDialogOpen)
+  }
+
+  const handleClearAll = () => {
+    handleToggleFilterDialog()
+    clearAll()
+  }
+
   return (
     <div
       className="w-full mx-auto bg-white ">
@@ -306,9 +318,7 @@ function Search({ query, setEntities, recordEvent }: any) {
 
           <img src='/assets/icons/filter.png'
             alt='filter-icon'
-            onClick={() => {
-              !showModal ? setShowModal(true) : setShowModal(false)
-            }}
+            onClick={() => handleToggleFilterDialog()}
             className='absolute hidden w-10 mt-7 mr-4 cursor-pointer sm:block right-7 -top-1 z-50' />
         </div>
         <div className="grid w-full grid-cols-1 px-4 mx-auto overflow-hidden sm: sm:px-0 lg:px-0">
@@ -355,66 +365,20 @@ function Search({ query, setEntities, recordEvent }: any) {
               handlePageChange={handlePageChange}
               handleInfiniteScroll={handleInfiniteScroll}
             />
-
-            {showModal ? (
-              <>
-                {/*content*/}
-                <div
-                  style={{ width: '30rem' }}
-
-                  className='z-50 absolute hidden  bg-gray-100 border-b-2 sm:block right-0  top-14 hover:shadow-2xl mt-3' >
-                  {/* <div
-                    //  style={{width:'30rem'}}
-                    className="hidden sm:block"> */}
-                    <div className='relative  w-full border-r flex flex-col px-6 overflow-y-scroll max-h-40R'>
-
-                    <ProductFiltersTopBar
-                      products={data.products}
-                      handleSortBy={handleSortBy}
-                      routerFilters={state.filters}
-                      clearAll={clearAll}
-                      routerSortOption={state.sortBy}
-                    />
-                  {/* </div> */}
-
-                  <ProductFilterRight
-                    handleFilters={handleFilters}
-                    products={data.products}
-                    routerFilters={state.filters}
-                    
-                    />
-                 
-                    </div>
-
-                  {/*footer*/}
-                  <div className="grid grid-cols-2 border-b-2 py-7 px-7">
-                    <button
-                      className="col-span-1 px-6 py-6 text-lg font-bold text-gray-700 border border-gray-200 hover:text-black hover:border-black"
-                      type="button"
-                      onClick={() => { setShowModal(false), clearAll() }}
-                    >
-                      Clear All
-                    </button>
-                    <button
-                      className="col-span-1 px-6 py-6 text-lg font-bold text-white bg-black border border-black hover:border-white hover:text-gray-200"
-                      type="button"
-                      onClick={() => setShowModal(false)}
-                    >
-                      Apply
-                    </button>
-                  </div>
-
-
-                </div>
-                {/* <div className="fixed inset-0 z-40 bg-black opacity-25"></div> */}
-              </>
-            ) : null}
-
-
           </div>
           <div></div>
         </div>
       </main>
+      <FilterDialog
+        isOpen={isFilterDialogOpen}
+        handleToggleFilterDialog={() => handleToggleFilterDialog()}
+        handleFilters={(filter: null, type: string) => handleFilters(filter, type)}
+        products={data.products}
+        routerFilters={state.filters}
+        handleSortBy={(payload: any) => handleSortBy(payload)}
+        handleClearAll={() => handleClearAll()}
+        routerSortOption={state.sortBy}
+      />
     </div>
   )
 }

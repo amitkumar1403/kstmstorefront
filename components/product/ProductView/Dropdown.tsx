@@ -127,10 +127,9 @@ export default function Dropdown({
         isDisabled ? 'opacity-40' : ''
       } block text-md font-medium py-2 text-gray-800 text-left`}
     >
-      {label} {' : '} <span className='uppercase font-bold text-xs text-black'>{selected.currentAttribute}</span>
+      {label}
     </Listbox.Label>
-    <div className="mt-1 relative">
-      
+    <div className="relative">
       <Listbox.Button
         disabled
         className={`${

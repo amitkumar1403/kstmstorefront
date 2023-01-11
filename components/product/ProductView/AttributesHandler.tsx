@@ -236,7 +236,7 @@ export default function AttributesHandler({
           TEMP_MAP[option.fieldCode] ||
           DefaultComponent
         return (
-          <div key={idx} className="py-5 ">
+          <div key={idx}>
             <Component
               currentAttribute={originalAttribute}
               getStockPerAttribute={getStockPerAttribute}

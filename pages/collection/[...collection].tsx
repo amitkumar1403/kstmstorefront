@@ -23,6 +23,7 @@ import { ArrowLeftIcon, ChevronLeftIcon } from '@heroicons/react/outline'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
+import FilterDialog from '@components/product/Filters/FilterDialog'
 
 import SwiperCore, { Navigation } from 'swiper'
 import commerce from '@lib/api/commerce'
@@ -207,13 +208,22 @@ export default function CollectionPage(props: any) {
   }
   const clearAll = () => dispatch({ type: CLEAR })
 
+  const [ isFilterDialogOpen, setIsFilterDialogOpen ] = useState(false)
+
+  const handleToggleFilterDialog = () => {
+    setIsFilterDialogOpen(!isFilterDialogOpen)
+  }
+
+  const handleClearAll = () => {
+    handleToggleFilterDialog()
+    clearAll()
+  }
+
   return (
     <main className="pb-0 mx-auto">
       <img src='/assets/icons/filter.png'
         alt='filter-icon'
-        onClick={() => {
-          !showModal ? setShowModal(true) : setShowModal(false)
-        }}
+        onClick={() => handleToggleFilterDialog()}
         className='absolute top-0 z-50 hidden w-10 mt-8 mr-4 cursor-pointer sm:block right-7' />
       <div className="pt-2 sm:pt-4">
         {props.breadCrumbs && (
@@ -253,9 +263,7 @@ export default function CollectionPage(props: any) {
 
           <img src='/assets/icons/filter.png'
             alt='filter-icon'
-            onClick={() => {
-              !showModal ? setShowModal(true) : setShowModal(false)
-            }}
+            onClick={() => handleToggleFilterDialog()}
             className='w-10 h-10 cursor-pointer sm:block right-7' />
         </span>
 
@@ -298,60 +306,6 @@ export default function CollectionPage(props: any) {
                   routerSortOption={state.sortBy}
                 />
               </div> */}
-
-                {showModal ? (
-                  <>
-                    {/*content*/}
-                    <div
-                      style={{ width: '30rem' }}
-                      className='absolute right-0 z-50 hidden mt-0 bg-gray-100 border-b-2 sm:block hover:shadow-2xl ' >
-
-                      {/* <div
-                    //  style={{width:'30rem'}}
-                    className="hidden sm:block"> */}
-                      <div className='relative flex flex-col w-full px-6 overflow-y-scroll border-r max-h-40R'>
-
-                        <ProductFiltersTopBar
-                          products={data.products}
-                          handleSortBy={handleSortBy}
-                          routerFilters={state.filters}
-                          clearAll={clearAll}
-                          routerSortOption={state.sortBy}
-                        />
-                        {/* </div> */}
-
-                        <ProductFilterRight
-                          handleFilters={handleFilters}
-                          products={data.products}
-                          routerFilters={state.filters}
-
-                        />
-
-                      </div>
-
-                      {/*footer*/}
-                      <div className="grid grid-cols-2 border-b-2 py-7 px-7">
-                        <button
-                          className="col-span-1 px-6 py-6 text-lg font-bold text-gray-700 border border-gray-200 hover:text-black hover:border-black"
-                          type="button"
-                          onClick={() => { setShowModal(false), clearAll() }}
-                        >
-                          Clear All
-                        </button>
-                        <button
-                          className="col-span-1 px-6 py-6 text-lg font-bold text-white bg-black border border-black hover:border-white hover:text-gray-200"
-                          type="button"
-                          onClick={() => setShowModal(false)}
-                        >
-                          Apply
-                        </button>
-                      </div>
-
-
-                    </div>
-                    {/* <div className="fixed inset-0 z-40 bg-black opacity-25"></div> */}
-                  </>
-                ) : null}
 
                 <ProductGridWithFacet
                   products={productDataToPass}
@@ -410,6 +364,16 @@ export default function CollectionPage(props: any) {
             },
           ],
         }}
+      />
+      <FilterDialog
+        isOpen={isFilterDialogOpen}
+        handleToggleFilterDialog={() => handleToggleFilterDialog()}
+        handleFilters={(filter: null, type: string) => handleFilters(filter, type)}
+        products={data.products}
+        routerFilters={state.filters}
+        handleSortBy={(payload: any) => handleSortBy(payload)}
+        handleClearAll={() => handleClearAll()}
+        routerSortOption={state.sortBy}
       />
     </main>
   )
