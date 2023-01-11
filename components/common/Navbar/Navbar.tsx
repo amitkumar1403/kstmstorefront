@@ -48,13 +48,13 @@ const accountDropDownConfigUnauthorized: any = [
     href: '/my-account/login',
     title: GENERAL_LOGIN,
     className:
-      'mt-5 max-w-xs flex-1 bg-gray-300 border font-semibold border-transparent rounded-md py-3 px-8 flex items-center justify-center font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full',
+      'max-w-xs py-2 px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 hover:opacity-75 sm:w-full',
   },
   {
     href: '/my-account/register',
     title: GENERAL_REGISTER,
     className:
-      'mt-5 max-w-xs flex-1 bg-indigo-600 border border-transparent rounded-md op-75 py-3 px-8 flex items-center justify-center font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full',
+      'max-w-xs py-2 px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 hover:opacity-75 sm:w-full',
   },
 ]
 

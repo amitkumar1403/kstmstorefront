@@ -178,7 +178,14 @@ const Layout: FC<Props> = ({
           title={GENERAL_COOKIE_TEXT}
           hide={acceptedCookies}
           action={
-            <Button className="mx-5" onClick={() => onAcceptCookies()}>
+            <Button onClick={() => onAcceptCookies()} 
+              style={{
+                padding: '0.575rem 1.235rem',
+                textTransform: 'capitalize',
+                fontWeight: 'normal',
+                fontSize: 12
+              }}
+            >
               {BTN_ACCEPT_COOKIE}
             </Button>
           }
